@@ -1,5 +1,4 @@
 import PrimaryButton from './component/homepage/PrimaryButton/primaryButton';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
