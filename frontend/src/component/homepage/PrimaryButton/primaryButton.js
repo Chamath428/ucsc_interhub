@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import React, { Component } from "react";
 
 function PrimaryButton() {
+  const inside = this.props.inside;
   return (
     <>
 
@@ -23,7 +24,7 @@ function PrimaryButton() {
         size="lg"
         className='border border-2 border-primary rounded-5 btn-primary fw-bold'
         >
-        Large button
+        {inside}
         </Button>
       </div>
 
