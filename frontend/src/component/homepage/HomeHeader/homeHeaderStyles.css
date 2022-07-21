@@ -1,0 +1,25 @@
+.hero {
+    background-image: url("../../../assets/images/home-background-2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
+  }
+
+  #text-col{
+    gap: 10px;
+  }
+
+  
+
+  @media screen and (max-width: 992px) {
+    .hero {
+        background-image: url("");
+      }
+    #text-col{
+        display: flex !important;
+        align-items: center !important;
+        padding: 20px;
+    }
+  }
+

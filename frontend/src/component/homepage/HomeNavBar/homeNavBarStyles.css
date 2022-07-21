@@ -1,0 +1,8 @@
+.nav-li{
+    color: #fff !important;
+    font-weight: 500 !important;
+}
+
+.nav-li:hover{
+    font-weight: 600 !important;
+}
