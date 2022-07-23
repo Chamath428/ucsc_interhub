@@ -1,8 +1,24 @@
-.nav-li{
+.nav-li1{
     color: #fff !important;
     font-weight: 500 !important;
 }
 
-.nav-li:hover{
+.nav-li2{
+    font-weight: 500 !important;
+}
+
+.nav-li1:hover{
     font-weight: 600 !important;
 }
+
+
+@media screen and (max-width: 1200px) {
+    .nav-li1{
+        color: #000 !important;
+    }
+
+    .nav-li2{
+        color: #000 !important;
+    }
+ 
+  }
