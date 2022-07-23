@@ -1,6 +1,8 @@
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import HomePage from './pages/homePage';
+import HomeNavBar from './component/homepage/HomeNavBar/homeNavBar';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import HomePage from './pages/homePage';
@@ -19,7 +21,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      
+    
       <Router>
       <div className="App">
 
@@ -65,6 +67,7 @@ function App() {
       </div>
     </Router>
       {/* <HomePage />*/}
+
     </div>
   );
 }
