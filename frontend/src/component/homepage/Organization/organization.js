@@ -9,10 +9,10 @@ class OrganizationComponent extends Component {
 
     render() { 
         return (
-            <Container className="mb-5">
-                <Row className="d-flex flex-row-reverse justify-content-around align-items-center">
+            <Container  className="mb-5">
+                <Row className="d-flex flex-row-reverse justify-content-around align-items-center" >
                     <Col lg="5">
-                        <h1>Are You an Organization?</h1>
+                        <h1 id="register">Are You an Organization?</h1>
                         
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -23,6 +23,7 @@ class OrganizationComponent extends Component {
                     culpa qui officia deserunt mollit anim id est laborum.</p>
 
                     <PrimaryButton inside="Register as an Organization"></PrimaryButton>
+
                     </Col>
                     <Col lg="5">
                         <img src={Organization} className='img-fluid shadow-4' style={{width:'600px'}}></img>

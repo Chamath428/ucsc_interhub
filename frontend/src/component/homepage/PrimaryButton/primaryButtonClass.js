@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 
+
 class PrimaryButton extends Component {
     
     render() { 
@@ -19,7 +20,6 @@ class PrimaryButton extends Component {
                     `}
                 </style>
 
-            <div className="mb-2">
                     <Button 
                     variant="primary" 
                     size="lg"
@@ -27,7 +27,7 @@ class PrimaryButton extends Component {
                     >
                     {inside}
                     </Button>
-                </div>
+
             </>
         );
     }

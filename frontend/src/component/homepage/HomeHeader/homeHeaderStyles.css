@@ -1,9 +1,9 @@
 .hero {
-    background-image: url("../../../assets/images/home-background-3.jpg");
+    background-image: url("../../../assets/images/backg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    min-height: 100vh;
+    min-height: 90vh;
   }
 
   #text-col{
@@ -27,3 +27,9 @@
     }
   }
 
+  @media screen and (max-width: 1200px) {
+    #row{
+        
+        padding-top: 130px !important;
+    }
+  }
