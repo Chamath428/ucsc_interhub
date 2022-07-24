@@ -1,10 +1,12 @@
 .nav-li1{
     color: #fff !important;
     font-weight: 500 !important;
+    margin-top: 0px !important;
 }
 
 .nav-li2{
     font-weight: 500 !important;
+    margin-top: 0px !important;
 }
 
 .nav-li1:hover{

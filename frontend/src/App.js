@@ -22,14 +22,14 @@ function App() {
   return (
     <div className="App">
     
-      <Router>
-      <div className="App">
+      {/* <Router> */}
+      {/* <div className="App"> */}
 
         <div className="content">
-          <DashboardTopNav />
-          <DashSideNavigation />
-
-          <Switch>
+          {/* <DashboardTopNav />
+          <DashSideNavigation /> */}
+          <HomePage></HomePage>
+          {/* <Switch>
 
             <Route exact path="/DashboardMenu">
               <DashboardMenu />
@@ -60,12 +60,12 @@ function App() {
              <StudentSettings />
             </Route>
 
-          </Switch>
+          </Switch> */}
         </div>
 
           
-      </div>
-    </Router>
+      {/* </div> */}
+    {/* </Router> */}
       {/* <HomePage />*/}
 
     </div>

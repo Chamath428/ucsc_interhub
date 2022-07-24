@@ -15,7 +15,7 @@ class HowDoesItWord extends Component {
     render() { 
         // console.log(cardParas['Student']);
         return (
-            <Container className="mt-5 mb-5">
+            <Container id="howDoesItWork" className="mt-5 mb-5">
                 <Row >
                     <Col xxl="6" className="mx-auto text-center">
                         <h1>How Does It Work?</h1>

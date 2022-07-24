@@ -9,7 +9,7 @@ class FAQ extends Component {
 
     render() { 
         return (
-    <Container className='mb-5'>
+    <Container id="faqs" className='mb-5'>
     <Row className="d-flex justify-content-around align-items-center">
         <Col lg="5"> 
         <h1>FAQs</h1>

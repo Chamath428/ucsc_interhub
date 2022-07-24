@@ -9,17 +9,20 @@ function HomeNavBar() {
 
   const [bg, setBG] = useState("transparent");
   const [navli, setNavLi] = useState("nav-li1");
+  const [mt,setMT] = useState("mt-3 mb-3");
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
       const scrollCheckDown = window.scrollY > 20
       const scrollCheckUp = window.scrollY < 20
       if (scrollCheckDown) {
-        setBG("light");
+        setBG("white");
         setNavLi("nav-li2");
+        setMT("mt-0 mb-3");
       }if(scrollCheckUp){
         setBG("transparent");
         setNavLi("nav-li1");
+        setMT("mt-3 mb-3");
       }
     })
   })
@@ -29,9 +32,9 @@ function HomeNavBar() {
   return (
     <>
       {['xl'].map((expand) => (
-        <Navbar sticky="top"  key={expand} bg={bg}  expand={expand} className="mb-3">
+        <Navbar fixed="top"  key={expand} bg={bg}  expand={expand} className={mt}>
           <Container fluid>
-            <Navbar.Brand href="#">UCSC InternHub</Navbar.Brand>
+            <Navbar.Brand href="#" style={{fontWeight:'bold'}}>UCSC InternHub</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -45,9 +48,9 @@ function HomeNavBar() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link className={navli} id="nav-li" href="#action2">How does it work?</Nav.Link>
-                  <Nav.Link className={navli} id="nav-li" href="#action2">FAQs</Nav.Link>
-                  <Nav.Link className={navli} id="nav-li" href="#action2">Register as an Organizations</Nav.Link>
+                  <Nav.Link className={navli} id="nav-li" href="#howDoesItWork">How does it work?</Nav.Link>
+                  <Nav.Link className={navli} id="nav-li" href="#faqs">FAQs</Nav.Link>
+                  <Nav.Link className={navli} id="nav-li" href="#register">Register as an Organizations</Nav.Link>
                   <Nav.Link className={navli} id="nav-li" href="#action2">Login</Nav.Link>
                 </Nav>
 
