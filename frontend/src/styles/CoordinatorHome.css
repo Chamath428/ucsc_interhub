@@ -1,0 +1,11 @@
+.cart-contain{
+
+    margin: auto;
+    margin-top: 10vh;
+    margin-left: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    /* background-color: aquamarine; */
+   
+}

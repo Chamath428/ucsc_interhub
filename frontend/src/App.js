@@ -15,6 +15,8 @@ import StudentSettings from './pages/Student/StudentSettings';
 import DashSideNavigation from './component/Dashboard/DashSideNavigation';
 import DashboardTopNav from './component/Dashboard/DashNav';
 import DashboardMenu from './component/Dashboard/DashMenu';
+import CoordinatorHome from './pages/Coordinator/CoordinatorHome';
+
 
 import './App.css';
 
@@ -28,7 +30,10 @@ function App() {
         <div className="content">
           {/* <DashboardTopNav />
           <DashSideNavigation /> */}
-          <HomePage></HomePage>
+          {/* <HomePage></HomePage> */}
+          <CoordinatorHome/>
+        
+      
           {/* <Switch>
 
             <Route exact path="/DashboardMenu">
