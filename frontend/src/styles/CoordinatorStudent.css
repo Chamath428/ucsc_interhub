@@ -59,6 +59,7 @@
     width: 300px;
     height: 40px;
 }
+
 .dropdown1 label {
     margin-right: 20px;
     font-weight: bold;
@@ -72,7 +73,17 @@
     width: 300px;
     height: 40px;
 }
+
 .dropdown2 label {
     margin-right: 20px;
     font-weight: bold;
+}
+
+.my-custom-scrollbar {
+
+    margin-top: 5vh;
+    width: 90%;
+    position: relative;
+    height: 44vh;
+    overflow: auto;
 }
