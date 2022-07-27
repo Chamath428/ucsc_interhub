@@ -32,8 +32,8 @@ function App() {
         <div className="content">
           {/* <DashboardTopNav />
           <DashSideNavigation /> */}
-          <HomePage></HomePage>
-          {/* <CoordinatorStudent/> */}
+          {/* <HomePage></HomePage> */}
+          <CoordinatorStudent/>
           {/* <CoordinatorHome/> */}
 
         
