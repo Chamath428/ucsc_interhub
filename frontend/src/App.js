@@ -16,6 +16,8 @@ import DashSideNavigation from './component/Dashboard/DashSideNavigation';
 import DashboardTopNav from './component/Dashboard/DashNav';
 import DashboardMenu from './component/Dashboard/DashMenu';
 import CoordinatorHome from './pages/Coordinator/CoordinatorHome';
+import CoordinatorStudent from './pages/Coordinator/CoordinatorStudent';
+
 
 
 import './App.css';
@@ -30,8 +32,10 @@ function App() {
         <div className="content">
           {/* <DashboardTopNav />
           <DashSideNavigation /> */}
-          {/* <HomePage></HomePage> */}
-          <CoordinatorHome/>
+          <HomePage></HomePage>
+          {/* <CoordinatorStudent/> */}
+          {/* <CoordinatorHome/> */}
+
         
       
           {/* <Switch>
