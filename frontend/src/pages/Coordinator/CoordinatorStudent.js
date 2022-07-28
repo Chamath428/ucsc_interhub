@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
-import '../../styles/CoordinatorStudent.css'
+import '../../styles/CoordinatorStudent.css';
 
 
 class CoordinatorStudent extends Component {
@@ -13,7 +13,7 @@ class CoordinatorStudent extends Component {
 
                 <h3>Manage Students</h3>
                 <div className='btn-container'>
-                    <Button > View </Button>
+                    <Button  > View </Button>
                     <Button > Add bulk students </Button>
                     <Button > Evaluation </Button>
                 </div>
