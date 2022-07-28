@@ -1,0 +1,30 @@
+.bi-gear{
+    font-weight:5px;
+    font-size: 20px;
+}
+.bi-arrow-down-circle{
+    font-weight:5px;
+    font-size: 20px;
+    float:right;
+    margin-right: 50%;
+}
+.my-custom-scrollbar Button {
+    margin: 0;
+    background-color: #fffffd;
+    width: 190px;
+    height: 30px;
+    border: 1px solid rgb(34, 34, 34);
+    box-shadow: 0px 10px 20px rgb(200 208 216 / 30%);
+    /* border-radius: 10px; */
+    color: black;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.my-custom-scrollbar Button img {
+    margin: 0;
+    width: 30px;
+    height: 25px;
+}
