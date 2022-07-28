@@ -17,6 +17,7 @@ import DashboardTopNav from './component/Dashboard/DashNav';
 import DashboardMenu from './component/Dashboard/DashMenu';
 import CoordinatorHome from './pages/Coordinator/CoordinatorHome';
 import CoordinatorStudent from './pages/Coordinator/CoordinatorStudent';
+import CoordinatorStudentBulkList from './pages/Coordinator/CoordinatorStudentBulkList';
 
 
 
@@ -33,7 +34,8 @@ function App() {
           {/* <DashboardTopNav />
           <DashSideNavigation /> */}
           {/* <HomePage></HomePage> */}
-          <CoordinatorStudent/>
+          {/* <CoordinatorStudent/> */}
+          <CoordinatorStudentBulkList/>
           {/* <CoordinatorHome/> */}
 
         
@@ -75,7 +77,7 @@ function App() {
           
       {/* </div> */}
     {/* </Router> */}
-      {/* <HomePage />*/}
+      {/* <HomePage /> */}
 
     </div>
   );
