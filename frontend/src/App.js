@@ -18,6 +18,8 @@ import DashboardMenu from './component/Dashboard/DashMenu';
 import CoordinatorHome from './pages/Coordinator/CoordinatorHome';
 import CoordinatorStudent from './pages/Coordinator/CoordinatorStudent';
 import CoordinatorStudentBulkList from './pages/Coordinator/CoordinatorStudentBulkList';
+import CoordinatorCompany from './pages/Coordinator/CoordinatorCompany';
+
 
 
 
@@ -35,7 +37,8 @@ function App() {
           <DashSideNavigation /> */}
           {/* <HomePage></HomePage> */}
           {/* <CoordinatorStudent/> */}
-          <CoordinatorStudentBulkList/>
+          {/* <CoordinatorStudentBulkList/> */}
+          <CoordinatorCompany/>
           {/* <CoordinatorHome/> */}
 
         
