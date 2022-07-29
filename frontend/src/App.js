@@ -5,7 +5,7 @@ import HomeNavBar from './component/homepage/HomeNavBar/homeNavBar';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// import HomePage from './pages/homePage';
+ import Login from './pages/login';
 import Dashboard from './pages/Dashboard';
 import StudentHome from './pages/Student/StudentHome';
 import StudentAnnouncement from './pages/Student/StudentAnnouncement';
@@ -37,6 +37,9 @@ function App() {
         <div className="content">
           {/* <DashboardTopNav />
           <DashSideNavigation /> */}
+
+          {/* <Login></Login>*/}
+
           {/* <HomePage></HomePage> */}
           {/* <CoordinatorStudent/> */}
           {/* <CoordinatorStudentBulkList/> */}
@@ -44,8 +47,7 @@ function App() {
           <CoordinatorCompanyPending/>
           {/* <CoordinatorHome/> */}
 
-        
-      
+
           {/* <Switch>
 
             <Route exact path="/DashboardMenu">

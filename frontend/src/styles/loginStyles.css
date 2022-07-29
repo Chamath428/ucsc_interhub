@@ -1,0 +1,42 @@
+.login-container{
+    min-height: 100vh;
+}
+
+.left-column{
+    min-height: 100vh;
+    background-color: #0d6efd;
+}
+.left-column h2{
+    color: #fff;
+    font-weight: 700;
+}
+
+.right-column{
+    min-height: 100vh;
+    background-color: #fff;
+}
+
+.right-column h2{
+    font-weight: 700;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+.form-div {
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+    border-radius: 5px;
+    z-index: 1;
+    background: inherit;
+    overflow: hidden;
+  }
+
+  .form-div:before {
+    content: "";
+    background: inherit;
+    z-index: -1;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    filter: blur(10px);
+  }
