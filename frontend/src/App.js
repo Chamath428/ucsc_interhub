@@ -15,6 +15,15 @@ import StudentSettings from './pages/Student/StudentSettings';
 import DashSideNavigation from './component/Dashboard/DashSideNavigation';
 import DashboardTopNav from './component/Dashboard/DashNav';
 import DashboardMenu from './component/Dashboard/DashMenu';
+import CoordinatorHome from './pages/Coordinator/CoordinatorHome';
+import CoordinatorStudent from './pages/Coordinator/CoordinatorStudent';
+import CoordinatorStudentBulkList from './pages/Coordinator/CoordinatorStudentBulkList';
+import CoordinatorCompany from './pages/Coordinator/CoordinatorCompany';
+import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPending';
+
+
+
+
 
 import './App.css';
 
@@ -28,7 +37,17 @@ function App() {
         <div className="content">
           {/* <DashboardTopNav />
           <DashSideNavigation /> */}
-          <Login></Login>
+
+          {/* <Login></Login>*/}
+
+          {/* <HomePage></HomePage> */}
+          {/* <CoordinatorStudent/> */}
+          {/* <CoordinatorStudentBulkList/> */}
+          {/* <CoordinatorCompany/> */}
+          <CoordinatorCompanyPending/>
+          {/* <CoordinatorHome/> */}
+
+
           {/* <Switch>
 
             <Route exact path="/DashboardMenu">
@@ -66,7 +85,7 @@ function App() {
           
       {/* </div> */}
     {/* </Router> */}
-      {/* <HomePage />*/}
+      {/* <HomePage /> */}
 
     </div>
   );
