@@ -10,7 +10,7 @@ import img from '../../assets/images/profile.jpg'
 
 
 
-class CoordinatorCompany extends Component {
+class CoordinatorCompanyPending extends Component {
 
     render() {
         // const barStatus = this.props.barStatus;
@@ -31,7 +31,9 @@ class CoordinatorCompany extends Component {
                     <table class="table">
                         <thead class="thead-light">
                             <tr class="table-primary">
-                                <th scope="col">Company</th>
+
+                                <th scope="col"><i class="bi bi-file-minus"></i></th>
+                                <th scope="col">Title</th>
                                 <th scope="col">Severity <i class="bi bi-arrow-down-circle"></i></th>
                                 <th scope="col">Progress</th>
                                 <th scope="col">Owner</th>
@@ -51,12 +53,14 @@ class CoordinatorCompany extends Component {
 
                                 <td>
                                     <Button>
-                                               <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
+                                        <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
 
                                         Kianna Philips
                                     </Button>
                                 </td>
                                 <td>.......</td>
+                                <td>.......</td>
+
                             </tr>
                             <tr>
 
@@ -68,12 +72,14 @@ class CoordinatorCompany extends Component {
 
                                 <td>
                                     <Button>
-                                               <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
+                                        <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
 
                                         Jakob Franci
                                     </Button>
                                 </td>
                                 <td>.......</td>
+                                <td>.......</td>
+
 
                             </tr>
                             <tr>
@@ -85,7 +91,7 @@ class CoordinatorCompany extends Component {
 
                                 <td>
                                     <Button>
-                                               <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
+                                        <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
 
                                         Rayna Dias
                                     </Button>
@@ -103,7 +109,7 @@ class CoordinatorCompany extends Component {
 
                                 <td>
                                     <Button>
-                                               <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
+                                        <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
 
                                         Rayna Bergson
                                     </Button>
@@ -121,7 +127,7 @@ class CoordinatorCompany extends Component {
 
                                 <td>
                                     <Button>
-                                               <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
+                                        <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
 
                                         Owner’s Name
                                     </Button>
@@ -139,7 +145,7 @@ class CoordinatorCompany extends Component {
 
                                 <td>
                                     <Button>
-                                               <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
+                                        <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
 
                                         Haylie Schleifer
                                     </Button>
@@ -157,7 +163,7 @@ class CoordinatorCompany extends Component {
 
                                 <td>
                                     <Button>
-                                               <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
+                                        <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
 
                                         Ashlynn Culhane
                                     </Button>
@@ -175,7 +181,7 @@ class CoordinatorCompany extends Component {
 
                                 <td>
                                     <Button>
-                                               <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
+                                        <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
 
                                         Ann Saris
                                     </Button>
@@ -193,7 +199,7 @@ class CoordinatorCompany extends Component {
 
                                 <td>
                                     <Button>
-                                               <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
+                                        <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
 
                                         Haylie Dias
                                     </Button>
@@ -210,7 +216,7 @@ class CoordinatorCompany extends Component {
                                 </td>
                                 <td>
                                     <Button>
-                                               <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
+                                        <img src={img} alt={this.props.barStatus} className='img-fluid shadow-4' ></img>
 
                                         Chance Herwitz
                                     </Button>
@@ -236,4 +242,4 @@ class CoordinatorCompany extends Component {
 }
 
 
-export default CoordinatorCompany;
+export default CoordinatorCompanyPending;

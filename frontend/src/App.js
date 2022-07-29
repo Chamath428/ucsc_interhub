@@ -19,6 +19,8 @@ import CoordinatorHome from './pages/Coordinator/CoordinatorHome';
 import CoordinatorStudent from './pages/Coordinator/CoordinatorStudent';
 import CoordinatorStudentBulkList from './pages/Coordinator/CoordinatorStudentBulkList';
 import CoordinatorCompany from './pages/Coordinator/CoordinatorCompany';
+import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPending';
+
 
 
 
@@ -38,7 +40,8 @@ function App() {
           {/* <HomePage></HomePage> */}
           {/* <CoordinatorStudent/> */}
           {/* <CoordinatorStudentBulkList/> */}
-          <CoordinatorCompany/>
+          {/* <CoordinatorCompany/> */}
+          <CoordinatorCompanyPending/>
           {/* <CoordinatorHome/> */}
 
         
