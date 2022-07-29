@@ -20,11 +20,13 @@
     font-size: 15px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     align-items: center;
 }
 .my-custom-scrollbar Button img {
     margin: 0;
-    width: 30px;
-    height: 25px;
+    width: 23px;
+    height: 26px;
+    /* float: left; */
+    margin-right: 10%;
 }
