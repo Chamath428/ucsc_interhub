@@ -20,9 +20,8 @@ import CoordinatorStudent from './pages/Coordinator/CoordinatorStudent';
 import CoordinatorStudentBulkList from './pages/Coordinator/CoordinatorStudentBulkList';
 import CoordinatorCompany from './pages/Coordinator/CoordinatorCompany';
 import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPending';
-
-
-
+import SideBar from './component/Dashboard/SideBar/sideBar';
+import TopNav from './component/Dashboard/TopNav/topNav';
 
 
 import './App.css';
@@ -30,65 +29,18 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-    
-      {/* <Router> */}
-      {/* <div className="App"> */}
-
-        <div className="content">
-          {/* <DashboardTopNav />
-          <DashSideNavigation /> */}
-
-          {/* <Login></Login>*/}
-
-          {/* <HomePage></HomePage> */}
-          {/* <CoordinatorStudent/> */}
-          {/* <CoordinatorStudentBulkList/> */}
-          {/* <CoordinatorCompany/> */}
-          <CoordinatorCompanyPending/>
-          {/* <CoordinatorHome/> */}
-
-
-          {/* <Switch>
-
-            <Route exact path="/DashboardMenu">
-              <DashboardMenu />
-            </Route>
-
-            <Route exact path="/StudentHome">
-              <DashboardMenu />
-              <StudentHome />
-            </Route>
-
-             <Route exact path="/Internship">
-              <DashboardMenu />
-              <StudentInternship />
-            </Route>
-
-            <Route exact path="/Announcement">
-              <DashboardMenu />
-              <StudentAnnouncement />
-            </Route>
-
-            <Route exact path="/Interviews">
-              <DashboardMenu />
-              <StudentInterviews />
-            </Route>
-
-            <Route exact path="/Settings">
-              <DashboardMenu />
-             <StudentSettings />
-            </Route>
-
-          </Switch> */}
-        </div>
-
-          
-      {/* </div> */}
-    {/* </Router> */}
-      {/* <HomePage /> */}
-
+      <SideBar></SideBar>
+      <TopNav></TopNav>
+      <main >
+      <div className="container pt-5">
+            <CoordinatorStudent></CoordinatorStudent>
+      </div>
+    </main>
+      
     </div>
   );
 }
 
 export default App;
+
+

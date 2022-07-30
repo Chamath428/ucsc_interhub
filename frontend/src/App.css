@@ -11,4 +11,10 @@ h1{
   font-weight: 700;
 }
 
+@media (min-width: 991.98px) {
+  main {
+  padding-left: 240px;
+  }
+}
+
 
