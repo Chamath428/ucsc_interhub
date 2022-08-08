@@ -26,17 +26,12 @@ import StaffMemberHome from './pages/StaffMember/staffMemberHome';
 import SMAddStudents from './pages/StaffMember/sMAddStudents';
 import SideBar from './component/Dashboard/SideBar/sideBar';
 import TopNav from './component/Dashboard/TopNav/topNav';
-<<<<<<< HEAD
 import StudentProfile from './pages/Student/StudentProfile';
-=======
 import SMCompanyVisit from "./pages/StaffMember/sMCompanyVisit";
 import SMRegisteredOrganization from './pages/StaffMember/sMRegisteredOrganization';
 import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
 import StaffMembertHome from './pages/StaffMember/sMAddStudents';
-import SupervisorHome from './pages/Supervisor/supervisorHome';
 
-
->>>>>>> main
 
 import './App.css';
 
@@ -45,18 +40,10 @@ function App() {
   return (
     <div className="App">
       <SideBar></SideBar>
-<<<<<<< HEAD
       <TopNav></TopNav>
       <div className='contain'>
         <StudentHome />
-=======
-      <TopNav></TopNav>  
-      <main className='pt-5'>
-      <div className="pt-5" style={{paddingLeft:'20px'}}>
-            <SupervisorHome></SupervisorHome>
->>>>>>> main
       </div>
-
     </div>
   );
 }
