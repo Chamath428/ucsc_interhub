@@ -12,13 +12,13 @@ class SMRegisteredOrganization extends Component {
     render() {
         return (
             <div className='contain'>
-                <div className='d-flex flex-row justify-content-sm-between'>
+                <div className='top flex justify-content-sm-between'>
 
                 <h3>Registered Organization</h3>
                 
                 <Form.Group className="mb-3" controlId="formBasicSearchOrganization">
                  <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
-                 <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
+                 <div className='searchicon text-center '><i className="bi bi-search"></i></div> 
                  <Form.Control type="searchbox text" placeholder="Search organization" /></div>
                 </Form.Group>
                 </div>
