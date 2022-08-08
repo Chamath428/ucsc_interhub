@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/esm/Container';
 import CoordinatorCard from '../../component/Dashboard/CoordinatorCard/coordinatorCard';
 import '../../styles/CoordinatorHome.css'
-
 
 class CoordinatorHome extends Component {
 
@@ -28,9 +24,6 @@ class CoordinatorHome extends Component {
 
                 </div>
             </div>
-
-
-
 
         );
     }

@@ -22,7 +22,7 @@ import CoordinatorCompany from './pages/Coordinator/CoordinatorCompany';
 import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPending';
 import SideBar from './component/Dashboard/SideBar/sideBar';
 import TopNav from './component/Dashboard/TopNav/topNav';
-
+import StudentProfile from './pages/Student/StudentProfile';
 
 import './App.css';
 
@@ -31,12 +31,10 @@ function App() {
     <div className="App">
       <SideBar></SideBar>
       <TopNav></TopNav>
-      <main >
-      <div className="container pt-5">
-            <CoordinatorStudent></CoordinatorStudent>
+      <div className='contain'>
+        <StudentHome />
       </div>
-    </main>
-      
+
     </div>
   );
 }
