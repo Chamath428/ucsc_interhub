@@ -20,41 +20,23 @@ import CoordinatorStudent from './pages/Coordinator/CoordinatorStudent';
 import CoordinatorStudentBulkList from './pages/Coordinator/CoordinatorStudentBulkList';
 import CoordinatorCompany from './pages/Coordinator/CoordinatorCompany';
 import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPending';
-import StaffMemberStudentSelections from './pages/StaffMember/sMStudenSelection';
-import StaffMemberStudents from './pages/StaffMember/sMStudent';
-import StaffMemberHome from './pages/StaffMember/staffMemberHome';
-import SMAddStudents from './pages/StaffMember/sMAddStudents';
 import SideBar from './component/Dashboard/SideBar/sideBar';
 import TopNav from './component/Dashboard/TopNav/topNav';
-import SMCompanyVisit from "./pages/StaffMember/sMCompanyVisit";
-import SMRegisteredOrganization from './pages/StaffMember/sMRegisteredOrganization';
-import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
-import StaffMembertHome from './pages/StaffMember/sMAddStudents';
+import SupervisorHome from './pages/Supervisor/supervisorHome';
 
 
 import './App.css';
-
 
 function App() {
   return (
     <div className="App">
       <SideBar></SideBar>
       <TopNav></TopNav>
-      <main>
-      <div className="container pt-5">
-            {/* <CoordinatorStudentBulkList></CoordinatorStudentBulkList> */}
-            {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
-            {/* <CoordinatorCompany></CoordinatorCompany> */}
-            {/* <CoordinatorStudent></CoordinatorStudent> */}
-            {/* <CoordinatorHome></CoordinatorHome> */}
-            {/* <SMAddStudents></SMAddStudents> */}
-            {/* <StaffMemberStudentSelections></StaffMemberStudentSelections> */}
-            {/* <StaffMemberStudents></StaffMemberStudents> */}
-            {/* <staffMemberHome></staffMemberHome> */}
-            {/* <SMCompanyVisit></SMCompanyVisit> */}
-            {/* <SMRegisteredOrganization></SMRegisteredOrganization> */}
-            <SMNewOrganization></SMNewOrganization>
-            {/* <HomePage></HomePage> */}
+
+      
+      <main className='pt-5'>
+      <div className="pt-5" style={{paddingLeft:'20px'}}>
+            <SupervisorHome></SupervisorHome>
       </div>
     </main>
       

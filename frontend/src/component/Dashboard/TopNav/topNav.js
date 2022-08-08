@@ -5,7 +5,7 @@ class TopNav extends Component {
     render() { 
         return (
 
-        <nav id="main-navbar" className="mx-3 navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <nav id="main-navbar" className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
 
          <div className="container-fluid">
 
