@@ -22,6 +22,7 @@ import CoordinatorCompany from './pages/Coordinator/CoordinatorCompany';
 import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPending';
 import SideBar from './component/Dashboard/SideBar/sideBar';
 import TopNav from './component/Dashboard/TopNav/topNav';
+import SupervisorHome from './pages/Supervisor/supervisorHome';
 
 
 import './App.css';
@@ -31,9 +32,11 @@ function App() {
     <div className="App">
       <SideBar></SideBar>
       <TopNav></TopNav>
-      <main >
-      <div className="container pt-5">
-            <CoordinatorStudent></CoordinatorStudent>
+
+      
+      <main className='pt-5'>
+      <div className="pt-5" style={{paddingLeft:'20px'}}>
+            <SupervisorHome></SupervisorHome>
       </div>
     </main>
       
