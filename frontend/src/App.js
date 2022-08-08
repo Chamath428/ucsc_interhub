@@ -32,11 +32,22 @@ function App() {
     <div className="App">
       <SideBar></SideBar>
       <TopNav></TopNav>
+      <main>
+      <div className="container pt-5">
+            {/* <CoordinatorStudentBulkList></CoordinatorStudentBulkList> */}
+            {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
+            {/* <CoordinatorCompany></CoordinatorCompany> */}
+            {/* <CoordinatorStudent></CoordinatorStudent> */}
+            {/* <CoordinatorHome></CoordinatorHome> */}
+            {/* <SMAddStudents></SMAddStudents> */}
+            {/* <StaffMemberStudentSelections></StaffMemberStudentSelections> */}
+            {/* <StaffMemberStudents></StaffMemberStudents> */}
+            {/* <staffMemberHome></staffMemberHome> */}
+            {/* <SMCompanyVisit></SMCompanyVisit> */}
+            {/* <SMRegisteredOrganization></SMRegisteredOrganization> */}
+            {/* <SMNewOrganization></SMNewOrganization> */}
+            {/* <HomePage></HomePage> */}
 
-      
-      <main className='pt-5'>
-      <div className="pt-5" style={{paddingLeft:'20px'}}>
-            <SupervisorHome></SupervisorHome>
       </div>
     </main>
       

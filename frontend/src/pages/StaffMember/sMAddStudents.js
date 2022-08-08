@@ -18,8 +18,12 @@ return (
           <Form.Label>Registration Number</Form.Label>
           <Form.Control type="text" placeholder="Enter your registration number" />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicNIC">
-          <Form.Label>NIC Number</Form.Label>
+
+        </Row>
+        <Row className='align-item-center g-5'> 
+        <Form.Group className="mb-4 col col-sm-3" controlId="formBasicNIC">
+          <Form.Label>NI Number</Form.Label>
+
           <Form.Control type="text" placeholder="NIC" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicNameWithInitials">
