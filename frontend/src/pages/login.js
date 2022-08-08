@@ -10,7 +10,7 @@ class Login extends Component {
     render() { 
         return (
             <div>
-            <Container className="login-container shadow bg-body rounded form-container">
+            <Container className="login-container shadow-lg mb-5 bg-body rounded form-container">
                 <Row className="login-row d-flex justify-content-around align-items-center" >
                     <Col lg="6" className="left-column d-flex flex-column justify-content-center align-items-center text-center">
 

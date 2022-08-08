@@ -31,19 +31,19 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      {/* <SideBar></SideBar>
-      <TopNav></TopNav> */}
+      <SideBar></SideBar>
+      <TopNav></TopNav>
 
       
-      {/* <main className='pt-5'>
+      <main className='pt-5'>
       <div className="pt-5" style={{paddingLeft:'20px'}}>
             <SupervisorHome></SupervisorHome>
       </div>
-    </main> */}
+    </main>
       
-      <NavBarOnlyLogo></NavBarOnlyLogo>
+      {/* <NavBarOnlyLogo></NavBarOnlyLogo>
       <Login></Login>
-      <Footer></Footer>
+      <Footer></Footer> */}
     </div>
   );
 }
