@@ -24,6 +24,7 @@ class PrimaryButton extends Component {
                     variant="primary" 
                     size="lg"
                     className='border border-2 border-primary rounded-5 btn-primary fw-bold'
+                    type="submit"
                     >
                     {inside}
                     </Button>
