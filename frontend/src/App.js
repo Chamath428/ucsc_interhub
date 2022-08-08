@@ -30,6 +30,8 @@ import SMCompanyVisit from "./pages/StaffMember/sMCompanyVisit";
 import SMRegisteredOrganization from './pages/StaffMember/sMRegisteredOrganization';
 import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
 import StaffMembertHome from './pages/StaffMember/sMAddStudents';
+import SupervisorHome from './pages/Supervisor/supervisorHome';
+
 
 
 import './App.css';
@@ -39,22 +41,10 @@ function App() {
   return (
     <div className="App">
       <SideBar></SideBar>
-      <TopNav></TopNav>
-      <main>
-      <div className="container pt-5">
-            {/* <CoordinatorStudentBulkList></CoordinatorStudentBulkList> */}
-            {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
-            {/* <CoordinatorCompany></CoordinatorCompany> */}
-            {/* <CoordinatorStudent></CoordinatorStudent> */}
-            {/* <CoordinatorHome></CoordinatorHome> */}
-            {/* <SMAddStudents></SMAddStudents> */}
-            {/* <StaffMemberStudentSelections></StaffMemberStudentSelections> */}
-            {/* <StaffMemberStudents></StaffMemberStudents> */}
-            {/* <staffMemberHome></staffMemberHome> */}
-            {/* <SMCompanyVisit></SMCompanyVisit> */}
-            {/* <SMRegisteredOrganization></SMRegisteredOrganization> */}
-            <SMNewOrganization></SMNewOrganization>
-            {/* <HomePage></HomePage> */}
+      <TopNav></TopNav>  
+      <main className='pt-5'>
+      <div className="pt-5" style={{paddingLeft:'20px'}}>
+            <SupervisorHome></SupervisorHome>
       </div>
     </main>
       
