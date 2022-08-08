@@ -11,7 +11,7 @@ class TableView extends Component{
       <thead class="thead-light">
         <tr class="table-primary">
           <th >#</th>
-          {Array.from({ length: 8 }).map((_, colindex) => (
+          {Array.from({ length: 6 }).map((_, colindex) => (
             <th key={colindex}>Table<br></br>heading {colindex+1}</th>
           ))}
         </tr>
@@ -21,7 +21,7 @@ class TableView extends Component{
             
             <tr key={rowIndex}>
               <td>{rowIndex+1}</td>
-              {Array.from({ length: 8 }).map((_, colindex) => (
+              {Array.from({ length: 6 }).map((_, colindex) => (
               <td key={colindex}>Table cell {colindex+1},{rowIndex+1}</td>
             ))}
             </tr>

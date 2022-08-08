@@ -14,13 +14,31 @@ class SideBar extends Component {
               <div className="position-sticky">
                 <div className="list-group list-group-flush mx-3 mt-4">
                   <a href="#" className="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
-                    <span>Dashboard</span>
+                    <span>Main dashboard</span>
                   </a>
+                  <a href="#" className="list-group-item list-group-item-action py-2 ripple">
+                    <span>Webiste traffic</span>
+                  </a>
+                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Password</span></a>
+
+                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Analytics</span></a>
 
                   <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                    <span>Interns</span>
+                    <span>SEO</span>
                   </a>
-                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Progress Reports</span></a>
+
+                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Orders</span></a>
+
+                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>International</span></a>
+
+                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Partners</span></a>
+
+                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Calendar</span></a>
+
+                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Users</span></a>
+
+                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Sales</span></a>
+
                 </div>
               </div>
             </nav>
