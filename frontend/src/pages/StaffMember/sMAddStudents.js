@@ -22,7 +22,7 @@ return (
         </Row>
         <Row className='align-item-center g-5'> 
         <Form.Group className="mb-4 col col-sm-3" controlId="formBasicNIC">
-          <Form.Label>NIC Number</Form.Label>
+          <Form.Label>NI Number</Form.Label>
           <Form.Control type="text" placeholder="NIC" />
         </Form.Group>
         <Form.Group className="mb-4 ms-4 col col-sm-3" controlId="formBasicNameWithInitials">

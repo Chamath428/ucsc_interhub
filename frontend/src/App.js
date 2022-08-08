@@ -53,7 +53,7 @@ function App() {
             {/* <staffMemberHome></staffMemberHome> */}
             {/* <SMCompanyVisit></SMCompanyVisit> */}
             {/* <SMRegisteredOrganization></SMRegisteredOrganization> */}
-            <SMNewOrganization></SMNewOrganization>
+            {/* <SMNewOrganization></SMNewOrganization> */}
             {/* <HomePage></HomePage> */}
       </div>
     </main>
