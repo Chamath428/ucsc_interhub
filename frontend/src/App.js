@@ -26,6 +26,7 @@ import StaffMemberHome from './pages/StaffMember/staffMemberHome';
 import SMAddStudents from './pages/StaffMember/sMAddStudents';
 import SideBar from './component/Dashboard/SideBar/sideBar';
 import TopNav from './component/Dashboard/TopNav/topNav';
+import StudentProfile from './pages/Student/StudentProfile';
 import SMCompanyVisit from "./pages/StaffMember/sMCompanyVisit";
 import SMRegisteredOrganization from './pages/StaffMember/sMRegisteredOrganization';
 import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
@@ -40,24 +41,9 @@ function App() {
     <div className="App">
       <SideBar></SideBar>
       <TopNav></TopNav>
-      <main>
-      <div className="container pt-5">
-            {/* <CoordinatorStudentBulkList></CoordinatorStudentBulkList> */}
-            {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
-            {/* <CoordinatorCompany></CoordinatorCompany> */}
-            {/* <CoordinatorStudent></CoordinatorStudent> */}
-            {/* <CoordinatorHome></CoordinatorHome> */}
-            {/* <SMAddStudents></SMAddStudents> */}
-            {/* <StaffMemberStudentSelections></StaffMemberStudentSelections> */}
-            {/* <StaffMemberStudents></StaffMemberStudents> */}
-            {/* <staffMemberHome></staffMemberHome> */}
-            {/* <SMCompanyVisit></SMCompanyVisit> */}
-            {/* <SMRegisteredOrganization></SMRegisteredOrganization> */}
-            <SMNewOrganization></SMNewOrganization>
-            {/* <HomePage></HomePage> */}
+      <div className='contain'>
+        <StudentHome />
       </div>
-    </main>
-      
     </div>
   );
 }
