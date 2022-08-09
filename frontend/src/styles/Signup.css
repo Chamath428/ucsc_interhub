@@ -10,7 +10,7 @@ input::-webkit-inner-spin-button {
 }
 
 body {
-  /* background-image: url("../assets/images/signupback.jpg"); */
+  background-image: url("../assets/images/signupback.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;

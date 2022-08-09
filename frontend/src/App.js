@@ -31,7 +31,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <SideBar></SideBar>
+      {/* <SideBar></SideBar>
       <TopNav></TopNav>
 
       
@@ -39,11 +39,11 @@ function App() {
       <div className="pt-5" style={{paddingLeft:'20px'}}>
             <SupervisorHome></SupervisorHome>
       </div>
-    </main>
+    </main> */}
       
-      {/* <NavBarOnlyLogo></NavBarOnlyLogo>
-      <Login></Login>
-      <Footer></Footer> */}
+      <NavBarOnlyLogo></NavBarOnlyLogo>
+      <Signup></Signup>
+      <Footer></Footer>
     </div>
   );
 }
