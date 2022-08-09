@@ -18,7 +18,7 @@ class coordinatorCard extends Component {
           </>
         );
     }
-}
+}-
  
 export default coordinatorCard;
 
