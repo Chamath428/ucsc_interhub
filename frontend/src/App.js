@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import HomePage from './pages/homePage';
 import HomeNavBar from './component/homepage/HomeNavBar/homeNavBar';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
- import Login from './pages/login';
+import NavBarOnlyLogo from './component/homepage/NavBarOnlyLogo/navBarOnlyLogo';
+import Footer from './component/homepage/Footer/footer';
+import Login from './pages/login';
+import Signup from './pages/signup';
 import Dashboard from './pages/Dashboard';
 import StudentHome from './pages/Student/StudentHome';
 import StudentAnnouncement from './pages/Student/StudentAnnouncement';
@@ -39,11 +40,16 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <SideBar></SideBar>
+      {/* <SideBar></SideBar>
       <TopNav></TopNav>
       <div className='contain'>
         <StudentHome />
       </div>
+    </main> */}
+      
+      <NavBarOnlyLogo></NavBarOnlyLogo>
+      <Signup></Signup>
+      <Footer></Footer>
     </div>
   );
 }

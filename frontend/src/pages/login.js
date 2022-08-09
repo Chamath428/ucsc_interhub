@@ -10,19 +10,18 @@ class Login extends Component {
     render() { 
         return (
             <div>
-            <HomeNavBar></HomeNavBar>
-            <Container fluid className="login-container">
+            <Container className="login-container shadow-lg mb-5 bg-body rounded form-container">
                 <Row className="login-row d-flex justify-content-around align-items-center" >
                     <Col lg="6" className="left-column d-flex flex-column justify-content-center align-items-center text-center">
 
                             <img src={HandShake} />
-                            <div className='w-50'>
+                            <div className=''>
                                 <h2>Thousands Of Job Opportunities Waiting For You!</h2>
                             </div>
                     </Col>
 
                     <Col lg="6" className="right-column d-flex justify-content-center align-items-center">
-                    <div className="form-div w-50 p-3 d-flex flex-column gap-4 text-center">
+                    <div className="form-div  p-3 d-flex flex-column gap-4 text-center">
                         <h2>Hello Again!</h2>
                             <Form>
                                 <div className=' d-flex flex-column gap-3'>

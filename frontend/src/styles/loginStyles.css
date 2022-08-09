@@ -1,9 +1,11 @@
 .login-container{
-    min-height: 100vh;
+    height: auto;
+    margin-top: 70px;
+    margin-bottom: 10px;
+    width: 80%;
 }
 
 .left-column{
-    min-height: 100vh;
     background-color: #0d6efd;
 }
 .left-column h2{
@@ -12,7 +14,6 @@
 }
 
 .right-column{
-    min-height: 100vh;
     background-color: #fff;
 }
 
@@ -31,6 +32,7 @@ a{
     z-index: 1;
     background: inherit;
     overflow: hidden;
+    width: 60%;
   }
 
   .form-div:before {
