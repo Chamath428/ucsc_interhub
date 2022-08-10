@@ -11,8 +11,8 @@ class coordinatorCard extends Component {
           <>
           <Card id='coordinatorCard' className="d-flex justify-content-around flex-column align-items-center" style={{maxWidth: '371px',height:'130px'}}>
             <Card.Body className="d-flex justify-content-start flex-column align-items-center">
-              <Card.Title className="text-left fw-bold">{cardPara}</Card.Title>
-              <Card.Text  className="text-center"> {cardTitle}</Card.Text>
+              <Card.Title className="text-left fw-bold">{cardTitle}</Card.Title>
+              <Card.Text  className="text-center"> {cardPara}</Card.Text>
             </Card.Body>
           </Card>
           </>

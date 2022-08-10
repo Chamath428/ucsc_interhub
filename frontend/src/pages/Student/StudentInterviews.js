@@ -1,8 +1,13 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
+import React, { useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import Card from 'react-bootstrap/Card';
+import { Accordion } from 'react-bootstrap';
+import AccordionItem from '../../component/Accordion/accordion';
 
-<<<<<<< Updated upstream
 const StudentInterviews = () => {  
 return (
   <Container>
@@ -29,7 +34,7 @@ return (
         </Button>
     </Form>
   </Container>
-=======
+
 
 function StudentInterviews() {
   const [value, onChange] = useState(new Date());
@@ -37,6 +42,7 @@ function StudentInterviews() {
   return (
     <div>
       <div className='container pt-5'>
+
 
         <h2>Your Interview Schedule</h2><br />
 
@@ -49,8 +55,11 @@ function StudentInterviews() {
 
       </div>
     </div>
->>>>>>> Stashed changes
+
   );
 }
+
+
+
 
 export default StudentInterviews;
