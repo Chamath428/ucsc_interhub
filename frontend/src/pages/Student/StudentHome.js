@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/esm/Container';
 
 const StudentHome = () => {  
 return (
+<<<<<<< Updated upstream
   <Container>
       <Form>
         <h2>Student Home</h2><br />
@@ -27,6 +28,43 @@ return (
           Submit
         </Button>
     </Form>
+=======
+  <Container >
+
+        {/* main cards */}
+        <div className='container pt-5'>
+        <h3>Student Home</h3>
+
+          <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
+
+            <DashCards Title='1/3' SubTitle='Pitching Stage' BgColour='primary' colourCaps='Primary' txtColour='white'/>
+            <DashCards Title='104' SubTitle='Vacancies' BgColour='primary' colourCaps='Primary' txtColour='white'/>
+            <DashCards Title='104' SubTitle='Available Companies' BgColour='primary' colourCaps='Primary' txtColour='white'/>
+            <DashCards Title='104' SubTitle='Available Companies' BgColour='primary' colourCaps='Primary' txtColour='white'/>
+
+          </Stack>
+
+        </div>
+
+
+        {/* applied cards */}
+        <Container className='mt-5'>
+
+        <h3>Applied Vacancies</h3>
+
+          <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
+
+            <LinkCard Title='Synopsys' subTitle='Software Engineer' Link='Visit Page'/>
+            <LinkCard Title='Enactor' subTitle='Software Engineer' Link='Visit Page'/>
+            <LinkCard Title='99x' subTitle='Software Engineer' Link='Visit Page'/>
+            <LinkCard Title='LSEG' subTitle='Software Engineer' Link='Visit Page'/>
+
+          </Stack>
+
+        </Container>
+
+
+>>>>>>> Stashed changes
   </Container>
 
   );
