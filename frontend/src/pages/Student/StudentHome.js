@@ -10,43 +10,37 @@ import LinkCard from '../../component/Cards/linksCard';
 
 const StudentHome = () => {  
 return (
-  <Container >
 
-        {/* main cards */}
-        <Container>
-        <h3>Student Home</h3>
+        <>
+        <div className='container pt-5'>
 
-          <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
+    <h3>Student Home</h3>
 
-            <DashCards Title='1/3' SubTitle='Pitching Stage' BgColour='primary' colourCaps='Primary' txtColour='white'/>
-            <DashCards Title='104' SubTitle='Vacancies' BgColour='primary' colourCaps='Primary' txtColour='white'/>
-            <DashCards Title='104' SubTitle='Available Companies' BgColour='primary' colourCaps='Primary' txtColour='white'/>
-            <DashCards Title='104' SubTitle='Available Companies' BgColour='primary' colourCaps='Primary' txtColour='white'/>
+    <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
 
-          </Stack>
+      <DashCards Title='1/3' SubTitle='Pitching Stage' BgColour='primary' colourCaps='Primary' txtColour='white' />
+      <DashCards Title='104' SubTitle='Vacancies' BgColour='primary' colourCaps='Primary' txtColour='white' />
+      <DashCards Title='104' SubTitle='Available Companies' BgColour='primary' colourCaps='Primary' txtColour='white' />
+      <DashCards Title='104' SubTitle='Available Companies' BgColour='primary' colourCaps='Primary' txtColour='white' />
 
-        </Container>
+    </Stack>
 
+  </div><Container className='mt-5'>
 
-        {/* applied cards */}
-        <Container className='mt-5'>
+      <h3>Applied Vacancies</h3>
 
-        <h3>Applied Vacancies</h3>
+      <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
 
-          <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
+        <LinkCard Title='Synopsys' subTitle='Software Engineer' Link='Visit Page' />
+        <LinkCard Title='Enactor' subTitle='Software Engineer' Link='Visit Page' />
+        <LinkCard Title='99x' subTitle='Software Engineer' Link='Visit Page' />
+        <LinkCard Title='LSEG' subTitle='Software Engineer' Link='Visit Page' />
 
-            <LinkCard Title='Synopsys' subTitle='Software Engineer' Link='Visit Page'/>
-            <LinkCard Title='Enactor' subTitle='Software Engineer' Link='Visit Page'/>
-            <LinkCard Title='99x' subTitle='Software Engineer' Link='Visit Page'/>
-            <LinkCard Title='LSEG' subTitle='Software Engineer' Link='Visit Page'/>
+      </Stack>
 
-          </Stack>
-
-        </Container>
-
-
-  </Container>
-
+    </Container></>
+    
+        
   );
 }
 
