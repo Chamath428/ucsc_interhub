@@ -24,6 +24,18 @@ import SideBar from './component/Dashboard/SideBar/sideBar';
 import TopNav from './component/Dashboard/TopNav/topNav';
 
 
+import StaffMemberStudentSelections from './pages/StaffMember/sMStudenSelection';
+import StaffMemberStudents from './pages/StaffMember/sMStudent';
+import StaffMemberHome from './pages/StaffMember/staffMemberHome';
+import SMAddStudents from './pages/StaffMember/sMAddStudents';
+
+
+import SMCompanyVisit from "./pages/StaffMember/sMCompanyVisit";
+import SMRegisteredOrganization from './pages/StaffMember/sMRegisteredOrganization';
+import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
+import StaffMembertHome from './pages/StaffMember/sMAddStudents';
+
+
 import './App.css';
 
 function App() {
@@ -36,9 +48,8 @@ function App() {
      
       {/* <CoordinatorHome></CoordinatorHome> */}
       {/* <CoordinatorCompany></CoordinatorCompany> */}
-      <StudentSettings></StudentSettings>
-      {/* <StudentHome></StudentHome> */}
-
+      {/* <StaffMemberStudentSelections></StaffMemberStudentSelections> */}
+<CoordinatorStudent></CoordinatorStudent>
      
       
     </div>
