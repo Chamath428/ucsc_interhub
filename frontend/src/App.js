@@ -5,7 +5,7 @@ import HomeNavBar from './component/homepage/HomeNavBar/homeNavBar';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
- import Login from './pages/login';
+import Login from './pages/login';
 import Dashboard from './pages/Dashboard';
 import StudentHome from './pages/Student/StudentHome';
 import StudentAnnouncement from './pages/Student/StudentAnnouncement';
@@ -17,7 +17,7 @@ import DashboardTopNav from './component/Dashboard/DashNav';
 import DashboardMenu from './component/Dashboard/DashMenu';
 import CoordinatorHome from './pages/Coordinator/CoordinatorHome';
 import CoordinatorStudent from './pages/Coordinator/CoordinatorStudent';
-import CoordinatorStudentBulkList from './pages/Coordinator/CoordinatorStudentBulkList';
+import CoordinatorAddStudent from './pages/Coordinator/CoordinatorAddStudent';
 import CoordinatorCompany from './pages/Coordinator/CoordinatorCompany';
 import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPending';
 import SideBar from './component/Dashboard/SideBar/sideBar';
@@ -41,26 +41,27 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-    <SideBar></SideBar>
-    <TopNav></TopNav>
-    <main>
-    <div className='container pt-5'>
-     
-      {/* <CoordinatorHome></CoordinatorHome> */}
-      {/* <CoordinatorCompany></CoordinatorCompany> */}
-      {/* <StaffMemberStudentSelections></StaffMemberStudentSelections> */}
-<CoordinatorStudent></CoordinatorStudent>
-     
-      
-    </div>
-  </main>
-    
-    {/* <NavBarOnlyLogo></NavBarOnlyLogo>
+      <SideBar></SideBar>
+      <TopNav></TopNav>
+      <main>
+        <div className='container pt-5'>
+
+          {/* <CoordinatorHome></CoordinatorHome> */}
+          <CoordinatorCompany></CoordinatorCompany>
+          {/* <SMAddStudents></SMAddStudents> */}
+          {/* <CoordinatorStudent></CoordinatorStudent> */}
+          {/* <CoordinatorAddStudent></CoordinatorAddStudent> */}
+
+
+        </div>
+      </main>
+
+      {/* <NavBarOnlyLogo></NavBarOnlyLogo>
     <Signup></Signup>
     <Login></Login>
     <Footer></Footer> */}
-    {/* <HomePage></HomePage> */}
-  </div>
+      {/* <HomePage></HomePage> */}
+    </div>
 
   );
 }
