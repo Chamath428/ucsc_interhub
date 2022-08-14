@@ -19,32 +19,32 @@ class CoordinatorCompany extends Component {
         const barStatus = 60;
         return (
             <div className='contain'>
-            <h3>Manage Companies</h3>
+                <h3>Manage Companies</h3>
 
-        <div className='d-flex flex-row justify-content-sm-between'>
+                <div className='d-flex flex-row justify-content-sm-between'>
 
-            <div className='btn-container'>
-                <Button  > Registered </Button>
-                <Button > Pending </Button>
+                    <div className='btn-container'>
+                        <Button  > Registered </Button>
+                        <Button > Pending </Button>
+
+                    </div>
+
+                    <Form.Group className="mb-3" controlId="formBasicSearchOrganization">
+                        <div className="d-flex flex-row align-item-center justify-content-center text-center" >
+                            <div className='searchico text-center p-2'><i className="bi bi-search"></i></div>
+                            <Form.Control type="searchbox text" placeholder="Search organization" /></div>
+                    </Form.Group>
+                </div>
+
+                <div class="table-wrapper-scroll-y table-scrollba ">
+                    <TableView>
+
+                    </TableView>
+
+                </div>
+
 
             </div>
-
-            <Form.Group className="mb-3" controlId="formBasicSearchOrganization">
-                <div className="d-flex flex-row align-item-center justify-content-center text-center" >
-                    <div className='searchico text-center p-2'><i className="bi bi-search"></i></div>
-                    <Form.Control type="searchbox text" placeholder="Search organization" /></div>
-            </Form.Group>
-        </div>
-      
-        <div class="table-wrapper-scroll-y table-scrollba ">
-            <TableView>
-
-            </TableView>
-
-        </div>
-
-
-    </div>
 
 
 

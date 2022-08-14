@@ -19,7 +19,9 @@ import CoordinatorHome from './pages/Coordinator/CoordinatorHome';
 import CoordinatorStudent from './pages/Coordinator/CoordinatorStudent';
 import CoordinatorAddStudent from './pages/Coordinator/CoordinatorAddStudent';
 import CoordinatorCompany from './pages/Coordinator/CoordinatorCompany';
+import CoordinatorUsersSetting from './pages/Coordinator/CoordinatorUsersSetting';
 import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPending';
+import CoordinatorAddUserSetting from './pages/Coordinator/CoordinatorAddUserSetting';
 import SideBar from './component/Dashboard/SideBar/sideBar';
 import TopNav from './component/Dashboard/TopNav/topNav';
 
@@ -47,10 +49,13 @@ function App() {
         <div className='container pt-5'>
 
           {/* <CoordinatorHome></CoordinatorHome> */}
-          <CoordinatorCompany></CoordinatorCompany>
+          {/* <CoordinatorCompany></CoordinatorCompany> */}
+          {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
           {/* <SMAddStudents></SMAddStudents> */}
           {/* <CoordinatorStudent></CoordinatorStudent> */}
           {/* <CoordinatorAddStudent></CoordinatorAddStudent> */}
+          {/* <CoordinatorUsersSetting></CoordinatorUsersSetting> */}
+          <CoordinatorAddUserSetting></CoordinatorAddUserSetting>
 
 
         </div>
