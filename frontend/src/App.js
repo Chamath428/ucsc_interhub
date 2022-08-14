@@ -22,6 +22,9 @@ import CoordinatorCompany from './pages/Coordinator/CoordinatorCompany';
 import CoordinatorUsersSetting from './pages/Coordinator/CoordinatorUsersSetting';
 import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPending';
 import CoordinatorAddUserSetting from './pages/Coordinator/CoordinatorAddUserSetting';
+import CoordinatorAddAnnouncements from './pages/Coordinator/CoordinatorAddAnnouncements';
+import CoordinatorViewAnnounsments from './pages/Coordinator/CoordinatorViewAnnounsments';
+
 import SideBar from './component/Dashboard/SideBar/sideBar';
 import TopNav from './component/Dashboard/TopNav/topNav';
 
@@ -55,7 +58,9 @@ function App() {
           {/* <CoordinatorStudent></CoordinatorStudent> */}
           {/* <CoordinatorAddStudent></CoordinatorAddStudent> */}
           {/* <CoordinatorUsersSetting></CoordinatorUsersSetting> */}
-          <CoordinatorAddUserSetting></CoordinatorAddUserSetting>
+          {/* <CoordinatorAddUserSetting></CoordinatorAddUserSetting> */}
+          {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements> */}
+          <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments>
 
 
         </div>
