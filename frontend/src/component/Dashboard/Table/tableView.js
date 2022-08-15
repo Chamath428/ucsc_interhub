@@ -5,58 +5,52 @@ import "./tableView.css";
 class TableView extends Component{
     render(){
         // const NoOfRows = this.props.NoOfRows;
-        // const NoOFColumns = this.props.NoOFColumns;
+        // const NoOfColumns = this.props.NoOfColumns;
+        const list = this.props.list;
+        const headers = this.props.headers;
+        
         return(
-      <Table responsive>
-      <thead class="thead-light">
-        <tr class="table-primary">
+      <Table className = 'table-sticky' responsive>
+      <thead className="thead-light">
+          
+        <tr className="table-primary">
           <th >#</th>
-          {Array.from({ length: 6 }).map((_, colindex) => (
-            <th key={colindex}>Table<br></br>heading {colindex+1}</th>
+          {headers.map((ColName,index)=>(
+            <th key={index}>{ColName}</th>
           ))}
+          {/* {Array.from({ length: NoOfColumns  }).map((_,colindex) => (
+            <th key={colindex}>{headers}</th>
+          ))} */}
         </tr>
+
       </thead>
-      <tbody class="tbody">
-        {Array.from({ length: 10 }).map((_, rowIndex) => (
+      <tbody className="tbody">
+        {list.map((RowName,index)=>(
+          <tr key={index}>
+              <td>{index+1}</td>
+             {RowName.map((RowName1,rowindex1)=>(
+            <th key={rowindex1}>{RowName1}</th>
+             ))}
+          </tr>
+        ))}
+        {/* {Array.from({ length: NoOfRows }).map((_, rowIndex) => (
+          
             
             <tr key={rowIndex}>
               <td>{rowIndex+1}</td>
-              {Array.from({ length: 6 }).map((_, colindex) => (
-              <td key={colindex}>Table cell {colindex+1},{rowIndex+1}</td>
-            ))}
-            </tr>
-          ))}
+            {list.map((rowname,index)=>(
+            <th key={index}>{rowname}</th>
+             ))} */}
+              {/* {Array.from({ length: NoOfColumns }).map((_, colindex) => (
+              <td key={colindex}>{list}</td>
+            ))} */}
+            {/* </tr>
+          ))} */}
       </tbody>
     </Table>
         )
     }
 }
 
-
-// function TableView() {
-//   return (
-//     <Table responsive>
-//       <thead>
-//         <tr>
-//           <th>#</th>
-//           {Array.from({ length: 12 }).map((_, index) => (
-//             <th key={index}>Table heading</th>
-//           ))}
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {Array.from({ length: 12 }).map((_, index) => (
-            
-//             <tr key={index}>
-//               <td>{index}</td>
-//               {Array.from({ length: 12 }).map((_, index) => (
-//               <td key={index}>Table cell {index}</td>
-//             ))}
-//             </tr>
-//           ))}
-//       </tbody>
-//     </Table>
-//   );
-// }
 
 export default TableView;

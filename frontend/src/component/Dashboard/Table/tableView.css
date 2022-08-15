@@ -6,8 +6,20 @@
 
 .thead-light{
   position: sticky;
+  
+}
+th{
+  text-align: center;
 }
 
+th:first-child{
+  text-align: left;
+}
 
+/* th:last-child{
+  text-align: right;
+  
+}
+ */
 
 
