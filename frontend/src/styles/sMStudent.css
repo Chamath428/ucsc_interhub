@@ -15,14 +15,13 @@
 }
 
 .contain {
-    margin-top: 5%;
+    /* margin-top: 5%;
     margin-left: 5%;
-    margin-right: 5%;
-    display: flex;
+    margin-right: 5%; */
+    /* display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    font-family: 'Raleway', sans-serif;
-    /* background-color: aqua; */
+    font-family: 'Raleway', sans-serif; */
 }
 
 .contain h3 {

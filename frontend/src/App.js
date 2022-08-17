@@ -15,6 +15,8 @@ import StudentSettings from './pages/Student/StudentSettings';
 import DashSideNavigation from './component/Dashboard/DashSideNavigation';
 import DashboardTopNav from './component/Dashboard/DashNav';
 import DashboardMenu from './component/Dashboard/DashMenu';
+
+
 import CoordinatorHome from './pages/Coordinator/CoordinatorHome';
 import CoordinatorStudent from './pages/Coordinator/CoordinatorStudent';
 import CoordinatorAddStudent from './pages/Coordinator/CoordinatorAddStudent';
@@ -33,12 +35,12 @@ import StaffMemberStudentSelections from './pages/StaffMember/sMStudenSelection'
 import StaffMemberStudents from './pages/StaffMember/sMStudent';
 import StaffMemberHome from './pages/StaffMember/staffMemberHome';
 import SMAddStudents from './pages/StaffMember/sMAddStudents';
-
-
 import SMCompanyVisit from "./pages/StaffMember/sMCompanyVisit";
 import SMRegisteredOrganization from './pages/StaffMember/sMRegisteredOrganization';
 import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
 import StaffMembertHome from './pages/StaffMember/sMAddStudents';
+
+import SupervisorAssignInterns from './pages/Supervisor/supervisorAssignInterns';
 
 
 import './App.css';
@@ -60,7 +62,7 @@ function App() {
           {/* <CoordinatorUsersSetting></CoordinatorUsersSetting> */}
           {/* <CoordinatorAddUserSetting></CoordinatorAddUserSetting> */}
           {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements> */}
-          <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments>
+          <SupervisorAssignInterns></SupervisorAssignInterns>
 
 
         </div>
