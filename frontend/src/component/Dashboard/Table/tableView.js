@@ -4,8 +4,6 @@ import "./tableView.css";
 
 class TableView extends Component{
     render(){
-        // const NoOfRows = this.props.NoOfRows;
-        // const NoOfColumns = this.props.NoOfColumns;
         const list = this.props.list;
         const headers = this.props.headers;
         

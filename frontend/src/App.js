@@ -41,6 +41,7 @@ import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
 import StaffMembertHome from './pages/StaffMember/sMAddStudents';
 
 import SupervisorAssignInterns from './pages/Supervisor/supervisorAssignInterns';
+import SupervisorProgressReports from './pages/Supervisor/supervisorProgressReports';
 
 
 import './App.css';
@@ -52,19 +53,7 @@ function App() {
       <TopNav></TopNav>
       <main>
         <div className='container pt-5'>
-
-          {/* <CoordinatorHome></CoordinatorHome> */}
-          {/* <CoordinatorCompany></CoordinatorCompany> */}
-          {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
-          {/* <SMAddStudents></SMAddStudents> */}
-          {/* <CoordinatorStudent></CoordinatorStudent> */}
-          {/* <CoordinatorAddStudent></CoordinatorAddStudent> */}
-          {/* <CoordinatorUsersSetting></CoordinatorUsersSetting> */}
-          {/* <CoordinatorAddUserSetting></CoordinatorAddUserSetting> */}
-          {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements> */}
-          <SupervisorAssignInterns></SupervisorAssignInterns>
-
-
+          <SupervisorProgressReports></SupervisorProgressReports>
         </div>
       </main>
 
