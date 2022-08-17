@@ -1,4 +1,6 @@
-
+table{
+  text-align: center;
+}
 .tbody {
     overflow-y: scroll;
     
