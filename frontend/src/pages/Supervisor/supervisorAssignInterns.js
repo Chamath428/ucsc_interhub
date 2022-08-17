@@ -10,20 +10,18 @@ class supervisorAssignInterns extends Component {
     state = {  } 
     render() { 
         return (
-
-                   
                     <div className='contain'>
-                        
+
                         <Container className="mt-2">
 
-                        <div md className='d-flex flex-row justify-content-between top-area'>              
-                            <h3>Assigned Inters</h3>
-                            <Form.Group className="mb-3 search-area" controlId="formBasicSearchOrganization">
-                                <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
-                                <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
-                                <Form.Control type="searchbox text" placeholder="Search organization" /></div>
-                            </Form.Group>
-                        </div>
+                            <div className='d-flex flex-row justify-content-between top-area'>              
+                                <h3>Assigned Inters</h3>
+                                <Form.Group className="mb-3 search-area" controlId="formBasicSearchOrganization">
+                                    <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
+                                    <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
+                                    <Form.Control type="searchbox text" placeholder="Search organization" /></div>
+                                </Form.Group>
+                            </div>
 
                             <Form className='container'>
                                 <Row className="mb-3">
@@ -54,16 +52,19 @@ class supervisorAssignInterns extends Component {
                                 </Row>   
                             </Form>
 
-                            <div class="table-wrapper-scroll-y my-custom-scrollbar ">
-                                    <TableView>
+                            <div className="table-wrapper-scroll-y my-custom-scrollbar ">
+                                    <TableView headers={['Name','Course']} list={[['Kamal Deshapriya','CS'],
+                                                                                  ['Mamal Anurudda','CS'],
+                                                                                  ['Sudam Perera','CS'],
+                                                                                  ['Anjana Weerapuran','IS'],
+                                                                                  ['Gimahani Kixmal','IS'],
+                                                                                ]}>
                                         
                                     </TableView>
                            
                             </div>
 
                         </Container>
-          
-        
                     </div>
         );
     }
