@@ -7,7 +7,7 @@ class TableView extends Component{
         // const NoOfRows = this.props.NoOfRows;
         // const NoOFColumns = this.props.NoOFColumns;
         return(
-      <Table responsive>
+      <Table style={{height:'60vh'}}>
       <thead class="thead-light">
         <tr class="table-primary">
           <th >#</th>
