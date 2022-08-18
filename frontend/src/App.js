@@ -25,7 +25,11 @@ import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPen
 import CoordinatorAddUserSetting from './pages/Coordinator/CoordinatorAddUserSetting';
 import CoordinatorAddAnnouncements from './pages/Coordinator/CoordinatorAddAnnouncements';
 import CoordinatorViewAnnounsments from './pages/Coordinator/CoordinatorViewAnnounsments';
+
 import CoordinatorRegisteredCompanyProfile from './pages/Coordinator/CoordinatorRegisteredCompanyProfile';
+
+
+import SupervisorHome from './pages/Supervisor/supervisorHome';
 
 
 import SideBar from './component/Dashboard/SideBar/sideBar';
@@ -36,12 +40,11 @@ import StaffMemberStudentSelections from './pages/StaffMember/sMStudenSelection'
 import StaffMemberStudents from './pages/StaffMember/sMStudent';
 import StaffMemberHome from './pages/StaffMember/staffMemberHome';
 import SMAddStudents from './pages/StaffMember/sMAddStudents';
-
-
 import SMCompanyVisit from "./pages/StaffMember/sMCompanyVisit";
 import SMRegisteredOrganization from './pages/StaffMember/sMRegisteredOrganization';
 import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
 import StaffMembertHome from './pages/StaffMember/sMAddStudents';
+
 
 
 import './App.css';
@@ -54,18 +57,41 @@ function App() {
       <main>
         <div className='container pt-5'>
 
+          {/* <StudentHome></StudentHome> */}
+          {/* <StudentAnnouncement></StudentAnnouncement> */}
+          {/* <StudentInternship></StudentInternship> */}
+          {/* <StudentInterviews></StudentInterviews> */}
+
           {/* <CoordinatorHome></CoordinatorHome> */}
           {/* <CoordinatorCompany></CoordinatorCompany> */}
           {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
+
           {/* <StudentProfile></StudentProfile> */}
+
           {/* <CoordinatorStudent></CoordinatorStudent> */}
           {/* <CoordinatorAddStudent></CoordinatorAddStudent> */}
           {/* <CoordinatorUsersSetting></CoordinatorUsersSetting> */}
           {/* <CoordinatorAddUserSetting></CoordinatorAddUserSetting> */}
+
           {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>a
            */}
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
           <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile>
+
+          {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements> */}
+          {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
+ 
+          {/* <StaffMemberStudents></StaffMemberStudents> */}
+          {/* <SMAddStudents></SMAddStudents> */}
+          {/* <StaffMemberStudentSelections></StaffMemberStudentSelections>          */}
+          {/* <SMCompanyVisit></SMCompanyVisit> */}
+          <StaffMemberHome></StaffMemberHome>
+
+
+          {/* <SupervisorHome></SupervisorHome> */}
+
+
+
 
 
 
