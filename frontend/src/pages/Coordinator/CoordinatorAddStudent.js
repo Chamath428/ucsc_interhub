@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
 import { Row } from 'react-bootstrap';
+import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
 // import '../../styles/CoordinatorStudentBulkList.css';
 // import '../../styles/CoordinatorStudent.css';
 
@@ -90,9 +91,13 @@ class CoordinatorStudentBulkList extends Component {
                 <Form.Control type="float" placeholder="GPA" />
               </Form.Group>
             </Row>
-            <Button className="btn-setvisit mt-4 mb-4 col-sm-6" variant="primary" type="submit">
+            {/* <Button className="btn-setvisit mt-4 mb-4 col-sm-6" variant="primary" type="submit">
               + Create Student
-            </Button>
+            </Button> */}
+            
+            <div>
+            <DashboardButton inside={"+Create Student"}></DashboardButton>
+            </div>
             <Form.Group className="mb-4 col col-sm-6">
               <div
                 style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
@@ -106,9 +111,13 @@ class CoordinatorStudentBulkList extends Component {
                 <div style={{ flex: 1, height: '1px', backgroundColor: 'black' }} />
               </div>
               <p>You can upload a CSV file that has the above details and create multiple students at once.</p></Form.Group>
-            <Button className="btn-setvisit mt-4 mb-4 col-sm-6" variant="primary" type="submit">
+            {/* <Button className="btn-setvisit mt-4 mb-4 col-sm-6" variant="primary" type="submit">
               Upload a CSV file
-            </Button>
+            </Button> */}
+
+            <div>
+            <DashboardButton inside={"Upload a CSV file"} ></DashboardButton>
+            </div>
           </Form>
         </div>
       </Container>

@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import CoordinatorCard from '../../component/Dashboard/CoordinatorCard/coordinatorCard';
 import '../../styles/CoordinatorHome.css'
 
+import { Chart } from 'react-charts'
+
 class CoordinatorHome extends Component {
 
     render() {
         return (
-            <div className='cart-contain'>
+            <><div className='cart-contain'>
                 <div>
                     <CoordinatorCard cardPara='285 registered' cardTitle='View Students'></CoordinatorCard>
 
@@ -24,6 +26,10 @@ class CoordinatorHome extends Component {
 
                 </div>
             </div>
+                <div className="chart-container">
+
+                </div>
+            </>
 
         );
     }
