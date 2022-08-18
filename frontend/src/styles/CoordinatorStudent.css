@@ -60,9 +60,20 @@
 .table-scrollba {
 
     margin-top: 3%;
+    margin-bottom: 5%;
     width: 100%;
     position: relative;
     height: 60vh;
     overflow: auto;
 }
 
+@media screen and (max-width: 515px) {
+    .top-area{
+        flex-direction: column !important;
+        width: 100%;
+    }
+    .search-area{
+        width: 60%;
+        /* margin-left: 40%; */
+    }
+  }

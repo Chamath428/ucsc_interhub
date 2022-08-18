@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
 import { Row } from 'react-bootstrap';
+import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
 // import '../../styles/CoordinatorStudentBulkList.css';
 // import '../../styles/CoordinatorStudent.css';
 
@@ -40,19 +41,25 @@ class CoordinatorAddAnnouncements extends Component {
                             </Form.Group>
                         </Row>
                         <Row>
-                            <Form.Group className="mb-3" controlId="Textarea">
+                            <Form.Group className="mb-1" controlId="Textarea">
                                 <Form.Label>Body</Form.Label>
-                                <Form.Control as="textarea" placeholder="Enter announcement details" rows={5} style={{width: '64.5%'}} />
+                                <Form.Control as="textarea" placeholder="Enter announcement details" rows={5} style={{ width: '65.7%' }} />
                             </Form.Group>
                         </Row>
 
 
-                        <Button className="btn-setvisit mt-4 mb-4 m-1 ml-0 col-sm-3" variant="primary" type="submit">
-                            Clear
-                        </Button>
-                        <Button className="btn-setvisit mt-4 mb-4 m-1 col-sm-3 " variant="primary" type="submit">
-                            Post
-                        </Button>
+                        <Row className=' mt-1'>
+                            <Form.Group className="mb-3 col-sm-7" controlId="ClearBtnArea">
+                                <DashboardButton inside={"Clear"}  ></DashboardButton>
+
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-sm-4 float-right" controlId="PostBtnArea">
+
+                                <DashboardButton inside={"Post"} ></DashboardButton>
+                            </Form.Group>
+                        </Row>
+
+
                     </Form>
                 </div>
             </Container>

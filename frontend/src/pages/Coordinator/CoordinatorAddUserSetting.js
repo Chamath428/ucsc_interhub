@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
 import { Row } from 'react-bootstrap';
+import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
 // import '../../styles/CoordinatorStudentBulkList.css';
 // import '../../styles/CoordinatorStudent.css';
 
@@ -31,7 +32,7 @@ class CoordinatorAddUserSetting extends Component {
                                 <Form.Select>
                                     <option value="1">Staff Member</option>
                                     <option value="2">Coordinator</option>
-                                    <option value="3">Student</option>
+
                                 </Form.Select>
                             </Form.Group>
                         </Row>
@@ -50,12 +51,14 @@ class CoordinatorAddUserSetting extends Component {
 
                             <p>By clicking on Create Account, system will send an email to the address you entered, allowing the owner of that email to login to the system as a supervisor under your company</p>
                         </Form.Group>
-                        <Button className="btn-setvisit mt-4 mb-4 m-1 ml-0 col-sm-3" variant="primary" type="submit">
-                            Reset
-                        </Button>
-                        <Button className="btn-setvisit mt-4 mb-4 m-1 col-sm-3 " variant="primary" type="submit">
-                        Create account  <i class="bi bi-arrow-right"></i>
-                        </Button>
+
+                        {/* <Button className="btn-setvisit mt-4 mb-4 m-1 col-sm-3 " variant="primary" type="submit">
+                            Create account  <i class="bi bi-arrow-right"></i>
+                        </Button> */}
+
+                        <div>
+                            <DashboardButton inside={"Create account -->" } ></DashboardButton>
+                        </div>
                     </Form>
                 </div>
             </Container>

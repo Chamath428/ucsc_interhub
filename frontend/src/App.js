@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/login';
 import Dashboard from './pages/Dashboard';
 import StudentHome from './pages/Student/StudentHome';
+import StudentProfile from './pages/Student/StudentProfile';
 import StudentAnnouncement from './pages/Student/StudentAnnouncement';
 import StudentInternship from './pages/Student/StudentInternship';
 import StudentInterviews from './pages/Student/StudentInterviews';
@@ -24,7 +25,12 @@ import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPen
 import CoordinatorAddUserSetting from './pages/Coordinator/CoordinatorAddUserSetting';
 import CoordinatorAddAnnouncements from './pages/Coordinator/CoordinatorAddAnnouncements';
 import CoordinatorViewAnnounsments from './pages/Coordinator/CoordinatorViewAnnounsments';
+
+import CoordinatorRegisteredCompanyProfile from './pages/Coordinator/CoordinatorRegisteredCompanyProfile';
+
+
 import SupervisorHome from './pages/Supervisor/supervisorHome';
+
 
 import SideBar from './component/Dashboard/SideBar/sideBar';
 import TopNav from './component/Dashboard/TopNav/topNav';
@@ -59,10 +65,19 @@ function App() {
           {/* <CoordinatorHome></CoordinatorHome> */}
           {/* <CoordinatorCompany></CoordinatorCompany> */}
           {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
+
+          {/* <StudentProfile></StudentProfile> */}
+
           {/* <CoordinatorStudent></CoordinatorStudent> */}
           {/* <CoordinatorAddStudent></CoordinatorAddStudent> */}
           {/* <CoordinatorUsersSetting></CoordinatorUsersSetting> */}
           {/* <CoordinatorAddUserSetting></CoordinatorAddUserSetting> */}
+
+          {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>a
+           */}
+          {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
+          <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile>
+
           {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements> */}
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
  
@@ -74,6 +89,7 @@ function App() {
 
 
           {/* <SupervisorHome></SupervisorHome> */}
+
 
 
 
