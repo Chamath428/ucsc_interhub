@@ -11,6 +11,7 @@
         /* margin-left: 40%; */
     }
   }
+
 .addstudent{
     margin-left:70%;
     height: fit-content;
@@ -25,13 +26,13 @@
 }
 
 .contain {
-    /* margin-top: 5%;
+    margin-top: 5%;
     margin-left: 5%;
-    margin-right: 5%; */
-    /* display: flex;
+    margin-right: 5%;
+    display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    font-family: 'Raleway', sans-serif; */
+    font-family: 'Raleway', sans-serif;
 }
 
 .contain h3 {
