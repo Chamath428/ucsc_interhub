@@ -15,8 +15,6 @@ import StudentSettings from './pages/Student/StudentSettings';
 import DashSideNavigation from './component/Dashboard/DashSideNavigation';
 import DashboardTopNav from './component/Dashboard/DashNav';
 import DashboardMenu from './component/Dashboard/DashMenu';
-
-
 import CoordinatorHome from './pages/Coordinator/CoordinatorHome';
 import CoordinatorStudent from './pages/Coordinator/CoordinatorStudent';
 import CoordinatorAddStudent from './pages/Coordinator/CoordinatorAddStudent';
@@ -26,6 +24,7 @@ import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPen
 import CoordinatorAddUserSetting from './pages/Coordinator/CoordinatorAddUserSetting';
 import CoordinatorAddAnnouncements from './pages/Coordinator/CoordinatorAddAnnouncements';
 import CoordinatorViewAnnounsments from './pages/Coordinator/CoordinatorViewAnnounsments';
+import SupervisorHome from './pages/Supervisor/supervisorHome';
 
 import SideBar from './component/Dashboard/SideBar/sideBar';
 import TopNav from './component/Dashboard/TopNav/topNav';
@@ -40,8 +39,6 @@ import SMRegisteredOrganization from './pages/StaffMember/sMRegisteredOrganizati
 import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
 import StaffMembertHome from './pages/StaffMember/sMAddStudents';
 
-import SupervisorAssignInterns from './pages/Supervisor/supervisorAssignInterns';
-import SupervisorProgressReports from './pages/Supervisor/supervisorProgressReports';
 
 
 import './App.css';
@@ -53,7 +50,35 @@ function App() {
       <TopNav></TopNav>
       <main>
         <div className='container pt-5'>
-          <SupervisorProgressReports></SupervisorProgressReports>
+
+          {/* <StudentHome></StudentHome> */}
+          {/* <StudentAnnouncement></StudentAnnouncement> */}
+          {/* <StudentInternship></StudentInternship> */}
+          {/* <StudentInterviews></StudentInterviews> */}
+
+          {/* <CoordinatorHome></CoordinatorHome> */}
+          {/* <CoordinatorCompany></CoordinatorCompany> */}
+          {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
+          {/* <CoordinatorStudent></CoordinatorStudent> */}
+          {/* <CoordinatorAddStudent></CoordinatorAddStudent> */}
+          {/* <CoordinatorUsersSetting></CoordinatorUsersSetting> */}
+          {/* <CoordinatorAddUserSetting></CoordinatorAddUserSetting> */}
+          {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements> */}
+          {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
+ 
+          {/* <StaffMemberStudents></StaffMemberStudents> */}
+          {/* <SMAddStudents></SMAddStudents> */}
+          {/* <StaffMemberStudentSelections></StaffMemberStudentSelections>          */}
+          {/* <SMCompanyVisit></SMCompanyVisit> */}
+          <StaffMemberHome></StaffMemberHome>
+
+
+          {/* <SupervisorHome></SupervisorHome> */}
+
+
+
+
+
         </div>
       </main>
 
