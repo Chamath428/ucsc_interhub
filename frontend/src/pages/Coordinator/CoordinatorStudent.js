@@ -70,7 +70,8 @@ class CoordinatorStudent extends Component {
                 </Container>
 
                 <div class="table-wrapper-scroll-y table-scrollba ">
-                    <TableView>
+                    <TableView headers={['Index No', 'Name', 'CV', 'Interviews', 'Company']}
+                        list={[['190020432', 'Shanika Jayathunga', 'True', 'None', 'LSEG'], ['190020532', 'Jayani Kulasekara', 'True', 'called', 'Avonet Technologies'], ['190030423', 'Prathiksha Jayakodi', 'False', 'None', 'WSO2'], ['190020455', 'Sameera Kumara', 'True', 'None', 'Dialog Axiata'], ['190027632', 'Ayodya Ranasinghe', 'True', 'None', '99X'], ['190020444', 'Binura Jathilake', 'True', 'called', 'LSEG']]}>
 
                     </TableView>
 
