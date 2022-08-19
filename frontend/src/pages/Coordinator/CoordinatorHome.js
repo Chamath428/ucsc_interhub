@@ -25,19 +25,13 @@ class CoordinatorHome extends Component {
                     <CoordinatorCard title={"Post Announcement"} count={"53"} icon={"file-earmark-text-fill"} cardWidth={3}></CoordinatorCard>
                 </Row>
 
-                <Row className=" mt-4" style={{marginLeft:'10%' }}    >
-                    <Col>
-                        <PieChart />
+                <Row className="chart-contain" >
 
-                    </Col>
-                    <Col>
-                        <ApexCharts />
+                    <PieChart />
+                    <ApexCharts />
+                    <PieChart />
 
-                    </Col>
-                    <Col>
-                        <PieChart />
 
-                    </Col>
                 </Row>
             </Container>
 

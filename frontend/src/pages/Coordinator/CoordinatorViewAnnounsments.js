@@ -21,34 +21,35 @@ class CoordinatorViewAnnounsments extends Component {
         // const barStatus = this.props.barStatus;
         const barStatus = 60;
         return (
-            
+
             <div className='contain'>
-            <h3>Announcements</h3>
+                <h3>Announcements</h3>
 
-            <div className='d-flex flex-row justify-content-sm-between'>
+                <div className='d-flex flex-row justify-content-sm-between'>
 
-                <div className='btn-container'>
-                    <Button  > All Announcments </Button>
-                    <Button > Add Anouncement </Button>
+                    <div className='btn-container'>
+                        <Button  > All Announcments </Button>
+                        <Button > Add Anouncement </Button>
 
+                    </div>
+
+                    <Form.Group className="mb-3" controlId="formBasicSearchOrganization">
+                        <div className="d-flex flex-row align-item-center justify-content-center text-center" >
+                            <div className='searchico text-center p-2'><i className="bi bi-search"></i></div>
+                            <Form.Control type="searchbox text" placeholder="Search organization" /></div>
+                    </Form.Group>
                 </div>
 
-                <Form.Group className="mb-3" controlId="formBasicSearchOrganization">
-                    <div className="d-flex flex-row align-item-center justify-content-center text-center" >
-                        <div className='searchico text-center p-2'><i className="bi bi-search"></i></div>
-                        <Form.Control type="searchbox text" placeholder="Search organization" /></div>
-                </Form.Group>
-            </div>
+                <div class="table-wrapper-scroll-y table-scrollba ">
 
-            <div class="table-wrapper-scroll-y table-scrollba ">
-                <TableView>
+                    <TableView headers={['Title', 'Views', 'Visibility']}
+                        list={[['Cool Project', '11', 'All'], ['Thing No One Wants to Do', '2', 'Student'], ['Site Revamp', '49', 'Company'], ['New Logo Design', '33 ', 'All'], ['Accessibility Updates', '4', 'Compay'] ,['Color Variations', '55', 'Student']]}>
 
-                </TableView>
+                    </TableView>
+                </div>
+
 
             </div>
-
-
-        </div>
 
 
         );
