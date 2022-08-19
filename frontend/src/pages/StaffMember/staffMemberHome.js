@@ -17,8 +17,8 @@ function StaffMemberHome() {
 
     
         return (
-            <div className='contain'>
-                <div className='top ms-3'>
+            <div id= 'Staffhome' className='contain ms-5 mt-5'>
+                <div className='top'>
                     <div className='d-flex flex-row justify-content-sm-between'>
 
                         <h3>Dashboard</h3>
@@ -35,8 +35,8 @@ function StaffMemberHome() {
                 </div>
                 <div className='bottom mt-5'>
                     
-                    <div className='bottom-left ms-3'>
-                        <div className='d-flex flex-row justify-content-sm-between ms-3'>
+                    <div className='bottom-left'>
+                        <div className='d-flex flex-row justify-content-sm-between'>
 
                             <h3>Announcements</h3>
                         </div>
@@ -47,7 +47,7 @@ function StaffMemberHome() {
                         
                     </div>
                     <div className='bottom-right'>
-                        <div className='d-flex flex-row justify-content-sm-between ms-3 mb-3'>
+                        <div className='d-flex flex-row justify-content-sm-between mb-3'>
 
                             <h3>Upcoming Company Visits</h3>
                         </div>

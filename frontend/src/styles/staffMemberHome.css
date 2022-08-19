@@ -1,7 +1,3 @@
-.contain{
-    height: 100%;
-    width: 90%;
-}
 .top{
     height:25%;
     width: 100%;
@@ -9,7 +5,7 @@
 
 .bottom{
     height: 75%;
-    width: 95%;
+    width: 100%;
 }
 
 .bottom-left{
@@ -22,6 +18,10 @@
     height: 75%;
     width:45%;
     float: right;
+}
+#Staffhome{
+    height: 100%;
+    width: 90%;
 }
 
 
