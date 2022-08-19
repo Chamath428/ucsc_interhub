@@ -73,10 +73,9 @@ function App() {
           {/* <CoordinatorUsersSetting></CoordinatorUsersSetting> */}
           {/* <CoordinatorAddUserSetting></CoordinatorAddUserSetting> */}
 
-          {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>a
-           */}
+          <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements> 
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
-          <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile>
+          {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
 
           {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements> */}
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}

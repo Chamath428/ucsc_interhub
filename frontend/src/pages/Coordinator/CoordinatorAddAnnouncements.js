@@ -4,11 +4,15 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
 import { Row } from 'react-bootstrap';
 import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
+import TextEditor from '../../component/TextEditor/textEditor';
+
 // import '../../styles/CoordinatorStudentBulkList.css';
 // import '../../styles/CoordinatorStudent.css';
 
 
+
 class CoordinatorAddAnnouncements extends Component {
+
 
     render() {
         return (
@@ -42,8 +46,13 @@ class CoordinatorAddAnnouncements extends Component {
                         </Row>
                         <Row>
                             <Form.Group className="mb-1" controlId="Textarea">
-                                <Form.Label>Body</Form.Label>
-                                <Form.Control as="textarea" placeholder="Enter announcement details" rows={5} style={{ width: '65.7%' }} />
+                                <Form.Label>Anouncement Body</Form.Label>
+                                
+                                <div className="editor " style={{width: '65.7%',height: '40vh', borderStyle: 'outset'}}>
+                                    <TextEditor />
+                                </div>
+
+                                {/* <Form.Control as="textarea" placeholder="Write your announcement" rows={5} style={{ width: '65.7%' }} /> */}
                             </Form.Group>
                         </Row>
 
@@ -61,6 +70,10 @@ class CoordinatorAddAnnouncements extends Component {
 
 
                     </Form>
+
+
+
+
                 </div>
             </Container>
 
