@@ -62,7 +62,7 @@ function App() {
           {/* <StudentInternship></StudentInternship> */}
           {/* <StudentInterviews></StudentInterviews> */}
 
-          {/* <CoordinatorHome></CoordinatorHome> */}
+          <CoordinatorHome></CoordinatorHome>
           {/* <CoordinatorCompany></CoordinatorCompany> */}
           {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
 
@@ -73,7 +73,7 @@ function App() {
           {/* <CoordinatorUsersSetting></CoordinatorUsersSetting> */}
           {/* <CoordinatorAddUserSetting></CoordinatorAddUserSetting> */}
 
-          <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements> 
+          {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>  */}
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
           {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
 
