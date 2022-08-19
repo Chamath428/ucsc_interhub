@@ -85,7 +85,7 @@ function App() {
           {/* <SMAddStudents></SMAddStudents> */}
           {/* <StaffMemberStudentSelections></StaffMemberStudentSelections>          */}
           {/* <SMCompanyVisit></SMCompanyVisit> */}
-          <StaffMemberHome></StaffMemberHome>
+          {/* <StaffMemberHome></StaffMemberHome> */}
 
 
           {/* <SupervisorHome></SupervisorHome> */}
