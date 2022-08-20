@@ -27,6 +27,7 @@ import CoordinatorAddAnnouncements from './pages/Coordinator/CoordinatorAddAnnou
 import CoordinatorViewAnnounsments from './pages/Coordinator/CoordinatorViewAnnounsments';
 
 import CoordinatorRegisteredCompanyProfile from './pages/Coordinator/CoordinatorRegisteredCompanyProfile';
+import CoordinatorCompanyProfileDetails from './pages/Coordinator/CoordinatorCompanyProfileDetails';
 
 
 import SupervisorHome from './pages/Supervisor/supervisorHome';
@@ -63,7 +64,8 @@ function App() {
           {/* <StudentInterviews></StudentInterviews> */}
 
           {/* <CoordinatorHome></CoordinatorHome> */}
-          <CoordinatorCompany></CoordinatorCompany>
+          {/* <CoordinatorCompany></CoordinatorCompany> */}
+          <CoordinatorCompanyProfileDetails></CoordinatorCompanyProfileDetails>
           {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
 
           {/* <StudentProfile></StudentProfile> */}
