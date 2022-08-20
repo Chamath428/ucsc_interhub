@@ -12,7 +12,7 @@ class TableView extends Component{
            <thead className="thead-light">
           
               <tr className="table-primary">
-                <th >#</th>
+               
                 {headers.map((ColName,index)=>(
                   <th key={index}>{ColName}</th>
                 ))}
@@ -22,7 +22,6 @@ class TableView extends Component{
             <tbody className="tbody">
               {list.map((RowName,index)=>(
                 <tr key={index}>
-                    <td>{index+1}</td>
                   {RowName.map((RowName1,rowindex1)=>(
                   <td key={rowindex1}>{RowName1}</td>
                   ))}
