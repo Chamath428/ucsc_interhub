@@ -1,0 +1,402 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model advertisement {
+  advertisement_id            Int                           @id @default(autoincrement())
+  job_role                    String                        @db.VarChar(100)
+  job_description             String                        @db.VarChar(2000)
+  requested_interns           Int
+  allocated_interns           Int
+  advertisement_picture       String                        @db.VarChar(100)
+  advertisement_video         String                        @db.VarChar(100)
+  advertisement_ref_no        String                        @db.VarChar(100)
+  company_id                  Int
+  program_id                  Int
+  company                     company                       @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "advertisement_ibfk_1")
+  internship_program          internship_program            @relation(fields: [program_id], references: [program_id], onDelete: Cascade, map: "advertisement_ibfk_2")
+  advertisement_technologies  advertisement_technologies[]
+  student_applied_internships student_applied_internships[]
+
+  @@index([company_id], map: "company_id")
+  @@index([program_id], map: "program_id")
+}
+
+model advertisement_technologies {
+  advertisement_id Int
+  technologies     String        @db.VarChar(100)
+  advertisement    advertisement @relation(fields: [advertisement_id], references: [advertisement_id], onDelete: Cascade, map: "advertisement_technologies_ibfk_1")
+
+  @@id([advertisement_id, technologies])
+}
+
+model announcement {
+  announcement_id      Int                    @id @default(autoincrement())
+  title                String                 @db.VarChar(100)
+  body                 String                 @db.VarChar(3000)
+  time                 String                 @db.VarChar(50)
+  date                 String                 @db.VarChar(50)
+  type                 Int
+  email_address        String                 @db.VarChar(100)
+  pdc                  pdc                    @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "announcement_ibfk_1")
+  company_announcement company_announcement[]
+  student_announcement student_announcement[]
+
+  @@index([email_address], map: "email_address")
+}
+
+model company {
+  company_id              Int                    @id @default(autoincrement())
+  name                    String                 @db.VarChar(200)
+  registration_number     String                 @db.VarChar(100)
+  date_of_establishment   String                 @db.VarChar(50)
+  description             String                 @db.VarChar(1000)
+  website                 String                 @db.VarChar(200)
+  address                 String                 @db.VarChar(500)
+  fax_no                  Int
+  company_status          Int
+  no_of_employees         Int
+  no_of_project_managers  Int
+  no_of_tech_leads        Int
+  is_registered_other_uni Int
+  password                String                 @db.VarChar(100)
+  username                String                 @db.VarChar(100)
+  profile_picture         String                 @db.VarChar(200)
+  advertisement           advertisement[]
+  company_announcement    company_announcement[]
+  company_clients         company_clients[]
+  company_contacts        company_contacts[]
+  company_events          company_events[]
+  company_hr              company_hr?
+  company_hr_contacts     company_hr_contacts[]
+  company_notification    company_notification[]
+  company_partners        company_partners[]
+  company_visit           company_visit[]
+  internships             internships[]
+  interview               interview[]
+  supervisor              supervisor[]
+}
+
+model company_announcement {
+  announcement_id Int
+  company_id      Int
+  announcement    announcement @relation(fields: [announcement_id], references: [announcement_id], onDelete: Cascade, map: "company_announcement_ibfk_1")
+  company         company      @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_announcement_ibfk_2")
+
+  @@id([announcement_id, company_id])
+  @@index([company_id], map: "company_id")
+}
+
+model company_clients {
+  company_id Int
+  client     String  @db.VarChar(100)
+  company    company @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_clients_ibfk_1")
+
+  @@id([company_id, client])
+}
+
+model company_contacts {
+  company_id   Int
+  telephone_no Int
+  company      company @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_contacts_ibfk_1")
+
+  @@id([company_id, telephone_no])
+}
+
+model company_events {
+  event_id      Int     @default(autoincrement())
+  company_id    Int
+  topic         String  @db.VarChar(100)
+  time          String  @db.VarChar(50)
+  event_picture String  @db.VarChar(100)
+  event_video   String  @db.VarChar(100)
+  body          String  @db.VarChar(2000)
+  date          String  @db.VarChar(50)
+  company       company @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_events_ibfk_1")
+
+  @@id([event_id, company_id])
+  @@index([company_id], map: "company_id")
+}
+
+model company_hr {
+  company_id Int     @id
+  name       String  @db.VarChar(200)
+  email      String  @db.VarChar(100)
+  company    company @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_hr_ibfk_1")
+}
+
+model company_hr_contacts {
+  company_id   Int
+  telephone_no Int
+  company      company @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_hr_contacts_ibfk_1")
+
+  @@id([company_id, telephone_no])
+}
+
+model company_notification {
+  notification_id Int
+  company_id      Int
+  company         company      @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_notification_ibfk_1")
+  notification    notification @relation(fields: [notification_id], references: [notification_id], onDelete: Cascade, map: "company_notification_ibfk_2")
+
+  @@id([notification_id, company_id])
+  @@index([company_id], map: "company_id")
+}
+
+model company_partners {
+  company_id Int
+  partners   String  @db.VarChar(100)
+  company    company @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_partners_ibfk_1")
+
+  @@id([company_id, partners])
+}
+
+model company_visit {
+  company_visit_id   Int     @default(autoincrement())
+  company_id         Int
+  email_address      String  @db.VarChar(100)
+  date               String  @db.VarChar(50)
+  start_time         Int
+  end_time           Int
+  company_visit_type Int
+  company            company @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_visit_ibfk_1")
+  pdc                pdc     @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "company_visit_ibfk_2")
+
+  @@id([company_visit_id, company_id, email_address])
+  @@index([company_id], map: "company_id")
+  @@index([email_address], map: "email_address")
+}
+
+model internship_program {
+  program_id    Int             @id @default(autoincrement())
+  batch_no      Int
+  program_year  Int
+  email_address String          @db.VarChar(100)
+  pdc           pdc             @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "internship_program_ibfk_1")
+  advertisement advertisement[]
+  student       student[]
+
+  @@index([email_address], map: "email_address")
+}
+
+model internships {
+  internship_id Int        @id @default(autoincrement())
+  job_role      String     @db.VarChar(100)
+  started_date  String     @db.VarChar(50)
+  index_number  Int
+  company_id    Int
+  supervisor_id Int
+  student       student    @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "internships_ibfk_1")
+  company       company    @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "internships_ibfk_2")
+  supervisor    supervisor @relation(fields: [supervisor_id], references: [supervisor_id], onDelete: Cascade, map: "internships_ibfk_3")
+  reports       reports[]
+
+  @@index([company_id], map: "company_id")
+  @@index([index_number], map: "index_number")
+  @@index([supervisor_id], map: "supervisor_id")
+}
+
+model interview {
+  interview_id     Int     @default(autoincrement())
+  company_id       Int
+  index_number     Int
+  date             String  @db.VarChar(30)
+  start_time       String  @db.VarChar(20)
+  end_time         String  @db.VarChar(20)
+  interview_type   Int
+  interview_status Int
+  is_wish_list     Int
+  company          company @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "interview_ibfk_1")
+  student          student @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "interview_ibfk_2")
+
+  @@id([interview_id, company_id, index_number])
+  @@index([company_id], map: "company_id")
+  @@index([index_number], map: "index_number")
+}
+
+model notification {
+  notification_id         Int                       @id
+  message                 String                    @db.VarChar(1000)
+  date                    String                    @db.VarChar(50)
+  link                    String                    @db.VarChar(100)
+  time                    String                    @db.VarChar(50)
+  status                  Int
+  company_notification    company_notification[]
+  pdc_notification        pdc_notification[]
+  student_notification    student_notification[]
+  supervisor_notification supervisor_notification[]
+}
+
+model pdc {
+  email_address      String               @id @db.VarChar(100)
+  name               String               @db.VarChar(100)
+  password           String               @db.VarChar(100)
+  profile_picture    String               @db.VarChar(100)
+  role               Int
+  announcement       announcement[]
+  company_visit      company_visit[]
+  internship_program internship_program[]
+  pdc_notification   pdc_notification[]
+  report_handle      report_handle[]
+  reports            reports[]
+}
+
+model pdc_notification {
+  notification_id Int
+  email_address   String       @db.VarChar(100)
+  notification    notification @relation(fields: [notification_id], references: [notification_id], onDelete: Cascade, map: "pdc_notification_ibfk_1")
+  pdc             pdc          @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "pdc_notification_ibfk_2")
+
+  @@id([notification_id, email_address])
+  @@index([email_address], map: "email_address")
+}
+
+model report_handle {
+  report_id     Int
+  email_address String  @db.VarChar(100)
+  deadline_date String  @db.VarChar(50)
+  deadline_time String  @db.VarChar(50)
+  reports       reports @relation(fields: [report_id], references: [report_id], onDelete: Cascade, map: "report_handle_ibfk_1")
+  pdc           pdc     @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "report_handle_ibfk_2")
+
+  @@id([report_id, email_address])
+  @@index([email_address], map: "email_address")
+}
+
+model reports {
+  report_id     Int             @id @default(autoincrement())
+  report_type   Int
+  date          String          @db.VarChar(50)
+  time          String          @db.VarChar(50)
+  report        String          @db.VarChar(100)
+  report_status String          @db.VarChar(5)
+  feedback      String          @db.VarChar(300)
+  internship_id Int
+  supervisor_id Int
+  email_address String          @db.VarChar(100)
+  internships   internships     @relation(fields: [internship_id], references: [internship_id], onDelete: Cascade, map: "reports_ibfk_1")
+  supervisor    supervisor      @relation(fields: [supervisor_id], references: [supervisor_id], onDelete: Cascade, map: "reports_ibfk_2")
+  pdc           pdc             @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "reports_ibfk_3")
+  report_handle report_handle[]
+
+  @@index([email_address], map: "email_address")
+  @@index([internship_id], map: "internship_id")
+  @@index([supervisor_id], map: "supervisor_id")
+}
+
+model student {
+  index_number                    Int                               @id
+  registration_number             String                            @db.VarChar(20)
+  name                            String                            @db.VarChar(100)
+  password                        String                            @db.VarChar(100)
+  nic                             String                            @db.VarChar(20)
+  email                           Int
+  cv                              String                            @db.VarChar(100)
+  intro_video                     String                            @db.VarChar(100)
+  profile_picture                 String                            @db.VarChar(100)
+  student_status                  Int
+  degree                          Int
+  gpa                             String                            @db.VarChar(10)
+  about_me                        String                            @db.VarChar(1000)
+  github                          String                            @db.VarChar(100)
+  linkedin                        String                            @db.VarChar(100)
+  facebook                        String                            @db.VarChar(100)
+  preferred_role                  String                            @db.VarChar(100)
+  program_id                      Int
+  internship_program              internship_program                @relation(fields: [program_id], references: [program_id], onDelete: Cascade, map: "student_ibfk_1")
+  internships                     internships[]
+  interview                       interview[]
+  student_academic_qualifications student_academic_qualifications[]
+  student_announcement            student_announcement[]
+  student_applied_internships     student_applied_internships[]
+  student_availability            student_availability?
+  student_notification            student_notification[]
+  student_work_experience         student_work_experience[]
+
+  @@index([program_id], map: "program_id")
+}
+
+model student_academic_qualifications {
+  index_number  Int
+  qualification String  @db.VarChar(300)
+  student       student @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_academic_qualifications_ibfk_1")
+
+  @@id([index_number, qualification])
+}
+
+model student_announcement {
+  announcement_id Int
+  index_number    Int
+  announcement    announcement @relation(fields: [announcement_id], references: [announcement_id], onDelete: Cascade, map: "student_announcement_ibfk_1")
+  student         student      @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_announcement_ibfk_2")
+
+  @@id([announcement_id, index_number])
+  @@index([index_number], map: "index_number")
+}
+
+model student_applied_internships {
+  index_number     Int
+  advertisement_id Int
+  student          student       @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_applied_internships_ibfk_1")
+  advertisement    advertisement @relation(fields: [advertisement_id], references: [advertisement_id], onDelete: Cascade, map: "student_applied_internships_ibfk_2")
+
+  @@id([index_number, advertisement_id])
+  @@index([advertisement_id], map: "advertisement_id")
+}
+
+model student_availability {
+  index_number        Int     @id
+  date                String  @db.VarChar(100)
+  start_time          String  @db.VarChar(20)
+  end_time            String  @db.VarChar(20)
+  availability_status Int
+  student             student @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_availability_ibfk_1")
+}
+
+model student_notification {
+  notification_id Int
+  index_number    Int
+  student         student      @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_notification_ibfk_1")
+  notification    notification @relation(fields: [notification_id], references: [notification_id], onDelete: Cascade, map: "student_notification_ibfk_2")
+
+  @@id([notification_id, index_number])
+  @@index([index_number], map: "index_number")
+}
+
+model student_work_experience {
+  index_number Int
+  experience   String  @db.VarChar(300)
+  student      student @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_work_experience_ibfk_1")
+
+  @@id([index_number, experience])
+}
+
+model supervisor {
+  supervisor_id           Int                       @id @default(autoincrement())
+  name                    String                    @db.VarChar(100)
+  email                   String                    @db.VarChar(100)
+  profile_picture         String                    @db.VarChar(100)
+  password                String                    @db.VarChar(100)
+  company_id              Int
+  company                 company                   @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "supervisor_ibfk_1")
+  internships             internships[]
+  reports                 reports[]
+  supervisor_notification supervisor_notification[]
+
+  @@index([company_id], map: "company_id")
+}
+
+model supervisor_notification {
+  notification_id Int
+  supervisor_id   Int
+  notification    notification @relation(fields: [notification_id], references: [notification_id], onDelete: Cascade, map: "supervisor_notification_ibfk_1")
+  supervisor      supervisor   @relation(fields: [supervisor_id], references: [supervisor_id], onDelete: Cascade, map: "supervisor_notification_ibfk_2")
+
+  @@id([notification_id, supervisor_id])
+  @@index([supervisor_id], map: "supervisor_id")
+}
