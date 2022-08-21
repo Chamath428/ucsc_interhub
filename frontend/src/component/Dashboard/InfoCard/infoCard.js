@@ -15,7 +15,7 @@ class InfoCard extends Component {
         
         return (
 
-            <div className={"col-xl-"+this.props.cardWidth+" col-lg-4 col-sm-6"}>
+             <div className={"col-xl-"+this.props.cardWidth+" col-lg-"+this.props.cardWidth+" col-sm-6 "}>
               <div className="icon-card mb-30">
                 <div className="icon purple">
                   <i className={"bi bi-"+this.props.icon}></i>

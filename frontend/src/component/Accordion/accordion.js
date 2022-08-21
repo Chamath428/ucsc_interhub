@@ -8,19 +8,20 @@ import Col from 'react-bootstrap/Col';
 
 function AccordionItem(props) {
   return (
-    <Accordion defaultActiveKey={['0']} alwaysOpen>
+    <Accordion >
         
       <Accordion.Item eventKey="0">
         <Accordion.Header>{props.Header}</Accordion.Header>
         <Accordion.Body>
           {props.body}
-          <br />
+          <br /><br />
+
 
           
           <Row>
             <Col>
-              <Card style={{ width: '13rem' }} className='mb-4'>
-                <Card.Header>{props.Header1}</Card.Header>
+              <Card style={{ width: '18rem' }} className='mb-4'>
+                <Card.Header>{props.card1heading}</Card.Header>
                 <ListGroup variant="flush">
                   <ListGroup.Item>{props.card1context}</ListGroup.Item>
 
@@ -29,8 +30,8 @@ function AccordionItem(props) {
             </Col>
 
             <Col>
-              <Card style={{ width: '13rem' }} className='mb-4'>
-                <Card.Header>{props.Header2}</Card.Header>
+              <Card style={{ width: '18rem' }} className='mb-4'>
+                <Card.Header>{props.card2heading}</Card.Header>
                 <ListGroup variant="flush">
                   <ListGroup.Item>{props.card2context}</ListGroup.Item>
 
@@ -43,8 +44,9 @@ function AccordionItem(props) {
 
           <Row>
             <Col>
-              <Card style={{ width: '13rem' }} className='mb-4'>
-                <Card.Header>{props.Header3}</Card.Header>
+              <Card style={{ width: '18rem' }} className='mb-4'>
+                <Card.Header>{props.card3heading}</Card.Header>
+
                 <ListGroup variant="flush">
                   <ListGroup.Item>{props.card3context}</ListGroup.Item>
 
@@ -52,11 +54,10 @@ function AccordionItem(props) {
               </Card>   
             </Col>
 
-          
-
             <Col>
-              <Card style={{ width: '13rem' }} className='mb-4'>
-                <Card.Header>{props.Header4}</Card.Header>
+              <Card style={{ width: '18rem' }} className='mb-4'>
+                <Card.Header>{props.card4heading}</Card.Header>
+
                 <ListGroup variant="flush">
                   <ListGroup.Item>{props.card4context}</ListGroup.Item>
 
