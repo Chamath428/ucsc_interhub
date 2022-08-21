@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;500;600;700&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+.searchicon{
+    color:white;
+    background-color: #0d6efd;
+    border-radius:10px 0px 0px 10px;
+}
+.searchbox{
+    border-radius:0px 10px 10px 0px;
+}
+
+.contain {
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-family: 'Raleway', sans-serif;
+    /* background-color: aqua; */
+}
+
+.contain h3 {
+    margin-bottom: 5vh;
+    font-family: 'Raleway', sans-serif;
+
+}
+
+
+.my-custom-scrollbar {
+
+    margin-top: 3%;
+    width: 100%;
+    position: relative;
+    height: 60vh;
+    overflow: auto;
+}
+
+@media screen and (max-width: 515px) {
+    .top-area{
+        flex-direction: column !important;
+        width: 100%;
+    }
+    .search-area{
+        width: 60%;
+        /* margin-left: 40%; */
+    }
+  }
+

@@ -1,0 +1,73 @@
+#visit{
+    width: 90%;
+    margin-top: 5%;
+    height: 100%;
+    margin-left: 5%;
+}
+.VisitLeft{
+    width:50%;
+    height: 100%;
+    float: left;
+}
+
+.VisitRightRight{
+    width: 80%;
+    float: right !important;
+    padding-right: 15%;
+}
+.VisitRight{
+    width: 50%;
+    float:right !important;
+    height: 90%;
+    /* margin-top: 3%; */
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    /* padding-right: 15%; */
+}
+.my-custom-scrollbar-visit {
+    height:60vh;
+    /* margin-top: 3%; */
+    width: 100%;
+    position: relative;
+    overflow: auto;
+}
+
+.companysearchbox{
+    border-radius: 0px 10px 10px 0px;
+    
+}
+.companysearch{
+    float: right !important;
+}
+@media screen and (max-width:1516px) {
+    .VisitRightRight{
+        width: 100%;
+        
+    }
+}
+@media screen and (max-width:660px) {
+    #visit{        
+        margin-left: 0%;
+        width: 100%;
+    }
+   
+    .VisitRightRight{
+        padding-right:0%;
+    }
+    .SetVisit{
+        width: 100%;
+       }
+       .companysearch{
+        width: 100%;
+       }
+}
+@media screen and (max-width: 555px) {
+   .VisitRight{
+    display: none;
+   } 
+   .VisitLeft{
+    width: 90%;
+   }
+  
+}

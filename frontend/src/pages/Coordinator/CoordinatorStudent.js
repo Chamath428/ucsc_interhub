@@ -3,152 +3,83 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
 import '../../styles/CoordinatorStudent.css';
+import Col from 'react-bootstrap/Col';
+
+import { Row } from 'react-bootstrap';
+import TableView from '../../component/Dashboard/Table/tableView';
+
 
 
 class CoordinatorStudent extends Component {
 
     render() {
         return (
+
+
+
             <div className='contain'>
-
                 <h3>Manage Students</h3>
-                <div className='btn-container'>
-                    <Button  > View </Button>
-                    <Button > Add bulk students </Button>
-                    <Button > Evaluation </Button>
-                </div>
-                <div className='dropdown-container'>
-                    <div className='dropdown1'>
-                        <label className='btn-label'>Course</label>
-                        <Form.Select>
-                            <option value="1">CS and IS</option>
-                            <option value="2">CS</option>
-                            <option value="3">IS </option>
-                        </Form.Select>
+
+                <div className='d-flex flex-row justify-content-sm-between'>
+
+                    <div className='btn-container'>
+                        <Button  > View </Button>
+                        <Button > Add New students </Button>
+
                     </div>
-                    <div className='dropdown2'>
-                        <label className='btn-label'>Enrolled</label>
-                        <Form.Select>
-                            <option value="1">ALL</option>
-                            <option value="2">IS</option>
-                            <option value="3">CS and IS</option>
-                        </Form.Select>
-                    </div>
+
+                    <Form.Group className="mb-3" controlId="formBasicSearchOrganization">
+                        <div className="d-flex flex-row align-item-center justify-content-center text-center" >
+                            <div className='searchico text-center p-2'><i className="bi bi-search"></i></div>
+                            <Form.Control type="searchbox text" placeholder="Search organization" /></div>
+                    </Form.Group>
                 </div>
+                <Container className="mt-2">
+                    <Form className='container'>
+                        <Row className="mb-3">
+                            <Form.Group as={Col} md controlId="formGridState">
+                                <Form.Label className="fw-bold" column sm={2}>Course</Form.Label>
+                                <Form.Select sm={10} defaultValue="Choose...">
+                                    <option>CS and IS</option>
+                                    <option>CS</option>
+                                    <option>IS</option>
+                                </Form.Select>
+                            </Form.Group>
 
-                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                            <Form.Group as={Col} sm controlId="formGridState">
+                                <Form.Label className="fw-bold" column sm={2}>Enrolled</Form.Label>
+                                <Form.Select sm={10} defaultValue="Choose...">
+                                    <option>All</option>
+                                    <option>Choose...</option>
+                                    <option>...</option>
+                                </Form.Select>
+                            </Form.Group>
 
-                    <table class="table">
-                        <thead class="thead-light">
-                            <tr class="table-primary">
-                                <th scope="col">#</th>
-                                <th scope="col">Index</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">CV</th>
-                                <th scope="col">Interviews</th>
-                                <th scope="col">Employee</th>
-                                <th scope="col">Options</th>
+                            <Form.Group as={Col} sm controlId="formGridState">
+                                <Form.Label className="fw-bold" column sm={2}>Sort By</Form.Label>
+                                <Form.Select sm={10} defaultValue="Choose...">
+                                    <option>Index Number</option>
+                                    <option>Name</option>
+                                    <option>Company</option>
+                                    <option>GPA</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </Row>
+                    </Form>
 
-                            </tr>
-                        </thead>
-                        <tbody >
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>19000877</td>
-                                <td>Thilina Madusanka</td>
-                                <td>True</td>
-                                <td>None</td>
-                                <td>LSEG</td>
-                                <td>.......</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>19001234</td>
-                                <td>Chamath Chinthana</td>
-                                <td>True</td>
-                                <td>Called</td>
-                                <td>Virtusa</td>
-                                <td>.......</td>
+                </Container>
 
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>19008765</td>
-                                <td>Anupama Bandara</td>
-                                <td>False</td>
-                                <td>None</td>
-                                <td>99x</td>
-                                <td>.......</td>
+                <div class="table-wrapper-scroll-y table-scrollba ">
+                    <TableView headers={['Index No', 'Name', 'CV', 'Interviews', 'Company']}
+                        list={[['190020432', 'Shanika Jayathunga', 'True', 'None', 'LSEG'], ['190020532', 'Jayani Kulasekara', 'True', 'called', 'Avonet Technologies'], ['190030423', 'Prathiksha Jayakodi', 'False', 'None', 'WSO2'], ['190020455', 'Sameera Kumara', 'True', 'None', 'Dialog Axiata'], ['190027632', 'Ayodya Ranasinghe', 'True', 'None', '99X'], ['190020444', 'Binura Jathilake', 'True', 'called', 'LSEG']]}>
 
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>19008765</td>
-                                <td>Anupama Bandara</td>
-                                <td>False</td>
-                                <td>None</td>
-                                <td>99x</td>
-                                <td>.......</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>19008765</td>
-                                <td>Anupama Bandara</td>
-                                <td>False</td>
-                                <td>None</td>
-                                <td>99x</td>
-                                <td>.......</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>19008765</td>
-                                <td>Anupama Bandara</td>
-                                <td>False</td>
-                                <td>None</td>
-                                <td>99x</td>
-                                <td>.......</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>19008765</td>
-                                <td>Anupama Bandara</td>
-                                <td>False</td>
-                                <td>None</td>
-                                <td>99x</td>
-                                <td>.......</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>19008765</td>
-                                <td>Anupama Bandara</td>
-                                <td>False</td>
-                                <td>None</td>
-                                <td>99x</td>
-                                <td>.......</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>19008765</td>
-                                <td>Anupama Bandara</td>
-                                <td>False</td>
-                                <td>None</td>
-                                <td>99x</td>
-                                <td>.......</td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-
+                    </TableView>
 
                 </div>
 
 
             </div>
+
 
         );
     }

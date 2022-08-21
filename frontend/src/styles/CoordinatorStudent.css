@@ -1,13 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;500;600;700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 
+
+.searchico{
+    color:white;
+    background-color: #0d6efd;
+    border-radius:10px 0px 0px 10px;
+}
+.searchbox{
+  
+  border-radius:0px 10px 10px 0px;
+}
+
 .contain {
-    margin-top: 10vh;
-    margin-left: 10%;
+    /* margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', sans-serif; */
     /* background-color: aqua; */
 }
 
@@ -24,6 +36,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
 
     background-color: #f1f5f9;
     padding: 30px 20px;
@@ -43,47 +56,24 @@
     font-size: medium;
 }
 
-.dropdown-container {
-    display: flex;
-    flex-direction: row;
-    margin-top: 3vh;
-    /* background-color: aqua; */
-}
 
-.dropdown1 {
-    margin: 0;
-    margin-right: 10%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 300px;
-    height: 40px;
-}
+.table-scrollba {
 
-.dropdown1 label {
-    margin-right: 20px;
-    font-weight: bold;
-}
-
-.dropdown2 {
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 300px;
-    height: 40px;
-}
-
-.dropdown2 label {
-    margin-right: 20px;
-    font-weight: bold;
-}
-
-.my-custom-scrollbar {
-
-    margin-top: 5vh;
-    width: 90%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    width: 100%;
     position: relative;
-    height: 44vh;
+    height: 60vh;
     overflow: auto;
 }
+
+@media screen and (max-width: 515px) {
+    .top-area{
+        flex-direction: column !important;
+        width: 100%;
+    }
+    .search-area{
+        width: 60%;
+        /* margin-left: 40%; */
+    }
+  }

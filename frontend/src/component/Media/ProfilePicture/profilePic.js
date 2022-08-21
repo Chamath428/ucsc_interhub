@@ -6,10 +6,9 @@ class ProfilePic extends Component{
         return (
             <Figure>
               <Figure.Image
-                width={200}
-                height={200}
+
                 alt="Profile Picture"
-                src="https://pbs.twimg.com/profile_images/1480644028521541632/NocsQPWI_400x400.jpg"
+                src="https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg"
               />
 
             </Figure>

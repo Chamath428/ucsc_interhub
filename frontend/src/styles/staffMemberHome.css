@@ -1,0 +1,45 @@
+.top{
+    height:25%;
+    width: 100%;
+}
+
+.bottom{
+    height: 75%;
+    width: 100%;
+}
+
+.bottom-left{
+    height: 75%;
+    width: 50%;
+    float: left;
+}
+
+.bottom-right{
+    height: 75%;
+    width:45%;
+    float: right;
+}
+#Staffhome{
+    height: 100%;
+    width: 90%;
+}
+
+
+@media screen and (max-width: 1080px){
+    .calender{
+        width: 100%;
+    }
+    .bottom{
+        width: 100%;
+    }
+    
+    .bottom-left{       
+        width: 100%;
+    }
+    
+    .bottom-right{
+
+        width:100%;
+       
+    }  
+}
