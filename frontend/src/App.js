@@ -45,6 +45,7 @@ import SMCompanyVisit from "./pages/StaffMember/sMCompanyVisit";
 import SMRegisteredOrganization from './pages/StaffMember/sMRegisteredOrganization';
 import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
 import StaffMembertHome from './pages/StaffMember/sMAddStudents';
+import StaffMemberAdvertisements from './pages/StaffMember/sMAdvertisments';
 
 
 
@@ -58,7 +59,7 @@ function App() {
       <main>
         <div className='container pt-5'>
 
-          {/* <StudentHome></StudentHome> */}
+{/* <StudentHome></StudentHome> */}
           {/* <StudentAnnouncement></StudentAnnouncement> */}
           {/* <StudentInternship></StudentInternship> */}
           {/* <StudentInterviews></StudentInterviews> */}
@@ -85,6 +86,9 @@ function App() {
           {/* <StaffMemberStudentSelections></StaffMemberStudentSelections>          */}
           {/* <SMCompanyVisit></SMCompanyVisit> */}
           {/* <StaffMemberHome></StaffMemberHome> */}
+          {/* <StaffMemberAdvertisements></StaffMemberAdvertisements> */}
+          {/* <SMNewOrganization></SMNewOrganization> */}
+          {/* <SMRegisteredOrganization></SMRegisteredOrganization> */}
 
 
           {/* <SupervisorHome></SupervisorHome> */}
