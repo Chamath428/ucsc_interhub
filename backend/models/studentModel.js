@@ -1,4 +1,3 @@
-import express from 'express';
 import joi from 'joi';
 
 export const studentSchema = joi.object({
