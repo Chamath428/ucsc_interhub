@@ -72,7 +72,7 @@ return (
       <div className="table-wrapper-scroll-y my-custom-scrollbar-visit ">
           <TableView                            
           headers = {['Company']}
-          list={[['99X'],['Dialog-Axiata'],['Cisco-Labs'],['Virtusa'],['IFS'],['The AI Team'],['Enactor'],['CodeGEn']]}>
+          list={[['99X'],['Dialog-Axiata'],['Cisco-Labs'],['Virtusa'],['IFS'],['The AI Team'],['Enactor'],['CodeGen']]}>
               
           </TableView>
       </div>                    
