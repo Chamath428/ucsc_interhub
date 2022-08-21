@@ -12,13 +12,10 @@ class InfoCard extends Component {
         const count=this.props.count;
         const icon = this.props.icon;
         const cardWidth = this.props.cardWidth;
-
+        
         return (
 
-            // <div className="col-xl-3 col-lg-4 col-sm-6">
-
              <div className={"col-xl-"+this.props.cardWidth+" col-lg-"+this.props.cardWidth+" col-sm-6 "}>
-
               <div className="icon-card mb-30">
                 <div className="icon purple">
                   <i className={"bi bi-"+this.props.icon}></i>

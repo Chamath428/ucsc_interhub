@@ -25,7 +25,9 @@ class SMNewOrganization extends Component {
                 
 
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                            <TableView>
+                           <TableView headers = {['Company','Contact No','Represen']}
+                            list={[['Ntrylab','0114-560642','Tharuka Munasinghe'],['Xempler','0112-234322','Suminda Athukorala'],['JavaLab','0113-234321','Kavishka Hewage'],['KriatWeb','0112-123987','Deshan Gunawardhana']]}>
+                              
                                 
                             </TableView>
                    

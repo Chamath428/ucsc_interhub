@@ -25,9 +25,11 @@ class SMRegisteredOrganization extends Component {
                 
 
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                            <TableView>
+                    <TableView headers = {['Company','Contact No','Represen']}
+                            list={[['WSO2','0114-222642','Suminda Jayakodhi'],['99x','0114-432345','shawn dawood'],['LSEG','0112-212321','Maduka Bodhinayaka'],['Avonet-Technologies','0112-123987','Sanira Ranaweera']]}>
+                              
                                 
-                            </TableView>
+                    </TableView>
                    
                 </div>
 

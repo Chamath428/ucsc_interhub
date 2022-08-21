@@ -1,4 +1,6 @@
-
+table{
+  text-align: center;
+}
 .tbody {
     overflow-y: scroll;
     
@@ -8,6 +10,9 @@
   position: sticky;
 }
 
-
+th{
+  position: sticky;
+  top: 0;
+}
 
 
