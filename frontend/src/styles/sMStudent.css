@@ -26,7 +26,7 @@
 }
 
 .contain {
-    margin-top: 5%;
+    margin-top: 3%;
     margin-left: 5%;
     margin-right: 5%;
     display: flex;
@@ -36,7 +36,7 @@
 }
 
 .contain h3 {
-    margin-bottom: 5vh;
+    margin-bottom: 0%;
     font-family: 'Raleway', sans-serif;
 
 }
@@ -73,7 +73,15 @@
     margin-top: 3%;
     width: 100%;
     position: relative;
-    height: 60vh;
+    height: 40vh;
     overflow: auto;
 }
 
+.ManageStudentTab{
+    font-weight: bold ;
+    /* background-color:darkgrey; */
+}
+
+.StudentTab{
+    
+}

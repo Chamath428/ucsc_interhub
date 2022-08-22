@@ -1,5 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container ,Card, Row,Col, Button} from 'react-bootstrap';
+import PrimaryBtn from '../../Buttons/primaryBtn';
+import InfoBtn from '../../Buttons/outlineBtn';
+import DashboardButton from '../../Dashboard/DashboardButton/dashboardButton';
 
 import './advertisementCard.css';
 
@@ -19,8 +22,10 @@ function AdvertisementCard(props) {
               Company Name : {props.company}
               </Card.Text>
               <div className="ButtonSet">
-                  <Button className="button1 me-3" variant='outline-primary'>Bookmark</Button>
-                  <Button className="button1" variant="primary">View more</Button>
+                 {/* <Button className="button1 me-3" variant='outline-primary'>Bookmark</Button> */}
+                  <DashboardButton inside={'View more'}></DashboardButton>
+                 
+                  { /*<Button className="button1" variant="primary">View more</Button> */}
               </div>
               </Card.Body> 
             </Col>
