@@ -13,13 +13,13 @@ class CompanyManageSupervisors extends Component {
 
     render() {
         return (
-            <div className='containsupervisor mt-5 ms-5'style={{width:'90%'}}>
+            <div className='containsupervisor mt-5 ms-5' style={{width:'90%'}}>
             <Tabs 
                 defaultActiveKey="CreateSupervsor"
                 className="ManageSupervisorTab"
                 fill
             >
-                <Tab className="SupervisorTab" eventKey="CreateSupervsor" title="Create a new supervisor account">
+                <Tab className="SupervisorTab mt-5" eventKey="CreateSupervsor" title="Create a new supervisor account">
                 <div className='contain'>
                         <div className='d-flex flex-row justify-content-sm-between '>
 
@@ -52,7 +52,7 @@ class CompanyManageSupervisors extends Component {
                     </div>
 
                 </Tab>
-                <Tab className="SupervisorTab" eventKey="ManageSupervisors" title="Manage Supervisors">
+                <Tab className="SupervisorTab mt-5" eventKey="ManageSupervisors" title="Manage Supervisors">
             
                     <div className='contain'>
                         <div className='d-flex flex-row mb-4'>

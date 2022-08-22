@@ -94,7 +94,7 @@ function App() {
           {/* <StaffMemberHome></StaffMemberHome> */}
           {/* <StaffMemberManageStudents></StaffMemberManageStudents> */}
 
-          <CompanyManageSupervisors></CompanyManageSupervisors>
+          {/* <CompanyManageSupervisors></CompanyManageSupervisors> */}
 
           {/* <SupervisorHome></SupervisorHome> */}
          

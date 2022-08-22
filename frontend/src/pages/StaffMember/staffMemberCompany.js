@@ -19,7 +19,7 @@ class StaffMemberManageCompany extends Component {
                 className="ManageCompanyTab"
                 fill
             >
-                <Tab className="CompanyTab" eventKey="RegisteredCompany" title="Registered Comapanies">
+                <Tab className="CompanyTab mt-5" eventKey="RegisteredCompany" title="Registered Comapanies">
                 <div className='contain'>
                 <div className='d-flex flex-row justify-content-sm-between'>
 
@@ -44,7 +44,7 @@ class StaffMemberManageCompany extends Component {
                 </div>
 
             </Tab>
-            <Tab className="CompanyTab" eventKey="Pending Companies" title="Pending Companies">
+            <Tab className="CompanyTab mt-5" eventKey="Pending Companies" title="Pending Companies">
             
             <div className='contain'>
                 <div className='d-flex flex-row justify-content-sm-between'>
@@ -69,7 +69,7 @@ class StaffMemberManageCompany extends Component {
                 </div>
             </div>
             </Tab>
-            <Tab className="CompanyTab" eventKey="CompanyVisit" title="Company Visit">
+            <Tab className="CompanyTab mt-5" eventKey="CompanyVisit" title="Company Visit">
             
             <div className='contain'>
                         {/* <div className='d-flex flex-row justify-content-sm-between '> */}

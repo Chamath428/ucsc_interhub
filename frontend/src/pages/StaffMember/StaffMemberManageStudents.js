@@ -19,7 +19,7 @@ class StaffMemberManageStudents extends Component {
                 className="ManageStudentTab"
                 fill
             >
-                <Tab className="StudentTab" eventKey="StudentList" title="Student List">
+                <Tab className="StudentTab mt-5" eventKey="StudentList" title="Student List">
                 <div className='contain'>
                         <div className='d-flex flex-row justify-content-sm-between '>
 
@@ -75,7 +75,7 @@ class StaffMemberManageStudents extends Component {
                     </div>
 
                 </Tab>
-                <Tab className="StudentTab" eventKey="Selected" title="Selected Students">
+                <Tab className="StudentTab mt-5" eventKey="Selected" title="Selected Students">
             
                     <div className='contain'>
                         <div className='d-flex flex-row justify-content-sm-between'>
