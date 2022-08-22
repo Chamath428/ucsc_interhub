@@ -239,7 +239,6 @@ class CoordinatorCompanyPending extends Component {
 
 
             <div className='contain'>
-                <h3>Manage Companies</h3>
 
                 <div className='d-flex flex-row justify-content-sm-between'>
 
@@ -255,6 +254,8 @@ class CoordinatorCompanyPending extends Component {
                             <Form.Control type="searchbox text" placeholder="Search organization" /></div>
                     </Form.Group>
                 </div>
+                <h3>Manage Companies</h3>
+
 
                 <div class="table-wrapper-scroll-y table-scrollba ">
                     <TableView headers={['Company Name', 'Contact', 'Company Registration Number']}

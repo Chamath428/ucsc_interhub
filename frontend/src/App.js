@@ -78,7 +78,7 @@ function App() {
 
           {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>  */}
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
-          {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
+          <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile>
 
  
           {/* <StaffMemberStudents></StaffMemberStudents> */}

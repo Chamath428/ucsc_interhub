@@ -19,9 +19,8 @@ class CoordinatorCompany extends Component {
         const barStatus = 60;
         return (
             <div className='contain'>
-                <h3>Manage Companies</h3>
 
-                <div className='d-flex flex-row justify-content-sm-between'>
+                <div className='d-flex flex-row justify-content-sm-between mb-3'>
 
                     <div className='btn-container'>
                         <Button  > Registered </Button>
@@ -37,7 +36,7 @@ class CoordinatorCompany extends Component {
                         </div>
                     </Form.Group>
                 </div>
-                
+                <h3 >Manage Companies</h3>
 
                 <div class="table-wrapper-scroll-y table-scrollba ">
                     {/* <TableView>

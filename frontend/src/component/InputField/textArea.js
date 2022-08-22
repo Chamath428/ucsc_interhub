@@ -4,7 +4,7 @@ import "./inputField.css";
 
 
 
-class InputField extends Component {
+class TextArea extends Component {
     render() {
 
         const label = this.props.label;
@@ -14,12 +14,15 @@ class InputField extends Component {
             //     <label className='label-field'>Course</label>
             //     <input className="input-field" type="text" value="initial value" />
             // </div>
-            <Form.Group className="input-field-main" controlId="formBasicIndexNumber">
+            <Form.Group className="text-area-main" controlId="formBasicIndexNumber">
                 <Form.Label>{label}</Form.Label>
-                <Form.Control type="text" disabled value={value} />
+
+                <Form.Control as="textarea"  disabled value={value} rows={5} className="text-area-body" />
             </Form.Group>
         );
     }
 }
 
-export default InputField;
+export default TextArea;
+
+
