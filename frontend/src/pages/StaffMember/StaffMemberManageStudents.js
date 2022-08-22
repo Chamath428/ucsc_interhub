@@ -13,9 +13,10 @@ class StaffMemberManageStudents extends Component {
 
     render() {
         return (
+            <div className='containstudent mt-5 ms-5'style={{width:'90%'}}>
             <Tabs 
                 defaultActiveKey="StudentList"
-                className="ManageStudentTab ms-5 mt-5"
+                className="ManageStudentTab"
                 fill
             >
                 <Tab className="StudentTab" eventKey="StudentList" title="Student List">
@@ -135,7 +136,8 @@ class StaffMemberManageStudents extends Component {
 
                     </div>
                 </Tab>
-            </Tabs>   
+            </Tabs>
+            </div>   
         );
     }
 // 

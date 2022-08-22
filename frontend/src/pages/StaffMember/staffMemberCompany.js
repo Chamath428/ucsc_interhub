@@ -13,9 +13,10 @@ class StaffMemberManageCompany extends Component {
 
     render() {
         return (
+            <div className='containcompany mt-5 ms-5'style={{width:'90%'}}>
             <Tabs 
                 defaultActiveKey="RegisteredCompany"
-                className="ManageCompanyTab ms-5 mt-5"
+                className="ManageCompanyTab"
                 fill
             >
                 <Tab className="CompanyTab" eventKey="RegisteredCompany" title="Registered Comapanies">
@@ -125,7 +126,8 @@ class StaffMemberManageCompany extends Component {
 
             
             </Tab>
-            </Tabs>   
+            </Tabs> 
+            </div>  
         );
     }
 // 
