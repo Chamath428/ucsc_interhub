@@ -93,14 +93,14 @@ function App() {
           {/* <SMNewOrganization></SMNewOrganization> */}
           {/* <SMRegisteredOrganization></SMRegisteredOrganization> */}
           {/* <StaffMemberManageStudents></StaffMemberManageStudents> */}
-          <StaffMemberManageCompany></StaffMemberManageCompany>
+          {/* <StaffMemberManageCompany></StaffMemberManageCompany> */}
           
 
 
           {/* <SupervisorHome></SupervisorHome> */}
 
           {/* <CompanyAdvertisements></CompanyAdvertisements> */}
-          {/* <CompanyApplicants></CompanyApplicants> */}
+          <CompanyApplicants></CompanyApplicants>
 
 
 
