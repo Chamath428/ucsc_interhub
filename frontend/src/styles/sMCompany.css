@@ -11,11 +11,11 @@
         /* margin-left: 40%; */
     }
   }
-
+/* 
 .addstudent{
     margin-left:70%;
     height: fit-content;
-}
+} */
 .searchicon{
     color:white;
     background-color: #0d6efd;
@@ -73,7 +73,7 @@
     margin-top: 3%;
     width: 100%;
     position: relative;
-    height: 40vh;
+    height: 50vh;
     overflow: auto;
 }
 
@@ -82,6 +82,10 @@
     /* background-color:darkgrey; */
 }
 
-.StudentTab{
+
+@media screen and (max-width:768px) {
+    .addcompanyvisit{
+        margin-top: 3%;
+    }
     
 }
