@@ -47,6 +47,7 @@ import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
 import StaffMembertHome from './pages/StaffMember/sMAddStudents';
 import StaffMemberAdvertisements from './pages/StaffMember/sMAdvertisments';
 import StaffMemberManageStudents from './pages/StaffMember/StaffMemberManageStudents';
+import StaffMemberManageCompany from './pages/StaffMember/staffMemberCompany';
 
 import CompanyAdvertisements from './pages/Company/companyAdvertisement';
 import CompanyApplicants from './pages/Company/companyApplicants';
@@ -63,7 +64,7 @@ function App() {
       <main>
         <div className='container pt-5'>
 
-{/* <StudentHome></StudentHome> */}
+          {/* <StudentHome></StudentHome> */}
           {/* <StudentAnnouncement></StudentAnnouncement> */}
           {/* <StudentInternship></StudentInternship> */}
           {/* <StudentInterviews></StudentInterviews> */}
@@ -73,7 +74,7 @@ function App() {
           {/* <CoordinatorCompanyProfileDetails></CoordinatorCompanyProfileDetails> */}
           {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
 
-          {/* <StudentProfile></StudentProfile> */}
+          <StudentProfile></StudentProfile>
 
           {/* <CoordinatorStudent></CoordinatorStudent> */}
           {/* <CoordinatorAddStudent></CoordinatorAddStudent> */}
@@ -84,23 +85,8 @@ function App() {
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
           {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
 
- 
           <SMAddStudents></SMAddStudents>
-          {/* <SMCompanyVisit></SMCompanyVisit> */}
-          {/* <StaffMemberHome></StaffMemberHome> */}
-          {/* <StaffMemberAdvertisements></StaffMemberAdvertisements> */}
-          {/* <SMNewOrganization></SMNewOrganization>
-          <SMRegisteredOrganization></SMRegisteredOrganization>
-          <StaffMemberManageStudents></StaffMemberManageStudents> */}
-
-
           {/* <SupervisorHome></SupervisorHome> */}
-
-          {/* <CompanyAdvertisements></CompanyAdvertisements>
-          <CompanyApplicants></CompanyApplicants> */}
-
-
-
 
 
         </div>

@@ -30,8 +30,8 @@ class CoordinatorHome extends Component {
 
                 <Row className="chart-contain" >
 
-                    <Col> <PieChart header={"Selected Students"} valRegistered={165} valNotRegistered={110} /></Col>
-                    <Col>  <ApexCharts header={"View No of student Companywise"} /></Col>
+                    <Col> <PieChart header={"Selected Students"} valRegistered={100} valNotRegistered={90} /></Col>
+                    <Col>  <ApexCharts header={"View No of student Companywise"} Numbers={[30,12,10]} companyName={['IFS','Cisco Labs','LSEG']}/></Col>
                     <Col> <PieChart header={"Registered Company"} valRegistered={40} valNotRegistered={12} /></Col>
 
                 </Row>

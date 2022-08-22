@@ -15,7 +15,7 @@ class CompanyApplicants extends Component {
         return (
             <Tabs 
                 defaultActiveKey="AllApplicants"
-                className="ApplicantTab ms-5 mt-5"
+                className="ManageApplicantTab ms-5 mt-5"
                 fill
             >
                 <Tab className="ApplicantTab" eventKey="AllApplicants" title="All Applicants">
@@ -42,25 +42,23 @@ class CompanyApplicants extends Component {
                                                     <option>All</option>
                                                     <option>...</option>
                                                 </Form.Select>
-                                            </Form.Group> 
-
-                                            <Form.Group as={Col} sm controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Sort By</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose...">
-                                                <option value="1">GPA</option>
-                                                <option value="2">Name</option>
-                                                
-                                                
-                                                </Form.Select>
                                             </Form.Group>
+                                            <Form.Group as={Col} md controlId="formGridState">
+                                                <Form.Label className="fw-bold" column sm={5}>Interview Called</Form.Label>
+                                                <Form.Select sm={10} defaultValue="Choose...">
+                                                    <option>All</option>
+                                                    <option>Called</option>
+                                                    <option>Not Called</option>
+                                                </Form.Select>
+                                            </Form.Group>  
                                         </Row>   
                                     </Form>    
                     
                         </Container>
 
                         <div className="table-wrapper-scroll-y my-custom-scrollbar">
-                                    <TableView headers = {['Name','Respond','Message', 'Wishlist']}
-                                    list={[['Shanika Jayathunga','Accepted','Called'],['Jayani Kulasekara','Rejected','called'],['Prathiksha Jayakodi','False','None'],['Sameera Kumara','True','None'],['Ayodya Ranasinghe','True','None'],['Binura Jathilake','True','called']]}>
+                                    <TableView headers = {['Name','Job Role','Respond','Interviews', 'Wishlist']}
+                                    list={[['Shanika Jayathunga','Software Engineering','Accepted','Called',<i class="bi bi-bookmark-fill"></i>],['Jayani Kulasekara','UI/UX Designer','Rejected','Called',<i class="bi bi-bookmark-fill"></i>],['Prathiksha Jayakodi','Network Engineer','False','None',<i class="bi bi-bookmark"></i>],['Sameera Kumara','Project Manager','True','None',<i class="bi bi-bookmark-fill"></i>],['Ayodya Ranasinghe','Software Engineering','True','None',<i class="bi bi-bookmark"></i>],['Binura Jathilake','Business Analyst','True','Called',<i class="bi bi-bookmark-fill"></i>]]}>
                                         
                                     </TableView>                       
                         </div>
@@ -92,27 +90,25 @@ class CompanyApplicants extends Component {
                                                     <option>...</option>
                                                 </Form.Select>
                                             </Form.Group> 
-
-                                            <Form.Group as={Col} sm controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Sort By</Form.Label>
+                                            <Form.Group as={Col} md controlId="formGridState">
+                                                <Form.Label className="fw-bold" column sm={5}>Interview Called</Form.Label>
                                                 <Form.Select sm={10} defaultValue="Choose...">
-                                                <option value="1">GPA</option>
-                                                <option value="2">Name</option>
-                                                
-                                                
+                                                    <option>All</option>
+                                                    <option>Called</option>
+                                                    <option>Not Called</option>
                                                 </Form.Select>
-                                            </Form.Group>
-                                            
+                                            </Form.Group> 
+
                                         </Row>   
                                     </Form>    
                     
                         </Container>
 
                         <div className="table-wrapper-scroll-y my-custom-scrollbar">
-                                    <TableView headers = {['Name','Respond','Message']}
-                                    list={[['Shanika Jayathunga','Accepted','Called'],['Jayani Kulasekara','Rejected','called'],['Prathiksha Jayakodi','False','None'],['Sameera Kumara','True','None'],['Ayodya Ranasinghe','True','None'],['Binura Jathilake','True','called']]}>
+                            <TableView headers = {['Name','Job Role','Respond','Interviews']}
+                                    list={[['Shanika Jayathunga','Software Engineering','Accepted','Called'],['Jayani Kulasekara','UI/UX Designer','Rejected','Called'],['Sameera Kumara','Project Manager','True','None'],['Binura Jathilake','Business Analyst','True','Called']]}>
                                         
-                                    </TableView>
+                            </TableView>  
                         
                         </div>
 
@@ -125,7 +121,7 @@ class CompanyApplicants extends Component {
                     <div className='contain'>
                         <div className='d-flex flex-row justify-content-sm-between'>
 
-                        <h3>Students Selections</h3>
+                        <h3>Selected Students</h3>
                         </div> 
                         <div className='d-flex flex-row-reverse mb-1'>
                         <Form.Group className="mb-1" controlId="formBasicSearchOrganization">
@@ -136,7 +132,7 @@ class CompanyApplicants extends Component {
                         </div>
                         <Container className="mt-2">
                         <Form className='container'>
-                                        <Row className="mb-1">
+                        <Row className="mb-1">
                                             <Form.Group as={Col} md controlId="formGridState">
                                                 <Form.Label className="fw-bold" column sm={5}>Course</Form.Label>
                                                 <Form.Select sm={10} defaultValue="Choose...">
@@ -146,36 +142,25 @@ class CompanyApplicants extends Component {
                                                 </Form.Select>
                                             </Form.Group>
                                             
-                                            <Form.Group as={Col} sm controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Company</Form.Label>
+                                            <Form.Group as={Col} md controlId="formGridState">
+                                                <Form.Label className="fw-bold" column sm={5}>Job Role</Form.Label>
                                                 <Form.Select sm={10} defaultValue="Choose...">
                                                     <option>All</option>
                                                     <option>...</option>
                                                 </Form.Select>
-                                            </Form.Group>   
+                                            </Form.Group> 
 
-                                            <Form.Group as={Col} sm controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Sort By</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose...">
-                                                <option value="1">Index Number</option>
-                                                <option value="2">Name</option>
-                                                <option value="3">Company</option>
-                                                <option value="4">GPA</option>
-                                                
-                                                </Form.Select>
-                                            </Form.Group>
                                         </Row>   
                                     </Form>    
                     
                         </Container>
 
-                        <div className="table-wrapper-scroll-y my-custom-scrollbar ">
-                                    <TableView                            
-                                    headers = {['Index No','Name','Compnay Selected For','GPA']}
-                                    list={[['190020432','Shanika Jayathunga','LSEG','3.3232'],['190020532','Jayani Kulasekara','Avonet Technologies','3.0231'],['190030423','Prathiksha Jayakodi','WSO2','3.8503'],['190020455','Sameera Kumara','Dialog Axiata','2.3456'],['190027632','Ayodya Ranasinghe','99X','2.9998'],['190020444','Binura Jathilake','LSEG','3.5674']]}>
+                        <div className="table-wrapper-scroll-y my-custom-scrollbar">
+                            <TableView headers = {['Name','Job Role','Supervisor']}
+                                    list={[['Shanika Jayathunga','Software Engineering','W.D.Warnaweera'],['Jayani Kulasekara','UI/UX Designer','S.E.Nissanka'],['Sameera Kumara','Project Manager','A.Abeweera'],['Binura Jathilake','Business Analyst','W.D.Warnaweera']]}>
                                         
-                                    </TableView>
-   
+                            </TableView>  
+                        
                         </div>
 
 

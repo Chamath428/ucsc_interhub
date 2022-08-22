@@ -12,16 +12,15 @@ import Placeholder from 'react-bootstrap/Placeholder';
 import Card from 'react-bootstrap/Card';
 import AnnouncementCard from '../../component/Cards/announcementCard';
 
-const StudentHome = () => {
-  return (
+const StudentHome = () => {  
+return (
 
-    <>
-      <div className='container pt-5'>
+        <>
+        <div className='container pt-5'>
 
-        <h3>Student Home</h3>
+    <h3>Student Home</h3>
 
-        <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
-
+    <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
 
       <InfoCard count='1/3' title='Pitching Stage' cardWidth='4' icon='pie-chart-fill'/>
       <InfoCard count='20' title='Vacancies' cardWidth='4' icon='person-plus-fill'/>
@@ -29,22 +28,18 @@ const StudentHome = () => {
     
     </Stack>
 
-      </div><Container className='mt-5'>
+  </div><Container className='mt-5'>
 
-        <h3>Applied Vacancies</h3>
+      <h3>Applied Vacancies</h3>
 
-        <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
+      <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
 
-          <LinkCard Title='Synopsys' subTitle='Software Engineer' Link='Visit Page' />
-          <LinkCard Title='Enactor' subTitle='Software Engineer' Link='Visit Page' />
-          <LinkCard Title='99x' subTitle='Software Engineer' Link='Visit Page' />
-          <LinkCard Title='LSEG' subTitle='Software Engineer' Link='Visit Page' />
+        <LinkCard Title='Synopsys' subTitle='Software Engineer' Link='Visit Page' />
+        <LinkCard Title='Enactor' subTitle='Software Engineer' Link='Visit Page' />
+        <LinkCard Title='99x' subTitle='Software Engineer' Link='Visit Page' />
+        <LinkCard Title='LSEG' subTitle='Software Engineer' Link='Visit Page' />
 
-        </Stack>
-
-      </Container></>
-
-
+      </Stack>
 
       <div className='mt-5'>
       <h3>Announcements</h3>
@@ -59,7 +54,6 @@ const StudentHome = () => {
     </Container></>
     
         
-
   );
 }
 

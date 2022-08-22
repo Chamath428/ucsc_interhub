@@ -14,8 +14,8 @@ export default class App extends React.Component {
 
 
     let data = [
-      { title: "Registered 100", value: valRegistered, color: "#4a6cf7" },
-      { title: "Not Registered 90", value: valNotRegistered, color: "#c2e8ff" },
+      { title: "Registered\n"+valRegistered, value: valRegistered, color: "#4a6cf7" },
+      { title: "Not Registered\n"+valNotRegistered, value: valNotRegistered, color: "#c2e8ff" },
 
     ];
 
@@ -46,12 +46,12 @@ export default class App extends React.Component {
           // labelPosition={0}
 
 
-        // label={({ dataEntry }) => {
-        //   if (dataEntry.title === "One") {
-        //     return "rate\n" + Math.round(dataEntry.value) + "% ";
-        //   }
-        // }}
-        // labelPosition={0}
+        label={({ dataEntry }) => {
+          if (dataEntry.title === "Registered\n"+valRegistered) {
+            return "Registered\n" + dataEntry.value;
+          }
+        }}
+        labelPosition={0}
 
         />
 
