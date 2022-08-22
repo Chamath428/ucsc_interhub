@@ -18,7 +18,6 @@ class CoordinatorStudent extends Component {
 
 
             <div className='contain'>
-                <h3>Manage Students</h3>
 
                 <div className='d-flex flex-row justify-content-sm-between'>
 
@@ -35,8 +34,8 @@ class CoordinatorStudent extends Component {
                     </Form.Group>
                 </div>
                 <Container className="mt-2">
-                    <Form className='container'>
-                        <Row className="mb-3">
+                    <Form  className='container'>
+                        <Row className="mb-4">
                             <Form.Group as={Col} md controlId="formGridState">
                                 <Form.Label className="fw-bold" column sm={2}>Course</Form.Label>
                                 <Form.Select sm={10} defaultValue="Choose...">
@@ -68,10 +67,12 @@ class CoordinatorStudent extends Component {
                     </Form>
 
                 </Container>
+                <h3>Manage Students</h3>
+
 
                 <div class="table-wrapper-scroll-y table-scrollba ">
                     <TableView headers={['Index No', 'Name', 'CV', 'Interviews', 'Company']}
-                        list={[['190020432', 'Shanika Jayathunga', 'True', 'None', 'LSEG'], ['190020532', 'Jayani Kulasekara', 'True', 'called', 'Avonet Technologies'], ['190030423', 'Prathiksha Jayakodi', 'False', 'None', 'WSO2'], ['190020455', 'Sameera Kumara', 'True', 'None', 'Dialog Axiata'], ['190027632', 'Ayodya Ranasinghe', 'True', 'None', '99X'], ['190020444', 'Binura Jathilake', 'True', 'called', 'LSEG']]}>
+                        list={[['190020432', 'Shanika Jayathunga', 'True', 'Called', 'LSEG'], ['190020532', 'Jayani Kulasekara', 'True', 'Called', 'Avonet Technologies'], ['190030423', 'Prathiksha Jayakodi', 'False', 'Called', 'WSO2'], ['190020455', 'Sameera Kumara', 'True', 'Called', 'Dialog Axiata'], ['190027632', 'Ayodya Ranasinghe', 'True', 'None', 'None'], ['190020444', 'Binura Jathilake', 'True', 'Called', 'LSEG']]}>
 
                     </TableView>
 

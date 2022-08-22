@@ -7,8 +7,9 @@ import Nav from 'react-bootstrap/Nav';
 import { Chart } from 'react-charts'
 import Logo from '../../component/CompanyLOgo/companyLogo';
 import InputField from '../../component/InputField/inputField';
+import TextArea from '../../component/InputField/textArea';
 import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
-import '../../styles/CoordinatorRegisteredCompanyProfile.css'
+
 
 
 class CoordinatorCompanyProfileDetails extends Component {
@@ -58,7 +59,8 @@ class CoordinatorCompanyProfileDetails extends Component {
 
                     </Row>
                     <Row>
-                        <InputField label="sample denata" value="https://99x.io/" />
+                       
+                        <TextArea  label="Company Description" value="Sysco LABS is the innovation arm of Sysco Corporation (NYSE:SYY), the world's largest foodservice company. Sysco is the global leader in marketing, selling and distributing food products as well as equipment and supplies to the hospitality industry." />
                     </Row>
 
                 </Row>
@@ -107,6 +109,7 @@ class CoordinatorCompanyProfileDetails extends Component {
                         <label>
                             <input type="checkbox"
                                 checked="checked"
+                                
                             />
                             Yes
                         </label>

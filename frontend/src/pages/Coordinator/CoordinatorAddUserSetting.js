@@ -57,7 +57,7 @@ class CoordinatorAddUserSetting extends Component {
                         </Button> */}
 
                         <div>
-                            <DashboardButton inside={"Create account -->" } ></DashboardButton>
+                            <DashboardButton inside={"+ Create account" } ></DashboardButton>
                         </div>
                     </Form>
                 </div>
