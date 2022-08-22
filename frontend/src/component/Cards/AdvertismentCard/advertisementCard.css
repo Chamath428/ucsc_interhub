@@ -11,23 +11,19 @@
     float: right;
 }
 
-@media screen and (max-width:1356px) and (min-width:1209px) {
-    .button1{
-        font-size: 12px !important;
-    }
-}
+/* @media screen and (max-width:1356px) and (min-width:1209px) {
+    
+} */
 
 @media screen and (max-width:1209px) and (min-width:1160px) {
-    .button1{
-        font-size: 10px !important;
-    }
+    
     .cardImage{
-        height:125px;
-        width:125px;
+        height:140px;
+        width:140px;
     } 
     .ButtonSet{
         padding-bottom: 5%;
-        
+        float: right;
     }
 }
 
@@ -38,10 +34,10 @@
     
 }
 
-@media screen and (max-width:768px) and (min-width:561px) {
+/* @media screen and (max-width:768px) and (min-width:561px) {
     .cardImage{
         height:170px;
-        width:195px;
+        width:190px;
     }
     .button1{
         margin-right: 0% !important;
@@ -49,9 +45,9 @@
         float: right;
 
     }
-}
+} */
  
-@media screen and (max-width:561px){
+@media screen and (max-width:768px){
     .AdvertisementCard{
         width: 100%;
     }
@@ -59,7 +55,7 @@
         height:140px;
         width:150px;
     }
-    .button1{
+    .ButtonSet{
         margin-bottom: 5% !important;
     }
 }
