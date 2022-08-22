@@ -85,29 +85,10 @@ function App() {
           {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>  */}
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
           {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
- 
 
-          {/* <SMAddStudents></SMAddStudents> */}
-          {/* <SMCompanyVisit></SMCompanyVisit> */}
-          {/* <StaffMemberHome></StaffMemberHome> */}
-          {/* <StaffMemberAdvertisements></StaffMemberAdvertisements> */}
-          {/* <SMNewOrganization></SMNewOrganization> */}
-          {/* <SMRegisteredOrganization></SMRegisteredOrganization> */}
-          {/* <StaffMemberManageStudents></StaffMemberManageStudents> */}
-          {/* <StaffMemberManageCompany></StaffMemberManageCompany> */}
-          
-
-
+          <SMAddStudents></SMAddStudents>
           {/* <SupervisorHome></SupervisorHome> */}
           
-
-          {/* <CompanyAdvertisements></CompanyAdvertisements> */}
-          {/* <CompanyApplicants></CompanyApplicants> */}
-          <CompanyManageStudents></CompanyManageStudents>
-
-
-
-
 
         </div>
       </main>

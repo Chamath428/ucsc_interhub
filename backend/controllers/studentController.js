@@ -18,6 +18,7 @@ export const createStudent = async(req,res)=>{
                         program_id :1
                     }
                 })
+                const message = {"Message":"Student Created Successfull"}
                 res.status(200).send(student);
             }catch(error){
                 res.status(400).send(error);
@@ -25,7 +26,5 @@ export const createStudent = async(req,res)=>{
             
         }
             res.status(500).send(error);
-
-
     }
   

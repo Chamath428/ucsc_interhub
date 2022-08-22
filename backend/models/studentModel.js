@@ -7,5 +7,4 @@ export const studentSchema = joi.object({
     degree : joi.number().required(),
     gpa : joi.string().required(),
     program_id : joi.number().required(),
-    cv : joi.required()
 })
