@@ -17,11 +17,15 @@ class StudentProfile extends Component {
 
     render() {
         return(
-            <Container>
+            <div className='container pt-5'>
 
                 {/* <Stack direction="horizontal" gap={3} className="d-flex align-items-stretch"> */}
+
                     <Row>
-                        <Col sm={2} className="alignTop">
+
+                        {/* Left side - Profile Pciture and buttons */}
+
+                        <Col className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 alignTop">
 
                             <Card body>
                                 <ProfilePic/>
@@ -31,7 +35,7 @@ class StudentProfile extends Component {
                                 </div><br />
 
                                 <div className="d-grid gap-2">
-                                    <InfoBtn text='Send me an email'></InfoBtn>
+                                    <InfoBtn text='Add me to wishlist'></InfoBtn>
                                 </div>
                                 
                                 <div>
@@ -44,30 +48,36 @@ class StudentProfile extends Component {
                                     </div>
                                 </div>
 
-                                <br />
 
                             </Card>
 
                         </Col>
                             
 
-                        <Col sm={10} className="alignTop">
+                        <Col className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 alignTop">
                                 <Card body>
                                     <Row>
                                         <h1>Chamath Madushanka</h1>
                                         <h5>BSc. Computer Science</h5>
-                                        <hr />
                                     </Row>
-                                    <Row>
-                                        <BodyCard bodyText='description'></BodyCard>
+                                    <Row className='m-2'>
+                                        <BodyCard bodyText='A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now. When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary,'></BodyCard>
                                     </Row>
                                     
-                                    <Stack direction="horizontal" gap={3}>                        
-                                        <CardListItem header='Job Role Preferences' listItem1='Front End Developer' listItem2='Python Developer' listItem3='DevOps Engineer'></CardListItem>
+                                    <Row className='m-2'>
+                                        <Col className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 alignTop">
+                       
+                                            <CardListItem header='Job Role Preferences' listItem1='Front End Developer' listItem2='Python Developer' listItem3='DevOps Engineer' listItem4='Network Engineer' listItem5='UI UX Designer'></CardListItem>
+                                        </Col>
 
-                                        <CardListItem header='Academic' listItem1='Qualification 1' listItem2='Qualification 2' listItem3='Qualification 3'></CardListItem>
-                                    
-                                    </Stack>
+                                        <Col className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 alignTop">
+
+                                            <Card body className='flex'>
+                                                <YoutubeEmbed embedId="rokGy0huYEA" />
+                                            </Card>
+
+                                        </Col>                                        
+                                    </Row>
                                 </Card>
                                 
                         </Col>
@@ -77,9 +87,7 @@ class StudentProfile extends Component {
                         <Col><br />
                             {/* <Stack direction="horizontal" gap={3}> */}
 
-                                <Card body>
-                                    <YoutubeEmbed embedId="rokGy0huYEA" />
-                                </Card>
+                                
                         </Col>
                         
 
@@ -87,7 +95,7 @@ class StudentProfile extends Component {
 
                 
                 
-            </Container>
+            </div>
         );
     }
     }

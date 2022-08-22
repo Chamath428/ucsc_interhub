@@ -1,6 +1,10 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import userRouters from './routes/userRouters.js';
+import studentRouters from './routes/studentRouters.js';
+import staffMemberRouters from './routes/staffMemberRouters.js';
+import organizationRouters from './routes/organizationRouters.js';
+import supervisorRouters from './routes/supervisorRouters.js';
 import cors from 'cors';
 
 const app = express();
@@ -26,4 +30,9 @@ app.listen(PORT,console.log("Server is Running"));
 
 
 app.use('/users',userRouters);
+app.use('/student',studentRouters);
+app.use('/staffMember',staffMemberRouters);
+app.use('/organization',organizationRouters);
+app.use('/supervisor',supervisorRouters);
+
 
