@@ -8,6 +8,7 @@ class SupervisorHome extends Component {
 
     render() { 
         return (
+            <div className='container mt-5 ms-5' style={{width:'90%'}} >
             <Stack gap={5}>
                 <Row>
                 <Row><h1>Dashboard</h1></Row>
@@ -25,6 +26,7 @@ class SupervisorHome extends Component {
                     <Col lg='4'><HorizontalCard></HorizontalCard></Col>
                 </Row>
             </Stack>
+            </div>
         );
     }
 }

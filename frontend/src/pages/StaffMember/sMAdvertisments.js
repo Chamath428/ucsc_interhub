@@ -18,7 +18,7 @@ class StaffMemberAdvertisements extends Component {
     render() {
         return (
            
-            <div className='contain'>
+            <div className='contain mt-5 ms-5'style={{width:'90%'}}>
                 <div className='d-flex flex-row justify-content-sm-between'>
 
                 <h3>Advertisements</h3>

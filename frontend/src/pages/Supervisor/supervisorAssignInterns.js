@@ -6,7 +6,7 @@ import TableView from '../../component/Dashboard/Table/tableView';
 
 import '../../styles/supervisorAssignInterns.css';
 
-class supervisorAssignInterns extends Component {
+class SupervisorAssignInterns extends Component {
     state = {  } 
     render() { 
         return (
@@ -15,7 +15,7 @@ class supervisorAssignInterns extends Component {
                         <Container className="mt-2">
 
                             <div className='d-flex flex-row justify-content-between top-area'>              
-                                <h3>Assigned Inters</h3>
+                                <h3>Assigned Interns</h3>
                                 <Form.Group className="mb-3 search-area" controlId="formBasicSearchOrganization">
                                     <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
                                     <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
@@ -70,4 +70,4 @@ class supervisorAssignInterns extends Component {
     }
 }
  
-export default supervisorAssignInterns;
+export default SupervisorAssignInterns;

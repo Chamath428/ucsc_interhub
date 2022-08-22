@@ -17,7 +17,7 @@ class StudentProfile extends Component {
 
     render() {
         return(
-            <div className='container pt-5'>
+            <div className='container mt-5 ms-5' style={{width:'90%'}} >
 
                 {/* <Stack direction="horizontal" gap={3} className="d-flex align-items-stretch"> */}
 
