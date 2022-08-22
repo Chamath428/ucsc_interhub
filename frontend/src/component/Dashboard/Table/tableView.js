@@ -8,7 +8,7 @@ class TableView extends Component{
         const headers = this.props.headers;
         
         return(
-        <Table style={{height:'60vh'}}>
+        <Table style={{maxHeight:'60vh'}}>
            <thead className="thead-light">
           
               <tr className="table-primary">
