@@ -6,12 +6,14 @@ class DashboardButton extends Component {
     
     render() { 
         const inside=this.props.inside;
+        const method= this.props.method;
         return (
             <>
                     <Button 
                     variant="primary" 
                     size="lg"
                     className='border border-2 border-primary rounded-2 btn-primary fw-bold'
+                    onClick={method}
                     >
                     {inside}
                     </Button>

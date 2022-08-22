@@ -82,22 +82,22 @@ function App() {
 
           {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>  */}
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
-          <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile>
+          {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
 
  
-          {/* <SMAddStudents></SMAddStudents> */}
+          <SMAddStudents></SMAddStudents>
           {/* <SMCompanyVisit></SMCompanyVisit> */}
           {/* <StaffMemberHome></StaffMemberHome> */}
           {/* <StaffMemberAdvertisements></StaffMemberAdvertisements> */}
-          <SMNewOrganization></SMNewOrganization>
+          {/* <SMNewOrganization></SMNewOrganization>
           <SMRegisteredOrganization></SMRegisteredOrganization>
-          <StaffMemberManageStudents></StaffMemberManageStudents>
+          <StaffMemberManageStudents></StaffMemberManageStudents> */}
 
 
           {/* <SupervisorHome></SupervisorHome> */}
 
-          <CompanyAdvertisements></CompanyAdvertisements>
-          <CompanyApplicants></CompanyApplicants>
+          {/* <CompanyAdvertisements></CompanyAdvertisements>
+          <CompanyApplicants></CompanyApplicants> */}
 
 
 
