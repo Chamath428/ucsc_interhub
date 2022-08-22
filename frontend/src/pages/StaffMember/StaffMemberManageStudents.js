@@ -24,7 +24,7 @@ class StaffMemberManageStudents extends Component {
 
                             <h3>Manage Students</h3> 
                         </div>
-                        <div className='d-flex flex-row-reverse mb-1'>
+                        <div className='addstudent d-flex flex-row-reverse mb-1'>
                             <DashboardButton inside={'+ Add Student'}></DashboardButton>
                         </div>
                         <Container className="mt-2">

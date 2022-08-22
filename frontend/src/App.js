@@ -47,6 +47,7 @@ import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
 import StaffMembertHome from './pages/StaffMember/sMAddStudents';
 import StaffMemberAdvertisements from './pages/StaffMember/sMAdvertisments';
 import StaffMemberManageStudents from './pages/StaffMember/StaffMemberManageStudents';
+import StaffMemberManageCompany from './pages/StaffMember/staffMemberCompany';
 
 import CompanyAdvertisements from './pages/Company/companyAdvertisement';
 import CompanyApplicants from './pages/Company/companyApplicants';
@@ -82,22 +83,24 @@ function App() {
 
           {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>  */}
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
-          <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile>
+          {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
 
  
           {/* <SMAddStudents></SMAddStudents> */}
           {/* <SMCompanyVisit></SMCompanyVisit> */}
           {/* <StaffMemberHome></StaffMemberHome> */}
           {/* <StaffMemberAdvertisements></StaffMemberAdvertisements> */}
-          <SMNewOrganization></SMNewOrganization>
-          <SMRegisteredOrganization></SMRegisteredOrganization>
-          <StaffMemberManageStudents></StaffMemberManageStudents>
+          {/* <SMNewOrganization></SMNewOrganization> */}
+          {/* <SMRegisteredOrganization></SMRegisteredOrganization> */}
+          {/* <StaffMemberManageStudents></StaffMemberManageStudents> */}
+          <StaffMemberManageCompany></StaffMemberManageCompany>
+          
 
 
           {/* <SupervisorHome></SupervisorHome> */}
 
-          <CompanyAdvertisements></CompanyAdvertisements>
-          <CompanyApplicants></CompanyApplicants>
+          {/* <CompanyAdvertisements></CompanyAdvertisements> */}
+          {/* <CompanyApplicants></CompanyApplicants> */}
 
 
 
