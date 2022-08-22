@@ -59,7 +59,7 @@ function App() {
       <main>
         <div className='container pt-5'>
 
-{/* <StudentHome></StudentHome> */}
+          {/* <StudentHome></StudentHome> */}
           {/* <StudentAnnouncement></StudentAnnouncement> */}
           {/* <StudentInternship></StudentInternship> */}
           {/* <StudentInterviews></StudentInterviews> */}
@@ -69,7 +69,7 @@ function App() {
           {/* <CoordinatorCompanyProfileDetails></CoordinatorCompanyProfileDetails> */}
           {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
 
-          {/* <StudentProfile></StudentProfile> */}
+          <StudentProfile></StudentProfile>
 
           {/* <CoordinatorStudent></CoordinatorStudent> */}
           {/* <CoordinatorAddStudent></CoordinatorAddStudent> */}
@@ -78,15 +78,15 @@ function App() {
 
           {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>  */}
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
-          <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile>
+          {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
 
- 
+
           {/* <StaffMemberStudents></StaffMemberStudents> */}
           {/* <SMAddStudents></SMAddStudents> */}
           {/* <StaffMemberStudentSelections></StaffMemberStudentSelections>          */}
           {/* <SMCompanyVisit></SMCompanyVisit> */}
           {/* <StaffMemberHome></StaffMemberHome> */}
-          <StaffMemberAdvertisements></StaffMemberAdvertisements>
+          {/* <StaffMemberAdvertisements></StaffMemberAdvertisements> */}
           {/* <SMNewOrganization></SMNewOrganization> */}
           {/* <SMRegisteredOrganization></SMRegisteredOrganization> */}
 

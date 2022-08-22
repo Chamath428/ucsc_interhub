@@ -17,7 +17,7 @@ class CoordinatorRegisteredCompanyProfile extends Component {
     render() {
         return (
 
-            <Container className='contain' style={{ width: '90%' }}>
+            <Container className='contain' style={{ width: '95%' }}>
                 <Row >
                     <Col md="auto">
                         <Logo></Logo>

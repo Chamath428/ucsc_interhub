@@ -29,5 +29,16 @@
 }
 
 
+@media screen and (max-width: 1080px){
+  .chart-contain{
+    flex-direction: column;
+    margin-bottom: 10px;
+    
+
+  }
+  
+}
+
+
 
 

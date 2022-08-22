@@ -7,11 +7,14 @@ export default class App extends React.Component {
 
     render() {
         const header = this.props.header;
+        const numbers = this.props.Numbers;
+        const companyName = this.props.companyName;
+
 
         const myData = [
-            { title: "99X", value: 100, color: "#4a6cf7" },
-            { title: "Cisco Labs", value: 50, color: "#0871b1" },
-            { title: "LSEG", value: 15, color: "#c2e8ff" },
+            { title: companyName[0], value: numbers[0], color: "#4a6cf7" },
+            { title: companyName[1], value: numbers[1], color: "#0871b1" },
+            { title: companyName[2], value: numbers[2], color: "#c2e8ff" },
         ];
         
         return (
@@ -29,6 +32,7 @@ export default class App extends React.Component {
                         fontColor: "FFFFFA",
                         fontWeight: "500",
                         fontFamily: "monospace"
+                        
                     }}
                    
                     // label={(data) => data.dataEntry.title}
