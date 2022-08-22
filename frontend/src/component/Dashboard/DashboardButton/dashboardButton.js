@@ -12,8 +12,8 @@ class DashboardButton extends Component {
                     <Button 
                     variant="primary" 
                     size="lg"
+                    type="submit"
                     className='border border-2 border-primary rounded-2 btn-primary fw-bold'
-                    onClick={method}
                     >
                     {inside}
                     </Button>

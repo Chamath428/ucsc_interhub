@@ -1,5 +1,4 @@
 import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Row,Col } from 'react-bootstrap';
 import Container from 'react-bootstrap/esm/Container';
@@ -23,7 +22,8 @@ const SMAddStudents = () => {
   const [alertPara,setAlertPara] = useState("Student Added Successfully!");
   const [variant,setVariant] = useState("success");
 
-  const createStudent = () =>{
+  const createStudent = (event) =>{
+    event.preventDefault();
     axios.post(`${URL}/student/create`,{
       index_number:parseInt(indexNumber),
       registration_number:registerationNumber,
@@ -60,7 +60,7 @@ return (
         <Alert.Heading>{alertPara}</Alert.Heading>
       </Alert>
 
-      <Form>  
+      <Form onSubmit = {createStudent}>  
         <Row className='align-item-center mb-3 g-5'> 
           <Form.Group as={Col} md="6" controlId="formBasicIndexNumber">
             <Form.Label>Index Number</Form.Label>
@@ -95,7 +95,7 @@ return (
         </Form.Group>
         </Row>
         <div className='d-flex flex-row-reverse mb-3'>
-            <DashboardButton inside={'+ Create Student'} method={createStudent}></DashboardButton>
+            <DashboardButton inside={'+ Create Student'}></DashboardButton>
         </div>
 
 
