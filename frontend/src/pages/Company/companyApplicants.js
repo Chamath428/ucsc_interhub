@@ -24,7 +24,7 @@ class CompanyApplicants extends Component {
 
                             <h3>Applicants</h3> 
                         </div>
-                        <Container className="mt-2">
+                        <Container className="mt-3">
                         <Form className='container'>
                                         <Row className="mb-1">
                                             <Form.Group as={Col} md controlId="formGridState">
@@ -71,7 +71,7 @@ class CompanyApplicants extends Component {
 
                             <h3>Applicants</h3> 
                         </div>
-                        <Container className="mt-2">
+                        <Container className="mt-3">
                         <Form className='container'>
                                         <Row className="mb-1">
                                             <Form.Group as={Col} md controlId="formGridState">
@@ -116,18 +116,18 @@ class CompanyApplicants extends Component {
                     </div>
 
                 </Tab>
-                <Tab className="ApplicantTab" eventKey="Selected" title="Selected Students">
+                <Tab className="ApplicantTab" eventKey="Selected" title="Selected Interns">
             
                     <div className='contain'>
                         <div className='d-flex flex-row justify-content-sm-between'>
 
-                        <h3>Selected Students</h3>
+                        <h3>Selected Interns</h3>
                         </div> 
                         <div className='d-flex flex-row-reverse mb-1'>
                         <Form.Group className="mb-1" controlId="formBasicSearchOrganization">
                         <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
                         <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
-                        <Form.Control className="searchbox" type="searchbox text" placeholder="Search Student" /></div>
+                        <Form.Control className="searchbox" type="searchbox text" placeholder="Search Intern" /></div>
                         </Form.Group>
                         </div>
                         <Container className="mt-2">
