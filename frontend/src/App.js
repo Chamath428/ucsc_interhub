@@ -52,6 +52,7 @@ import StaffMemberManageCompany from './pages/StaffMember/staffMemberCompany';
 import CompanyAdvertisements from './pages/Company/companyAdvertisement';
 import CompanyApplicants from './pages/Company/companyApplicants';
 import CompanyManageStudents from './pages/Company/companyManageSupervisor';
+import CompanyManageSupervisors from './pages/Company/companyManageSupervisor';
 
 
 
@@ -86,8 +87,17 @@ function App() {
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
           {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
 
-          <SMAddStudents></SMAddStudents>
+          {/* <SMAddStudents></SMAddStudents> */}
+          {/* <StaffMemberAdvertisements></StaffMemberAdvertisements> */}
+          {/* <StaffMemberManageCompany></StaffMemberManageCompany> */}
+          {/* <StaffMemberStudentSelections></StaffMemberStudentSelections> */}
+          {/* <StaffMemberHome></StaffMemberHome> */}
+          {/* <StaffMemberManageStudents></StaffMemberManageStudents> */}
+
+          {/* <CompanyManageSupervisors></CompanyManageSupervisors> */}
+
           {/* <SupervisorHome></SupervisorHome> */}
+         
           
 
         </div>

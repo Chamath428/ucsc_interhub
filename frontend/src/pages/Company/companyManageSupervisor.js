@@ -9,16 +9,17 @@ import DashboardButton from '../../component/Dashboard/DashboardButton/dashboard
 
 import '../../styles/companyManageSuppervisors.css';
 
-class CompanyManageStudents extends Component {
+class CompanyManageSupervisors extends Component {
 
     render() {
         return (
+            <div className='containsupervisor mt-5 ms-5' style={{width:'90%'}}>
             <Tabs 
                 defaultActiveKey="CreateSupervsor"
-                className="ManageSupervisorTab ms-5 mt-5"
+                className="ManageSupervisorTab"
                 fill
             >
-                <Tab className="SupervisorTab" eventKey="CreateSupervsor" title="Create a new supervisor account">
+                <Tab className="SupervisorTab mt-5" eventKey="CreateSupervsor" title="Create a new supervisor account">
                 <div className='contain'>
                         <div className='d-flex flex-row justify-content-sm-between '>
 
@@ -51,7 +52,7 @@ class CompanyManageStudents extends Component {
                     </div>
 
                 </Tab>
-                <Tab className="SupervisorTab" eventKey="ManageSupervisors" title="Manage Supervisors">
+                <Tab className="SupervisorTab mt-5" eventKey="ManageSupervisors" title="Manage Supervisors">
             
                     <div className='contain'>
                         <div className='d-flex flex-row mb-4'>
@@ -63,7 +64,7 @@ class CompanyManageStudents extends Component {
                                  <Form.Label className="fw-bold" column sm={10}>Select a Supervisor</Form.Label>   
                                 <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
                                 <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
-                                <Form.Control column sm={10} className="searchbox" type="searchbox text" placeholder="Search Student" /></div>
+                                <Form.Control column sm={10} className="searchbox" type="searchbox text" placeholder="Search Supervisor" /></div>
                                 </Form.Group>
                                 <Col className='assignto' sm={2}><h8 >Assign to</h8></Col>
                                
@@ -71,7 +72,7 @@ class CompanyManageStudents extends Component {
                                 <Form.Label className="fw-bold" column sm={10}>Select an Intern</Form.Label>  
                                 <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
                                 <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
-                                <Form.Control column sm={10} className="searchbox" type="searchbox text" placeholder="Search Student" /></div>
+                                <Form.Control column sm={10} className="searchbox" type="searchbox text" placeholder="Search Intern" /></div>
                                 </Form.Group>
                             </Row>
                             <div className='suppervisorcreate d-flex flex-row mt-4 mb-4'>      
@@ -90,10 +91,11 @@ class CompanyManageStudents extends Component {
 
                     </div>
                 </Tab>
-            </Tabs>   
+            </Tabs>  
+            </div> 
         );
     }
 // 
 }
 
-export default CompanyManageStudents;
+export default CompanyManageSupervisors;

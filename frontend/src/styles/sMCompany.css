@@ -25,21 +25,6 @@
     border-radius:0px 10px 10px 0px;
 }
 
-.contain {
-    margin-top: 3%;
-    margin-left: 5%;
-    margin-right: 5%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    font-family: 'Raleway', sans-serif;
-}
-
-.contain h3 {
-    margin-bottom: 0%;
-    font-family: 'Raleway', sans-serif;
-
-}
 
 .btn-container {
     width: 68%;
