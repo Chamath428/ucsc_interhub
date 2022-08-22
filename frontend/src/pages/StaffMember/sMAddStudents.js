@@ -1,3 +1,4 @@
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Row,Col } from 'react-bootstrap';
@@ -5,56 +6,100 @@ import Container from 'react-bootstrap/esm/Container';
 import React, { Component } from 'react';
 import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
 import InfoCard from '../../component/Dashboard/InfoCard/infoCard';
-
+import { URL } from '../URL';
+import axios from 'axios';
 import '../../styles/staffMemberAddStudents.css';
+import { useState } from 'react';
 
 const SMAddStudents = () => {  
+
+  const [indexNumber,setIndexNumber] = useState();
+  const [registerationNumber,setRegisterationNumber] = useState("");
+  const [nic,setNIC] = useState("");
+  const [name,setName] = useState("");
+  const [course,setCourse] = useState(1);
+  const [gpa,setGPA] = useState("");
+  const [show, setShow] = useState(false);
+  const [alertPara,setAlertPara] = useState("Student Added Successfully!");
+  const [variant,setVariant] = useState("success");
+
+  const createStudent = () =>{
+    axios.post(`${URL}/student/create`,{
+      index_number:parseInt(indexNumber),
+      registration_number:registerationNumber,
+      name:name,
+      degree:parseInt(course),
+      gpa:gpa,
+      program_id:1
+    }).then((response)=>{showAlert(response)}).catch(function (error) {
+      if (error.response) {
+        setAlertPara("Something went wrong when creating the student!");
+        setVariant("danger");
+        setShow(true);
+      }})
+  }
+
+const showAlert=(response)=>{
+  setAlertPara("Student Added Successfully!");
+  setVariant("success");
+  setShow(true);
+ }
+
+  
+
 return (
   <Container>
     <div className='contain'>
       <Row>
       <div className='left'>
-      <Form>
-        <div className='mb-5'>
+      <div className='mb-5'>
         <h2>Add Students</h2>
-        </div>
+      </div>
+
+      <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>{alertPara}</Alert.Heading>
+      </Alert>
+
+      <Form>  
         <Row className='align-item-center mb-3 g-5'> 
           <Form.Group as={Col} md="6" controlId="formBasicIndexNumber">
             <Form.Label>Index Number</Form.Label>
-            <Form.Control type="number" placeholder="Enter your index number" />
+            <Form.Control type="number" required placeholder="Enter your index number" onChange={(event)=>{setIndexNumber(event.target.value)}} />
           </Form.Group>
           <Form.Group as={Col} md="6" controlId="formBasicRegistrationNumber">
             <Form.Label>Registration Number</Form.Label>
-            <Form.Control type="text" placeholder="Enter your registration number" />
+            <Form.Control type="text" required placeholder="Enter your registration number" onChange={(event)=>{setRegisterationNumber(event.target.value)}}/>
           </Form.Group>
         </Row>
         <Row className='align-item-center mb-3 g-5'> 
         <Form.Group as={Col} md="6"controlId="formBasicNIC">
           <Form.Label>NIC Number</Form.Label>
-          <Form.Control type="text" placeholder="NIC" />
+          <Form.Control type="text" required placeholder="NIC" onChange={(event)=>{setNIC(event.target.value)}} />
         </Form.Group>
         <Form.Group as={Col} md="6" controlId="formBasicNameWithInitials">
           <Form.Label>Name with Initials</Form.Label>
-          <Form.Control type="text" placeholder="Enter your name with initials" />
+          <Form.Control type="text" required placeholder="Enter your name with initials" onChange={(event)=>{setName(event.target.value)}} />
         </Form.Group>
         </Row>
         <Row className='align-item-center mb-3 g-5'> 
         <Form.Group as={Col} md="6" controlId="formBasicCourse">
         <Form.Label>Course</Form.Label>
-              <Form.Select>
-                  <option value="1">CS and IS</option>
-                  <option value="2">CS</option>
-                  <option value="3">IS </option>
+              <Form.Select onChange={(event)=>{setCourse(event.target.value)}}>
+                  <option value="1">CS</option>
+                  <option value="2">IS </option>
               </Form.Select>
         </Form.Group>
         <Form.Group as={Col} md="6" controlId="formBasicGPA">
           <Form.Label>GPA</Form.Label>
-          <Form.Control type="float" placeholder="GPA" />
+          <Form.Control type="number" required placeholder="GPA" onChange={(event)=>{setGPA(event.target.value)}}/>
         </Form.Group>
         </Row>
         <div className='d-flex flex-row-reverse mb-3'>
-            <DashboardButton inside={'+ Create Student'}></DashboardButton>
+            <DashboardButton inside={'+ Create Student'} method={createStudent}></DashboardButton>
         </div>
+
+
+        
         <Form.Group className="mb-4 col col-sm-12">
         <div
         style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}
