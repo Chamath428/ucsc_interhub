@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;500;600;700&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+@media screen and (max-width: 515px) {
+    .top-area{
+        flex-direction: column !important;
+        width: 100%;
+    }
+    .search-area{
+        width: 60%;
+        /* margin-left: 40%; */
+    }
+  }
+
+/* .addstudent{
+    margin-left:70%;
+    height: fit-content;
+} */
+.searchicon{
+    color:white;
+    background-color: #0d6efd;
+    border-radius:10px 0px 0px 10px;
+}
+.searchbox{
+    border-radius:0px 10px 10px 0px;
+}
+
+.btn-container {
+    width: 68%;
+    height: 13vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #f1f5f9;
+    padding: 30px 20px;
+    box-shadow: 0px 10px 20px rgb(200 208 216 / 30%);
+    border-radius: 5px;
+    /* background-color: rgb(21, 255, 0); */
+}
+
+.btn-container Button {
+    background-color: #ffffff;
+    width: 250px;
+    height: 40px;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 10px 20px rgb(200 208 216 / 30%);
+    border-radius: 10px;
+    color: black;
+    font-size: medium;
+}
+
+
+.my-custom-scrollbar {
+
+    margin-top: 3%;
+    width: 100%;
+    position: relative;
+    height: 40vh;
+    overflow: auto;
+}
+
+.ManageInterviewTab{
+    font-weight: bold ;
+    /* background-color:darkgrey; */
+}
+
+
