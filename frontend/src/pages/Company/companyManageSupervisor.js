@@ -19,7 +19,7 @@ class CompanyManageSupervisors extends Component {
                 className="ManageSupervisorTab"
                 fill
             >
-                <Tab className="SupervisorTab mt-5" eventKey="CreateSupervsor" title="Create a new supervisor account">
+                <Tab className="SupervisorTab mt-5" eventKey="CreateSupervsor" title="Create a New Supervisor Account">
                 <div className='contain'>
                         <div className='d-flex flex-row justify-content-sm-between '>
 
@@ -33,7 +33,7 @@ class CompanyManageSupervisors extends Component {
                                     <Form.Label className="fw-bold" column sm={5}>Email Address</Form.Label>
                                     <Form.Control type="email" placeholder="Enter Email Address" />
                                 </Form.Group>
-                                
+                                <Col className='assignto' sm={2}></Col>
                                 <Form.Group as={Col} sm controlId="formGridState">
                                     <Form.Label className="fw-bold" column sm={5}>Name</Form.Label>
                                     <Form.Control type="text" placeholder="Enter Name" />
@@ -43,7 +43,7 @@ class CompanyManageSupervisors extends Component {
                             By clicking on Create Account, system will send an email to the address you entered, allowing the owner of that email to login to the system as a supervisor under your company.
                             </div> 
                             <div className='suppervisorcreate d-flex flex-row-reverse mt-5 mb-1'>
-                            <DashboardButton inside='Create Account ->'></DashboardButton>
+                            <DashboardButton inside='Create Account'></DashboardButton>
                             </div>
                         </Form>    
                     
@@ -61,22 +61,23 @@ class CompanyManageSupervisors extends Component {
                         </div> 
                             <Row className='AssignSupervisorSearch g-4'>
                                  <Form.Group as={Col} sm controlId="formBasicSearchOrganization">
-                                 <Form.Label className="fw-bold" column sm={10}>Select a Supervisor</Form.Label>   
+                                 <Form.Label className="fw-bold" column sm={8}>Select a Supervisor</Form.Label>   
                                 <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
                                 <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
-                                <Form.Control column sm={10} className="searchbox" type="searchbox text" placeholder="Search Supervisor" /></div>
+                                <Form.Control column sm={8} className="searchbox" type="searchbox text" placeholder="Search Supervisor" /></div>
                                 </Form.Group>
-                                <Col className='assignto' sm={2}><h8 >Assign to</h8></Col>
+                                <Col className='assignto' sm={2}></Col>
+                                {/* <Col className='assignto' sm={2}><h8 >Assign to</h8></Col> */}
                                
                                 <Form.Group as={Col} sm controlId="formBasicSearchOrganization">
-                                <Form.Label className="fw-bold" column sm={10}>Select an Intern</Form.Label>  
+                                <Form.Label className="fw-bold" column sm={8}>Select an Intern</Form.Label>  
                                 <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
                                 <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
-                                <Form.Control column sm={10} className="searchbox" type="searchbox text" placeholder="Search Intern" /></div>
+                                <Form.Control column sm={8} className="searchbox" type="searchbox text" placeholder="Search Intern" /></div>
                                 </Form.Group>
                             </Row>
-                            <div className='suppervisorcreate d-flex flex-row mt-4 mb-4'>      
-                            <DashboardButton inside={'Assign->'}></DashboardButton>
+                            <div className='suppervisorcreate d-flex flex-row-reverse mt-4 mb-4'>      
+                            <DashboardButton inside={'Assign'}></DashboardButton>
                             </div>
                        
                             <h4>Assigned Supervisors</h4>

@@ -49,7 +49,7 @@ const showAlert=(response)=>{
 
 return (
   <Container>
-    <div className='contain'>
+    <div className='contain mt-5 ms-5' style={{width:'90%'}}>
       <Row>
       <div className='left'>
       <div className='mb-5'>
