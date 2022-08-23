@@ -1,18 +1,49 @@
 import React, { Component } from 'react';
+import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/esm/Container';
 import { Row,Col,Button } from 'react-bootstrap';
 import TableView from '../../component/Dashboard/Table/tableView';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
 import InfoCard from '../../component/Dashboard/InfoCard/infoCard';
+import axios from 'axios';
+import Alert from 'react-bootstrap/Alert';
+import { URL } from '../URL';
 
 import '../../styles/coordinatorSystemUser.css';    
 
-class CoordinatorSystemUsers extends Component {
+const CoordinatorSystemUsers = () => {
 
-    render() {
+        const[role,setRole]=useState(1);
+        const[email,setEmail]=useState("");
+        const[first_name,setFirstName]=useState("");
+        const[last_name,setLastName]=useState("");
+        const [show, setShow] = useState(false);
+        const [alertPara,setAlertPara] = useState("User added Successfully!");
+        const [variant,setVariant] = useState("success");
+
+        const createStaffMember = (event) =>{
+            event.preventDefault();
+            axios.post(`${URL}/staffMember/create`,{
+                email_address:email,
+                first_name:first_name,
+                last_name:last_name,
+                role:parseInt(role)
+            }).then((response)=>{showAlert(response)}).catch(function (error) {
+                if (error.response) {
+                  setAlertPara("Something went wrong when creating the user!");
+                  setVariant("danger");
+                  setShow(true);
+                }})
+        }
+
+        const showAlert=(response)=>{
+            setAlertPara("User added Successfully!");
+            setVariant("success");
+            setShow(true);
+           }
+
         return (
             <div className='containsystemusers mt-5 ms-5' style={{width:'90%'}}>
             <Tabs 
@@ -47,28 +78,38 @@ class CoordinatorSystemUsers extends Component {
             
                 <div className='addusercontain'>
                 <div className='SystemUserLeft'>
-                <Form>
+
+                <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
+                    <Alert.Heading>{alertPara}</Alert.Heading>
+                </Alert>
+                    
+                <Form onSubmit={createStaffMember}>
                     <h3>Add System Users</h3>
 
                     <Row className='align-item-center mt-3 g-5 mb-5'>
 
-                        <Form.Group  as={Col} md="12" controlId="formBasicAccount">
+                        <Form.Group  as={Col} md="6" controlId="formBasicAccount">
                             <Form.Label>Account Types</Form.Label>
-                            <Form.Select>
+                            <Form.Select onChange={(event)=>{setRole(event.target.value)}}>
                                 <option value="1">Staff Member</option>
                                 <option value="2">Coordinator</option>
-
                             </Form.Select>
                         </Form.Group>
+
+                        <Form.Group  as={Col} md="6" controlId="formBasicEmail" onChange={(event)=>{setEmail(event.target.value)}}>
+                            <Form.Label>Email Address</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Email Address" />
+                        </Form.Group>
+
                     </Row>
                     <Row className='align-item-center g-5 mb-5'>
-                        <Form.Group  as={Col} md="6" controlId="formBasicEmail">
-                            <Form.Label>Email Address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter Email Address" />
+                        <Form.Group  as={Col} md="6" controlId="formBasicEmail" onChange={(event)=>{setFirstName(event.target.value)}}>
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control type="text" placeholder="First Name" />
                         </Form.Group>
-                        <Form.Group  as={Col} md="6" controlId="formBasicName">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Name " />
+                        <Form.Group  as={Col} md="6" controlId="formBasicName" onChange={(event)=>{setLastName(event.target.value)}}>
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control type="text" placeholder="Last Name " />
                         </Form.Group>
                     </Row>
 
@@ -77,14 +118,13 @@ class CoordinatorSystemUsers extends Component {
                         <p>By clicking on Create Account, system will send an email to the address you entered, allowing the owner of that email to login to the system as a supervisor under your company</p>
                     </Form.Group>
 
-                    {/* <Button className="btn-setvisit mt-4 mb-4 m-1 col-sm-3 " variant="primary" type="submit">
-                        Create account  <i class="bi bi-arrow-right"></i>
-                    </Button> */}
-
                     <div className='d-flex flex-row-reverse mb-3'>
                         <DashboardButton inside={"+ Create account" } ></DashboardButton>
                     </div>
+
                 </Form>
+
+
                 </div>
                 <div className='SystemUserRight mt-5 ms-5 ps-5'>
                     <Row className='mb-5 mt-5'>
@@ -102,8 +142,6 @@ class CoordinatorSystemUsers extends Component {
             </Tabs>
             </div>   
         );
-    }
-// 
 }
 
 export default CoordinatorSystemUsers;
