@@ -6,6 +6,9 @@ import { Row,Col, FormLabel } from 'react-bootstrap';
 import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
 import AdvertisementCard from '../../component/Cards/AdvertismentCard/advertisementCard';
 import LsegLogo from '../../assets/images/lsegLogo.png';
+import { Link } from "react-router-dom";
+import Nav from 'react-bootstrap/Nav';
+
   
 class CompanyAdvertisements extends Component {
 
@@ -17,8 +20,10 @@ class CompanyAdvertisements extends Component {
 
                 <h3>Advertisements</h3>
                 </div> 
-                <div className='d-flex mb-5 mt-5'>
-                    <DashboardButton inside={'+ Create a Advertisement'}></DashboardButton>
+                <div className='d-flex mb-3 mt-1'>
+
+                    <Nav.Link as={Link} to="/Company/Create-ad"> <DashboardButton inside={'+ Create an advertisement'}></DashboardButton></Nav.Link>
+
                 </div>
                 <div className='d-flex flex-row justify-content-sm-between mt-5 '>
 
