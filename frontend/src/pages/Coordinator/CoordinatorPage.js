@@ -23,6 +23,8 @@ import CoordinatorRegisteredCompanyProfile from "./CoordinatorRegisteredCompanyP
 import CoordinatorStudent from "./CoordinatorStudent";
 import CoordinatorUsersSetting from "./CoordinatorUsersSetting";
 import CoordinatorViewAnnounsments from "./CoordinatorViewAnnounsments";
+import StaffMemberManageStudents from "../StaffMember/StaffMemberManageStudents";
+import StaffMemberManageCompany from "../StaffMember/staffMemberCompany";
 
 function CoordinatorPage(){
 
@@ -33,10 +35,10 @@ return(
         <SideBar
 
             dashTitle1='Dashboard' dashLink1='Coordinator/Home'
-            dashTitle2='Companies' dashLink2='Coordinator/Manage-companies'
-            dashTitle3='Students' dashLink3='Coordinator/Student-list'
-            dashTitle4='Announcement' dashLink4='Coordinator/Add-announcement'
-            dashTitle5='Settings' dashLink5='Coordinator/Settings'
+            dashTitle2='Student' dashLink2='Coordinator/Student'
+            dashTitle3='Company' dashLink3='Coordinator/Company'
+            dashTitle4='Manage Staff' dashLink4='Coordinator/System-user'
+            dashTitle5='Announcements' dashLink5='Coordinator/Announcement'
 
         ></SideBar>
 
@@ -44,31 +46,18 @@ return(
     
         <main>
             <div className='container pt-5'>
-{/* done */}
-                <Route path="/Coordinator/Add-announcement" component={CoordinatorAddAnnouncements} />
 
-                <Route path="/Coordinator/Add-student" component={CoordinatorStudentBulkList} />
-
-                <Route path="/Coordinator/Add-staff" component={CoordinatorAddUserSetting} />
-
-{/* done */}
-                <Route path="/Coordinator/Manage-companies" component={CoordinatorCompany} /> 
-
-                <Route path="/Coordinator/Manage-pending-companies" component={CoordinatorCompanyPending} />
-
-                <Route path="/Coordinator/Company-profile" component={CoordinatorCompanyProfileDetails} />
-
-{/* done */}
                 <Route path="/Coordinator/Home" component={CoordinatorHome} />
 
-                <Route path="/Coordinator/Reg-company-profile" component={CoordinatorRegisteredCompanyProfile} />
+                <Route path="/Coordinator/Student" component={StaffMemberManageStudents} />
 
-{/* done */}
-                <Route path="/Coordinator/Student-list" component={CoordinatorStudent} />
-{/* done */}
-                <Route path="/Coordinator/Settings" component={CoordinatorUsersSetting} />
+                <Route path="/Coordinator/Company" component={StaffMemberManageCompany} />
 
-                <Route path="/Coordinator/Announcements" component={CoordinatorViewAnnounsments} />
+                <Route path="/Coordinator/System-user" component={CoordinatorUsersSetting} />
+
+                <Route path="/Coordinator/Announcement" component={CoordinatorAddAnnouncements} /> 
+
+               
 
                 <Route path="*" component={NotFound} />
 
