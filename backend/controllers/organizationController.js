@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { organizationSchema } from '../models/organizationModel.js';
 import crypto from 'crypto'; 
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -8,10 +9,8 @@ export const registerOrganization = async (req,res) =>{
     const{error,value} = organizationSchema.validate(req.body);
 
     if(!error){
-        const salt = crypto.randomBytes(16).toString('hex');
-        const hash = crypto.pbkdf2Sync(req.body.password,salt,  
-                1000, 64, `sha512`).toString(`hex`);
-        
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(req.body.password, salt);        
         try{
             const company = await prisma.company.create({
                 data:{
@@ -25,7 +24,7 @@ export const registerOrganization = async (req,res) =>{
                     no_of_project_managers:req.body.no_of_project_managers,
                     no_of_tech_leads:req.body.no_of_tech_leads,
                     is_registered_other_uni:req.body.is_registered_other_uni,
-                    password:hash,
+                    password:hashPassword,
                     username:req.body.username
                 }
             });
