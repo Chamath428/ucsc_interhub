@@ -1,4 +1,5 @@
 import React from 'react';
+import { Row, Card, Col } from 'react-bootstrap';
 import "./pieChart.css";
 import { PieChart } from "react-minimal-pie-chart";
 
@@ -6,14 +7,22 @@ import { PieChart } from "react-minimal-pie-chart";
 export default class App extends React.Component {
 
   render() {
-    let data = [
-      { title: "One", value: 10, color: "#4a6cf7" },
-      { title: "Two", value: 2, color: "red" },
-      { title: "Three", value: 3, color: "green" },
-    ];
-    return (
-      <div className="PieChart-container">
+    const header = this.props.header;
+    const valRegistered = this.props.valRegistered;
+    const valNotRegistered = this.props.valNotRegistered;
 
+
+
+    let data = [
+      { title: "Registered\n"+valRegistered, value: valRegistered, color: "#4a6cf7" },
+      { title: "Not Registered\n"+valNotRegistered, value: valNotRegistered, color: "#c2e8ff" },
+
+    ];
+
+    return (
+      <Row className="PieChart-container">
+
+        <h5>{header}</h5>
         <PieChart
           animate
           animationDuration={600}
@@ -34,22 +43,20 @@ export default class App extends React.Component {
             fontFamily: "monospace"
           }}
           // label={(data) => data.dataEntry.title}
-          // labelPosition={70}
-
-          label={({ dataEntry }) => {
-            if (dataEntry.title === "One") {
-              return "rate\n"+Math.round(dataEntry.value) + "% ";
-            }
-          }}
-          labelPosition={0}
+          // labelPosition={0}
 
 
-
-
-
+        label={({ dataEntry }) => {
+          if (dataEntry.title === "Registered\n"+valRegistered) {
+            return "Registered\n" + dataEntry.value;
+          }
+        }}
+        labelPosition={0}
 
         />
-      </div>
+
+      </Row>
+
     );
   }
 }

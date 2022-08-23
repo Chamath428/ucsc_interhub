@@ -16,7 +16,7 @@ class InputField extends Component {
             // </div>
             <Form.Group className="input-field-main" controlId="formBasicIndexNumber">
                 <Form.Label>{label}</Form.Label>
-                <Form.Control type="text" value={value} />
+                <Form.Control type="text" disabled value={value} />
             </Form.Group>
         );
     }

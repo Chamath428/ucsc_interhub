@@ -13,6 +13,7 @@ class HomePage extends Component {
     render() { 
         return (
             <div>
+                
                 <HomeNavBar></HomeNavBar>
                 <HomeHeader></HomeHeader>
                 <HowDoesItWord></HowDoesItWord>
@@ -21,6 +22,7 @@ class HomePage extends Component {
                 <Partners></Partners>
                 <ContactUs></ContactUs>
                 <Footer></Footer>
+
             </div>
         );
     }

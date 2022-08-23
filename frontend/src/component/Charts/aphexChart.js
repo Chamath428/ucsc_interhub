@@ -1,32 +1,48 @@
 import React from "react";
 import { PieChart } from "react-minimal-pie-chart";
+import { Row, Card, Col } from 'react-bootstrap';
+import "./pieChart.css";
+
+export default class App extends React.Component {
+
+    render() {
+        const header = this.props.header;
+        const numbers = this.props.Numbers;
+        const companyName = this.props.companyName;
 
 
-const myData = [
-    { title: "Dogs", value: 100, color: "#FFA600" },
-    { title: "Cats", value: 50, color: "#00FF00" },
-    { title: "Dragons", value: 15, color: "#4a6cf7" },
-];
+        const myData = [
+            { title: companyName[0], value: numbers[0], color: "#4a6cf7" },
+            { title: companyName[1], value: numbers[1], color: "#0871b1" },
+            { title: companyName[2], value: numbers[2], color: "#c2e8ff" },
+        ];
+        
+        return (
+            <Row className="PieChart-container">
+                <h5>{header}</h5>
 
-const App = () => {
-    return (
-        <div className="PieChart-container">
-            <PieChart
-                animate
-                animationDuration={600}
-                data={myData}
-                label={(data) => data.dataEntry.title}
-                labelPosition={70}
-                labelStyle={{
-                    fontSize: "6px",
-                    fontColor: "FFFFFA",
-                    fontWeight: "500",
-                    fontFamily: "monospace"
-                }}
-            />
+                <PieChart
+                    animate
+                    animationDuration={600}
+                    data={myData}
+                    label={(data) => data.dataEntry.title }
+                    labelPosition={70}
+                    labelStyle={{
+                        fontSize: "6px",
+                        fontColor: "FFFFFA",
+                        fontWeight: "500",
+                        fontFamily: "monospace"
+                        
+                    }}
+                   
+                    // label={(data) => data.dataEntry.title}
+                    // labelPosition={70}
+                />
 
-        </div>
-    );
-};
 
-export default App;
+            </Row>
+
+        );
+    }
+}
+

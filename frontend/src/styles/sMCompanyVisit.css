@@ -11,9 +11,10 @@
 }
 
 .VisitRightRight{
-    width: 80%;
+    width: 100%;
     float: right !important;
     padding-right: 15%;
+    padding-top: 10%;
 }
 .VisitRight{
     width: 50%;
@@ -26,7 +27,7 @@
     /* padding-right: 15%; */
 }
 .my-custom-scrollbar-visit {
-    height:60vh;
+    height:50vh;
     /* margin-top: 3%; */
     width: 100%;
     position: relative;

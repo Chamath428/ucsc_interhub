@@ -4,6 +4,9 @@ import '../styles/loginStyles.css';
 import HandShake from '../assets/images/company.gif'
 import PrimaryButton from '../component/homepage/PrimaryButton/primaryButtonClass';
 import HomeNavBar from '../component/homepage/HomeNavBar/homeNavBar';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+
 class Login extends Component {
 
 
@@ -47,7 +50,9 @@ class Login extends Component {
                                     </div>
 
                                     <div className="d-grid">
-                                        <PrimaryButton inside={'Login'}></PrimaryButton>
+                                        
+                                        <Button as={Link} to='/Student'>Login</Button>
+                                        {/* <Button inside={'Login'}></Button> */}
                                     </div>
                                 </div>
                             </Form>

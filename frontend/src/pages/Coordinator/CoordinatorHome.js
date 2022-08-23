@@ -17,8 +17,11 @@ class CoordinatorHome extends Component {
         return (
 
 
-            <Container className="coordinator-home">
-                <Row className='cart-contain'>
+            <Container className="mt-5 ms-4" style={{width: '99%'}}>
+                <Row className="ms-1 mb-3">
+                    <h3>Dashboard</h3>
+                </Row>
+                <Row  className='card-contain'>
                     <CoordinatorCard title={"View Students"} count={"275"} icon={"people-fill"} cardWidth={3}></CoordinatorCard>
                     <CoordinatorCard title={"View Companies"} count={"52"} icon={"building"} cardWidth={3}></CoordinatorCard>
                     <CoordinatorCard title={"Manage Interns "} count={"225"} icon={"person-check-fill"} cardWidth={3}></CoordinatorCard>
@@ -27,15 +30,12 @@ class CoordinatorHome extends Component {
 
                 <Row className="chart-contain" >
 
-                    <PieChart />
-                    <ApexCharts />
-                    <PieChart />
-
+                    <Col> <PieChart header={"Selected Students"} valRegistered={100} valNotRegistered={90} /></Col>
+                    <Col>  <ApexCharts header={"View No of student Companywise"} Numbers={[30,12,10]} companyName={['IFS','Cisco Labs','LSEG']}/></Col>
+                    <Col> <PieChart header={"Registered Company"} valRegistered={40} valNotRegistered={12} /></Col>
 
                 </Row>
             </Container>
-
-
 
 
 

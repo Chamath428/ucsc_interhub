@@ -17,6 +17,7 @@ function DashSideNavigation() {
             {/* <Link to="/Dashboard">Dashboard</Link>
             <Link  to="/Internship">Internship</Link> */}
 {/* <Nav.Link as={Link} to="/contact">anywords</Nav.Link> */}
+
             <Nav.Link as={Link} eventKey="/StudentHome" to="/StudentHome">Dashboard</Nav.Link>
 
             <Nav.Link as={Link} eventKey="/Internship" to="/Internship">Internship</Nav.Link>

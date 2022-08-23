@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import HomePage from './pages/homePage';
 import HomeNavBar from './component/homepage/HomeNavBar/homeNavBar';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import NavBarOnlyLogo from './component/homepage/NavBarOnlyLogo/navBarOnlyLogo';
 import Login from './pages/login';
+import Signup from './pages/signup';
 import Dashboard from './pages/Dashboard';
 import StudentHome from './pages/Student/StudentHome';
 import StudentProfile from './pages/Student/StudentProfile';
@@ -44,8 +44,14 @@ import SMAddStudents from './pages/StaffMember/sMAddStudents';
 import SMCompanyVisit from "./pages/StaffMember/sMCompanyVisit";
 import SMRegisteredOrganization from './pages/StaffMember/sMRegisteredOrganization';
 import SMNewOrganization from './pages/StaffMember/sMNewOrganization';
-import StaffMembertHome from './pages/StaffMember/sMAddStudents';
 import StaffMemberAdvertisements from './pages/StaffMember/sMAdvertisments';
+import StaffMemberManageStudents from './pages/StaffMember/StaffMemberManageStudents';
+import StaffMemberManageCompany from './pages/StaffMember/staffMemberCompany';
+
+import CompanyAdvertisements from './pages/Company/companyAdvertisement';
+import CompanyApplicants from './pages/Company/companyApplicants';
+import CompanyManageStudents from './pages/Company/companyManageSupervisor';
+import CompanyManageSupervisors from './pages/Company/companyManageSupervisor';
 
 
 
@@ -58,15 +64,14 @@ function App() {
       <TopNav></TopNav>
       <main>
         <div className='container pt-5'>
-
-{/* <StudentHome></StudentHome> */}
+          {/* <StudentHome></StudentHome> */}
           {/* <StudentAnnouncement></StudentAnnouncement> */}
           {/* <StudentInternship></StudentInternship> */}
           {/* <StudentInterviews></StudentInterviews> */}
 
           {/* <CoordinatorHome></CoordinatorHome> */}
           {/* <CoordinatorCompany></CoordinatorCompany> */}
-          <CoordinatorCompanyProfileDetails></CoordinatorCompanyProfileDetails>
+          {/* <CoordinatorCompanyProfileDetails></CoordinatorCompanyProfileDetails> */}
           {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
 
           {/* <StudentProfile></StudentProfile> */}
@@ -80,30 +85,25 @@ function App() {
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
           {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
 
- 
-          {/* <StaffMemberStudents></StaffMemberStudents> */}
           {/* <SMAddStudents></SMAddStudents> */}
-          {/* <StaffMemberStudentSelections></StaffMemberStudentSelections>          */}
-          {/* <SMCompanyVisit></SMCompanyVisit> */}
-          {/* <StaffMemberHome></StaffMemberHome> */}
           {/* <StaffMemberAdvertisements></StaffMemberAdvertisements> */}
-          {/* <SMNewOrganization></SMNewOrganization> */}
-          {/* <SMRegisteredOrganization></SMRegisteredOrganization> */}
+          {/* <StaffMemberManageCompany></StaffMemberManageCompany> */}
+          {/* <StaffMemberStudentSelections></StaffMemberStudentSelections> */}
+          {/* <StaffMemberHome></StaffMemberHome> */}
+          {/* <StaffMemberManageStudents></StaffMemberManageStudents> */}
+          {/* <SMCompanyVisit></SMCompanyVisit> */}
 
+          <CompanyManageSupervisors></CompanyManageSupervisors>
 
           {/* <SupervisorHome></SupervisorHome> */}
-
-
-
-
-
-
+         
+       
         </div>
       </main>
 
-      {/* <NavBarOnlyLogo></NavBarOnlyLogo>
-    <Signup></Signup>
-    <Login></Login>
+       {/* <NavBarOnlyLogo></NavBarOnlyLogo>
+    <Signup></Signup> */}
+    {/*<Login></Login>
     <Footer></Footer> */}
       {/* <HomePage></HomePage> */}
     </div>

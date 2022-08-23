@@ -2,18 +2,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:"red";
-    width: auto;
-    /* height: 50vh; */
-
-    /* border: 1px solid #4a6cf7; */
+    height: 60vh;
+    /* width: auto; */
     background: #fff;
     border: 1px solid #e2e8f0;
     box-shadow: 0px 10px 20px rgba(200, 208, 216, 0.3);
     border-radius: 10px; 
     padding: 20px;
+    margin: 1%;
     margin-bottom: 30px;
 
-  }
-  
-  
+  }    
+

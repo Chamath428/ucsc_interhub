@@ -1,0 +1,61 @@
+.AdvertisementCard{
+    width: 50%;
+}
+
+.cardImage{
+    height:140px;
+    width:150px;
+}
+
+.ButtonSet{
+    float: right;
+}
+
+/* @media screen and (max-width:1356px) and (min-width:1209px) {
+    
+} */
+
+@media screen and (max-width:1209px) and (min-width:1160px) {
+    
+    .cardImage{
+        height:140px;
+        width:140px;
+    } 
+    .ButtonSet{
+        padding-bottom: 5%;
+        float: right;
+    }
+}
+
+@media screen and (max-width:1160px) and (min-width:768px) {
+    .AdvertisementCard{
+        width: 100%;
+    }
+    
+}
+
+/* @media screen and (max-width:768px) and (min-width:561px) {
+    .cardImage{
+        height:170px;
+        width:190px;
+    }
+    .button1{
+        margin-right: 0% !important;
+        margin-bottom: 5% !important;
+        float: right;
+
+    }
+} */
+ 
+@media screen and (max-width:768px){
+    .AdvertisementCard{
+        width: 100%;
+    }
+    .cardImage{
+        height:140px;
+        width:150px;
+    }
+    .ButtonSet{
+        margin-bottom: 5% !important;
+    }
+}
