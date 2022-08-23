@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import './homeNavBarStyles.css'
 import React, {useState, useEffect} from "react";
+import { Link } from 'react-router-dom';
 
 function HomeNavBar() {
 
@@ -51,7 +52,7 @@ function HomeNavBar() {
                   <Nav.Link className={navli} id="nav-li" href="#howDoesItWork">How does it work?</Nav.Link>
                   <Nav.Link className={navli} id="nav-li" href="#faqs">FAQs</Nav.Link>
                   <Nav.Link className={navli} id="nav-li" href="#register">Register as an Organizations</Nav.Link>
-                  <Nav.Link className={navli} id="nav-li" href="#action2">Login</Nav.Link>
+                  <Nav.Link as={Link} className={navli} id="nav-li" to="/login">Login</Nav.Link>
                 </Nav>
 
               </Offcanvas.Body>
