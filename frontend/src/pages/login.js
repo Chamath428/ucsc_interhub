@@ -3,10 +3,11 @@ import {Container,Row,Col,Form} from 'react-bootstrap';
 import '../styles/loginStyles.css';
 import HandShake from '../assets/images/company.gif'
 import DashboardButton from '../component/Dashboard/DashboardButton/dashboardButton';
-import HomeNavBar from '../component/homepage/HomeNavBar/homeNavBar';
 import axios from 'axios';
 import { URL } from './URL';
 import Alert from 'react-bootstrap/Alert';
+import { useHistory } from 'react-router-dom';
+import NavBarOnlyLogo from '../component/homepage/NavBarOnlyLogo/navBarOnlyLogo';
 
 
 const Login = ()=> {
@@ -16,13 +17,17 @@ const Login = ()=> {
         const [show, setShow] = useState(false);
         const [alertPara,setAlertPara] = useState("Loged in Successfully!");
         const [variant,setVariant] = useState("success");
+        const history = useHistory();
 
         const login = (event) =>{
             event.preventDefault();
             axios.post(`${URL}/user/login`,{
                 username:username,
                 password:password
-            }).then((response)=>{showAlert(response)}).catch(function (error) {
+            }).then((response)=>{
+                showAlert(response)
+                history.push("/".concat(response.data.role));
+            }).catch(function (error) {
                 if (error.response) {
                   setAlertPara(error.response.data.message);
                   setVariant("danger");
@@ -45,6 +50,7 @@ const Login = ()=> {
       </Alert>
 
             <Container className="login-container shadow-lg mb-5 bg-body rounded form-container">
+                <NavBarOnlyLogo></NavBarOnlyLogo>
                 <Row className="login-row d-flex justify-content-around align-items-center" >
                     <Col lg="6" className="left-column d-flex flex-column justify-content-center align-items-center text-center">
 
