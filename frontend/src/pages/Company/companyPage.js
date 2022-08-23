@@ -15,6 +15,9 @@ import CompanyAdvertisements from "./companyAdvertisement";
 import CompanyManageSupervisors from "./companyManageSupervisor";
 import NotFound from "../notFound";
 import StudentHome from "../Student/StudentHome";
+import CompanyHome from "./companyHome";
+import CompanyScheduleInterview from "./companyScheduleInterview";
+import CreateAdvertisement from "./companyCreateAdvertisement";
 
 function CompanyBase(){
 
@@ -27,6 +30,8 @@ return(
             dashTitle2='Applicants' dashLink2='Company/ApplicantsCompany'
             dashTitle3='Supervisors' dashLink3='Company/Supervisors'
             dashTitle4='Advertisement' dashLink4='Company/Advertisement'
+            dashTitle5='Interview' dashLink5='Company/Interview'
+
         ></SideBar>
 
         <TopNav headerLink='Company'></TopNav>
@@ -34,13 +39,18 @@ return(
         <main>
             <div className='container pt-5'>
 
-                <Route exact path="/Company" component={StudentHome} />
+                <Route exact path="/Company" component={CompanyHome} />
 
                 <Route exact path="/Company/ApplicantsCompany" component={CompanyApplicants} />
 
                 <Route exact path="/Company/Supervisors" component={CompanyManageSupervisors} />
 
                 <Route exact path="/Company/Advertisement" component={CompanyAdvertisements} />
+
+                <Route exact path="/Company/Interview" component={CompanyScheduleInterview} />
+
+                <Route exact path="/Company/Create-ad" component={CreateAdvertisement} />
+
 
             </div>  
         </main>
