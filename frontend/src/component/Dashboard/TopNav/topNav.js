@@ -3,6 +3,9 @@ import './topNavStyles.css'
 
 class TopNav extends Component {
     render() { 
+
+      const headerLink = this.props.headerLink;
+
         return (
 
         <nav id="main-navbar" className="mx-3 navbar navbar-expand-lg navbar-light bg-white fixed-top">
@@ -22,7 +25,8 @@ class TopNav extends Component {
              
            </button>
 
-           <a className="navbar-brand" href="#">
+
+           <a className="navbar-brand" href={"/"+headerLink}>
             UCSC InterHub
            </a>
 
