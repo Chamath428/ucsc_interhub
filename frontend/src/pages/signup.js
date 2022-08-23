@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 import DashboardButton from '../component/Dashboard/DashboardButton/dashboardButton';
+import NavBarOnlyLogo from '../component/homepage/NavBarOnlyLogo/navBarOnlyLogo';
 import axios from 'axios';
 import { URL } from './URL';
 import '../styles/Signup.css';
@@ -88,8 +89,9 @@ function Signup() {
        }
 
   return (
+    
 <Container className="shadow p-4 bg-body rounded form-container">
-
+<NavBarOnlyLogo></NavBarOnlyLogo>
       <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
         <Alert.Heading>{alertPara}</Alert.Heading>
       </Alert>

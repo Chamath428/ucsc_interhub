@@ -22,7 +22,7 @@ class CompanyApplicants extends Component {
                 <div className='contain'>
                         <div className='d-flex flex-row justify-content-sm-between '>
 
-                            <h3>Applicants</h3> 
+                            <h3>All Applicants</h3> 
                         </div>
                         <Container className="mt-3">
                         <Form className='container'>
@@ -69,7 +69,7 @@ class CompanyApplicants extends Component {
                 <div className='contain'>
                         <div className='d-flex flex-row justify-content-sm-between '>
 
-                            <h3>Applicants</h3> 
+                            <h3>Wish List</h3> 
                         </div>
                         <Container className="mt-3">
                         <Form className='container'>

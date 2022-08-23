@@ -24,32 +24,32 @@ return(
     <div className="App">
 
         <SideBar
-            dashTitle1='Dashboard' dashLink1='Student/Home'
+            dashTitle1='Dashboard' dashLink1='Student/'
             dashTitle2='Internship' dashLink2='Student/Internship'
-            dashTitle3='Internviews' dashLink3='Student/Interviews'
+            dashTitle3='Interviews' dashLink3='Student/Interviews'
             dashTitle4='My Profile' dashLink4='Student/Profile'
             dashTitle5='Edit Profile' dashLink5='Student/Edit-Profile'
         ></SideBar>
 
-        <TopNav></TopNav>
+        <TopNav headerLink='Student'></TopNav>
     
         <main>
             <div className='container pt-5'>
 
-                <Route path="/Student/Home" component={StudentHome} />
+                <Route exact path="/Student" component={StudentHome} />
 
-                <Route path="/Student/Internship" component={StudentInterviews} />
+                <Route exact path="/Student/Internship" component={StudentInternship} />
 
-                <Route path="/Student/Interviews" component={StudentInternship} />
+                <Route exact path="/Student/Interviews" component={StudentInterviews} />
 
-                <Route path="/Student/Profile" component={StudentProfile} />
+                <Route exact path="/Student/Profile" component={StudentProfile} />
 
-                <Route path="/Student/Edit-Profile" component={StudentEditProfile} />
+                <Route exact path="/Student/Edit-Profile" component={StudentEditProfile} />
 
-                <Route path="*" component={NotFound} />
-
+                {/* <Route path="*" component={NotFound} /> */}
 
             </div>  
+        
         </main>
 
     </div>

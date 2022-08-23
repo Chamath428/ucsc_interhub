@@ -44,16 +44,15 @@ class SideBar extends Component {
 
                   <Nav.Link className="list-group-item list-group-item-action py-2 ripple active mb-3"  as={Link} eventKey={'/'+dashLink1} to={'/'+dashLink1} >{dashTitle1}</Nav.Link>
 
-                  <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink2} >{dashTitle2}</Nav.Link>
+                  {dashLink2 && <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink2} >{dashTitle2}</Nav.Link>}
 
-                  <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink3} >{dashTitle3}</Nav.Link>
+                  {dashLink3 && <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink3} >{dashTitle3}</Nav.Link>}
 
+                  {dashLink4 && <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink4} >{dashTitle4}</Nav.Link>}
 
-                  <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink4} >{dashTitle4}</Nav.Link>
+                  {dashLink5 &&<Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink5} >{dashTitle5}</Nav.Link>}
 
-                  <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink5} >{dashTitle5}</Nav.Link>
-
-                  <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink6} >{dashTitle6}</Nav.Link>
+                  {dashLink6 && <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink6} >{dashTitle6}</Nav.Link>}
 
                   {/* <a href="#" className="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
                     <span>Student Home</span>
