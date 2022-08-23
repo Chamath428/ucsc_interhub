@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import './topNavStyles.css'
+import { Link } from "react-router-dom";
+import Nav from 'react-bootstrap/Nav';
+import DashboardButton from '../DashboardButton/dashboardButton';
+import InfoBtn from '../../Buttons/outlineBtn';
 
 class TopNav extends Component {
     render() { 
@@ -32,6 +36,7 @@ class TopNav extends Component {
 
            <ul className="navbar-nav ms-auto d-flex flex-row">
 
+          
            <li className="nav-item dropdown">
           <a
              className="nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
@@ -49,6 +54,8 @@ class TopNav extends Component {
                  loading="lazy"
                  />
           </a>
+
+
           <ul
               className="dropdown-menu dropdown-menu-end"
               aria-labelledby="navbarDropdownMenuLink"
@@ -58,6 +65,8 @@ class TopNav extends Component {
             <li><a className="dropdown-item" href="#">Logout</a></li>
           </ul>
         </li>
+
+        <Nav.Link className='p-0' as={Link} to="/"> <InfoBtn text={'Log Out'}></InfoBtn></Nav.Link>
 
            </ul>
      
