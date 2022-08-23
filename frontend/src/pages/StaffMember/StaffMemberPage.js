@@ -24,24 +24,35 @@ return(
     <div className="App">
 
         <SideBar
-            dashTitle1='Dashboard' dashLink1='Staff/Home'
-            dashTitle2='Students' dashLink2='Staff/Students'
-            dashTitle3='Company' dashLink3='Staff/Company'
-            dashTitle4='Advertisement' dashLink4='Staff/Advertisement'
-            dashTitle5='Progress Report' dashLink5='Staff/Reg-organization'
+        
+            dashTitle1='Dashboard' dashLink1='Staff/'
+            dashTitle2='Add Students' dashLink2='Staff/Add-students'
+            dashTitle3='Company Visits' dashLink3='Staff/Company-visit'
+            dashTitle4='New Organization' dashLink4='Staff/New-organization'
+            dashTitle5='Register Organization' dashLink5='Staff/Reg-organization'
+            dashTitle6='Student Selection' dashLink6='Staff/Student-selections'
+
         ></SideBar>
 
-        <TopNav></TopNav>
+        <TopNav headerLink='Staff'></TopNav>
     
         <main>
             <div className='container pt-5'>
 
-                <Route path="/Staff/Home" component={StaffMemberHome} />
-                <Route path="/Staff/Students" component={StaffMemberManageStudents} />
-                <Route path="/Staff/Company" component={StaffMemberManageCompany} />
-                <Route path="/Staff/Advertisement" component={StaffMemberAdvertisements} />
+                <Route exact path="/Staff" component={StaffMemberHome} />
 
-                <Route path="*" component={NotFound} />
+                <Route exact path="/Staff/Add-students" component={SMAddStudents} />
+
+                <Route exact path="/Staff/Company-visit" component={SMCompanyVisit} />
+
+                <Route exact path="/Staff/New-organization" component={SMNewOrganization} />
+
+                <Route exact path="/Staff/Reg-organization" component={SMRegisteredOrganization} />
+
+                <Route exact path="/Staff/Student-selections" component={StaffMemberStudents} />
+            
+                {/* <Route path="*" component={NotFound} /> */}
+
 
             </div>  
         </main>
