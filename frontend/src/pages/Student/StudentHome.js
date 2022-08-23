@@ -15,8 +15,8 @@ import AnnouncementCard from '../../component/Cards/announcementCard';
 const StudentHome = () => {  
 return (
 
-        <>
-        <div className='container pt-5'>
+        <div className='contain mt-5 ms-5' style={{width :'90%'}}>
+        <div className='container'>
 
     <h3>Student Home</h3>
 
@@ -51,8 +51,8 @@ return (
         <AnnouncementCard Header='Posted at: 3.00 pm | 01.08.2022' Title='All Students are required to submit the evaluations reports by 9th of August' Text='lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester.' Button='View More'></AnnouncementCard>
 
         </div>
-    </Container></>
-    
+    </Container>
+    </div>
         
   );
 }

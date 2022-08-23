@@ -12,10 +12,6 @@
     }
   }
 
-.addstudent{
-    margin-left:70%;
-    height: fit-content;
-}
 .searchicon{
     color:white;
     background-color: #0d6efd;
@@ -52,20 +48,25 @@
 }
 
 
-.my-custom-scrollbar {
+.my-custom-scrollbar-supervisor {
 
     margin-top: 3%;
     width: 100%;
     position: relative;
-    height: 40vh;
+    height: 30vh;
     overflow: auto;
 }
 
-.ManageStudentTab{
+.ManageSupervisorTab{
     font-weight: bold ;
     /* background-color:darkgrey; */
 }
+.AssignSupervisorSearch{
+    align-items: center;
 
-.StudentTab{
-    
 }
+.assignto{
+    text-align: center;
+}
+
+
