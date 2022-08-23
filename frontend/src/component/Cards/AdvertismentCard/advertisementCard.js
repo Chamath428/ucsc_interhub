@@ -3,6 +3,9 @@ import {Container ,Card, Row,Col, Button} from 'react-bootstrap';
 import PrimaryBtn from '../../Buttons/primaryBtn';
 import InfoBtn from '../../Buttons/outlineBtn';
 import DashboardButton from '../../Dashboard/DashboardButton/dashboardButton';
+import Nav from 'react-bootstrap/Nav';
+import { Link } from "react-router-dom";
+
 
 import './advertisementCard.css';
 
@@ -23,8 +26,10 @@ function AdvertisementCard(props) {
               </Card.Text>
               <div className="ButtonSet">
                  {/* <Button className="button1 me-3" variant='outline-primary'>Bookmark</Button> */}
-                  <DashboardButton inside={'View more'}></DashboardButton>
-                 
+                  {/* <DashboardButton inside={'View more'}></DashboardButton> */}
+
+                  <Nav.Link as={Link} to="/Student/View-advertisement"> <DashboardButton inside={'View More'}></DashboardButton></Nav.Link>
+ 
                   { /*<Button className="button1" variant="primary">View more</Button> */}
               </div>
               </Card.Body> 
