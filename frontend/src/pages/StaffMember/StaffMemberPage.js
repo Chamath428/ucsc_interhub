@@ -13,11 +13,9 @@ import {
 
 import NotFound from "../notFound";
 import StaffMemberHome from "./staffMemberHome";
-import SMAddStudents from "./sMAddStudents";
-import SMCompanyVisit from "./sMCompanyVisit";
-import SMNewOrganization from "./sMNewOrganization";
-import SMRegisteredOrganization from "./sMRegisteredOrganization";
-import StaffMemberStudents from "./sMStudenSelection";
+import StaffMemberManageStudents from "./StaffMemberManageStudents";
+import StaffMemberManageCompany from "./staffMemberCompany";
+import StaffMemberAdvertisements from "./sMAdvertisments";
 
 function StaffPage(){
 
@@ -27,11 +25,10 @@ return(
 
         <SideBar
             dashTitle1='Dashboard' dashLink1='Staff/Home'
-            dashTitle2='Add Students' dashLink2='Staff/Add-students'
-            dashTitle3='Company Visits' dashLink3='Staff/Company-visit'
-            dashTitle4='New Organization' dashLink4='Staff/New-organization'
-            dashTitle5='Register Organization' dashLink5='Staff/Reg-organization'
-            dashTitle6='Student Selection' dashLink6='Staff/Student-selections'
+            dashTitle2='Students' dashLink2='Staff/Students'
+            dashTitle3='Company' dashLink3='Staff/Company'
+            dashTitle4='Advertisement' dashLink4='Staff/Advertisement'
+            dashTitle5='Progress Report' dashLink5='Staff/Reg-organization'
         ></SideBar>
 
         <TopNav></TopNav>
@@ -40,18 +37,9 @@ return(
             <div className='container pt-5'>
 
                 <Route path="/Staff/Home" component={StaffMemberHome} />
-
-                <Route path="/Staff/Add-students" component={SMAddStudents} />
-
-                <Route path="/Staff/Company-visit" component={SMCompanyVisit} />
-
-                <Route path="/Staff/New-organization" component={SMNewOrganization} />
-
-                <Route path="/Staff/Reg-organization" component={SMRegisteredOrganization} />
-
-                <Route path="/Staff/Student-selections" component={StaffMemberStudents} />
-
-                
+                <Route path="/Staff/Students" component={StaffMemberManageStudents} />
+                <Route path="/Staff/Company" component={StaffMemberManageCompany} />
+                <Route path="/Staff/Advertisement" component={StaffMemberAdvertisements} />
 
                 <Route path="*" component={NotFound} />
 
