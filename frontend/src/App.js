@@ -64,6 +64,7 @@ import CompanyApplicants from './pages/Company/companyApplicants';
 import CompanyManageStudents from './pages/Company/companyManageSupervisor';
 import CompanyManageSupervisors from './pages/Company/companyManageSupervisor';
 import CompanyScheduleInterview from './pages/Company/companyScheduleInterview';
+import CreateAdvertisement from './pages/Company/companyCreateAdvertisement';
 import PageRouting from './routes';
 
 
@@ -102,6 +103,7 @@ function App() {
     <div className="App">
       
           <PageRouting/>
+          {/* <CreateAdvertisement></CreateAdvertisement> */}
           {/* <CompanyScheduleInterview></CompanyScheduleInterview> */}
           {/* <StudentHome></StudentHome> */}
           {/* <StudentAnnouncement></StudentAnnouncement> */}
