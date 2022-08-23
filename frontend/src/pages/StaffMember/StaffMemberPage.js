@@ -26,7 +26,7 @@ return(
     <div className="App">
 
         <SideBar
-            dashTitle1='Dashboard' dashLink1='Staff/Home'
+            dashTitle1='Dashboard' dashLink1='Staff/'
             dashTitle2='Add Students' dashLink2='Staff/Add-students'
             dashTitle3='Company Visits' dashLink3='Staff/Company-visit'
             dashTitle4='New Organization' dashLink4='Staff/New-organization'
@@ -34,26 +34,24 @@ return(
             dashTitle6='Student Selection' dashLink6='Staff/Student-selections'
         ></SideBar>
 
-        <TopNav></TopNav>
+        <TopNav headerLink='Staff'></TopNav>
     
         <main>
             <div className='container pt-5'>
 
-                <Route path="/Staff/Home" component={StaffMemberHome} />
+                <Route exact path="/Staff" component={StaffMemberHome} />
 
-                <Route path="/Staff/Add-students" component={SMAddStudents} />
+                <Route exact path="/Staff/Add-students" component={SMAddStudents} />
 
-                <Route path="/Staff/Company-visit" component={SMCompanyVisit} />
+                <Route exact path="/Staff/Company-visit" component={SMCompanyVisit} />
 
-                <Route path="/Staff/New-organization" component={SMNewOrganization} />
+                <Route exact path="/Staff/New-organization" component={SMNewOrganization} />
 
-                <Route path="/Staff/Reg-organization" component={SMRegisteredOrganization} />
+                <Route exact path="/Staff/Reg-organization" component={SMRegisteredOrganization} />
 
-                <Route path="/Staff/Student-selections" component={StaffMemberStudents} />
-
-                
-
-                <Route path="*" component={NotFound} />
+                <Route exact path="/Staff/Student-selections" component={StaffMemberStudents} />
+            
+                {/* <Route path="*" component={NotFound} /> */}
 
             </div>  
         </main>
