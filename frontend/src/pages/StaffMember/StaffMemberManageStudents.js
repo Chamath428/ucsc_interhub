@@ -6,6 +6,8 @@ import TableView from '../../component/Dashboard/Table/tableView';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
+import Nav from 'react-bootstrap/Nav';
+import { Link } from "react-router-dom";
 
 import '../../styles/sMStudent.css';    
 
@@ -26,7 +28,10 @@ class StaffMemberManageStudents extends Component {
                             <h3>Manage Students</h3> 
                         </div>
                         <div className='addstudent d-flex flex-row-reverse mb-1'>
-                            <DashboardButton inside={'+ Add Student'}></DashboardButton>
+                            {/* <DashboardButton inside={'+ Add Student'}></DashboardButton> */}
+
+                            <Nav.Link as={Link} to="/Staff/Add-student"> <DashboardButton inside={'+ Add Student'}></DashboardButton></Nav.Link>
+
                         </div>
                         <Container className="mt-2">
                         <Form className='container'>
