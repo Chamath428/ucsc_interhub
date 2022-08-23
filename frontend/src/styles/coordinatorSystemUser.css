@@ -80,3 +80,12 @@
 
 }
 
+@media screen and (max-width:990px) {
+    .SystemUserRight{
+        display: none;
+    }
+    .SystemUserLeft{
+        width: 100%;
+    }
+    
+}
