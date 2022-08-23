@@ -14,6 +14,7 @@ import CompanyApplicants from "./companyApplicants";
 import CompanyAdvertisements from "./companyAdvertisement";
 import CompanyManageSupervisors from "./companyManageSupervisor";
 import NotFound from "../notFound";
+import StudentHome from "../Student/StudentHome";
 
 function CompanyBase(){
 
@@ -22,10 +23,10 @@ return(
     <div className="App">
 
         <SideBar
-            dashTitle1='Dashboard' dashLink1='Company/'
-            dashTitle2='Applicants' dashLink2='/Company/Applicants'
-            dashTitle3='Supervisors' dashLink3='="/Company/Supervisors'
-            dashTitle4='Advertisement' dashLink4='/Company/Advertisement'
+            dashTitle1='Dashboard' dashLink1='Company'
+            dashTitle2='Applicants' dashLink2='Company/ApplicantsCompany'
+            dashTitle3='Supervisors' dashLink3='Company/Supervisors'
+            dashTitle4='Advertisement' dashLink4='Company/Advertisement'
         ></SideBar>
 
         <TopNav headerLink='Company'></TopNav>
@@ -35,14 +36,11 @@ return(
 
                 <Route exact path="/Company" component={StudentHome} />
 
-                <Route exact path="/Company" component={StudentHome} />
-                <Route path="/Company/Applicants" component={CompanyApplicants} />
+                <Route exact path="/Company/ApplicantsCompany" component={CompanyApplicants} />
 
-                <Route exact path="/Company" component={StudentHome} />
-                <Route path="/Company/Supervisors" component={CompanyManageSupervisors} />
+                <Route exact path="/Company/Supervisors" component={CompanyManageSupervisors} />
 
-                <Route exact path="/Company" component={StudentHome} />
-                <Route path="/Company/Advertisement" component={CompanyAdvertisements} />
+                <Route exact path="/Company/Advertisement" component={CompanyAdvertisements} />
 
             </div>  
         </main>
@@ -51,4 +49,4 @@ return(
 );
 }
 
-export default StudentBase;
+export default CompanyBase;
