@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
 import { Row,Col } from 'react-bootstrap';
@@ -6,12 +7,41 @@ import TableView from '../../component/Dashboard/Table/tableView';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
+import { URL } from '../URL';
+import { useState } from 'react';
+import axios from 'axios';
 
 import '../../styles/companyManageSuppervisors.css';
 
-class CompanyManageSupervisors extends Component {
 
-    render() {
+const CompanyManageSupervisors = () => {
+
+        const[email,setEmail] = useState("");
+        const[name,setName]=useState("");
+        const [show, setShow] = useState(false);
+        const [alertPara,setAlertPara] = useState("Supervisor added successfully!");
+        const [variant,setVariant] = useState("success");
+
+        const createSupervisor = (event)=>{
+            event.preventDefault();
+            axios.post(`${URL}/supervisor/create`,{
+                email:email,
+                name:name,
+                company_id:30
+            }).then((response)=>{showAlert(response)}).catch(function (error) {
+                if (error.response) {
+                  setAlertPara("Something went wrong when creating the supervisor!");
+                  setVariant("danger");
+                  setShow(true);
+                }})
+        }
+
+        const showAlert=(response)=>{
+            setAlertPara("Supervisor added successfully!");
+            setVariant("success");
+            setShow(true);
+           }
+
         return (
             <div className='containsupervisor mt-5 ms-5' style={{width:'90%'}}>
             <Tabs 
@@ -21,29 +51,31 @@ class CompanyManageSupervisors extends Component {
             >
                 <Tab className="SupervisorTab mt-5" eventKey="CreateSupervsor" title="Create a new supervisor account">
                 <div className='contain'>
+                        <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
+                            <Alert.Heading>{alertPara}</Alert.Heading>
+                        </Alert>
                         <div className='d-flex flex-row justify-content-sm-between '>
-
                             <h3>Create Supervisor</h3> 
                         </div>
                         
                         <Container className="mt-5">
-                        <Form className='container'>
+                        <Form className='container' onSubmit = {createSupervisor}>
                             <Row className="mb-1">
                                 <Form.Group as={Col} md controlId="formGridState">
                                     <Form.Label className="fw-bold" column sm={5}>Email Address</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter Email Address" />
+                                    <Form.Control type="text" placeholder="Enter Email Address" onChange={(event)=>{setEmail(event.target.value)}} />
                                 </Form.Group>
                                 
                                 <Form.Group as={Col} sm controlId="formGridState">
-                                    <Form.Label className="fw-bold" column sm={5}>Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter Name" />
+                                    <Form.Label className="fw-bold" column sm={5} >Name</Form.Label>
+                                    <Form.Control type="text" placeholder="Enter Name" onChange={(event)=>{setName(event.target.value)}}/>
                                 </Form.Group>   
                             </Row> 
                             <div className='mt-5 SupervisorText'>
                             By clicking on Create Account, system will send an email to the address you entered, allowing the owner of that email to login to the system as a supervisor under your company.
                             </div> 
                             <div className='suppervisorcreate d-flex flex-row-reverse mt-5 mb-1'>
-                            <DashboardButton inside='Create Account ->'></DashboardButton>
+                            <DashboardButton inside='+ Create Account'></DashboardButton>
                             </div>
                         </Form>    
                     
@@ -76,7 +108,7 @@ class CompanyManageSupervisors extends Component {
                                 </Form.Group>
                             </Row>
                             <div className='suppervisorcreate d-flex flex-row mt-4 mb-4'>      
-                            <DashboardButton inside={'Assign->'}></DashboardButton>
+                            <DashboardButton inside={'Assign'}></DashboardButton>
                             </div>
                        
                             <h4>Assigned Supervisors</h4>
@@ -95,7 +127,5 @@ class CompanyManageSupervisors extends Component {
             </div> 
         );
     }
-// 
-}
 
 export default CompanyManageSupervisors;
