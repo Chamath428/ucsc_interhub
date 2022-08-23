@@ -16,7 +16,7 @@ import CompanyManageSupervisors from "./companyManageSupervisor";
 import NotFound from "../notFound";
 import StudentHome from "../Student/StudentHome";
 import CompanyHome from "./companyHome";
-import CompanyScheduleInterview from "./companyScheduleInterview";
+import CompanyManageScheduleInterviews from "./companyManageScheduleInterviews";
 import CreateAdvertisement from "./companyCreateAdvertisement";
 
 function CompanyBase(){
@@ -47,7 +47,7 @@ return(
 
                 <Route exact path="/Company/Advertisement" component={CompanyAdvertisements} />
 
-                <Route exact path="/Company/Interview" component={CompanyScheduleInterview} />
+                <Route exact path="/Company/Interview" component={CompanyManageScheduleInterviews} />
 
                 <Route exact path="/Company/Create-ad" component={CreateAdvertisement} />
 
