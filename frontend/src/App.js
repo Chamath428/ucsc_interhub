@@ -62,7 +62,7 @@ import CompanyAdvertisements from './pages/Company/companyAdvertisement';
 import CompanyApplicants from './pages/Company/companyApplicants';
 import CompanyManageStudents from './pages/Company/companyManageSupervisor';
 import CompanyManageSupervisors from './pages/Company/companyManageSupervisor';
-
+import PageRouting from './routes';
 
 
 import './App.css';
@@ -96,21 +96,16 @@ function App() {
   // };
 
   return (
-    
-    <div className="App" id="outer-container">
-      <SideBar></SideBar>
 
-      {/* <SideBarExpanded setSideNavExpanded={setSideNavExpanded}
-          sideNavExpanded={sideNavExpanded} /> */}
-      <TopNav></TopNav>
-      <main>
-        <div className='container pt-5'>
+    <div className="App">
+      
+          <PageRouting/>
           {/* <StudentHome></StudentHome> */}
           {/* <StudentAnnouncement></StudentAnnouncement> */}
           {/* <StudentInternship></StudentInternship> */}
           {/* <StudentInterviews></StudentInterviews> */}
 
-          <CoordinatorHome></CoordinatorHome>
+          {/* <CoordinatorHome></CoordinatorHome> */}
           {/* <CoordinatorCompany></CoordinatorCompany> */}
           {/* <CoordinatorCompanyProfileDetails></CoordinatorCompanyProfileDetails> */}
           {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
@@ -140,21 +135,13 @@ function App() {
           {/* <SMCompanyVisit></SMCompanyVisit> */}
 
 
-          <CompanyManageSupervisors></CompanyManageSupervisors>
+          {/* <CompanyManageSupervisors></CompanyManageSupervisors> */}
+
 
           {/* <SupervisorHome></SupervisorHome> */}
          
        
         </div>
-      </main>
-
-       {/* <NavBarOnlyLogo></NavBarOnlyLogo>
-    <Signup></Signup> */}
-    {/*<Login></Login>
-    <Footer></Footer> */}
-      {/* <HomePage></HomePage> */}
-    </div>
-
   );
 }
 
