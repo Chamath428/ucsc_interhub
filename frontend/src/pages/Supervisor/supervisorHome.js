@@ -13,9 +13,11 @@ class SupervisorHome extends Component {
                 <Row>
                 <Row><h1>Dashboard</h1></Row>
                 <Row>
-                    <InfoCard title={"Total Interns"} count={"3"}></InfoCard>
-                    <InfoCard title={"Progress Reports"} count={"4"}></InfoCard>
-                    <InfoCard title={"Week"} count={"6"}></InfoCard>
+                    <InfoCard title={"Total Interns"} count={"3"} cardWidth="4" icon='person-plus-fill'></InfoCard>
+                    
+                    <InfoCard title={"Progress Reports"} count={"4"} cardWidth="4" icon='flag-fill'></InfoCard>
+
+                    <InfoCard title={"Week"} count={"6"} cardWidth="4" icon='calendar-week-fill'></InfoCard>
                 </Row>
                 </Row>
                 

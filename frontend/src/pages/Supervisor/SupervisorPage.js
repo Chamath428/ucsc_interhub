@@ -22,24 +22,24 @@ return(
     <div className="App">
 
         <SideBar
-            dashTitle1='Dashboard' dashLink1='Supervisor/Home'
+            dashTitle1='Dashboard' dashLink1='Supervisor'
             dashTitle2='Interns' dashLink2='Supervisor/Interns'
             dashTitle3='Reporting' dashLink3='Supervisor/Progress-Reports'
             
         ></SideBar>
 
-        <TopNav></TopNav>
+        <TopNav headerLink='Supervisor'></TopNav>
     
         <main>
             <div className='container pt-5'>
 
-                <Route path="/Supervisor/Home" component={SupervisorHome} />
+                <Route exact path="/Supervisor" component={SupervisorHome} />
 
-                <Route path="/Supervisor/Interns" component={supervisorAssignInterns} />
+                <Route exact path="/Supervisor/Interns" component={supervisorAssignInterns} />
 
-                <Route path="/Supervisor/Progress-Reports" component={SupervisorProgressReports} />
+                <Route exact path="/Supervisor/Progress-Reports" component={SupervisorProgressReports} />
 
-                <Route path="*" component={NotFound} />
+                {/* <Route path="*" component={NotFound} /> */}
 
             </div>  
         </main>

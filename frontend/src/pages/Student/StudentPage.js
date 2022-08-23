@@ -16,6 +16,8 @@ import StudentInternship from "./StudentInternship";
 import StudentProfile from "./StudentProfile";
 import StudentEditProfile from "./StudentSettings";
 import NotFound from "../notFound";
+import StaffMemberAdvertisements from "../StaffMember/sMAdvertisments";
+import ViewAdvertisement from "../Company/companyAdvertisementPreview";
 
 function StudentBase(){
 
@@ -25,10 +27,11 @@ return(
 
         <SideBar
             dashTitle1='Dashboard' dashLink1='Student/'
-            dashTitle2='Internship' dashLink2='Student/Internship'
-            dashTitle3='Interviews' dashLink3='Student/Interviews'
-            dashTitle4='My Profile' dashLink4='Student/Profile'
-            dashTitle5='Edit Profile' dashLink5='Student/Edit-Profile'
+            dashTitle3='Internship' dashLink3='Student/Internship'
+            dashTitle4='Interviews' dashLink4='Student/Interviews'
+            dashTitle5='My Profile' dashLink5='Student/Profile'
+            dashTitle6='Edit Profile' dashLink6='Student/Edit-Profile'
+            dashTitle2='Advertisements' dashLink2='Student/Advertisement'
         ></SideBar>
 
         <TopNav headerLink='Student'></TopNav>
@@ -45,6 +48,11 @@ return(
                 <Route exact path="/Student/Profile" component={StudentProfile} />
 
                 <Route exact path="/Student/Edit-Profile" component={StudentEditProfile} />
+
+                <Route exact path="/Student/Advertisement" component={StaffMemberAdvertisements} />
+
+                <Route exact path="/Student/View-advertisement" component={ViewAdvertisement} />
+
 
                 {/* <Route path="*" component={NotFound} /> */}
 
