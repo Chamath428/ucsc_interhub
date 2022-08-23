@@ -13,9 +13,11 @@ import {
 
 import NotFound from "../notFound";
 import StaffMemberHome from "./staffMemberHome";
-import StaffMemberManageStudents from "./StaffMemberManageStudents";
-import StaffMemberManageCompany from "./staffMemberCompany";
-import StaffMemberAdvertisements from "./sMAdvertisments";
+import SMAddStudents from "./sMAddStudents";
+import SMCompanyVisit from "./sMCompanyVisit";
+import SMNewOrganization from "./sMNewOrganization";
+import SMRegisteredOrganization from "./sMRegisteredOrganization";
+import StaffMemberStudents from "./sMStudenSelection";
 
 function StaffPage(){
 

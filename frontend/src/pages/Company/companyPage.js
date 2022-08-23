@@ -44,7 +44,6 @@ return(
                 <Route exact path="/Company" component={StudentHome} />
                 <Route path="/Company/Advertisement" component={CompanyAdvertisements} />
 
-
             </div>  
         </main>
 
