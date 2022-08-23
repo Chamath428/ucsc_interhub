@@ -40,10 +40,10 @@ return(
         <SideBar
 
             dashTitle1='Dashboard' dashLink1='Coordinator/'
-            dashTitle2='Companies' dashLink2='Coordinator/Student'
-            dashTitle3='Students' dashLink3='Coordinator/Company'
-            dashTitle4='Announcement' dashLink4='Coordinator/System-User'
-            dashTitle5='Settings' dashLink5='Coordinator/Announcement'
+            dashTitle2='Student' dashLink2='Coordinator/Student'
+            dashTitle3='Company' dashLink3='Coordinator/Company'
+            dashTitle4='Manage Staff' dashLink4='Coordinator/System-User'
+            dashTitle5='Announcement' dashLink5='Coordinator/Announcement'
 
 
         ></SideBar>
@@ -55,13 +55,13 @@ return(
             
                 <Route exact path="/Coordinator" component={CoordinatorHome} />
 
-                <Route exact path="/Coordinator/Student" component={StaffMemberStudents} />
+                <Route exact path="/Coordinator/Student" component={StaffMemberManageStudents} />
 
-                <Route exact path="/Coordinator/Company" component={CoordinatorCompany} />
+                <Route exact path="/Coordinator/Company" component={StaffMemberManageCompany} />
 
-                <Route exact path="/Coordinator/System-User" component={CoordinatorUsersSetting} /> 
+                <Route exact path="/Coordinator/System-User" component={CoordinatorSystemUsers} /> 
 
-                <Route exact path="/Coordinator/Announcement" component={CoordinatorAddAnnouncements} />
+                <Route exact path="/Coordinator/Announcement" component={CoordinatorAnnouncements} />
 
                 {/* <Route path="*" component={NotFound} /> */}
 
