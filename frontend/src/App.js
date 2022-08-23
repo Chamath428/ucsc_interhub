@@ -3,7 +3,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import HomePage from './pages/homePage';
 import HomeNavBar from './component/homepage/HomeNavBar/homeNavBar';
+
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// import React from "react";
+
+
+
 import NavBarOnlyLogo from './component/homepage/NavBarOnlyLogo/navBarOnlyLogo';
+
 import Login from './pages/login';
 import Signup from './pages/signup';
 import Dashboard from './pages/Dashboard';
@@ -34,6 +43,7 @@ import SupervisorHome from './pages/Supervisor/supervisorHome';
 
 
 import SideBar from './component/Dashboard/SideBar/sideBar';
+// import SideBarExpanded from './component/Dashboard/SideBar/sideBarExpanded';
 import TopNav from './component/Dashboard/TopNav/topNav';
 
 
@@ -52,25 +62,50 @@ import CompanyAdvertisements from './pages/Company/companyAdvertisement';
 import CompanyApplicants from './pages/Company/companyApplicants';
 import CompanyManageStudents from './pages/Company/companyManageSupervisor';
 import CompanyManageSupervisors from './pages/Company/companyManageSupervisor';
-
+import PageRouting from './routes';
 
 
 import './App.css';
 
 function App() {
+
+  // const [sideNavExpanded, setSideNavExpanded] = React.useState(true);
+
+  // function handleResize() {
+
+  //   if (window.innerWidth <= 1005) {
+  //     setSideNavExpanded(false);
+
+
+  //   }
+  // }
+
+  // React.useEffect(() => {
+  //   window.addEventListener("resize", handleResize);
+
+  //   handleResize(); 
+
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []); 
+
+  // const contentStyle = {
+  //   marginLeft: sideNavExpanded ? "250px" : "70px", 
+  //   transition: "margin 0.2s ease"
+  // };
+
   return (
+
     <div className="App">
-      <SMAddStudents></SMAddStudents>
-      {/* <SideBar></SideBar>
-      <TopNav></TopNav>
-      <main>
-        <div className='container pt-5'>
+      
+          <PageRouting/>
           {/* <StudentHome></StudentHome> */}
           {/* <StudentAnnouncement></StudentAnnouncement> */}
           {/* <StudentInternship></StudentInternship> */}
           {/* <StudentInterviews></StudentInterviews> */}
 
-          {/* <CoordinatorHome></CoordinatorHome> */}
+          <CoordinatorHome></CoordinatorHome>
           {/* <CoordinatorCompany></CoordinatorCompany> */}
           {/* <CoordinatorCompanyProfileDetails></CoordinatorCompanyProfileDetails> */}
           {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
@@ -86,6 +121,7 @@ function App() {
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
           {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
 
+
           {/* <SMAddStudents></SMAddStudents> */}
           {/* <StaffMemberAdvertisements></StaffMemberAdvertisements> */}
           {/* <StaffMemberManageCompany></StaffMemberManageCompany> */}
@@ -93,21 +129,19 @@ function App() {
           {/* <StaffMemberHome></StaffMemberHome> */}
           {/* <StaffMemberManageStudents></StaffMemberManageStudents> */}
 
+          {/* <StaffMemberManageCompany></StaffMemberManageCompany> */}
+
+
+          {/* <SMCompanyVisit></SMCompanyVisit> */}
+
+
           {/* <CompanyManageSupervisors></CompanyManageSupervisors> */}
+
 
           {/* <SupervisorHome></SupervisorHome> */}
          
        
         </div>
-      </main> */}
-
-       {/* <NavBarOnlyLogo></NavBarOnlyLogo>
-    <Signup></Signup> */}
-    {/*<Login></Login>
-    <Footer></Footer> */}
-      {/* <HomePage></HomePage> */}
-    </div>
-
   );
 }
 

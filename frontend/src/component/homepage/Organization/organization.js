@@ -4,6 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Organization from '../../../assets/images/organization.jpg'
 import PrimaryButton from '../PrimaryButton/primaryButtonClass';
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 class OrganizationComponent extends Component {
 
@@ -22,7 +24,7 @@ class OrganizationComponent extends Component {
                     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                     culpa qui officia deserunt mollit anim id est laborum.</p>
 
-                    <PrimaryButton inside="Register as an Organization"></PrimaryButton>
+                    <Button href="\pages\signup.js" inside="Register as an Organization"></Button>
 
                     </Col>
                     <Col lg="5">
