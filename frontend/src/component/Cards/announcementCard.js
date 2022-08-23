@@ -10,7 +10,9 @@ function AnnouncementCard(props) {
         <Card.Text>
           {props.Text}
         </Card.Text>
+        <div className='d-flex flex-row-reverse'>
         <Button variant="primary">{props.Button}</Button>
+        </div>
       </Card.Body>
     </Card>
   );
