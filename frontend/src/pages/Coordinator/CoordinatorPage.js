@@ -23,6 +23,7 @@ import CoordinatorRegisteredCompanyProfile from "./CoordinatorRegisteredCompanyP
 import CoordinatorStudent from "./CoordinatorStudent";
 import CoordinatorUsersSetting from "./CoordinatorUsersSetting";
 import CoordinatorViewAnnounsments from "./CoordinatorViewAnnounsments";
+import StaffMemberStudents from "../StaffMember/sMStudenSelection";
 
 function CoordinatorPage(){
 
@@ -32,45 +33,29 @@ return(
 
         <SideBar
 
-            dashTitle1='Dashboard' dashLink1='Coordinator/Home'
-            dashTitle2='Companies' dashLink2='Coordinator/Manage-companies'
-            dashTitle3='Students' dashLink3='Coordinator/Student-list'
-            dashTitle4='Announcement' dashLink4='Coordinator/Add-announcement'
-            dashTitle5='Settings' dashLink5='Coordinator/Settings'
+            dashTitle1='Dashboard' dashLink1='Coordinator/'
+            dashTitle2='Companies' dashLink2='Coordinator/Student'
+            dashTitle3='Students' dashLink3='Coordinator/Company'
+            dashTitle4='Announcement' dashLink4='Coordinator/System User'
+            dashTitle5='Settings' dashLink5='Coordinator/Announcement'
 
         ></SideBar>
 
-        <TopNav></TopNav>
+        <TopNav headerLink='Coordinator'></TopNav>
     
         <main>
             <div className='container pt-5'>
-{/* done */}
-                <Route path="/Coordinator/Add-announcement" component={CoordinatorAddAnnouncements} />
+                <Route exact path="/Coordinator" component={CoordinatorHome} />
 
-                <Route path="/Coordinator/Add-student" component={CoordinatorStudentBulkList} />
+                <Route exact path="/Coordinator/Student" component={StaffMemberStudents} />
 
-                <Route path="/Coordinator/Add-staff" component={CoordinatorAddUserSetting} />
+                <Route exact path="/Coordinator/Company" component={CoordinatorCompany} />
 
-{/* done */}
-                <Route path="/Coordinator/Manage-companies" component={CoordinatorCompany} /> 
+                <Route exact path="/Coordinator/System User" component={CoordinatorUsersSetting} /> 
 
-                <Route path="/Coordinator/Manage-pending-companies" component={CoordinatorCompanyPending} />
+                <Route exact path="/Coordinator/Announcement" component={CoordinatorAddAnnouncements} />
 
-                <Route path="/Coordinator/Company-profile" component={CoordinatorCompanyProfileDetails} />
-
-{/* done */}
-                <Route path="/Coordinator/Home" component={CoordinatorHome} />
-
-                <Route path="/Coordinator/Reg-company-profile" component={CoordinatorRegisteredCompanyProfile} />
-
-{/* done */}
-                <Route path="/Coordinator/Student-list" component={CoordinatorStudent} />
-{/* done */}
-                <Route path="/Coordinator/Settings" component={CoordinatorUsersSetting} />
-
-                <Route path="/Coordinator/Announcements" component={CoordinatorViewAnnounsments} />
-
-                <Route path="*" component={NotFound} />
+                {/* <Route path="*" component={NotFound} /> */}
 
             </div>  
         </main>
