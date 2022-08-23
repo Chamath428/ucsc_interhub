@@ -27,8 +27,8 @@ import StaffMemberStudents from "../StaffMember/sMStudenSelection";
 
 import CoordinatorSystemUsers from "./coordinatorSystemUsers";
 import CoordinatorAnnouncements from "./coordinatorAnnouncements";
-import StaffMemberManageStudents from "../StaffMember/StaffMemberManageStudents";
-import StaffMemberManageCompany from "../StaffMember/staffMemberCompany";
+import CoordinatorManageCompany from "./coordinatorManageCompany";
+import CoordinatorManageStudents from "./coordinatorManageStudents";
 
 
 function CoordinatorPage(){
@@ -55,9 +55,9 @@ return(
             
                 <Route exact path="/Coordinator" component={CoordinatorHome} />
 
-                <Route exact path="/Coordinator/Student" component={StaffMemberManageStudents} />
+                <Route exact path="/Coordinator/Student" component={CoordinatorManageStudents} />
 
-                <Route exact path="/Coordinator/Company" component={StaffMemberManageCompany} />
+                <Route exact path="/Coordinator/Company" component={CoordinatorManageCompany} />
 
                 <Route exact path="/Coordinator/System-User" component={CoordinatorSystemUsers} /> 
 
