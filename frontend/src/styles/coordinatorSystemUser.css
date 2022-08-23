@@ -71,6 +71,9 @@
     width:50%;
     height: 100%;
     float: right !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .addusercontain{

@@ -89,10 +89,10 @@ class CoordinatorSystemUsers extends Component {
                 <div className='SystemUserRight mt-5 ms-5 ps-5'>
                     <Row className='mb-5 mt-5'>
                     
-                        <InfoCard title={"Total Registered Students in this Year"} count={"275"} icon={"people-fill"} cardWidth={10}></InfoCard>
+                        <InfoCard title={"No of Active Staff Memners"} count={"27"} icon={"people-fill"} cardWidth={12}></InfoCard>
                     </Row>
                     <Row className='mb-5'>
-                        <InfoCard title={"Total Registered Students in Previous Year"} count={"260"} icon={"people-fill"} cardWidth={10}></InfoCard>
+                        <InfoCard title={"No of Active Coordinators"} count={"15"} icon={"people-fill"} cardWidth={12}></InfoCard>
                     </Row>
                     
 
