@@ -7,6 +7,8 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
 import InfoCard from '../../component/Dashboard/InfoCard/infoCard';
+import TextEditor from '../../component/TextEditor/textEditor';
+
 
 import '../../styles/coordinatorAnnouncements.css';    
 
@@ -45,44 +47,50 @@ class CoordinatorAnnouncements extends Component {
             
                 <div className='addannouncementcontain'>
                 <div className='AnnouncementLeft'>
-                <Form>
-                    <h3>Add Announcements</h3>
+                    <h3>Announcements</h3>
+                  
+                    <Form>
 
-                    <Row className='align-item-center mt-3 g-5 mb-5'>
 
-                        <Form.Group  as={Col} md="12" controlId="formBasicAccount">
-                            <Form.Label>Account Types</Form.Label>
-                            <Form.Select>
-                                <option value="1">Staff Member</option>
-                                <option value="2">Coordinator</option>
+                        <Row className='align-item-center g-5 mt-2'>
+                            <Form.Group className="mb-4  col-sm-6" controlId="formBasicTitle" >
+                                <Form.Label>Title</Form.Label>
+                                <Form.Control type="text" placeholder="Enter title " />
+                            </Form.Group>
 
-                            </Form.Select>
-                        </Form.Group>
-                    </Row>
-                    <Row className='align-item-center g-5 mb-5'>
-                        <Form.Group  as={Col} md="6" controlId="formBasicEmail">
-                            <Form.Label>Email Address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter Email Address" />
-                        </Form.Group>
-                        <Form.Group  as={Col} md="6" controlId="formBasicName">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Name " />
-                        </Form.Group>
-                    </Row>
+                            <Form.Group className="mb-4  col-sm-6" controlId="formBasicAudience">
+                                <Form.Label>Audience</Form.Label>
+                                <Form.Select>
+                                    <option value="1">All</option>
+                                    <option value="2">Company</option>
+                                    <option value="3">Student</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </Row>
+                        <Row>
+                            <Form.Group className="mb-1" controlId="Textarea">
+                                <Form.Label>Anouncement Body</Form.Label>
+                                
+                                <div className="editor " style={{height: '40vh', borderStyle: 'outset'}}>
+                                    <TextEditor />
+                                </div>
 
-                    <Form.Group>
+                                {/* <Form.Control as="textarea" placeholder="Write your announcement" rows={5} style={{ width: '65.7%' }} /> */}
+                            </Form.Group>
+                        </Row>
 
-                        <p>By clicking on Create Account, system will send an email to the address you entered, allowing the owner of that email to login to the system as a supervisor under your company</p>
-                    </Form.Group>
 
-                    {/* <Button className="btn-setvisit mt-4 mb-4 m-1 col-sm-3 " variant="primary" type="submit">
-                        Create account  <i class="bi bi-arrow-right"></i>
-                    </Button> */}
+                        <Row className=' mt-1'>
+                            <Form.Group className="mb-3 col-sm-10" controlId="ClearBtnArea">
+                                <DashboardButton inside={"Clear"}  ></DashboardButton>
 
-                    <div className='d-flex flex-row-reverse mb-3'>
-                        <DashboardButton inside={"+ Create account" } ></DashboardButton>
-                    </div>
-                </Form>
+                            </Form.Group>
+                            <Form.Group className="mb-3 col-sm-1" controlId="PostBtnArea">
+
+                                <DashboardButton inside={"Post"} ></DashboardButton>
+                            </Form.Group>
+                        </Row>
+                    </Form>
                 </div>
                 <div className='AnnouncementRight mt-5 ms-5 ps-5'>
                     <Row className='mb-5 mt-5'>

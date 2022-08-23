@@ -34,6 +34,7 @@ import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPen
 import CoordinatorAddUserSetting from './pages/Coordinator/CoordinatorAddUserSetting';
 import CoordinatorAddAnnouncements from './pages/Coordinator/CoordinatorAddAnnouncements';
 import CoordinatorViewAnnounsments from './pages/Coordinator/CoordinatorViewAnnounsments';
+import CoordinatorAnnouncements from './pages/Coordinator/coordinatorAnnouncements';
 
 import CoordinatorRegisteredCompanyProfile from './pages/Coordinator/CoordinatorRegisteredCompanyProfile';
 import CoordinatorCompanyProfileDetails from './pages/Coordinator/CoordinatorCompanyProfileDetails';
@@ -119,6 +120,7 @@ function App() {
 
           {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>  */}
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
+          {/* <CoordinatorAnnouncements></CoordinatorAnnouncements> */}
           {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
 
 

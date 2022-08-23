@@ -21,10 +21,11 @@ import CoordinatorCompanyProfileDetails from "./CoordinatorCompanyProfileDetails
 import CoordinatorHome from "./CoordinatorHome";
 import CoordinatorRegisteredCompanyProfile from "./CoordinatorRegisteredCompanyProfile";
 import CoordinatorStudent from "./CoordinatorStudent";
-import CoordinatorUsersSetting from "./CoordinatorUsersSetting";
-import CoordinatorViewAnnounsments from "./CoordinatorViewAnnounsments";
+import CoordinatorSystemUsers from "./coordinatorSystemUsers";
+import CoordinatorAnnouncements from "./coordinatorAnnouncements";
 import StaffMemberManageStudents from "../StaffMember/StaffMemberManageStudents";
 import StaffMemberManageCompany from "../StaffMember/staffMemberCompany";
+
 
 function CoordinatorPage(){
 
@@ -53,9 +54,9 @@ return(
 
                 <Route path="/Coordinator/Company" component={StaffMemberManageCompany} />
 
-                <Route path="/Coordinator/System-user" component={CoordinatorUsersSetting} />
+                <Route path="/Coordinator/System-user" component={CoordinatorSystemUsers} />
 
-                <Route path="/Coordinator/Announcement" component={CoordinatorAddAnnouncements} /> 
+                <Route path="/Coordinator/Announcement" component={CoordinatorAnnouncements} /> 
 
                
 
