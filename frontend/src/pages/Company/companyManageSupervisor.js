@@ -50,7 +50,7 @@ const CompanyManageSupervisors = () => {
                 fill
             >
                 <Tab className="SupervisorTab mt-5" eventKey="CreateSupervsor" title="Create a New Supervisor Account">
-                <div className='contain'>
+                <div className='contain-supervisor1'>
                         <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
                             <Alert.Heading>{alertPara}</Alert.Heading>
                         </Alert>
@@ -86,11 +86,12 @@ const CompanyManageSupervisors = () => {
                 </Tab>
                 <Tab className="SupervisorTab mt-5" eventKey="ManageSupervisors" title="Manage Supervisors">
             
-                    <div className='contain'>
-                        <div className='d-flex flex-row mb-4'>
+                    <div className='contain-supervisor2'>
+                        <div className='d-flex flex-row mb-5'>
 
                         <h3>Manage Supervisors</h3>
                         </div> 
+                        <div className='ms-3 me-3'>
                             <Row className='AssignSupervisorSearch g-4'>
                                  <Form.Group as={Col} sm controlId="formBasicSearchOrganization">
                                  <Form.Label className="fw-bold" column sm={8}>Select a Supervisor</Form.Label>   
@@ -120,7 +121,7 @@ const CompanyManageSupervisors = () => {
                             </TableView>  
    
                         </div>
-
+                        </div>
 
                     </div>
                 </Tab>

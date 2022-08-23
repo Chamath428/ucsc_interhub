@@ -1,5 +1,5 @@
 import Button from 'react-bootstrap/Button';
-import { Nav } from 'react-bootstrap';
+import { Nav,Row,Col } from 'react-bootstrap';
 import Container from 'react-bootstrap/esm/Container';
 import DashboardTabs from '../../component/Dashboard/Tabs/dashboardTabs';
 import DashboardMenu from '../../component/Dashboard/Tabs/dashboardMenu';
@@ -32,20 +32,20 @@ return (
 
     </Stack>
 
-  </div><Container className='mt-5'>
+  </div>
+  <Container className='mt-5'>
+
 
       <h3>Published Advertisement</h3>
+      <div className="Advertisements mt-5 ms-5">
+        <Row as={Col} sm>       
+          <AdvertisementCard jobrole="Software Engineer" company="LSEG" logo={LsegLogo}></AdvertisementCard>
+          <AdvertisementCard jobrole="Network Engineer" company="LSEG" logo={LsegLogo}></AdvertisementCard>
+          <AdvertisementCard jobrole="DevOps Engineer" company="LSEG" logo={LsegLogo}></AdvertisementCard>
+          <AdvertisementCard jobrole="Project Manager      .." company="LSEG" logo={LsegLogo}></AdvertisementCard>
+        </Row>
+      </div>
 
-      <Stack direction="horizontal" gap={1} className='d-flex justify-content-between mt-4'>
-        
-        <AdvertisementCard jobrole="Software Engineer" company="LSEG" logo={LsegLogo}></AdvertisementCard>
-
-        <AdvertisementCard jobrole="UX/UI Developer     ." company="LSEG" logo={LsegLogo}></AdvertisementCard>
-
-        <AdvertisementCard jobrole="Project Manager      .." company="LSEG" logo={LsegLogo}></AdvertisementCard>
-       
-
-      </Stack>
 
       <div className='mt-5'>
       <h3>Announcements</h3>

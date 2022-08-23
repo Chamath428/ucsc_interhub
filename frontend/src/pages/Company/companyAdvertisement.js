@@ -16,7 +16,7 @@ class CompanyAdvertisements extends Component {
         return (
            
             <div className='contain'>
-                <div className='d-flex flex-row justify-content-sm-between mt-5 '>
+                <div className='d-flex flex-row justify-content-sm-between'>
 
                 <h3>Advertisements</h3>
                 </div> 
