@@ -18,6 +18,9 @@ import SMCompanyVisit from "./sMCompanyVisit";
 import SMNewOrganization from "./sMNewOrganization";
 import SMRegisteredOrganization from "./sMRegisteredOrganization";
 import StaffMemberStudents from "./sMStudenSelection";
+import StaffMemberManageStudents from "./StaffMemberManageStudents";
+import StaffMemberAdvertisements from "./sMAdvertisments";
+import StaffMemberManageCompany from "./staffMemberCompany";
 
 function StaffPage(){
 
@@ -28,11 +31,9 @@ return(
         <SideBar
         
             dashTitle1='Dashboard' dashLink1='Staff/'
-            dashTitle2='Add Students' dashLink2='Staff/Add-students'
-            dashTitle3='Company Visits' dashLink3='Staff/Company-visit'
-            dashTitle4='New Organization' dashLink4='Staff/New-organization'
-            dashTitle5='Register Organization' dashLink5='Staff/Reg-organization'
-            dashTitle6='Student Selection' dashLink6='Staff/Student-selections'
+            dashTitle2='Students' dashLink2='Staff/Student'
+            dashTitle3='Company' dashLink3='Staff/Company'
+            dashTitle4='Advertisement' dashLink4='Staff/Advertisement'
 
         ></SideBar>
 
@@ -43,16 +44,18 @@ return(
 
                 <Route exact path="/Staff" component={StaffMemberHome} />
 
-                <Route exact path="/Staff/Add-students" component={SMAddStudents} />
+                <Route exact path="/Staff/Student" component={StaffMemberManageStudents} />
 
-                <Route exact path="/Staff/Company-visit" component={SMCompanyVisit} />
+                <Route exact path="/Staff/Company" component={StaffMemberManageCompany} />
 
-                <Route exact path="/Staff/New-organization" component={SMNewOrganization} />
+                <Route exact path="/Staff/Advertisement" component={StaffMemberAdvertisements} />
 
-                <Route exact path="/Staff/Reg-organization" component={SMRegisteredOrganization} />
+                {/* buttons from here */}
 
-                <Route exact path="/Staff/Student-selections" component={StaffMemberStudents} />
-            
+                <Route exact path="/Staff/Add-student" component={SMAddStudents} />
+
+                <Route exact path="/Staff/Schedule-Company-Visit" component={SMCompanyVisit} />
+                
                 {/* <Route path="*" component={NotFound} /> */}
 
 
