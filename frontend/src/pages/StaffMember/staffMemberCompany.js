@@ -6,6 +6,9 @@ import TableView from '../../component/Dashboard/Table/tableView';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
+import { Link } from "react-router-dom";
+import Nav from 'react-bootstrap/Nav';
+
 
 import '../../styles/sMCompany.css';    
 
@@ -77,7 +80,9 @@ class StaffMemberManageCompany extends Component {
                             <h3>Scheduled Company Visits</h3> 
                         {/* </div> */}
                         <div className='addcompanyvisit d-flex flex-row-reverse mb-1'>
-                            <DashboardButton inside={'+ Schedule Company Visit'}></DashboardButton>
+
+                        <Nav.Link as={Link} to="/Staff/Schedule-Company-Visit"> <DashboardButton inside={'+ Schedule Company Visit'}></DashboardButton></Nav.Link>
+
                         </div>
                         <Container className="mt-2">
                         <Form className='container'>
