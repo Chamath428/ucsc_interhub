@@ -48,8 +48,8 @@ return(
 
                 {/* <Route path="*" component={NotFound} /> */}
 
-
             </div>  
+        
         </main>
 
     </div>
