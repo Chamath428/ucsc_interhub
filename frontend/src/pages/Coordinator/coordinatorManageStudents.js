@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 import '../../styles/sMStudent.css';    
 
-class StaffMemberManageStudents extends Component {
+class CoordinatorManageStudents extends Component {
 
     render() {
         return (
@@ -148,4 +148,4 @@ class StaffMemberManageStudents extends Component {
 // 
 }
 
-export default StaffMemberManageStudents;
+export default CoordinatorManageStudents;

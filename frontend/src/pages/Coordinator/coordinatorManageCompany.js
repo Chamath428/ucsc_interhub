@@ -12,7 +12,7 @@ import Nav from 'react-bootstrap/Nav';
 
 import '../../styles/sMCompany.css';    
 
-class StaffMemberManageCompany extends Component {
+class CoordinatorManageCompany extends Component {
 
     render() {
         return (
@@ -74,7 +74,7 @@ class StaffMemberManageCompany extends Component {
             </Tab>
             <Tab className="CompanyTab mt-5" eventKey="CompanyVisit" title="Company Visit">
             
-            <div className='contain1'>
+            <div className='contain'>
                         {/* <div className='d-flex flex-row justify-content-sm-between '> */}
 
                             <h3>Scheduled Company Visits</h3> 
@@ -138,4 +138,4 @@ class StaffMemberManageCompany extends Component {
 // 
 }
 
-export default StaffMemberManageCompany;
+export default CoordinatorManageCompany;
