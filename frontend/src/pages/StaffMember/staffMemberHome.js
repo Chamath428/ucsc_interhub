@@ -29,6 +29,7 @@ function StaffMemberHome() {
                             <InfoCard title={"Total Organizations"} count={"232"} icon={"building"} cardWidth={3}></InfoCard>
                             <InfoCard title={"Selected Students"} count={"25"} icon={"person-check-fill"} cardWidth={3}></InfoCard>
                             <InfoCard title={"Progress Reports"} count={"247/285"} icon={"file-earmark-text-fill"} cardWidth={3}></InfoCard>
+                            
                         </Row>
 
                     </div>

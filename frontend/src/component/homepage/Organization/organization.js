@@ -6,6 +6,9 @@ import Organization from '../../../assets/images/organization.jpg'
 import PrimaryButton from '../PrimaryButton/primaryButtonClass';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import DashboardButton from '../../Dashboard/DashboardButton/dashboardButton';
+import Nav from 'react-bootstrap/Nav';
+
 
 class OrganizationComponent extends Component {
 
@@ -24,7 +27,10 @@ class OrganizationComponent extends Component {
                     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                     culpa qui officia deserunt mollit anim id est laborum.</p>
 
-                    <Button href="\pages\signup.js" inside="Register as an Organization"></Button>
+                    {/* <Button href="\pages\signup.js" inside="Register as an Organization"></Button> */}
+
+                    <Nav.Link as={Link} to="/register"> <DashboardButton inside={'Register as an organisation'}></DashboardButton></Nav.Link>
+ 
 
                     </Col>
                     <Col lg="5">
