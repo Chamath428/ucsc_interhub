@@ -9,7 +9,7 @@ export const createStaffMember = async (req,res)=>{
 
     if(!error){
         const salt = await bcrypt.genSalt(10);
-        const hashPassword = await bcrypt.hash(req.body.password, salt); 
+        const hashPassword = await bcrypt.hash("password", salt); 
         try{           
             const staffMember = await prisma.pdc.create({
                 data:{
