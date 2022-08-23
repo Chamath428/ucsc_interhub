@@ -7,7 +7,7 @@ import HomeNavBar from './component/homepage/HomeNavBar/homeNavBar';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// import React from "react";
+import React from "react";
 
 
 
@@ -34,7 +34,8 @@ import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPen
 import CoordinatorAddUserSetting from './pages/Coordinator/CoordinatorAddUserSetting';
 import CoordinatorAddAnnouncements from './pages/Coordinator/CoordinatorAddAnnouncements';
 import CoordinatorViewAnnounsments from './pages/Coordinator/CoordinatorViewAnnounsments';
-import CoordinatorAnnouncements from './pages/Coordinator/coordinatorAnnouncements';
+import CoordinatorAnnounsments from './pages/Coordinator/coordinatorAnnouncements';
+
 
 import CoordinatorRegisteredCompanyProfile from './pages/Coordinator/CoordinatorRegisteredCompanyProfile';
 import CoordinatorCompanyProfileDetails from './pages/Coordinator/CoordinatorCompanyProfileDetails';
@@ -44,7 +45,7 @@ import SupervisorHome from './pages/Supervisor/supervisorHome';
 
 
 import SideBar from './component/Dashboard/SideBar/sideBar';
-// import SideBarExpanded from './component/Dashboard/SideBar/sideBarExpanded';
+import SideBarExpanded from './component/Dashboard/SideBar/sideBarExpanded';
 import TopNav from './component/Dashboard/TopNav/topNav';
 
 
@@ -63,7 +64,6 @@ import CompanyAdvertisements from './pages/Company/companyAdvertisement';
 import CompanyApplicants from './pages/Company/companyApplicants';
 import CompanyManageStudents from './pages/Company/companyManageSupervisor';
 import CompanyManageSupervisors from './pages/Company/companyManageSupervisor';
-import CompanyScheduleInterview from './pages/Company/companyScheduleInterview';
 import PageRouting from './routes';
 
 
@@ -71,81 +71,102 @@ import './App.css';
 
 function App() {
 
-  // const [sideNavExpanded, setSideNavExpanded] = React.useState(true);
+  const [sideNavExpanded, setSideNavExpanded] = React.useState(true);
 
-  // function handleResize() {
+  function handleResize() {
 
-  //   if (window.innerWidth <= 1005) {
-  //     setSideNavExpanded(false);
+    if (window.innerWidth <= 1005) {
+      setSideNavExpanded(false);
 
 
-  //   }
-  // }
+    }
+  }
 
-  // React.useEffect(() => {
-  //   window.addEventListener("resize", handleResize);
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResize);
 
-  //   handleResize(); 
+    handleResize();
 
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []); 
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
-  // const contentStyle = {
-  //   marginLeft: sideNavExpanded ? "250px" : "70px", 
-  //   transition: "margin 0.2s ease"
-  // };
+  const contentStyle = {
+    marginLeft: sideNavExpanded ? "250px" : "70px",
+    transition: "margin 0.2s ease"
+  };
+  const containerStyle = {
+    marginLeft: sideNavExpanded ? "0" : "-70px",
+    transition: "margin 0.2s ease"
+  };
 
   return (
 
+
     <div className="App">
-      
-          <PageRouting/>
-          {/* <CompanyScheduleInterview></CompanyScheduleInterview> */}
-          {/* <StudentHome></StudentHome> */}
-          {/* <StudentAnnouncement></StudentAnnouncement> */}
-          {/* <StudentInternship></StudentInternship> */}
-          {/* <StudentInterviews></StudentInterviews> */}
 
-          {/* <CoordinatorHome></CoordinatorHome> */}
-          {/* <CoordinatorCompany></CoordinatorCompany> */}
-          {/* <CoordinatorCompanyProfileDetails></CoordinatorCompanyProfileDetails> */}
-          {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
+      <PageRouting/>
 
-          {/* <StudentProfile></StudentProfile> */}
-
-          {/* <CoordinatorStudent></CoordinatorStudent> */}
-          {/* <CoordinatorAddStudent></CoordinatorAddStudent> */}
-          {/* <CoordinatorUsersSetting></CoordinatorUsersSetting> */}
-          {/* <CoordinatorAddUserSetting></CoordinatorAddUserSetting> */}
-
-          {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>  */}
-          {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
-          {/* <CoordinatorAnnouncements></CoordinatorAnnouncements> */}
-          {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
+      {/* <div className="App" id="outer-container">
 
 
-          {/* <SMAddStudents></SMAddStudents> */}
-          {/* <StaffMemberAdvertisements></StaffMemberAdvertisements> */}
-          {/* <StaffMemberManageCompany></StaffMemberManageCompany> */}
-          {/* <StaffMemberStudentSelections></StaffMemberStudentSelections> */}
-          {/* <StaffMemberHome></StaffMemberHome> */}
-          {/* <StaffMemberManageStudents></StaffMemberManageStudents> */}
+        <SideBarExpanded setSideNavExpanded={setSideNavExpanded}
+          sideNavExpanded={sideNavExpanded} />
 
-          {/* <StaffMemberManageCompany></StaffMemberManageCompany> */}
+          <TopNav/>
 
+        <main>
+          <div style={containerStyle} className='container pt-5'>
 
-          {/* <SMCompanyVisit></SMCompanyVisit> */}
-
-
-          {/* <CompanyManageSupervisors></CompanyManageSupervisors> */}
+          <CoordinatorAnnounsments></CoordinatorAnnounsments>
+          </div>
+        </main>
+      </div> */}
 
 
-          {/* <SupervisorHome></SupervisorHome> */}
-         
-       
-        </div>
+      {/* <StudentHome></StudentHome> */}
+      {/* <StudentAnnouncement></StudentAnnouncement> */}
+      {/* <StudentInternship></StudentInternship> */}
+      {/* <StudentInterviews></StudentInterviews> */}
+
+      {/* <CoordinatorHome></CoordinatorHome> */}
+      {/* <CoordinatorCompany></CoordinatorCompany> */}
+      {/* <CoordinatorCompanyProfileDetails></CoordinatorCompanyProfileDetails> */}
+      {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
+
+      {/* <StudentProfile></StudentProfile> */}
+
+      {/* <CoordinatorStudent></CoordinatorStudent> */}
+      {/* <CoordinatorAddStudent></CoordinatorAddStudent> */}
+      {/* <CoordinatorUsersSetting></CoordinatorUsersSetting> */}
+      {/* <CoordinatorAddUserSetting></CoordinatorAddUserSetting> */}
+
+      {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>  */}
+      {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
+      {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
+
+
+      {/* <SMAddStudents></SMAddStudents> */}
+      {/* <StaffMemberAdvertisements></StaffMemberAdvertisements> */}
+      {/* <StaffMemberManageCompany></StaffMemberManageCompany> */}
+      {/* <StaffMemberStudentSelections></StaffMemberStudentSelections> */}
+      {/* <StaffMemberHome></StaffMemberHome> */}
+      {/* <StaffMemberManageStudents></StaffMemberManageStudents> */}
+
+      {/* <StaffMemberManageCompany></StaffMemberManageCompany> */}
+
+
+      {/* <SMCompanyVisit></SMCompanyVisit> */}
+
+
+      {/* <CompanyManageSupervisors></CompanyManageSupervisors> */}
+
+
+      {/* <SupervisorHome></SupervisorHome> */}
+
+
+    </div>
   );
 }
 

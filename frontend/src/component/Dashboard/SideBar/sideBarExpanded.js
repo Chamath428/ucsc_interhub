@@ -1,94 +1,135 @@
 import React from "react";
 import SideNav, {
-    Toggle,
-    Nav,
-    NavItem,
-    NavIcon,
-    NavText
+  Toggle,
+  Nav,
+  NavItem,
+  NavIcon,
+  NavText
 } from "@trendmicro/react-sidenav";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
-import './sideBarExpanded.css';
+import "./sideBarExpanded.css"
 
 export const SideBar = ({ sideNavExpanded, setSideNavExpanded }) => {
-    return (
-        <>
+  return (
+    <>
+      <SideNav className="sideNavExpandedMain" 
+        onToggle={() => {
+          setSideNavExpanded(!sideNavExpanded);
+          
+        }}
+        expanded={sideNavExpanded}
+      >
+        <SideNav.Toggle />
+        <SideNav.Nav defaultSelected="home">
+          <NavItem eventKey="home">
+            <NavIcon>
+              <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
+            </NavIcon>
+            <NavText style={{color:'black'}}>Main dashboard</NavText>
+          </NavItem>
+          <NavItem eventKey="charts">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText style={{color:'black'}}>Webiste traffi</NavText>
 
-            <SideNav className="sideBarExpanded"
-                style={{
-                     backgroundColor: 'gray',
-                     position:'fixed',
-                     color:'blue',
-                     top: 0,
-                     left: 0,
-                     bottom: 0,
-                     boxShadow: '0 2px 2px rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%)',
-                     borderRight: '1px solid #0d6efd',
-                     zIndex:600,
-                     padding:'58px 0 0',
-                     
-                    }}
-                onToggle={() => {
-                    setSideNavExpanded(!sideNavExpanded);
-                }}
-                expanded={sideNavExpanded}
-                
-            >
-                <SideNav.Toggle />
+          </NavItem>
 
-                <SideNav.Nav defaultSelected="home">
-                    <NavItem eventKey="home">
+          <NavItem eventKey="Password">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText style={{color:'black'}}>Password</NavText>
 
-                        <NavText>Main dashboard</NavText>
-                    </NavItem>
-                    <NavItem eventKey="Webiste-traffic">
+          </NavItem>
 
-                        <NavText>Webiste traffic</NavText>
-                    </NavItem>
-                    <NavItem eventKey="Password">
+          <NavItem eventKey="Analytics">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText style={{color:'black'}}>Analytics</NavText>
 
-                        <NavText>Password</NavText>
-                    </NavItem>
-                    <NavItem eventKey="Analytics">
-
-                        <NavText>Analytics</NavText>
-                    </NavItem>
-                    <NavItem eventKey="SEO">
-
-                        <NavText>SEO</NavText>
-                    </NavItem>
-                    <NavItem eventKey="Orders">
-
-                        <NavText>Orders</NavText>
-                    </NavItem>
-                    <NavItem eventKey="International">
-
-                        <NavText>International</NavText>
-                    </NavItem>
-                    <NavItem eventKey="Partners">
-
-                        <NavText>Partners</NavText>
-                    </NavItem>
-                    <NavItem eventKey="Calendar">
-
-                        <NavText>Calendar</NavText>
-                    </NavItem>
-                    <NavItem eventKey="Users">
-
-                        <NavText>Users</NavText>
-                    </NavItem>
-                    <NavItem eventKey="Sales">
-
-                        <NavText>Sales</NavText>
-                    </NavItem>
-
-                </SideNav.Nav>
-            </SideNav>
+          </NavItem>
+          <NavItem eventKey="SEO">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText style={{color:'black'}}>SEO</NavText>
 
 
-        </>
-    );
+          </NavItem>
 
-    
+          <NavItem eventKey="Orders">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText style={{color:'black'}}>Orders</NavText>
+          </NavItem>
+          <NavItem eventKey="International">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText style={{color:'black'}}>International</NavText>
+          </NavItem>
+
+          <NavItem eventKey="Partners">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText style={{color:'black'}}>Partners</NavText>
+          </NavItem>
+          <NavItem eventKey="Partners">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText style={{color:'black'}}>Calendar</NavText>
+          </NavItem>
+          <NavItem eventKey="Users">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText style={{color:'black'}}>Users</NavText>
+          </NavItem>
+          <NavItem eventKey="Sales">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText style={{color:'black'}}>Sales</NavText>
+          </NavItem>
+        </SideNav.Nav>
+      </SideNav>
+    </>
+  );
 };
 
 export default SideBar;
