@@ -60,8 +60,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <SMAddStudents></SMAddStudents>
-      {/* <SideBar></SideBar>
+      <SideBar></SideBar>
       <TopNav></TopNav>
       <main>
         <div className='container pt-5'>
@@ -92,14 +91,15 @@ function App() {
           {/* <StaffMemberStudentSelections></StaffMemberStudentSelections> */}
           {/* <StaffMemberHome></StaffMemberHome> */}
           {/* <StaffMemberManageStudents></StaffMemberManageStudents> */}
+          {/* <SMCompanyVisit></SMCompanyVisit> */}
 
-          {/* <CompanyManageSupervisors></CompanyManageSupervisors> */}
+          <CompanyManageSupervisors></CompanyManageSupervisors>
 
           {/* <SupervisorHome></SupervisorHome> */}
          
        
         </div>
-      </main> */}
+      </main>
 
        {/* <NavBarOnlyLogo></NavBarOnlyLogo>
     <Signup></Signup> */}
