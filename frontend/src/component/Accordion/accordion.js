@@ -20,7 +20,7 @@ function AccordionItem(props) {
           
           <Row>
             <Col>
-              <Card style={{ width: '18rem' }} className='mb-4'>
+              <Card style={{ width: '18rem' }} className='card1 mb-4'>
                 <Card.Header>{props.card1heading}</Card.Header>
                 <ListGroup variant="flush">
                   <ListGroup.Item>{props.card1context}</ListGroup.Item>
@@ -30,7 +30,7 @@ function AccordionItem(props) {
             </Col>
 
             <Col>
-              <Card style={{ width: '18rem' }} className='mb-4'>
+              <Card style={{ width: '18rem' }} className='card2 mb-4'>
                 <Card.Header>{props.card2heading}</Card.Header>
                 <ListGroup variant="flush">
                   <ListGroup.Item>{props.card2context}</ListGroup.Item>
@@ -44,7 +44,7 @@ function AccordionItem(props) {
 
           <Row>
             <Col>
-              <Card style={{ width: '18rem' }} className='mb-4'>
+              <Card style={{ width: '18rem' }} className='card3 mb-4'>
                 <Card.Header>{props.card3heading}</Card.Header>
 
                 <ListGroup variant="flush">
@@ -55,7 +55,7 @@ function AccordionItem(props) {
             </Col>
 
             <Col>
-              <Card style={{ width: '18rem' }} className='mb-4'>
+              <Card style={{ width: '18rem' }} className='card4 mb-4'>
                 <Card.Header>{props.card4heading}</Card.Header>
 
                 <ListGroup variant="flush">

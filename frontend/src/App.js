@@ -34,6 +34,7 @@ import CoordinatorCompanyPending from './pages/Coordinator/CoordinatorCompanyPen
 import CoordinatorAddUserSetting from './pages/Coordinator/CoordinatorAddUserSetting';
 import CoordinatorAddAnnouncements from './pages/Coordinator/CoordinatorAddAnnouncements';
 import CoordinatorViewAnnounsments from './pages/Coordinator/CoordinatorViewAnnounsments';
+import CoordinatorAnnouncements from './pages/Coordinator/coordinatorAnnouncements';
 
 import CoordinatorRegisteredCompanyProfile from './pages/Coordinator/CoordinatorRegisteredCompanyProfile';
 import CoordinatorCompanyProfileDetails from './pages/Coordinator/CoordinatorCompanyProfileDetails';
@@ -62,6 +63,8 @@ import CompanyAdvertisements from './pages/Company/companyAdvertisement';
 import CompanyApplicants from './pages/Company/companyApplicants';
 import CompanyManageStudents from './pages/Company/companyManageSupervisor';
 import CompanyManageSupervisors from './pages/Company/companyManageSupervisor';
+import CompanyScheduleInterview from './pages/Company/companyScheduleInterview';
+import CreateAdvertisement from './pages/Company/companyCreateAdvertisement';
 import PageRouting from './routes';
 
 
@@ -100,12 +103,14 @@ function App() {
     <div className="App">
       
           <PageRouting/>
+          {/* <CreateAdvertisement></CreateAdvertisement> */}
+          {/* <CompanyScheduleInterview></CompanyScheduleInterview> */}
           {/* <StudentHome></StudentHome> */}
           {/* <StudentAnnouncement></StudentAnnouncement> */}
           {/* <StudentInternship></StudentInternship> */}
           {/* <StudentInterviews></StudentInterviews> */}
 
-          <CoordinatorHome></CoordinatorHome>
+          {/* <CoordinatorHome></CoordinatorHome> */}
           {/* <CoordinatorCompany></CoordinatorCompany> */}
           {/* <CoordinatorCompanyProfileDetails></CoordinatorCompanyProfileDetails> */}
           {/* <CoordinatorCompanyPending></CoordinatorCompanyPending> */}
@@ -119,6 +124,7 @@ function App() {
 
           {/* <CoordinatorAddAnnouncements></CoordinatorAddAnnouncements>  */}
           {/* <CoordinatorViewAnnounsments></CoordinatorViewAnnounsments> */}
+          {/* <CoordinatorAnnouncements></CoordinatorAnnouncements> */}
           {/* <CoordinatorRegisteredCompanyProfile></CoordinatorRegisteredCompanyProfile> */}
 
 

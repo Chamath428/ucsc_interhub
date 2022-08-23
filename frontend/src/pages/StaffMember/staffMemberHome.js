@@ -57,9 +57,9 @@ function StaffMemberHome() {
                        
                             <br/>
                        
-                            <AccordionItem Header='WSO2' Header1='Date' card1context='2022-08-25' Header2='Time' card2context='10.00A.M.' Header3='Visit Type' card3context='Online' PrimaryBtn='Action' InfoBtn='Dismiss' ></AccordionItem>
-                            <AccordionItem Header='LSEG'  Header1='Date' card1context='2022-08-25' Header2='Time' card2context='01.00P.M.' Header3='Visit Type' card3context='Onsite' PrimaryBtn='Action' InfoBtn='Dismiss'></AccordionItem>
-                            <AccordionItem Header='Avonet Technologies'  Header1='Date' card1context='2022-08-25' Header2='Time' card2context='03.00P.M.' Header3='Visit Type' card3context='Online' PrimaryBtn='Action' InfoBtn='Dismiss'></AccordionItem>
+                            <AccordionItem Header='WSO2' card1heading='Date' card1context='2022-08-25' card2heading='Time' card2context='10.00A.M.' card3heading='Visit Type' card3context='Online' PrimaryBtn='Action' InfoBtn='Dismiss' ></AccordionItem>
+                            <AccordionItem Header='LSEG'  card1heading='Date' card1context='2022-08-25' card2heading='Time' card2context='01.00P.M.' card3heading='Visit Type' card3context='Onsite' PrimaryBtn='Action' InfoBtn='Dismiss'></AccordionItem>
+                            <AccordionItem Header='Avonet Technologies'  card1heading='Date' card1context='2022-08-25' card2heading='Time' card2context='03.00P.M.' card3heading='Visit Type' card3context='Online' PrimaryBtn='Action' InfoBtn='Dismiss'></AccordionItem>
                         
                     </div>
                 </div>

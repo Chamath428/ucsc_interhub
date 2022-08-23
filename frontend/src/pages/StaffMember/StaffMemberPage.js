@@ -13,11 +13,9 @@ import {
 
 import NotFound from "../notFound";
 import StaffMemberHome from "./staffMemberHome";
-import SMAddStudents from "./sMAddStudents";
-import SMCompanyVisit from "./sMCompanyVisit";
-import SMNewOrganization from "./sMNewOrganization";
-import SMRegisteredOrganization from "./sMRegisteredOrganization";
-import StaffMemberStudents from "./sMStudenSelection";
+import StaffMemberManageStudents from "./StaffMemberManageStudents";
+import StaffMemberManageCompany from "./staffMemberCompany";
+import StaffMemberAdvertisements from "./sMAdvertisments";
 
 function StaffPage(){
 
@@ -26,12 +24,14 @@ return(
     <div className="App">
 
         <SideBar
+        
             dashTitle1='Dashboard' dashLink1='Staff/'
             dashTitle2='Add Students' dashLink2='Staff/Add-students'
             dashTitle3='Company Visits' dashLink3='Staff/Company-visit'
             dashTitle4='New Organization' dashLink4='Staff/New-organization'
             dashTitle5='Register Organization' dashLink5='Staff/Reg-organization'
             dashTitle6='Student Selection' dashLink6='Staff/Student-selections'
+
         ></SideBar>
 
         <TopNav headerLink='Staff'></TopNav>
@@ -52,6 +52,7 @@ return(
                 <Route exact path="/Staff/Student-selections" component={StaffMemberStudents} />
             
                 {/* <Route path="*" component={NotFound} /> */}
+
 
             </div>  
         </main>

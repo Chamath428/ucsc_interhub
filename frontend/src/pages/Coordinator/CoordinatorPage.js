@@ -25,6 +25,12 @@ import CoordinatorUsersSetting from "./CoordinatorUsersSetting";
 import CoordinatorViewAnnounsments from "./CoordinatorViewAnnounsments";
 import StaffMemberStudents from "../StaffMember/sMStudenSelection";
 
+import CoordinatorSystemUsers from "./coordinatorSystemUsers";
+import CoordinatorAnnouncements from "./coordinatorAnnouncements";
+import StaffMemberManageStudents from "../StaffMember/StaffMemberManageStudents";
+import StaffMemberManageCompany from "../StaffMember/staffMemberCompany";
+
+
 function CoordinatorPage(){
 
 
@@ -36,8 +42,9 @@ return(
             dashTitle1='Dashboard' dashLink1='Coordinator/'
             dashTitle2='Companies' dashLink2='Coordinator/Student'
             dashTitle3='Students' dashLink3='Coordinator/Company'
-            dashTitle4='Announcement' dashLink4='Coordinator/System User'
+            dashTitle4='Announcement' dashLink4='Coordinator/System-User'
             dashTitle5='Settings' dashLink5='Coordinator/Announcement'
+
 
         ></SideBar>
 
@@ -45,17 +52,19 @@ return(
     
         <main>
             <div className='container pt-5'>
+            
                 <Route exact path="/Coordinator" component={CoordinatorHome} />
 
                 <Route exact path="/Coordinator/Student" component={StaffMemberStudents} />
 
                 <Route exact path="/Coordinator/Company" component={CoordinatorCompany} />
 
-                <Route exact path="/Coordinator/System User" component={CoordinatorUsersSetting} /> 
+                <Route exact path="/Coordinator/System-User" component={CoordinatorUsersSetting} /> 
 
                 <Route exact path="/Coordinator/Announcement" component={CoordinatorAddAnnouncements} />
 
                 {/* <Route path="*" component={NotFound} /> */}
+
 
             </div>  
         </main>

@@ -20,6 +20,6 @@ export const createSupervisor = async (req,res)=>{
             res.status(400).send(error)
         }
     }else {
-        res.status(400).send(error)
+        res.status(500).send(error)
     }
 }
