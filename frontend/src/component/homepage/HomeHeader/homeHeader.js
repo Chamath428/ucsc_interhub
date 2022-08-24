@@ -16,7 +16,7 @@ function HomeHeader() {
                 <Row id="row"  className="pt-5 justify-content-md-center">
                     <Col lg="6" id="text-col" className="pt-3 d-flex flex-column justify-content-center align-items-start">
                         <div><h1>Welcome to UCSC InterHub</h1></div>
-                        <div><p className="p-large">Best place to start your career</p></div>
+                        <div><p className="p-large">Boost your career by starting your internship at a leading company.</p></div>
                         <div><a href="#howDoesItWork"><PrimaryButton inside="DISCOVER"></PrimaryButton></a></div>
                     </Col>
                         

@@ -21,6 +21,8 @@ import PrimaryBtn from '../../component/Buttons/primaryBtn';
 import InfoBtn from '../../component/Buttons/outlineBtn';
 import CardListItem from '../../component/Cards/CardList';
 import ProfilePic from '../../component/Media/ProfilePicture/profilePic';
+import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
+import { Link } from 'react-router-dom';
 
 const ViewAdvertisement = () => {  
 
@@ -53,10 +55,11 @@ return (
             <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 mt-3 ">
 
             <div className="d-grid gap-2">
-                <PrimaryBtn text='View my CV'></PrimaryBtn>
-                                </div><br />              
-                                
-                <InfoBtn text='Visit Company Profile'></InfoBtn>
+                <PrimaryBtn text='Apply Now'></PrimaryBtn>
+                                </div><br />    
+                
+                                <Nav.Link as={Link} to="/Student/View-company-profile"> <DashboardButton inside={'View Company Profile'}></DashboardButton></Nav.Link>
+
 
             </div>
             
@@ -84,19 +87,21 @@ return (
 
             <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 mt-3">
             
-              <CardListItem header='Job Role Preferences' 
-              listItem1='Front End Developer' 
-              listItem2='Python Developer' 
-              listItem3='DevOps Engineer' listItem4='Network Engineer' listItem5='UI UX Designer'>
+              <CardListItem header='Requirements' 
+              listItem1='Sound knowledge in basic web developement technologies' 
+              listItem2='Ability to work with a team' 
+              listItem3='Communication Skills'
+              >
 
               </CardListItem>
             </div>
 
             <div className="col-xl-3 col-lg-3 col-md-3col-sm-6 col-12 mt-3">
-              <CardListItem header='Job Role Preferences' 
-                listItem1='Front End Developer' 
-                listItem2='Python Developer' 
-                listItem3='DevOps Engineer' listItem4='Network Engineer' listItem5='UI UX Designer'>
+              <CardListItem header='Technologies' 
+                listItem1='HTML, CSS, JavaScript' 
+                listItem2='Front End library (React, Vue)' 
+                listItem3='Database theories'
+                >
 
                 </CardListItem>
             </div>

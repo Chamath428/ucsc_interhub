@@ -46,7 +46,7 @@ class StaffMemberManageStudents extends Component {
                                             </Form.Group>
                                             
                                             <Form.Group as={Col} sm controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Entrolled</Form.Label>
+                                                <Form.Label className="fw-bold" column sm={5}>Enrolled</Form.Label>
                                                 <Form.Select sm={10} defaultValue="Choose...">
                                                     <option>All</option>
                                                     <option>Selected</option>
