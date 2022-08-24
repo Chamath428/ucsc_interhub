@@ -28,11 +28,11 @@ return(
 
         <SideBar
             dashTitle1='Dashboard' dashLink1='Student/'
-            dashTitle2='Interviews' dashLink2='Student/Interviews'
-            dashTitle3='Internship' dashLink3='Student/Internship'
-            dashTitle4='My Profile' dashLink4='Student/Profile'
-            dashTitle5='Edit Profile' dashLink5='Student/Edit-Profile'
-            dashTitle6='Advertisements' dashLink6='Student/Advertisement'
+            dashTitle2='Advertisements' dashLink2='Student/Advertisement'
+            dashTitle3='Interviews' dashLink3='Student/Interviews'
+            dashTitle4='Internship' dashLink4='Student/Internship'
+            dashTitle5='My Profile' dashLink5='Student/Profile'
+            dashTitle6='Edit Profile' dashLink6='Student/Edit-Profile'
         ></SideBar>
 
         <TopNav headerLink='Student'></TopNav>

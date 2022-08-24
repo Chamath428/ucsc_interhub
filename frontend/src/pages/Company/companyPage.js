@@ -27,11 +27,11 @@ return(
 
         <SideBar
             dashTitle1='Dashboard' dashLink1='Company'
-            dashTitle2='Applicants' dashLink2='Company/ApplicantsCompany'
-            dashTitle3='Supervisors' dashLink3='Company/Supervisors'
-            dashTitle4='Advertisement' dashLink4='Company/Advertisement'
-            dashTitle5='Interview' dashLink5='Company/Interview'
-
+            dashTitle2='Advertisement' dashLink2='Company/Advertisement'
+            dashTitle3='Applicants' dashLink3='Company/ApplicantsCompany'
+            dashTitle4='Interview' dashLink4='Company/Interview'
+            dashTitle5='Supervisors' dashLink5='Company/Supervisors'
+            dashTitle6='Profile' dashLink6='Company/Company-Profile'
         ></SideBar>
 
         <TopNav headerLink='Company'></TopNav>
@@ -51,6 +51,7 @@ return(
 
                 <Route exact path="/Company/Create-ad" component={CreateAdvertisement} />
 
+                <Route exact path="/Company/Company-Profile" component={CoordinatorRegisteredCompanyProfile} />
 
             </div>  
         </main>

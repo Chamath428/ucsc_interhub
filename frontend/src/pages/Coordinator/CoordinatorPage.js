@@ -71,6 +71,8 @@ return(
 
                 <Route exact path="/Coordinator/Schedule-Company-Visit" component={SMCompanyVisit} />
 
+                <Route exact path="/Coordinator/Company-Profile" component={CoordinatorRegisteredCompanyProfile} />
+
             </div>  
         </main>
 
