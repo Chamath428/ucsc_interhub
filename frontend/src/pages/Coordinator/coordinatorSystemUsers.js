@@ -91,8 +91,8 @@ const CoordinatorSystemUsers = () => {
                         <Form.Group  as={Col} md="6" controlId="formBasicAccount">
                             <Form.Label>Account Types</Form.Label>
                             <Form.Select onChange={(event)=>{setRole(event.target.value)}}>
-                                <option value="1">Staff Member</option>
-                                <option value="2">Coordinator</option>
+                                <option value="1">Coordinator</option>
+                                <option value="2">Staff Member</option>
                             </Form.Select>
                         </Form.Group>
 
