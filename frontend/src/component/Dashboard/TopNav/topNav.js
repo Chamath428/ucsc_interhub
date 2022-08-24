@@ -31,7 +31,7 @@ class TopNav extends Component {
 
 
            <a className="navbar-brand" href={"/"+headerLink}>
-            UCSC InterHub
+            UCSC InternHub
            </a>
 
            <ul className="navbar-nav ms-auto d-flex flex-row">

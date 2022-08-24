@@ -84,7 +84,7 @@ class CoordinatorStudentBulkList extends Component {
                   </div>
                   <p>You can upload a CSV file that has the above details and create multiple students at once.</p></Form.Group>
                 <div className='d-flex flex-row-reverse mb-3'>
-                  <DashboardButton inside={'Upload a CV File'}></DashboardButton>
+                  <DashboardButton inside={'Upload a CSV File'}></DashboardButton>
                 </div>
               </Form>
             </div>

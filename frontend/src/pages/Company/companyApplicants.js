@@ -124,33 +124,30 @@ class CompanyApplicants extends Component {
                         <h3>Selected Interns</h3>
                         </div> 
                         <div className='d-flex flex-row-reverse mb-1'>
-                        <Form.Group className="mb-1" controlId="formBasicSearchOrganization">
-                        <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
-                        <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
-                        <Form.Control className="searchbox" type="searchbox text" placeholder="Search Intern" /></div>
-                        </Form.Group>
+                        
                         </div>
                         <Container className="mt-2">
                         <Form className='container'>
-                        <Row className="mb-1">
-                                            <Form.Group as={Col} md controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Course</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose...">
-                                                    <option>CS and IS</option>
-                                                    <option>CS</option>
-                                                    <option>IS</option>
-                                                </Form.Select>
-                                            </Form.Group>
-                                            
-                                            <Form.Group as={Col} md controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Job Role</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose...">
-                                                    <option>All</option>
-                                                    <option>...</option>
-                                                </Form.Select>
-                                            </Form.Group> 
+                        <Row className="mb-1 col-12  align-items-end">
+                            
+                            <Col>
+                            <Form.Group as={Col} md controlId="formGridState">
+                                <Form.Label className="fw-bold" column sm={5}>Job Role</Form.Label>
+                                <Form.Select sm={10} defaultValue="Choose...">
+                                    <option>All</option>
+                                    <option>...</option>
+                                </Form.Select>
+                            </Form.Group>
+                            </Col>
 
-                                        </Row>   
+                            <Col className='align-items-end'>
+                            <Form.Group controlId="formBasicSearchOrganization">
+                                <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
+                                <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
+                                <Form.Control className="searchbox" type="searchbox text" placeholder="Search Intern" /></div>
+                            </Form.Group> 
+                            </Col>
+                        </Row>   
                                     </Form>    
                     
                         </Container>
