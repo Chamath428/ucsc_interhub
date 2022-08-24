@@ -26,7 +26,7 @@ class StaffMemberManageCompany extends Component {
                 <div className='contain1'>
                 <div className='d-flex flex-row justify-content-sm-between'>
 
-                <h3>Registered Organizations</h3>
+                <h3>Registered Companies</h3>
                 
                 <Form.Group className="mt-3 mb-3" controlId="formBasicSearchOrganization">
                  <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
@@ -52,7 +52,7 @@ class StaffMemberManageCompany extends Component {
             <div className='contain1'>
                 <div className='d-flex flex-row justify-content-sm-between'>
 
-                <h3>New Organizations</h3>
+                <h3>New Companies</h3>
                 
                <Form.Group className="mt-3 mb-3" controlId="formBasicSearchOrganization">
                  <div className="d-flex flex-row align-item-center justify-content-center text-center" > 

@@ -30,7 +30,7 @@ class CoordinatorManageStudents extends Component {
                         <div className='addstudent d-flex flex-row-reverse mb-1'>
                             {/* <DashboardButton inside={'+ Add Student'}></DashboardButton> */}
 
-                            <Nav.Link as={Link} to="/Staff/Add-student"> <DashboardButton inside={'+ Add Student'}></DashboardButton></Nav.Link>
+                            <Nav.Link as={Link} to="/Coordinator/Add-student"> <DashboardButton inside={'+ Add Student'}></DashboardButton></Nav.Link>
 
                         </div>
                         <Container className="mt-2">
@@ -46,7 +46,7 @@ class CoordinatorManageStudents extends Component {
                                             </Form.Group>
                                             
                                             <Form.Group as={Col} sm controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Entrolled</Form.Label>
+                                                <Form.Label className="fw-bold" column sm={5}>Enrolled</Form.Label>
                                                 <Form.Select sm={10} defaultValue="Choose...">
                                                     <option>All</option>
                                                     <option>Selected</option>

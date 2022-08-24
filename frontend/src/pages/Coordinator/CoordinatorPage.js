@@ -29,6 +29,8 @@ import CoordinatorSystemUsers from "./coordinatorSystemUsers";
 import CoordinatorAnnouncements from "./coordinatorAnnouncements";
 import CoordinatorManageCompany from "./coordinatorManageCompany";
 import CoordinatorManageStudents from "./coordinatorManageStudents";
+import SMAddStudents from "../StaffMember/sMAddStudents";
+import SMCompanyVisit from "../StaffMember/sMCompanyVisit";
 
 
 function CoordinatorPage(){
@@ -65,6 +67,9 @@ return(
 
                 {/* <Route path="*" component={NotFound} /> */}
 
+                <Route exact path="/Coordinator/Add-student" component={SMAddStudents} />
+
+                <Route exact path="/Coordinator/Schedule-Company-Visit" component={SMCompanyVisit} />
 
             </div>  
         </main>

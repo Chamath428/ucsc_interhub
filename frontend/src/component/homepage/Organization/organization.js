@@ -19,13 +19,7 @@ class OrganizationComponent extends Component {
                     <Col lg="5">
                         <h1 id="register">Are You an Organization?</h1>
                         
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>The new company registrations for UCSC, Industry partnership, are now open for those interested in the programs below, organized by the Professional Development Center (PDC) in UCSC. The internship program is offered to both Computer Science(CS) and Information Systems (IS) undergraduates in their third year second semester. This is a 5-6 months program. The students will be placed in different IT companies (registered under the UCSC internship program) to give exposure to the practical use of the knowledge acquired from the university curriculum. The next batch of interns will be available tentatively from mid-August 2021.</p>
 
                     {/* <Button href="\pages\signup.js" inside="Register as an Organization"></Button> */}
 
