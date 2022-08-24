@@ -27,7 +27,7 @@ const CompanyManageSupervisors = () => {
             axios.post(`${URL}/supervisor/create`,{
                 email:email,
                 name:name,
-                company_id:30
+                company_id:39
             }).then((response)=>{showAlert(response)}).catch(function (error) {
                 if (error.response) {
                   setAlertPara("Something went wrong when creating the supervisor!");
