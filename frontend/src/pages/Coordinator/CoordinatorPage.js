@@ -33,8 +33,8 @@ import SMAddStudents from "../StaffMember/sMAddStudents";
 import SMCompanyVisit from "../StaffMember/sMCompanyVisit";
 
 
-function CoordinatorPage(){
-
+function CoordinatorPage()
+{
 
 return(
     <div className="App">
