@@ -18,6 +18,7 @@ import StudentHome from "../Student/StudentHome";
 import CompanyHome from "./companyHome";
 import CompanyManageScheduleInterviews from "./companyManageScheduleInterviews";
 import CreateAdvertisement from "./companyCreateAdvertisement";
+import CoordinatorRegisteredCompanyProfile from "../Coordinator/CoordinatorRegisteredCompanyProfile";
 
 function CompanyBase(){
 
