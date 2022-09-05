@@ -49,6 +49,12 @@ model announcement {
   @@index([type], map: "type")
 }
 
+model announcement_types {
+  id           Int            @id @default(autoincrement())
+  type         String         @db.VarChar(100)
+  announcement announcement[]
+}
+
 model company {
   company_id              Int                    @id @default(autoincrement())
   name                    String                 @db.VarChar(200)
@@ -141,6 +147,12 @@ model company_partners {
   @@id([company_id, partners])
 }
 
+model company_status_types {
+  id      Int       @id @default(autoincrement())
+  type    String    @db.VarChar(100)
+  company company[]
+}
+
 model company_visit {
   company_visit_id    Int                 @default(autoincrement())
   company_id          Int
@@ -154,8 +166,15 @@ model company_visit {
 
   @@id([company_visit_id, company_id, email_address])
   @@index([company_id], map: "company_id")
-  @@index([email_address], map: "email_address")
   @@index([company_visit_type], map: "company_visit_type")
+  @@index([email_address], map: "email_address")
+}
+
+model company_visit_types {
+  id            Int             @id @default(autoincrement())
+  type          String          @db.VarChar(100)
+  company_visit company_visit[]
+  interview     interview[]
 }
 
 model internship_program {
@@ -208,6 +227,12 @@ model interview {
   @@index([interview_type], map: "interview_type")
 }
 
+model interview_status_types {
+  id        Int         @id @default(autoincrement())
+  types     String      @db.VarChar(100)
+  interview interview[]
+}
+
 model notification {
   notification_id         Int                       @id
   message                 String                    @db.VarChar(1000)
@@ -248,6 +273,12 @@ model pdc_notification {
   @@index([email_address], map: "email_address")
 }
 
+model pdc_role {
+  id   Int    @id @default(autoincrement())
+  role String @db.VarChar(100)
+  pdc  pdc[]
+}
+
 model report_handle {
   report_id       Int
   email_address   String            @db.VarChar(100)
@@ -255,10 +286,22 @@ model report_handle {
   deadline_time   String            @db.VarChar(50)
   report_link     String            @db.VarChar(100)
   pdc             pdc               @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "report_handle_ibfk_2")
-  student_reports student_reports[]
+  // student_reports student_reports[]
 
   @@id([report_id, email_address])
   @@index([email_address], map: "email_address")
+}
+
+model report_status_types {
+  id              Int               @id @default(autoincrement())
+  status          String            @db.VarChar(100)
+  student_reports student_reports[]
+}
+
+model report_type {
+  id              Int               @id @default(autoincrement())
+  type            String            @db.VarChar(100)
+  student_reports student_reports[]
 }
 
 model student {
@@ -332,6 +375,36 @@ model student_notification {
   @@index([index_number], map: "index_number")
 }
 
+model student_reports {
+  id                                       Int                 @id @default(autoincrement())
+  report_id                                Int
+  report_type                              Int
+  date                                     String              @db.VarChar(50)
+  time                                     String              @db.VarChar(50)
+  report_link                              String?             @db.VarChar(1000)
+  report_status                            Int
+  feedback                                 String?             @db.VarChar(300)
+  internship_id                            Int
+  supervisor_id                            Int?
+  internships                              internships         @relation(fields: [internship_id], references: [internship_id], onDelete: Cascade, map: "student_reports_ibfk_1")
+  supervisor                               supervisor?         @relation(fields: [supervisor_id], references: [supervisor_id], onDelete: Cascade, map: "student_reports_ibfk_2")
+  report_type_report_typeTostudent_reports report_type         @relation(fields: [report_type], references: [id], onDelete: Cascade, map: "student_reports_ibfk_4")
+  report_status_types                      report_status_types @relation(fields: [report_status], references: [id], onDelete: Cascade, map: "student_reports_ibfk_5")
+  // report_handle                            report_handle       @relation(fields: [report_id], references: [report_id], onDelete: Cascade, map: "student_reports_ibfk_6")
+
+  @@index([internship_id], map: "internship_id")
+  @@index([report_id], map: "report_id")
+  @@index([report_status], map: "report_status")
+  @@index([report_type], map: "report_type")
+  @@index([supervisor_id], map: "supervisor_id")
+}
+
+model student_status_type {
+  id      Int       @id @default(autoincrement())
+  status  String    @db.VarChar(100)
+  student student[]
+}
+
 model student_work_experience {
   index_number Int
   experience   String  @db.VarChar(300)
@@ -363,77 +436,4 @@ model supervisor_notification {
 
   @@id([notification_id, supervisor_id])
   @@index([supervisor_id], map: "supervisor_id")
-}
-
-model announcement_types {
-  id           Int            @id @default(autoincrement())
-  type         String         @db.VarChar(100)
-  announcement announcement[]
-}
-
-model company_status_types {
-  id      Int       @id @default(autoincrement())
-  type    String    @db.VarChar(100)
-  company company[]
-}
-
-model company_visit_types {
-  id            Int             @id @default(autoincrement())
-  type          String          @db.VarChar(100)
-  company_visit company_visit[]
-  interview     interview[]
-}
-
-model interview_status_types {
-  id        Int         @id @default(autoincrement())
-  types     String      @db.VarChar(100)
-  interview interview[]
-}
-
-model pdc_role {
-  id   Int    @id @default(autoincrement())
-  role String @db.VarChar(100)
-  pdc  pdc[]
-}
-
-model report_status_types {
-  id              Int               @id @default(autoincrement())
-  status          String            @db.VarChar(100)
-  student_reports student_reports[]
-}
-
-model report_type {
-  id              Int               @id @default(autoincrement())
-  type            String            @db.VarChar(100)
-  student_reports student_reports[]
-}
-
-model student_reports {
-  id                                       Int                 @id @default(autoincrement())
-  report_id                                Int
-  report_type                              Int
-  date                                     String              @db.VarChar(50)
-  time                                     String              @db.VarChar(50)
-  report_link                              String?             @db.VarChar(1000)
-  report_status                            Int
-  feedback                                 String?             @db.VarChar(300)
-  internship_id                            Int
-  supervisor_id                            Int?
-  internships                              internships         @relation(fields: [internship_id], references: [internship_id], onDelete: Cascade, map: "student_reports_ibfk_1")
-  supervisor                               supervisor?         @relation(fields: [supervisor_id], references: [supervisor_id], onDelete: Cascade, map: "student_reports_ibfk_2")
-  report_type_report_typeTostudent_reports report_type         @relation(fields: [report_type], references: [id], onDelete: Cascade, map: "student_reports_ibfk_4")
-  report_status_types                      report_status_types @relation(fields: [report_status], references: [id], onDelete: Cascade, map: "student_reports_ibfk_5")
-  report_handle                            report_handle       @relation(fields: [report_id], references: [report_id], onDelete: Cascade, map: "student_reports_ibfk_6")
-
-  @@index([internship_id], map: "internship_id")
-  @@index([report_id], map: "report_id")
-  @@index([report_status], map: "report_status")
-  @@index([report_type], map: "report_type")
-  @@index([supervisor_id], map: "supervisor_id")
-}
-
-model student_status_type {
-  id      Int       @id @default(autoincrement())
-  status  String    @db.VarChar(100)
-  student student[]
 }
