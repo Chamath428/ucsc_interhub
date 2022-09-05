@@ -16,12 +16,16 @@ class TableView extends Component {
     // const yesColLinkNo = this.props.yesColLinkNo;
     // const link=this.props.link;
     const link = "http://localhost:3001/Coordinator/System-user";
-    const yesColLinkNo=0;
+    const yesColLinkNo = 0;
 
 
 
     return (
+
+
       <Table style={{ maxHeight: '60vh' }}>
+
+
         <thead className="thead-light">
 
           <tr className="table-primary">
@@ -32,30 +36,59 @@ class TableView extends Component {
           </tr>
 
         </thead>
+        {/* <tbody className="tbody">
+            {list.map((RowName, index) => (
+
+              <tr key={index}>
+                {RowName.map((RowName1, rowindex1) => {
+                  if (yesColLinkNo == 1) {
+                    return rowindex1 == 0 ? <td key={rowindex1} style={{ color: 'blue', cursor: 'pointer' }}><a href={link}>{RowName1}</a></td> : <td key={rowindex1}>{RowName1}</td>
+
+                  }
+                  if (yesColLinkNo == 0) {
+                    return <td key={rowindex1}>{RowName1}</td>
+
+                  }
+
+
+                }
+
+
+                )}
+              </tr>
+            ))}
+
+          </tbody> */}
+
         <tbody className="tbody">
-          {list.map((RowName, index) => (
+          {list.map((RowName, index) => {
+            console.log(RowName);
 
-            <tr key={index}>
-              {RowName.map((RowName1, rowindex1) => {
-                if (yesColLinkNo == 1) {
-                  return rowindex1 == 0 ? <td key={rowindex1} style={{ color: 'blue', cursor: 'pointer' }}><a href={link}>{RowName1}</a></td> : <td key={rowindex1}>{RowName1}</td>
+            return (
+              <tr>
 
+                {
+                  Object.keys(RowName).map((keyName, i) => (
+
+                    <td className="travelcompany-input" key={i}>
+                      {RowName[keyName]}
+                    </td>
+                  ))
                 }
-                if (yesColLinkNo == 0) {
-                return  <td key={rowindex1}>{RowName1}</td>
+                
 
-                }
+              </tr>
 
-
-              }
+            );
 
 
-              )}
-            </tr>
-          ))}
+
+          })}
 
         </tbody>
-      </Table>
+      </Table >
+
+
     )
   }
 }
