@@ -4,7 +4,9 @@ import { ViewAnnouncements,ViewSystemUsers } from '../controllers/coordinatorCon
 
 const coordinatorRouters = express.Router();
 
-coordinatorRouters.post('/',ViewSystemUsers);
+coordinatorRouters.post('/Announcements',ViewAnnouncements);
+coordinatorRouters.post('/SystemUsers',ViewSystemUsers);
+
 
 export default coordinatorRouters;
 

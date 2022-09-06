@@ -44,9 +44,10 @@ const CoordinatorSystemUsers = () => {
         })
     }
 
+    
     useEffect(() => {
         // event.preventDefault();
-        axios.post(`${URL}/coordinator`
+        axios.post(`${URL}/coordinator/SystemUsers`
         ).then((response) => {
             response.data.map((item)=> {
                 setUserList(prevState => [...prevState, {
@@ -58,7 +59,7 @@ const CoordinatorSystemUsers = () => {
             console.log(userList)
         }).catch(function (error) {
             if (error.response) {
-                setAlertPara("Something went wrong when creating the user!");
+                setAlertPara("Something went wrong!");
                 setVariant("danger");
                 setShow(true);
             }
