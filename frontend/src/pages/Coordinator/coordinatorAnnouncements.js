@@ -26,8 +26,13 @@ const CoordinatorAnnouncements = () => {
 
         axios.post(`${URL}/coordinator/Announcements`
         ).then((response) => {
-            setAnnouncementList(response.data);
-            console.log(response.data);
+          
+            response.data.map((item)=> {
+                setAnnouncementList(prevState => [...prevState, {
+                    title: item.title,
+                    type:item.announcement_types.type
+                }])
+            })
 
         }).catch(function (error) {
             if (error.response) {

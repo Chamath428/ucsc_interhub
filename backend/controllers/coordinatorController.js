@@ -11,11 +11,16 @@ export const ViewAnnouncements = async (req, res) => {
         const announcement = await prisma.announcement.findMany({
             select: {
                 title: true,
-                type : true,
+
+                announcement_types: {
+                    select: {
+                        type: true,
+
+
+                    },
+                },
 
             }
-
-
 
         })
         res.status(200).send(announcement);
@@ -63,3 +68,35 @@ export const ViewSystemUsers = async (req, res) => {
 
 }
 
+
+
+export const RegisteredCompany = async (req, res) => {
+
+    try {
+        const registeredCompany = await prisma.company.findMany({
+            where: {
+                company_status : 1,
+               
+              },
+            select: {
+                name: true,
+                company_contacts: {
+                    select: {
+                        telephone_no : true,
+
+
+                    },
+                },
+                registration_number :true,
+
+            }
+
+        })
+        res.status(200).send(registeredCompany);
+
+        console.dir(registeredCompany, { depth: null })
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
