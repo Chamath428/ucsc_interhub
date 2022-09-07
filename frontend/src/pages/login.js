@@ -3,11 +3,10 @@ import {Container,Row,Col,Form} from 'react-bootstrap';
 import '../styles/loginStyles.css';
 import HandShake from '../assets/images/company.gif'
 import DashboardButton from '../component/Dashboard/DashboardButton/dashboardButton';
-import axios from 'axios';
-import { URL } from './URL';
 import Alert from 'react-bootstrap/Alert';
 import { useHistory } from 'react-router-dom';
 import NavBarOnlyLogo from '../component/homepage/NavBarOnlyLogo/navBarOnlyLogo';
+import { userLogin,setAuthTokens } from './authServer';
 
 
 const Login = ()=> {
@@ -19,13 +18,22 @@ const Login = ()=> {
         const [variant,setVariant] = useState("success");
         const history = useHistory();
 
-        const login = (event) =>{
+        const handleSubmit = (event) =>{
             event.preventDefault();
-            axios.post(`${URL}/user/login`,{
+            console.log("awa");
+            const data = {
                 username:username,
                 password:password
-            }).then((response)=>{
+            }
+            const authRequest={
+                "method":"post",
+                "url":"user/login",
+                "data" :data
+            }
+            userLogin(authRequest).then((response)=>{
+                console.log("awa");
                 showAlert(response)
+                setAuthTokens(response.data.accessToken,response.data.refreshToekn);
                 history.push("/".concat(response.data.role));
             }).catch(function (error) {
                 if (error.response) {
@@ -44,11 +52,6 @@ const Login = ()=> {
 
         return (
             <div>
-
-      <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>{alertPara}</Alert.Heading>
-      </Alert>
-
             <Container className="login-container shadow-lg mb-5 bg-body rounded form-container">
                 <NavBarOnlyLogo></NavBarOnlyLogo>
                 <Row className="login-row d-flex justify-content-around align-items-center" >
@@ -62,8 +65,11 @@ const Login = ()=> {
 
                     <Col lg="6" className="right-column d-flex justify-content-center align-items-center">
                     <div className="form-div  p-3 d-flex flex-column gap-4 text-center">
+                        <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
+                            <Alert.Heading>{alertPara}</Alert.Heading>
+                        </Alert>
                         <h2>Hello Again!</h2>
-                            <Form onSubmit={login}>
+                            <Form onSubmit={handleSubmit}>
                                 <div className=' d-flex flex-column gap-3'>
                                     <Form.Group className="mb-3">
                                         <Form.Control type="text" placeholder="Username or Index-Number" onChange={(event)=>{setUsername(event.target.value)}}/>

@@ -5,9 +5,10 @@ import studentRouters from './routes/studentRouters.js';
 import staffMemberRouters from './routes/staffMemberRouters.js';
 import organizationRouters from './routes/organizationRouters.js';
 import supervisorRouters from './routes/supervisorRouters.js';
-import coordinatorRouters from './routes/coordinatorRouters.js';
-
+import tokenRouters from './routes/tokenRouters.js';
+import coordinatorRouters from './routes/coordinatorRouters.js';\
 import cors from 'cors';
+import jwt from 'jsonwebtoken';
 
 const app = express();
 const PORT = 5000;
@@ -32,14 +33,27 @@ app.use(express.json())
 app.use(bodyParser.json());
 app.listen(PORT,console.log("Server is Running"));
 
+const verify = (req,res,next) => {
+    const authHeader = req.headers.authorization;
+    if(authHeader){
+        const token = authHeader.split(" ")[1];
+        jwt.verify(token,"TheSecrectKey",(err)=>{
+            if(err) return res.status(403).json({message:"Authentication token verification failed. Please login again!"});
+            next();
+        })
+    }
+    else{
+        res.status(401).json({message:"Authentication token invalid"});
+    }
+}
+
 
 app.use('/user',userRouters);
-app.use('/student',studentRouters);
-app.use('/staffMember',staffMemberRouters);
-app.use('/organization',organizationRouters);
-app.use('/supervisor',supervisorRouters);
-app.use('/coordinator',coordinatorRouters);
-
+app.use('/student',verify,studentRouters);
+app.use('/staffMember',verify,staffMemberRouters);
+app.use('/organization',verify,organizationRouters);
+app.use('/supervisor',verify,supervisorRouters);
+app.use('/token',verify,tokenRouters);
 
 
 
