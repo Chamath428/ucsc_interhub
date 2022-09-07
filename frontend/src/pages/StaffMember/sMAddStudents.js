@@ -9,6 +9,7 @@ import { URL } from '../URL';
 import axios from 'axios';
 import '../../styles/staffMemberAddStudents.css';
 import { useState } from 'react';
+import {callServer} from '../authServer';
 
 const SMAddStudents = () => {  
 
@@ -24,14 +25,20 @@ const SMAddStudents = () => {
 
   const createStudent = (event) =>{
     event.preventDefault();
-    axios.post(`${URL}/student/create`,{
+    const data ={
       index_number:parseInt(indexNumber),
       registration_number:registerationNumber,
       name:name,
       degree:parseInt(course),
       gpa:gpa,
       program_id:1
-    }).then((response)=>{showAlert(response)}).catch(function (error) {
+    }
+    const authRequest = {
+      "method":"post",
+      "url":"student/create",
+      "data" :data
+    }
+    callServer(authRequest).then((response)=>{showAlert(response)}).catch(function (error) {
       if (error.response) {
         setAlertPara("Something went wrong when creating the student!");
         setVariant("danger");

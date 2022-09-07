@@ -1,7 +1,8 @@
 import { userSchema } from '../models/userModel.js';
 import { PrismaClient } from '@prisma/client';
-import crypto from 'crypto'; 
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import {generateAccessToken,generateRefreshToken,terminateRefreshToken} from './tokenController.js';
 
 const prisma = new PrismaClient();
 
@@ -30,6 +31,8 @@ export const login = async (req,res)=>{
                 const validPassword = await bcrypt.compare(req.body.password, student.password);
                 if(validPassword){
                 student.role="Student";
+                student.accessToken = generateAccessToken(student.index_number,student.role);
+                student.refreshToekn=generateRefreshToken(student.index_number,student.role);
                 res.status(200).send(student);
              }else res.status(400).json({message:"Password does not match"});
             }
@@ -53,7 +56,11 @@ export const login = async (req,res)=>{
                     if(validPassword){
                         if(pdc.role==1){
                             pdc.role="Coordinator";
-                        }else pdc.role="Staff"
+                        }else {
+                            pdc.role="Staff"
+                        }
+                        pdc.accessToken = generateAccessToken(pdc.email_address,pdc.role);
+                        pdc.refreshToekn=generateRefreshToken(pdc.email_address,pdc.role);
                         res.status(200).send(pdc);
                      }else res.status(400).json({message:"Password does not match"});
                   }
@@ -76,6 +83,8 @@ export const login = async (req,res)=>{
                         const validPassword = await bcrypt.compare(req.body.password, company.password);
                         if(validPassword){
                             company.role="Company";
+                            company.accessToken = generateAccessToken(company.company_id,company.role);
+                            company.refreshToekn=generateRefreshToken(company.company_id,company.role);
                             res.status(200).send(company);
                          }else res.status(400).json({message:"Password does not match"});
                     }
@@ -97,6 +106,8 @@ export const login = async (req,res)=>{
                             const validPassword = await bcrypt.compare(req.body.password, supervisor.password);
                             if(validPassword){
                                 supervisor.role="Supervisor";
+                                supervisor.accessToken = generateAccessToken(supervisor.supervisor_id,supervisor.role);
+                                supervisor.refreshToekn=generateRefreshToken(supervisor.supervisor_id,supervisor.role);
                                 res.status(200).send(supervisor);
                              }else res.status(400).json({message:"Password does not match"});
                         }
@@ -107,4 +118,10 @@ export const login = async (req,res)=>{
     }else{
         res.status(500).json({ message: 'Invalid data entered!' });
     }
+}
+
+export const logout = (req,res)=>{
+    // pass the refresh token to the functoion
+    terminateRefreshToken(req.token);
+    res.status(200).json({message:"Logged out successfully!"});
 }
