@@ -20,6 +20,10 @@ const CoordinatorManageCompany = () => {
     const [alertPara, setAlertPara] = useState("User added Successfully!");
     const [variant, setVariant] = useState("success");
     const [registeredCompanyList, setRegisteredCompanyList] = useState([]);
+    const [pendingCompanyList, setPendingCompanyList] = useState([]);
+    const [companyVisitList, setCompanyVisitList] = useState([]);
+
+
 
     useEffect(() => {
 
@@ -29,27 +33,92 @@ const CoordinatorManageCompany = () => {
             response.data.map((item) => {
                 setRegisteredCompanyList(prevState => [...prevState, {
                     name: item.name,
-                    telephone_no:item.company_contacts[0].telephone_no,
-                    registration_number:item.registration_number
+                    telephone_no: item.company_contacts[0].telephone_no,
+                    registration_number: item.registration_number
                 }])
             })
 
         }).catch(function (error) {
             if (error.response) {
-                setAlertPara("Something went wrong when creating the user!");
+                setAlertPara("Something went wrong!");
                 setVariant("danger");
                 setShow(true);
             }
         })
+
+        axios.post(`${URL}/coordinator/PendingCompany`, {
+
+        }).then((response) => {
+            response.data.map((item) => {
+                setPendingCompanyList(prevState => [...prevState, {
+                    name: item.name,
+                    telephone_no: item.company_contacts[0].telephone_no,
+                    registration_number: item.registration_number
+                }])
+            })
+
+        }).catch(function (error) {
+            if (error.response) {
+                setAlertPara("Something went wrong!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+
+        axios.post(`${URL}/coordinator/CompanyVisit`, {
+
+        }).then((response) => {
+            response.data.map((item) => {
+                setCompanyVisitList(prevState => [...prevState, {
+                    name: item.company.name,
+                    date:item.date,
+                    start_time: item.start_time,
+                    type: item.company_visit_types.type,
+                    visited_type: item.visited_type
+                }])
+            })
+
+        }).catch(function (error) {
+            if (error.response) {
+                setAlertPara("Something went wrong!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+
+        
     }, []);
 
-console.log(registeredCompanyList);
+
+    // const pendingCompany = (event) => {
+    //     event.preventDefault();
+    //     axios.post(`${URL}/coordinator/PendingCompany`, {
+
+    //     }).then((response) => {
+    //         response.data.map((item) => {
+    //             setPendingCompanyList(prevState => [...prevState, {
+    //                 name: item.name,
+    //                 telephone_no: item.company_contacts[0].telephone_no,
+    //                 registration_number: item.registration_number
+    //             }])
+    //         })
+
+    //     }).catch(function (error) {
+    //         if (error.response) {
+    //             setAlertPara("Something went wrong!");
+    //             setVariant("danger");
+    //             setShow(true);
+    //         }
+    //     })
+    // }
+
     return (
         <div className='containcompany mt-5 ms-5' style={{ width: '90%' }}>
             <Tabs
                 defaultActiveKey="RegisteredCompany"
                 className="ManageCompanyTab"
                 fill
+
             >
                 <Tab className="CompanyTab mt-5" eventKey="RegisteredCompany" title="Registered Comapanies">
                     <div className='contain1'>
@@ -69,7 +138,7 @@ console.log(registeredCompanyList);
                             <TableView headers={['Company', 'Contact No', 'Company Registration Number']}
                                 // list={[['WSO2', '0114-222642', '8342132'], ['99x', '0114-432345', '7895421'], ['LSEG', '0112-212321', '6543211'], ['Avonet-Technologies', '0112-123987', '8435232'], ['CiscoLab', '0114-222611', '8222132'], ['Dialog-Axiata', '0113-443245', '8895421'], ['IFS', '0112-542321', '7543211'], ['Virtusa', '0112-663987', '8835132']]}
                                 list={registeredCompanyList}
-                                >
+                            >
 
 
                             </TableView>
@@ -78,7 +147,7 @@ console.log(registeredCompanyList);
                     </div>
 
                 </Tab>
-                <Tab className="CompanyTab mt-5" eventKey="Pending Companies" title="Pending Companies">
+                <Tab className="CompanyTab mt-5" eventKey="Pending Companies" title="Pending Companies" >
 
                     <div className='contain1'>
                         <div className='d-flex flex-row justify-content-sm-between'>
@@ -95,7 +164,9 @@ console.log(registeredCompanyList);
 
                         <div class="table-wrapper-scroll-y my-custom-scrollbar">
                             <TableView headers={['Company', 'Contact No', 'Company Registration Number']}
-                                list={[['Ntrylab', '0114-560642', '8453212'], ['Xempler', '0112-234322', '8433215'], ['JavaLab', '0113-234321', '8223212'], ['KriatWeb', '0112-123987', '2345321']]}>
+                                // list={[['Ntrylab', '0114-560642', '8453212'], ['Xempler', '0112-234322', '8433215'], ['JavaLab', '0113-234321', '8223212'], ['KriatWeb', '0112-123987', '2345321']]}
+                                list={pendingCompanyList}
+                            >
 
 
                             </TableView>
@@ -151,7 +222,9 @@ console.log(registeredCompanyList);
 
                         <div className="table-wrapper-scroll-y my-custom-scrollbar">
                             <TableView headers={['Company', 'Date', 'Time', 'Visit Type', 'Visited']}
-                                list={[['LSEG', '2022/07/03', '09.00a.m.', 'Onsite', 'Yes'], ['Avonet Technologies', '2022/07/06', '02.00a.m.', 'Onsite', 'Yes'], ['WSO2', '2022/07/07', '09.00a.m.', 'Online', 'Yes'], ['Dialog Axiata', '2022/07/07', '11.00a.m.', 'Onsine', 'No'], ['99X', '2022/07/07', '11.00a.m.', 'Online', 'No']]}>
+                                // list={[['LSEG', '2022/07/03', '09.00a.m.', 'Onsite', 'Yes'], ['Avonet Technologies', '2022/07/06', '02.00a.m.', 'Onsite', 'Yes'], ['WSO2', '2022/07/07', '09.00a.m.', 'Online', 'Yes'], ['Dialog Axiata', '2022/07/07', '11.00a.m.', 'Onsine', 'No'], ['99X', '2022/07/07', '11.00a.m.', 'Online', 'No']]}
+                               list={companyVisitList}
+                               >
 
                             </TableView>
 
