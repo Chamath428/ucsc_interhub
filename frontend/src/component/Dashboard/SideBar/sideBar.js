@@ -9,90 +9,200 @@ import Nav from 'react-bootstrap/Nav';
 import NavLink from 'react-bootstrap/NavLink';
 import Container from "react-bootstrap/esm/Container";
 
-class SideBar extends Component {
+import { Button } from 'react-bootstrap';
+import { NavItem } from 'react-bootstrap';
+
+// import { Link, useLocation } from "react-router-dom";
+import user1 from "../../../assets/images/users/user4.jpg";
+import probg from "../../../assets/images/bg/download.jpg";
+
+import { useLocation } from "react-router-dom";
+
+// class SideBar extends Component {
+const SideBar = (props) =>{
 
 
-    render() { 
-
-      const dashTitle1 = this.props.dashTitle1;
-      const dashLink1 = this.props.dashLink1;
+  return (
       
-      const dashTitle2 = this.props.dashTitle2;
-      const dashLink2 = this.props.dashLink2;
-      
-      const dashTitle3 = this.props.dashTitle3;
-      const dashLink3 = this.props.dashLink3;
-      
-      const dashTitle4 = this.props.dashTitle4;
-      const dashLink4 = this.props.dashLink4;
-      
-      const dashTitle5 = this.props.dashTitle5;
-      const dashLink5 = this.props.dashLink5;
+    <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      const dashTitle6 = this.props.dashTitle6;
-      const dashLink6 = this.props.dashLink6;
+    {/* <!-- Sidebar - Brand --> */}
+    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div className="sidebar-brand-icon rotate-n-15">
+            <i className="fas fa-laugh-wink"></i>
+        </div>
+        <div className="sidebar-brand-text">UCSC InternHub</div>
+    </a>
 
+    {/* <!-- Divider --> */}
+    <hr className="sidebar-divider my-0"/>
 
-        return (
+    {/* <!-- Nav Item - Dashboard --> */}
+    {/* <li className="nav-item active">
+        <a className="nav-link" href="index.html">
+            <i className="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li> */}
+    <nav id="sidebarMenu" defaultActiveKey={'/'+props.dashLink1}>
 
-          <div>
+    <script>$(".dash").trigger('click');</script>
+    
+    {props.dashTitle1 && <li className="nav-item" >         
+    
+    <hr className="sidebar-divider"/>
 
-            <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse bg-white">
-              <div className="position-sticky">
+    <Nav.Link activeClassName="dash nav-link"  as={Link}  eventKey={'/'+props.dashLink1} to={'/'+props.dashLink1} >{props.dashTitle1}</Nav.Link>
 
-                <div className="list-group list-group-flush mx-3 mt-4">
+    <hr className="sidebar-divider"/>
 
-                  <Nav.Link className="list-group-item list-group-item-action py-2 ripple active mb-3"  as={Link} eventKey={'/'+dashLink1} to={'/'+dashLink1} >{dashTitle1}</Nav.Link>
+    </li>}
 
-                  {dashLink2 && <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink2} >{dashTitle2}</Nav.Link>}
+    
+    {props.dashTitle2 && <li className="nav-item" > 
+    <hr className="sidebar-divider"/>
 
-                  {dashLink3 && <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink3} >{dashTitle3}</Nav.Link>}
+    <Nav.Link as={Link} eventKey={'/'+props.dashLink2} to={'/'+props.dashLink2} >{props.dashTitle2}</Nav.Link>
 
-                  {dashLink4 && <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink4} >{dashTitle4}</Nav.Link>}
+    <hr className="sidebar-divider"/>
 
-                  {dashLink5 &&<Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink5} >{dashTitle5}</Nav.Link>}
+    </li>}
 
-                  {dashLink6 && <Nav.Link  className="list-group-item list-group-item-action py-2 ripple active mb-3" as={Link} to={'/'+dashLink6} >{dashTitle6}</Nav.Link>}
+    {props.dashTitle3 && <li className="nav-item ">
+    <hr className="sidebar-divider"/>
 
-                  {/* <a href="#" className="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
-                    <span>Student Home</span>
-                  </a>
+    <Nav.Link as={Link} eventKey={'/'+props.dashLink3} to={'/'+props.dashLink3} >{props.dashTitle3}</Nav.Link>
 
-                  <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                    <span>Webiste traffic</span>
-                  </a>
-                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Password</span></a>
+    <hr className="sidebar-divider"/>
 
-                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Analytics</span></a>
+    </li>}
 
-                  <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                    <span>SEO</span>
-                  </a>
+    {props.dashTitle4 && <li className="nav-item ">
+    <hr className="sidebar-divider"/>
 
-                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Orders</span></a>
+    <Nav.Link as={Link} eventKey={'/'+props.dashLink4} to={'/'+props.dashLink4} >{props.dashTitle4}</Nav.Link>
 
-                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>International</span></a>
+    <hr className="sidebar-divider"/>
 
-                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Partners</span></a>
+    </li>}
 
-                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Calendar</span></a>
+    {props.dashTitle5 && <li className="nav-item ">
+    <hr className="sidebar-divider"/>
 
-                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Users</span></a>
+    <Nav.Link as={Link} eventKey={'/'+props.dashLink5} to={'/'+props.dashLink5} >{props.dashTitle5}</Nav.Link>
 
-                  <a href="#" className="list-group-item list-group-item-action py-2 ripple"><span>Sales</span></a> */}
+    <hr className="sidebar-divider"/>
 
-                </div>
-              </div>
-            </nav>
+    </li>}
 
-            {/* end of sidenav */}
-          
-    </div>
+    {props.dashTitle6 && <li className="nav-item ">
+    <hr className="sidebar-divider"/>
 
-      
+    <Nav.Link as={Link} eventKey={'/'+props.dashLink6} to={'/'+props.dashLink6} >{props.dashTitle6}</Nav.Link>
 
-        );
-    }
-}
+    <hr className="sidebar-divider"/>
+
+    </li>}
+
+<div>
+    {/* <!-- Heading --> */}
+    {/* <div className="sidebar-heading">
+        Interface
+    </div> */}
+
+    {/* <!-- Nav Item - Pages Collapse Menu --> */}
+    {/* <li className="nav-item">
+        <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="bi bi-compass"></i>
+            <span>Components</span>
+        </a>
+        <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div className="bg-white py-2 collapse-inner rounded">
+                <h6 className="collapse-header">Custom Components:</h6>
+                <a className="collapse-item" href="buttons.html">Buttons</a>
+                <a className="collapse-item" href="cards.html">Cards</a>
+            </div>
+        </div>
+    </li> */}
+
+    {/* <!-- Nav Item - Utilities Collapse Menu --> */}
+    {/* <li className="nav-item">
+        <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i className="fas fa-fw fa-wrench"></i>
+            <span>Utilities</span>
+        </a>
+        <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div className="bg-white py-2 collapse-inner rounded">
+                <h6 className="collapse-header">Custom Utilities:</h6>
+                <a className="collapse-item" href="utilities-color.html">Colors</a>
+                <a className="collapse-item" href="utilities-border.html">Borders</a>
+                <a className="collapse-item" href="utilities-animation.html">Animations</a>
+                <a className="collapse-item" href="utilities-other.html">Other</a>
+            </div>
+        </div>
+    </li> */}
+
+    {/* <!-- Divider --> */}
+    {/* <hr className="sidebar-divider"/> */}
+
+    {/* <!-- Heading --> */}
+    {/* <div className="sidebar-heading">
+        Addons
+    </div> */}
+
+    {/* <!-- Nav Item - Pages Collapse Menu --> */}
+    {/* <li className="nav-item">
+        <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i className="fas fa-fw fa-folder"></i>
+            <span>Pages</span>
+        </a>
+        <div id="collapsePages" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div className="bg-white py-2 collapse-inner rounded">
+                <h6 className="collapse-header">Login Screens:</h6>
+                <a className="collapse-item" href="login.html">Login</a>
+                <a className="collapse-item" href="register.html">Register</a>
+                <a className="collapse-item" href="forgot-password.html">Forgot Password</a>
+                <div className="collapse-divider"></div>
+                <h6 className="collapse-header">Other Pages:</h6>
+                <a className="collapse-item" href="404.html">404 Page</a>
+                <a className="collapse-item" href="blank.html">Blank Page</a>
+            </div>
+        </div>
+    </li> */}
+
+    {/* <!-- Nav Item - Charts --> */}
+    {/* <li className="nav-item">
+        <a className="nav-link" href="charts.html">
+            <i className="fas fa-fw fa-chart-area"></i>
+            <span>Charts</span></a>
+    </li> */}
+
+    {/* <!-- Nav Item - Tables --> */}
+    {/* <li className="nav-item">
+        <a className="nav-link" href="tables.html">
+            <i className="fas fa-fw fa-table"></i>
+            <span>Tables</span></a>
+    </li> */}
+
+    {/* <!-- Divider --> */}
+    {/* <hr className="sidebar-divider d-none d-md-block"/> */}
+
+    {/* <!-- Sidebar Toggler (Sidebar) --> */}
+    {/* <div className="text-center d-none d-md-inline">
+        <button className="rounded-circle border-0" id="sidebarToggle"></button>
+    </div> */}
+
+</div>
+
+    </nav>
+
+    </ul>
+
+  );
+};
+
  
 export default SideBar;
