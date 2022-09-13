@@ -27,18 +27,19 @@ const getNewTokens = async()=>{
 
 const axiosJWT = axios.create(); //this axio will use for validating calles
 
-axiosJWT.interceptors.request.use(
-    async (config)=>{
-        let currentDate = new Date();
-        if(jwt_decode(sessionStorage.getItem("accessToken").exp*1000 < currentDate.getTime())){
-            await getNewTokens();
-        }
-    },
-    (error)=>{return Promise.reject(error)}
-)
+// axiosJWT.interceptors.request.use(
+//     async (config)=>{
+//         let currentDate = new Date();
+//         if(jwt_decode(sessionStorage.getItem("accessToken").exp*1000 < currentDate.getTime())){
+//             await getNewTokens();
+//         }
+//     },
+//     (error)=>{return Promise.reject(error)}
+// )
 
 export const callServer = (authRequest)=>{
     if(authRequest.method=="post"){
+      console.log(sessionStorage.getItem("accessToken"));
         return axiosJWT.post(`${URL}/${authRequest.url}`,authRequest.data,{
       headers: {
         'Authorization': "Bearer " + sessionStorage.getItem("accessToken"),

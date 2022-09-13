@@ -62,7 +62,7 @@ class TableView extends Component {
 
         <tbody className="tbody">
           {list.map((RowName, index) => {
-            console.log(RowName);
+            // console.log(RowName);
 
             return (
               <tr>

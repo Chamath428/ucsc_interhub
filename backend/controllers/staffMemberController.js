@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 const prisma = new PrismaClient();
 
 export const createStaffMember = async (req,res)=>{
+    console.log('create staff member');
     const{error,value}=staffMemberSchema.validate(req.body);
 
     if(!error){
