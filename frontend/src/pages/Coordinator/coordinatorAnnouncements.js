@@ -10,6 +10,8 @@ import InfoCard from '../../component/Dashboard/InfoCard/infoCard';
 import TextEditor from '../../component/TextEditor/textEditor';
 import axios from 'axios';
 import { URL } from '../URL';
+import { callServer } from '../authServer';
+
 
 
 
@@ -23,9 +25,13 @@ const CoordinatorAnnouncements = () => {
     const [announcementList, setAnnouncementList] = useState([]);
 
     useEffect(() => {
+        const authRequest = {
+            "method": "post",
+            "url": "coordinator/Announcements",
+            "data": {}
+        }
 
-        axios.post(`${URL}/coordinator/Announcements`
-        ).then((response) => {
+         callServer(authRequest).then((response) => {
           
             response.data.map((item)=> {
                 setAnnouncementList(prevState => [...prevState, {

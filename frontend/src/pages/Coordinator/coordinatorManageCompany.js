@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import axios from 'axios';
 import { URL } from '../URL';
+import { callServer } from '../authServer';
 
 import '../../styles/sMCompany.css';
 
@@ -27,8 +28,13 @@ const CoordinatorManageCompany = () => {
 
     useEffect(() => {
 
-        axios.post(`${URL}/coordinator/RegisteredCompany`
-        ).then((response) => {
+        const authRequestRegistered = {
+            "method": "post",
+            "url": "coordinator/RegisteredCompany",
+            "data": {}
+        }
+
+        callServer(authRequestRegistered).then((response) => {
 
             response.data.map((item) => {
                 setRegisteredCompanyList(prevState => [...prevState, {
@@ -46,9 +52,13 @@ const CoordinatorManageCompany = () => {
             }
         })
 
-        axios.post(`${URL}/coordinator/PendingCompany`, {
+        const authRequestPending = {
+            "method": "post",
+            "url": "coordinator/PendingCompany",
+            "data": {}
+        }
 
-        }).then((response) => {
+        callServer(authRequestPending).then((response) => {
             response.data.map((item) => {
                 setPendingCompanyList(prevState => [...prevState, {
                     name: item.name,
@@ -65,13 +75,16 @@ const CoordinatorManageCompany = () => {
             }
         })
 
-        axios.post(`${URL}/coordinator/CompanyVisit`, {
-
-        }).then((response) => {
+        const authRequestCompanyVisit = {
+            "method": "post",
+            "url": "coordinator/CompanyVisit",
+            "data": {}
+        }
+        callServer(authRequestCompanyVisit).then((response) => {
             response.data.map((item) => {
                 setCompanyVisitList(prevState => [...prevState, {
                     name: item.company.name,
-                    date:item.date,
+                    date: item.date,
                     start_time: item.start_time,
                     type: item.company_visit_types.type,
                     visited_type: item.visited_type
@@ -86,7 +99,7 @@ const CoordinatorManageCompany = () => {
             }
         })
 
-        
+
     }, []);
 
 
@@ -223,8 +236,8 @@ const CoordinatorManageCompany = () => {
                         <div className="table-wrapper-scroll-y my-custom-scrollbar">
                             <TableView headers={['Company', 'Date', 'Time', 'Visit Type', 'Visited']}
                                 // list={[['LSEG', '2022/07/03', '09.00a.m.', 'Onsite', 'Yes'], ['Avonet Technologies', '2022/07/06', '02.00a.m.', 'Onsite', 'Yes'], ['WSO2', '2022/07/07', '09.00a.m.', 'Online', 'Yes'], ['Dialog Axiata', '2022/07/07', '11.00a.m.', 'Onsine', 'No'], ['99X', '2022/07/07', '11.00a.m.', 'Online', 'No']]}
-                               list={companyVisitList}
-                               >
+                                list={companyVisitList}
+                            >
 
                             </TableView>
 
