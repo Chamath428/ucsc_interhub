@@ -11,18 +11,43 @@ import TextEditor from '../../component/TextEditor/textEditor';
 import axios from 'axios';
 import { URL } from '../URL';
 import { callServer } from '../authServer';
-
-
+// import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+// import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
 
 import '../../styles/coordinatorAnnouncements.css';
+// const { SearchBar } = Search;
 
+// const ClearButton = props => {
+//     const handleClick = () => {
+//         props.onSearch("");
+//         props.clearAllFilter();
+//     };
+//     return (
+//         <Button
+//             variant="secondary"
+//             onClick={handleClick}
+//             style={{
+//                 fontSize: "16px",
+//                 padding: "5px",
+//                 margin: "10px",
+//                 height: "40px"
+//             }}
+//         >
+//             Clear
+//         </Button>
+//     );
+// };
 const CoordinatorAnnouncements = () => {
 
     const [show, setShow] = useState(false);
     const [alertPara, setAlertPara] = useState("User added Successfully!");
     const [variant, setVariant] = useState("success");
     const [announcementList, setAnnouncementList] = useState([]);
+    // search bar creating
+
+
+
 
     useEffect(() => {
         const authRequest = {
@@ -31,14 +56,15 @@ const CoordinatorAnnouncements = () => {
             "data": {}
         }
 
-         callServer(authRequest).then((response) => {
-          
-            response.data.map((item)=> {
+        callServer(authRequest).then((response) => {
+
+            response.data.map((item) => {
                 setAnnouncementList(prevState => [...prevState, {
                     title: item.title,
-                    type:item.announcement_types.type
+                    type: item.announcement_types.type
                 }])
             })
+
 
         }).catch(function (error) {
             if (error.response) {
@@ -61,6 +87,7 @@ const CoordinatorAnnouncements = () => {
                 <Tab className="Announcements mt-5" eventKey="AllAnnouncements" title="All Announcements">
                     <div className='announcementcontain'>
                         <h3>All Announcements</h3>
+
                         <div className='d-flex flex-row-reverse mb-3'>
                             <Form.Group className="mb-1" controlId="formBasicSearchOrganization">
                                 <div className="d-flex flex-row align-item-center justify-content-center text-center" >
@@ -68,16 +95,34 @@ const CoordinatorAnnouncements = () => {
                                     <Form.Control className="searchbox" type="searchbox text" placeholder="Search By Title" /></div>
                             </Form.Group>
                         </div>
-
-                        <div class="table-wrapper-scroll-y myscrollbarannouncement ">
-
-                            <TableView headers={['Title', 'Visibility']}
-                                // list={[['Cool Project', '11', 'All'], ['Thing No One Wants to Do', '2', 'Student'], ['Site Revamp', '49', 'Company'], ['New Logo Design', '33 ', 'All'], ['Accessibility Updates', '4', 'Company'], ['Color Variations', '55', 'Student']]}
-                                list={announcementList}
+                        {/* <ToolkitProvider
+                            bootstrap4
+                            keyField="prce"
+                            data={this.products}
+                            columns={this.columns}
+                            search
+                        > */}
+                            <div class="table-wrapper-scroll-y myscrollbarannouncement ">
+                                {/* <SearchBar
+                                    // {...props.searchProps}
+                                    style={{ width: "400px", height: "40px" }}
+                                />
+                                <ClearButton
+                                    // {...props.searchProps}
+                                    clearAllFilter={this.clearAllFilter}
+                                /> */}
+                                <TableView headers={['Title', 'Visibility']}
+                                    // list={[['Cool Project', '11', 'All'], ['Thing No One Wants to Do', '2', 'Student'], ['Site Revamp', '49', 'Company'], ['New Logo Design', '33 ', 'All'], ['Accessibility Updates', '4', 'Company'], ['Color Variations', '55', 'Student']]}
+                                    list={announcementList}
+                                    // {...props.baseProps}
+                                    // filter={filterFactory()}
+                                // noDataIndication="There is no solution"
                                 >
 
-                            </TableView>
-                        </div>
+                                </TableView>
+                            </div>
+                        {/* </ToolkitProvider> */}
+
                     </div>
 
                 </Tab>
