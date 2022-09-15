@@ -5,8 +5,15 @@ import { Row, Col, FormGroup } from 'react-bootstrap';
 import React, { Component, useEffect, useState } from 'react';
 import InfoCard from '../../component/Dashboard/InfoCard/infoCard';
 import TableView from '../../component/Dashboard/Table/tableView';
-import { callServer } from '../authServer';
+
+import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
+import { useState } from 'react';
+import {callServer} from '../authServer';
+import Alert from 'react-bootstrap/Alert';
+
 import '../../styles/sMCompanyVisit.css';
+import jwt_decode from "jwt-decode";
+
 
 const SMCompanyVisit = () => {
 
@@ -27,6 +34,7 @@ const SMCompanyVisit = () => {
       response.data.map((item) => {
         setCompanyList(prevState => [...prevState, {
           name: item.name,
+
         
         }])
       })

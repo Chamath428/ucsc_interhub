@@ -58,7 +58,7 @@ model announcement_types {
 model company {
   company_id              Int                    @id @default(autoincrement())
   name                    String                 @db.VarChar(200)
-  registration_number     String                 @unique(map: "registration_number") @db.VarChar(100)
+  registration_number     String                 @db.VarChar(100)
   date_of_establishment   String                 @db.VarChar(50)
   description             String?                @db.VarChar(1000)
   website                 String                 @db.VarChar(200)
@@ -70,7 +70,7 @@ model company {
   no_of_tech_leads        Int
   is_registered_other_uni Int
   password                String                 @db.VarChar(100)
-  username                String                 @unique(map: "username") @db.VarChar(100)
+  username                String                 @db.VarChar(100)
   profile_picture         String?                @db.VarChar(1000)
   intro_video             String?                @db.VarChar(1000)
   company_status_types    company_status_types   @relation(fields: [company_status], references: [id], onDelete: Cascade, map: "company_ibfk_1")
@@ -86,6 +86,7 @@ model company {
   interview               interview[]
   supervisor              supervisor[]
 
+  @@unique([username, registration_number], map: "username")
   @@index([company_status], map: "company_status")
 }
 
@@ -124,7 +125,7 @@ model company_hr {
   company_id  Int     @id
   name        String  @db.VarChar(200)
   email       String  @db.VarChar(100)
-  landline_no Int?
+  landline_no Int
   mobile_no   Int
   company     company @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_hr_ibfk_1")
 }
@@ -158,9 +159,8 @@ model company_visit {
   company_id          Int
   email_address       String              @db.VarChar(100)
   date                String              @db.VarChar(50)
-  start_time          Int
+  start_time          String              @db.VarChar(20)
   company_visit_type  Int
-  visited_type        String              @db.VarChar(5)
   company             company             @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_visit_ibfk_1")
   pdc                 pdc                 @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "company_visit_ibfk_2")
   company_visit_types company_visit_types @relation(fields: [company_visit_type], references: [id], onDelete: Cascade, map: "company_visit_ibfk_3")
@@ -281,13 +281,13 @@ model pdc_role {
 }
 
 model report_handle {
-  report_id       Int @unique
+  report_id       Int
   email_address   String            @db.VarChar(100)
   deadline_date   String            @db.VarChar(50)
   deadline_time   String            @db.VarChar(50)
   report_link     String            @db.VarChar(100)
   pdc             pdc               @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "report_handle_ibfk_2")
-  student_reports student_reports[]
+  // student_reports student_reports[]
 
   @@id([report_id, email_address])
   @@index([email_address], map: "email_address")
@@ -391,7 +391,7 @@ model student_reports {
   supervisor                               supervisor?         @relation(fields: [supervisor_id], references: [supervisor_id], onDelete: Cascade, map: "student_reports_ibfk_2")
   report_type_report_typeTostudent_reports report_type         @relation(fields: [report_type], references: [id], onDelete: Cascade, map: "student_reports_ibfk_4")
   report_status_types                      report_status_types @relation(fields: [report_status], references: [id], onDelete: Cascade, map: "student_reports_ibfk_5")
-  report_handle                            report_handle       @relation(fields: [report_id], references: [report_id], onDelete: Cascade, map: "student_reports_ibfk_6")
+  // report_handle                            report_handle       @relation(fields: [report_id], references: [report_id], onDelete: Cascade, map: "student_reports_ibfk_6")
 
   @@index([internship_id], map: "internship_id")
   @@index([report_id], map: "report_id")
