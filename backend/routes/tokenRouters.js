@@ -3,6 +3,6 @@ import {getNewAccessToken} from '../controllers/tokenController.js';
 
 const tokenRouters = express.Router();
 
-tokenRouters.get('/getNewToekn',getNewAccessToken);
+tokenRouters.post('/getNewToekn',getNewAccessToken);
 
 export default tokenRouters;

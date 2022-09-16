@@ -67,6 +67,6 @@ export const registerOrganization = async (req,res) =>{
                 res.status(400).send(error)
             }
         }else{
-            res.status(510).send(error);
+            res.status(500).send(error);
         }
 }

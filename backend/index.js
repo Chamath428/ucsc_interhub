@@ -49,11 +49,11 @@ const verify = (req,res,next) => {
 
 
 app.use('/user',userRouters);
-app.use('/student',studentRouters);
-app.use('/staffMember',staffMemberRouters);
-app.use('/organization',organizationRouters);
-app.use('/supervisor',supervisorRouters);
-app.use('/coordinator',coordinatorRouters);
+app.use('/student',verify,studentRouters);
+app.use('/staffMember',verify,staffMemberRouters);
+app.use('/organization',verify,organizationRouters);
+app.use('/supervisor',verify,supervisorRouters);
+app.use('/coordinator',verify,coordinatorRouters);
 app.use('/token',tokenRouters);
 
 
