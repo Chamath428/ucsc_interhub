@@ -9,30 +9,31 @@ import NavBarOnlyLogo from '../component/homepage/NavBarOnlyLogo/navBarOnlyLogo'
 import axios from 'axios';
 import { URL } from './URL';
 import '../styles/Signup.css';
+import { registerCompany } from './authServer';
 
 function Signup() {
 
     const [validated, setValidated] = useState(false);
-    const [name,setName] = useState("");
+    const [name,setName] = useState("77x");
     const [stablishedDate,setStablishedDate] = useState("");
-    const [registerationNumber,setRegisterationNumber] = useState("");
-    const [address,setAddress] = useState("");
-    const [number,setNumber] = useState();
-    const [faxNumber,setFaxNumber] = useState();
+    const [registerationNumber,setRegisterationNumber] = useState("regnum");
+    const [address,setAddress] = useState("test address");
+    const [number,setNumber] = useState(111111111);
+    const [faxNumber,setFaxNumber] = useState(22222);
     const [partners,setpartners] = useState("");
     const [clients,setClients] = useState("");
-    const [companyLink,setCompanyLink] = useState("");
-    const [details,setDetails] = useState("");
-    const [primaryContactName,setPrimaryContactName] = useState("");
-    const [email,setEmail] = useState("");
+    const [companyLink,setCompanyLink] = useState("test link");
+    const [details,setDetails] = useState("test details");
+    const [primaryContactName,setPrimaryContactName] = useState("test contract name");
+    const [email,setEmail] = useState("testemail@g.com");
     const [landTelephone,setLandTelephone] = useState();
-    const [mobiTelephone,setMobiTelephone] = useState();
-    const [numberOfEmployees,setNumberOfEmployees] = useState();
-    const [numberOfProjectManagers,setNumberOfProjectManagers] = useState();
-    const [numberOfTechLeads,setNumberOfTechLeads] = useState();
-    const [username,setUserName] = useState("");
-    const [password,setPassword] = useState("");
-    const [confirmPassword,setConfirmPassword] = useState("");
+    const [mobiTelephone,setMobiTelephone] = useState(333333333);
+    const [numberOfEmployees,setNumberOfEmployees] = useState(100);
+    const [numberOfProjectManagers,setNumberOfProjectManagers] = useState(20);
+    const [numberOfTechLeads,setNumberOfTechLeads] = useState(20);
+    const [username,setUserName] = useState("test username");
+    const [password,setPassword] = useState("password");
+    const [confirmPassword,setConfirmPassword] = useState("password");
     const [show, setShow] = useState(false);
     const [alertPara,setAlertPara] = useState("Organization Registered Successfully!");
     const [variant,setVariant] = useState("success");
@@ -52,8 +53,8 @@ function Signup() {
 
     const registerOrganization = (event)=>{
         event.preventDefault();
-        axios.post(`${URL}/organization/register`,{
-            name:name,
+    
+    const  data={name:name,
             registration_number:registerationNumber,
             date_of_establishment:stablishedDate,  
             address:address,
@@ -73,8 +74,14 @@ function Signup() {
             username:username,
             password:password,
             confirm_password:confirmPassword,
-            is_registered_other_uni:parseInt(isRegisteredOtherUni)
-        }).then((response)=>{showAlert(response)}).catch(function (error) {
+            is_registered_other_uni:parseInt(isRegisteredOtherUni)};
+            const authRequest = {
+                "method": "post",
+                "url": "user/register",
+                "data": data
+              }
+
+            registerCompany(authRequest).then((response)=>{showAlert(response)}).catch(function (error) {
             if (error.response) {
               setAlertPara("Something went wrong when registering the organization!");
               setVariant("danger");
@@ -213,7 +220,7 @@ function Signup() {
                         <Form.Label>Organization/Company Details</Form.Label>
                         <Form.Control 
                         as="textarea" 
-                        rows={3} 
+                        rows={3}
                         onChange={(event)=>{setDetails(event.target.value)}}
                         />
                     </Form.Group>
