@@ -11,6 +11,7 @@ import TextEditor from '../../component/TextEditor/textEditor';
 import axios from 'axios';
 import { URL } from '../URL';
 import { callServer } from '../authServer';
+import Alert from 'react-bootstrap/Alert';
 // import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 // import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
@@ -40,6 +41,11 @@ import '../../styles/coordinatorAnnouncements.css';
 // };
 const CoordinatorAnnouncements = () => {
 
+
+    const [type, setType] = useState(1);
+    const [title, setTitle] = useState("");
+    const [body, setBody] = useState("");
+
     const [show, setShow] = useState(false);
     const [alertPara, setAlertPara] = useState("User added Successfully!");
     const [variant, setVariant] = useState("success");
@@ -68,14 +74,43 @@ const CoordinatorAnnouncements = () => {
 
         }).catch(function (error) {
             if (error.response) {
-                setAlertPara("Something went wrong when creating the user!");
+                setAlertPara("Something went wrong!");
                 setVariant("danger");
                 setShow(true);
             }
         })
     }, []);
 
+    const createNewAnnouncements = (event) => {
+        event.preventDefault();
 
+        const data = {
+            type: parseInt(type),
+            title: title,
+            body: body,
+            email_address: "coordinator@g.com",
+
+        }
+
+        const authRequest = {
+            "method": "post",
+            "url": "coordinator/createAnnouncements",
+            "data": data
+        }
+        callServer(authRequest).then((response) => { showAlert(response) }).catch(function (error) {
+
+            if (error.response) {
+                setAlertPara("Something went wrong when creating the announcement!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+    }
+    const showAlert = (response) => {
+        setAlertPara("Announcement added Successfully!");
+        setVariant("success");
+        setShow(true);
+    }
 
     return (
         <div className='containAnnouncements mt-5 ms-5' style={{ width: '90%' }}>
@@ -102,8 +137,8 @@ const CoordinatorAnnouncements = () => {
                             columns={this.columns}
                             search
                         > */}
-                            <div class="table-wrapper-scroll-y myscrollbarannouncement ">
-                                {/* <SearchBar
+                        <div class="table-wrapper-scroll-y myscrollbarannouncement ">
+                            {/* <SearchBar
                                     // {...props.searchProps}
                                     style={{ width: "400px", height: "40px" }}
                                 />
@@ -111,16 +146,16 @@ const CoordinatorAnnouncements = () => {
                                     // {...props.searchProps}
                                     clearAllFilter={this.clearAllFilter}
                                 /> */}
-                                <TableView headers={['Title', 'Visibility']}
-                                    // list={[['Cool Project', '11', 'All'], ['Thing No One Wants to Do', '2', 'Student'], ['Site Revamp', '49', 'Company'], ['New Logo Design', '33 ', 'All'], ['Accessibility Updates', '4', 'Company'], ['Color Variations', '55', 'Student']]}
-                                    list={announcementList}
-                                    // {...props.baseProps}
-                                    // filter={filterFactory()}
-                                // noDataIndication="There is no solution"
-                                >
+                            <TableView headers={['Title', 'Visibility']}
+                                // list={[['Cool Project', '11', 'All'], ['Thing No One Wants to Do', '2', 'Student'], ['Site Revamp', '49', 'Company'], ['New Logo Design', '33 ', 'All'], ['Accessibility Updates', '4', 'Company'], ['Color Variations', '55', 'Student']]}
+                                list={announcementList}
+                            // {...props.baseProps}
+                            // filter={filterFactory()}
+                            // noDataIndication="There is no solution"
+                            >
 
-                                </TableView>
-                            </div>
+                            </TableView>
+                        </div>
                         {/* </ToolkitProvider> */}
 
                     </div>
@@ -130,20 +165,23 @@ const CoordinatorAnnouncements = () => {
 
                     <div className='addannouncementcontain'>
                         <div className='AnnouncementLeft'>
+                            <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
+                                <Alert.Heading>{alertPara}</Alert.Heading>
+                            </Alert>
                             <h3>Announcements</h3>
 
-                            <Form>
+                            <Form onSubmit={createNewAnnouncements}>
 
 
                                 <Row className='align-item-center g-5 mt-2'>
-                                    <Form.Group className="mb-4  col-sm-6" controlId="formBasicTitle" >
+                                    <Form.Group className="mb-4  col-sm-6" controlId="formBasicTitle" onChange={(event) => { setTitle(event.target.value) }} >
                                         <Form.Label>Title</Form.Label>
                                         <Form.Control type="text" placeholder="Enter title " />
                                     </Form.Group>
 
                                     <Form.Group className="mb-4  col-sm-6" controlId="formBasicAudience">
                                         <Form.Label>Audience</Form.Label>
-                                        <Form.Select>
+                                        <Form.Select onChange={(event) => { setType(event.target.value) }}>
                                             <option value="1">All</option>
                                             <option value="2">Company</option>
                                             <option value="3">Student</option>
@@ -151,23 +189,24 @@ const CoordinatorAnnouncements = () => {
                                     </Form.Group>
                                 </Row>
                                 <Row>
-                                    <Form.Group className="mb-1" controlId="Textarea">
+                                    <Form.Group className="mb-1" controlId="Textarea" onChange={(event) => { setBody(event.target.value) }}  >
                                         <Form.Label>Anouncement Body</Form.Label>
 
-                                        <div className="editor " style={{ height: '40vh', borderStyle: 'outset' }}>
-                                            <TextEditor />
+                                        <div className="editor " >
+                                            {/* <TextEditor /> */}
+                                            <Form.Control as="textarea" placeholder="Write your announcement" rows={5} style={{ height: '40vh', borderStyle: 'outset' }} />
+
                                         </div>
 
-                                        {/* <Form.Control as="textarea" placeholder="Write your announcement" rows={5} style={{ width: '65.7%' }} /> */}
                                     </Form.Group>
                                 </Row>
 
 
                                 <Row className=' mt-1'>
-                                    <Form.Group className="mb-3 col-sm-10" controlId="ClearBtnArea">
+                                    {/* <Form.Group className="mb-3 col-sm-10" controlId="ClearBtnArea">
                                         <DashboardButton inside={"Clear"}  ></DashboardButton>
 
-                                    </Form.Group>
+                                    </Form.Group> */}
                                     <Form.Group className="mb-3 col-sm-1" controlId="PostBtnArea">
 
                                         <DashboardButton inside={"Post"} ></DashboardButton>

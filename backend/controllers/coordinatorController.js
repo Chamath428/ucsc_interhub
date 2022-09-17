@@ -251,3 +251,41 @@ export const SelectedStudentList = async (req, res) => {
     }
 
 }
+
+
+export const createAnnouncements = async (req,res)=>{
+   
+    var currentDate =   new Date().toLocaleDateString();
+    var currentTime = new Date().toLocaleTimeString();
+    // console.log(currentTime)
+    const{error,value}=coordinatorSchema.validate(req.body);
+    // console.log(value);
+//    console.log(error);
+
+    if(!error){
+        
+        try{           
+           
+            const createNewAnnouncements = await prisma.announcement.create({
+                data:{
+                    title:req.body.title,
+                    body:req.body.body,
+                    time:currentTime,
+                    date:currentDate,
+                    type:req.body.type,
+                    email_address:req.body.email_address,
+
+                    
+                   
+                }
+            })
+
+            res.status(200).send(createNewAnnouncements);
+        }catch(error){
+            res.status(500).send(error);
+        }
+    }else{
+       
+        res.status(500).send(error);
+    }
+}
