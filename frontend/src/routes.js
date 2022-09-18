@@ -20,6 +20,7 @@ import SupervisorPage from "./pages/Supervisor/SupervisorPage";
 import StaffPage from "./pages/StaffMember/StaffMemberPage";
 import CoordinatorPage from "./pages/Coordinator/CoordinatorPage";
 import CompanyBase from "./pages/Company/companyPage";
+import PrivateRoute from "./context/RequireAuth";
 
 function PageRouting()
 {
@@ -30,11 +31,11 @@ function PageRouting()
             <Route path="/login" component={Login} />
             <Route path="/register" component={Signup} />
 
-            <Route path="/Student" component={StudentBase} />
-            <Route path="/Supervisor" component={SupervisorPage} />
-            <Route path="/Staff" component={StaffPage} />
-            <Route path="/Coordinator" component={CoordinatorPage} />
-            <Route path="/Company" component={CompanyBase} />
+            <Route path="/Student">  <StudentBase/> </Route>
+            <PrivateRoute path="/Supervisor"> <SupervisorPage/> </PrivateRoute>
+            <PrivateRoute path="/Staff"> <StaffPage/> </PrivateRoute>
+            <PrivateRoute path="/Coordinator"> <CoordinatorPage/></PrivateRoute>
+            <PrivateRoute path="/Company"><CompanyBase/> </PrivateRoute>
 
         </Router>
         

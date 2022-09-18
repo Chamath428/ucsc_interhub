@@ -6,7 +6,7 @@ import DashboardButton from '../component/Dashboard/DashboardButton/dashboardBut
 import Alert from 'react-bootstrap/Alert';
 import { useHistory } from 'react-router-dom';
 import NavBarOnlyLogo from '../component/homepage/NavBarOnlyLogo/navBarOnlyLogo';
-import { userLogin,setAuthTokens } from './authServer';
+import { userLogin,Setauthtokens } from './authServer';
 
 
 const Login = ()=> {
@@ -20,7 +20,6 @@ const Login = ()=> {
 
         const handleSubmit = (event) =>{
             event.preventDefault();
-            console.log("awa");
             const data = {
                 username:username,
                 password:password
@@ -30,10 +29,10 @@ const Login = ()=> {
                 "url":"user/login",
                 "data" :data
             }
-            userLogin(authRequest).then((response)=>{
+            userLogin(authRequest).then(async (response)=>{
+                showAlert(response);
+                await Setauthtokens(response.data.accessToken,response.data.refreshToekn);
                 console.log("awa");
-                showAlert(response)
-                setAuthTokens(response.data.accessToken,response.data.refreshToekn);
                 history.push("/".concat(response.data.role));
             }).catch(function (error) {
                 if (error.response) {

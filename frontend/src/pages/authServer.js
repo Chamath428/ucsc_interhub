@@ -1,6 +1,8 @@
 import { URL } from './URL';
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
+import useAuth from '../hooks/useAuth';
+import { useRef, useState, useEffect } from 'react';
 
 export const userLogin = (authRequest)=>{
     return axios.post(`${URL}/${authRequest.url}`,authRequest.data);
@@ -14,9 +16,15 @@ export const registerCompany = (authRequest)=>{
   return axios.post(`${URL}/${authRequest.url}`,authRequest.data);
 }
 
-export const setAuthTokens=(accessToken,refreshToekn)=>{
+export const Setauthtokens=(accessToken,refreshToekn)=>{
+  debugger
     sessionStorage.setItem("accessToken",accessToken);
     sessionStorage.setItem("refreshToekn",refreshToekn);
+    const isLogged = true;
+    const role = jwt_decode(accessToken).role;
+    const { setAuth } = useAuth();
+    setAuth({ isLogged, role});
+    console.log(sessionStorage.getItem("accessToken"));
 }
 
 const getNewTokens = async()=>{
@@ -26,7 +34,7 @@ const getNewTokens = async()=>{
         "refreshToekn":sessionStorage.getItem("refreshToekn")
     }
     axios.post(`${URL}/token/getNewToekn`,data).then((response)=>{
-        setAuthTokens(response.body.accessToken,response.body.refreshToekn);
+      Setauthtokens(response.body.accessToken,response.body.refreshToekn);
     })
 }
 
