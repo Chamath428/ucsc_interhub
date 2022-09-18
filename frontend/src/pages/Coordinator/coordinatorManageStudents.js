@@ -21,6 +21,14 @@ const CoordinatorManageStudents = () => {
     const [studentList, setStudentList] = useState([]);
     const [selectedStudentList, setSelectedStudentList] = useState([]);
 
+    studentList.map((item, index) => {
+        if (item.cv) {
+            item.cv = "True";
+        }
+        else {
+            item.cv = "False";
+        }
+    });
 
     useEffect(() => {
         const authRequest = {
@@ -28,6 +36,8 @@ const CoordinatorManageStudents = () => {
             "url": "coordinator/StudentList",
             "data": {}
         }
+
+
 
         callServer(authRequest).then((response) => {
 
@@ -38,6 +48,7 @@ const CoordinatorManageStudents = () => {
                     cv: item.student.cv,
                     types: item.interview_status_types.types,
                     nameCompany: item.company.name,
+
                 }])
             })
 
@@ -74,7 +85,7 @@ const CoordinatorManageStudents = () => {
                 setShow(true);
             }
         })
-        
+
     }, []);
 
 
@@ -199,8 +210,8 @@ const CoordinatorManageStudents = () => {
                             <TableView
                                 headers={['Index No', 'Name', 'Compnay Selected For', 'GPA']}
                                 // list={[['190020432', 'Shanika Jayathunga', 'LSEG', '3.3232'], ['190020532', 'Jayani Kulasekara', 'Avonet Technologies', '3.0231'], ['190030423', 'Prathiksha Jayakodi', 'WSO2', '3.8503'], ['190020455', 'Sameera Kumara', 'Dialog Axiata', '2.3456'], ['190027632', 'Ayodya Ranasinghe', '99X', '2.9998'], ['190020444', 'Binura Jathilake', 'LSEG', '3.5674']]}
-                               list={selectedStudentList}
-                               >
+                                list={selectedStudentList}
+                            >
 
                             </TableView>
 
