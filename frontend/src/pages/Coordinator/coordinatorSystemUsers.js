@@ -27,7 +27,14 @@ const CoordinatorSystemUsers = () => {
 
     const [userList, setUserList] = useState([]);
 
-    
+    userList.map((item, index) => {
+        if (item.is_active==1) {
+            item.is_active = "Active";
+        }
+        else {
+            item.is_active = "Not Active";
+        }
+    });
     useEffect(() => {
         const authRequest = {
             "method": "post",
@@ -39,7 +46,8 @@ const CoordinatorSystemUsers = () => {
             response.data.map((item) => {
                 setUserList(prevState => [...prevState, {
                     name: item.first_name + " " + item.last_name,
-                    role: item.pdc_role.role
+                    role: item.pdc_role.role,
+                    is_active: item.is_active,
                 }])
             })
            

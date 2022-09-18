@@ -42,7 +42,7 @@ export const ViewSystemUsers = async (req, res) => {
             select: {
                 first_name: true,
                 last_name: true,
-
+                is_active: true,
                 pdc_role: {
                     select: {
                         role: true,
@@ -221,8 +221,8 @@ export const SelectedStudentList = async (req, res) => {
     try {
         const selectedStudentList = await prisma.interview.findMany({
 
-            where:{
-                interview_status:2,
+            where: {
+                interview_status: 2,
             },
             select: {
 
@@ -234,7 +234,7 @@ export const SelectedStudentList = async (req, res) => {
                         gpa: true,
                     },
                 },
-               
+
                 company: {
                     select: {
                         name: true,
@@ -253,39 +253,39 @@ export const SelectedStudentList = async (req, res) => {
 }
 
 
-export const createAnnouncements = async (req,res)=>{
-   
-    var currentDate =   new Date().toLocaleDateString();
+export const createAnnouncements = async (req, res) => {
+
+    var currentDate = new Date().toLocaleDateString();
     var currentTime = new Date().toLocaleTimeString();
     // console.log(currentTime)
-    const{error,value}=coordinatorSchema.validate(req.body);
+    const { error, value } = coordinatorSchema.validate(req.body);
     // console.log(value);
-//    console.log(error);
+    //    console.log(error);
 
-    if(!error){
-        
-        try{           
-           
+    if (!error) {
+
+        try {
+
             const createNewAnnouncements = await prisma.announcement.create({
-                data:{
-                    title:req.body.title,
-                    body:req.body.body,
-                    time:currentTime,
-                    date:currentDate,
-                    type:req.body.type,
-                    email_address:req.body.email_address,
+                data: {
+                    title: req.body.title,
+                    body: req.body.body,
+                    time: currentTime,
+                    date: currentDate,
+                    type: req.body.type,
+                    email_address: req.body.email_address,
 
-                    
-                   
+
+
                 }
             })
 
             res.status(200).send(createNewAnnouncements);
-        }catch(error){
+        } catch (error) {
             res.status(500).send(error);
         }
-    }else{
-       
+    } else {
+
         res.status(500).send(error);
     }
 }
