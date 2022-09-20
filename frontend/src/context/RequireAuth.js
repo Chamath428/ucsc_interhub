@@ -1,17 +1,24 @@
 import { Redirect,Route} from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import {GetAuth} from './AuthProvider';
 
-
-export default function PrivateRoute({ children, ...rest }) {
-    const {auth} = useAuth();
- 
+export default function PrivateRoute({ children,allowedRole, ...rest }) {
+    console.log(children);
     return (
       <Route
         {...rest}
         render={({ location }) =>
-           auth.isLogged ? (
-            children
-          ) : (
+           sessionStorage.getItem("isLogged") ?
+           sessionStorage.getItem("role")===allowedRole
+          ?(children):
+          (
+            <Redirect
+              to={{
+                pathname: "/",
+                state: { from: location }
+              }}
+            />
+          )
+          : (
             <Redirect
               to={{
                 pathname: "/",

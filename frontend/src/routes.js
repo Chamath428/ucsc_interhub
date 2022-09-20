@@ -31,11 +31,11 @@ function PageRouting()
             <Route path="/login" component={Login} />
             <Route path="/register" component={Signup} />
 
-            <Route path="/Student">  <StudentBase/> </Route>
-            <PrivateRoute path="/Supervisor"> <SupervisorPage/> </PrivateRoute>
-            <PrivateRoute path="/Staff"> <StaffPage/> </PrivateRoute>
-            <PrivateRoute path="/Coordinator"> <CoordinatorPage/></PrivateRoute>
-            <PrivateRoute path="/Company"><CompanyBase/> </PrivateRoute>
+            <PrivateRoute allowedRole="Student" path="/Student">  <StudentBase/> </PrivateRoute>
+            <PrivateRoute allowedRole="Supervisor" path="/Supervisor"> <SupervisorPage/> </PrivateRoute>
+            <PrivateRoute allowedRole="Staff" path="/Staff"> <StaffPage/> </PrivateRoute>
+            <PrivateRoute allowedRole="Coordinator" path="/Coordinator"> <CoordinatorPage/></PrivateRoute>
+            <PrivateRoute allowedRole="Company" path="/Company"><CompanyBase/> </PrivateRoute>
 
         </Router>
         
