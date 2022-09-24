@@ -37,7 +37,7 @@ class TopNav extends Component {
            <ul className="navbar-nav ms-auto d-flex flex-row">
 
           
-           <li className="nav-item dropdown">
+           {/* <li className="nav-item dropdown">
           <a
              className="nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
              href="#"
@@ -64,7 +64,44 @@ class TopNav extends Component {
             <li><a className="dropdown-item" href="#">Settings</a></li>
             <li><a className="dropdown-item" href="#">Logout</a></li>
           </ul>
-        </li>
+        </li> */}
+
+
+      {/* Nav Item - User Information */}
+
+      <li className="nav-item dropdown no-arrow">
+
+          <a className="nav-link dropdown-toggle" id="userDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span className="mr-2 d-none d-lg-inline text-gray-600 small">Chamath Chinthana   </span>
+              
+              <img className="img-profile rounded-circle"/>
+                  <i class="bi bi-person-circle"></i>
+          </a>
+
+          {/* <!-- Dropdown - User Information --> */}
+
+          <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+              aria-labelledby="userDropdown">
+              <a className="dropdown-item" href="#">
+                  <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+              </a>
+              <a className="dropdown-item" href="#">
+                  <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+              </a>
+              <a className="dropdown-item" href="#">
+                  <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Activity Log
+              </a>
+              <div className="dropdown-divider"></div>
+              <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+              </a>
+          </div>
+      </li>
 
         <Nav.Link className='p-0' as={Link} to="/"> <InfoBtn text={'Log Out'}></InfoBtn></Nav.Link>
 

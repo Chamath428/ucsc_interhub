@@ -1,6 +1,6 @@
 import SideBar from "../../component/Dashboard/SideBar/sideBar";
 import TopNav from "../../component/Dashboard/TopNav/topNav";
-
+import TopNavTest from "../../component/Dashboard/TopNav/topNavTest";
 
 import React from "react";
 import {
@@ -28,40 +28,43 @@ function StaffPage(){
 return(
     <div className="App">
 
-        <SideBar
+        <TopNavTest />
+
+        <div className="flex">
+
+            <aside className="sidebarArea shadow" id="sidebarArea">
+                <SideBar 
         
-            dashTitle1='Dashboard' dashLink1='Staff/'
-            dashTitle2='Students' dashLink2='Staff/Student'
-            dashTitle3='Company' dashLink3='Staff/Company'
-            dashTitle4='Advertisement' dashLink4='Staff/Advertisement'
-
-        ></SideBar>
-
-        <TopNav headerLink='Staff'></TopNav>
+                    dashTitle1='Dashboard' dashLink1='Staff/'
+                    dashTitle2='Students' dashLink2='Staff/Student'
+                    dashTitle3='Company' dashLink3='Staff/Company'
+                    dashTitle4='Advertisement' dashLink4='Staff/Advertisement'
+                />
+            </aside>
     
-        <main>
-            <div className='container pt-5'>
+            <main>
+                <div className='container pt-5'>
 
-                <Route exact path="/Staff" component={StaffMemberHome} />
+                    <Route exact path="/Staff" component={StaffMemberHome} />
 
-                <Route exact path="/Staff/Student" component={StaffMemberManageStudents} />
+                    <Route exact path="/Staff/Student" component={StaffMemberManageStudents} />
 
-                <Route exact path="/Staff/Company" component={StaffMemberManageCompany} />
+                    <Route exact path="/Staff/Company" component={StaffMemberManageCompany} />
 
-                <Route exact path="/Staff/Advertisement" component={StaffMemberAdvertisements} />
+                    <Route exact path="/Staff/Advertisement" component={StaffMemberAdvertisements} />
 
-                {/* buttons from here */}
+                    {/* buttons from here */}
 
-                <Route exact path="/Staff/Add-student" component={SMAddStudents} />
+                    <Route exact path="/Staff/Add-student" component={SMAddStudents} />
 
-                <Route exact path="/Staff/Schedule-Company-Visit" component={SMCompanyVisit} />
-                
-                {/* <Route path="*" component={NotFound} /> */}
+                    <Route exact path="/Staff/Schedule-Company-Visit" component={SMCompanyVisit} />
+                    
+                    {/* <Route path="*" component={NotFound} /> */}
 
 
-            </div>  
-        </main>
-
+                </div>  
+            </main>
+        </div>
     </div>
 );
 }

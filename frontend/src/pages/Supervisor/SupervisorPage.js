@@ -1,6 +1,6 @@
 import SideBar from "../../component/Dashboard/SideBar/sideBar";
 import TopNav from "../../component/Dashboard/TopNav/topNav";
-
+import TopNavTest from "../../component/Dashboard/TopNav/topNavTest";
 
 import React from "react";
 import {
@@ -21,29 +21,35 @@ function SupervisorPage(){
 return(
     <div className="App">
 
-        <SideBar
-            dashTitle1='Dashboard' dashLink1='Supervisor'
-            dashTitle2='Interns' dashLink2='Supervisor/Interns'
-            dashTitle3='Reporting' dashLink3='Supervisor/Progress-Reports'
-            
-        ></SideBar>
+        <TopNavTest />
 
-        <TopNav headerLink='Supervisor'></TopNav>
-    
-        <main>
-            <div className='container pt-5'>
 
-                <Route exact path="/Supervisor" component={SupervisorHome} />
+        <div className="flex">
 
-                <Route exact path="/Supervisor/Interns" component={supervisorAssignInterns} />
+            <aside className="sidebarArea shadow" id="sidebarArea">
+                <SideBar 
+                    dashTitle1='Dashboard' dashLink1='Supervisor'
+                    dashTitle2='Interns' dashLink2='Supervisor/Interns'
+                    dashTitle3='Reporting' dashLink3='Supervisor/Progress-Reports'
+                />
+            </aside>
+        
 
-                <Route exact path="/Supervisor/Progress-Reports" component={SupervisorProgressReports} />
 
-                {/* <Route path="*" component={NotFound} /> */}
+            <main>
+                <div>
+                    <Router>
+                        <Route exact path="/Supervisor" component={SupervisorHome} />
 
-            </div>  
-        </main>
+                        <Route exact path="/Supervisor/Interns" component={supervisorAssignInterns} />
 
+                        <Route exact path="/Supervisor/Progress-Reports" component={SupervisorProgressReports} />
+
+                        {/* <Route path="*" component={NotFound} /> */}
+                    </Router>
+                </div>  
+            </main>
+        </div>
     </div>
 );
 }
