@@ -4,7 +4,7 @@ function InfoBtn(props) {
 
     return (
       <>
-        <Button variant="outline-primary">{props.text}</Button>
+        <Button variant="outline-primary" onClick={props.link}>{props.text}</Button>
         
       </>
     );
