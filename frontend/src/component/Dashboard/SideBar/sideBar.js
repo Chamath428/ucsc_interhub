@@ -13,8 +13,7 @@ import { Button } from 'react-bootstrap';
 import { NavItem } from 'react-bootstrap';
 
 // import { Link, useLocation } from "react-router-dom";
-// import user1 from "../../../assets/images/users/user4.jpg";
-// import probg from "../../../assets/images/bg/download.jpg";
+
 
 import { useLocation } from "react-router-dom";
 
