@@ -160,7 +160,7 @@ model company_visit {
   date                String              @db.VarChar(50)
   start_time          Int
   company_visit_type  Int
-  visited_type        String              @db.VarChar(5)
+  visited_type        Int
   company             company             @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_visit_ibfk_1")
   pdc                 pdc                 @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "company_visit_ibfk_2")
   company_visit_types company_visit_types @relation(fields: [company_visit_type], references: [id], onDelete: Cascade, map: "company_visit_ibfk_3")
@@ -254,6 +254,7 @@ model pdc {
   password           String               @db.VarChar(100)
   profile_picture    String?              @db.VarChar(100)
   role               Int
+  is_active          Int
   pdc_role           pdc_role             @relation(fields: [role], references: [id], onDelete: Cascade, map: "pdc_ibfk_1")
   announcement       announcement[]
   company_visit      company_visit[]

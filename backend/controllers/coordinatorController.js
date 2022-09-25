@@ -5,8 +5,9 @@ import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
-export const ViewAnnouncements = async (req, res) => {
 
+
+export const ViewAnnouncements = async (req, res) => {
     try {
         const announcement = await prisma.announcement.findMany({
             select: {
@@ -36,13 +37,12 @@ export const ViewSystemUsers = async (req, res) => {
 
     // const { error, value } = coordinatorSchema.validate(req.body);
 
-
     try {
         const user = await prisma.pdc.findMany({
             select: {
                 first_name: true,
                 last_name: true,
-
+                is_active: true,
                 pdc_role: {
                     select: {
                         role: true,
@@ -58,13 +58,10 @@ export const ViewSystemUsers = async (req, res) => {
 
         })
         res.status(200).send(user);
-
         // console.dir(user, { depth: null })
     } catch (error) {
         res.status(400).send(error);
     }
-
-
 
 }
 
@@ -136,7 +133,7 @@ export const PendingCompany = async (req, res) => {
 
 
 export const CompanyVisit = async (req, res) => {
-    console.log("Company Visit");
+
 
     try {
         const CompanyVisit = await prisma.company_visit.findMany({
@@ -168,9 +165,127 @@ export const CompanyVisit = async (req, res) => {
         })
         res.status(200).send(CompanyVisit);
 
-        console.dir(CompanyVisit, { depth: null })
+        // console.dir(CompanyVisit, { depth: null })
     } catch (error) {
         res.status(400).send(error);
     }
 
+}
+
+
+
+
+export const StudentList = async (req, res) => {
+
+
+    try {
+        const StudentList = await prisma.interview.findMany({
+
+            select: {
+
+
+                student: {
+                    select: {
+                        index_number: true,
+                        name: true,
+                        cv: true,
+
+                    },
+                },
+                interview_status_types: {
+                    select: {
+                        types: true,
+                    },
+                },
+                company: {
+                    select: {
+                        name: true,
+                    }
+                },
+            }
+
+        })
+        res.status(200).send(StudentList);
+
+        // console.dir(StudentList, { depth: null })
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
+
+
+export const SelectedStudentList = async (req, res) => {
+
+
+    try {
+        const selectedStudentList = await prisma.interview.findMany({
+
+            where: {
+                interview_status: 2,
+            },
+            select: {
+
+
+                student: {
+                    select: {
+                        index_number: true,
+                        name: true,
+                        gpa: true,
+                    },
+                },
+
+                company: {
+                    select: {
+                        name: true,
+                    }
+                },
+            }
+
+        })
+        res.status(200).send(selectedStudentList);
+
+        // console.dir(selectedStudentList, { depth: null })
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
+
+
+export const createAnnouncements = async (req, res) => {
+
+    var currentDate = new Date().toLocaleDateString();
+    var currentTime = new Date().toLocaleTimeString();
+    // console.log(currentTime)
+    const { error, value } = coordinatorSchema.validate(req.body);
+    // console.log(value);
+    //    console.log(error);
+
+    if (!error) {
+
+        try {
+
+            const createNewAnnouncements = await prisma.announcement.create({
+                data: {
+                    title: req.body.title,
+                    body: req.body.body,
+                    time: currentTime,
+                    date: currentDate,
+                    type: req.body.type,
+                    email_address: req.body.email_address,
+
+
+
+                }
+            })
+
+            res.status(200).send(createNewAnnouncements);
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    } else {
+
+        res.status(500).send(error);
+    }
 }

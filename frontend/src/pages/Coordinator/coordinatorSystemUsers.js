@@ -10,6 +10,7 @@ import InfoCard from '../../component/Dashboard/InfoCard/infoCard';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import { URL } from '../URL';
+import { callServer } from '../authServer';
 
 import '../../styles/coordinatorSystemUser.css';
 
@@ -26,37 +27,32 @@ const CoordinatorSystemUsers = () => {
 
     const [userList, setUserList] = useState([]);
 
-
-
-    const createStaffMember = (event) => {
-        event.preventDefault();
-        axios.post(`${URL}/staffMember/create`, {
-            email_address: email,
-            first_name: first_name,
-            last_name: last_name,
-            role: parseInt(role)
-        }).then((response) => { showAlert(response) }).catch(function (error) {
-            if (error.response) {
-                setAlertPara("Something went wrong when creating the user!");
-                setVariant("danger");
-                setShow(true);
-            }
-        })
-    }
-
-    
+    userList.map((item, index) => {
+        if (item.is_active==1) {
+            item.is_active = "Active";
+        }
+        else {
+            item.is_active = "Not Active";
+        }
+    });
     useEffect(() => {
-        // event.preventDefault();
-        axios.post(`${URL}/coordinator/SystemUsers`
-        ).then((response) => {
-            response.data.map((item)=> {
+        const authRequest = {
+            "method": "post",
+            "url": "coordinator/SystemUsers",
+            "data": {}
+        }
+       
+        callServer(authRequest).then((response) => {
+            response.data.map((item) => {
                 setUserList(prevState => [...prevState, {
                     name: item.first_name + " " + item.last_name,
-                    role:item.pdc_role.role
+                    role: item.pdc_role.role,
+                    is_active: item.is_active,
                 }])
             })
+           
             // setUserList(response.data);
-            console.log(userList)
+            
         }).catch(function (error) {
             if (error.response) {
                 setAlertPara("Something went wrong!");
@@ -64,7 +60,32 @@ const CoordinatorSystemUsers = () => {
                 setShow(true);
             }
         })
-    }, []);
+    },[]);
+
+    const createStaffMember = (event) => {
+        event.preventDefault();
+        
+        const data = {
+            email_address: email,
+            first_name: first_name,
+            last_name: last_name,
+            role: parseInt(role)
+        }
+
+        const authRequest = {
+            "method": "post",
+            "url": "staffMember/create",
+            "data": data
+        }
+        callServer(authRequest).then((response) => { showAlert(response) }).catch(function (error) {
+            console.log(error);
+            if (error.response) {
+                setAlertPara("Something went wrong when creating the user!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+    }
 
     const showAlert = (response) => {
         setAlertPara("User added Successfully!");

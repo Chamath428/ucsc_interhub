@@ -6,7 +6,7 @@ import staffMemberRouters from './routes/staffMemberRouters.js';
 import organizationRouters from './routes/organizationRouters.js';
 import supervisorRouters from './routes/supervisorRouters.js';
 import tokenRouters from './routes/tokenRouters.js';
-import coordinatorRouters from './routes/coordinatorRouters.js';\
+import coordinatorRouters from './routes/coordinatorRouters.js';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 
@@ -53,7 +53,9 @@ app.use('/student',verify,studentRouters);
 app.use('/staffMember',verify,staffMemberRouters);
 app.use('/organization',verify,organizationRouters);
 app.use('/supervisor',verify,supervisorRouters);
-app.use('/token',verify,tokenRouters);
+app.use('/coordinator',verify,coordinatorRouters);
+app.use('/token',tokenRouters);
+
 
 
 
