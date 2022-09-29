@@ -7,6 +7,7 @@ import organizationRouters from './routes/organizationRouters.js';
 import supervisorRouters from './routes/supervisorRouters.js';
 import tokenRouters from './routes/tokenRouters.js';
 import coordinatorRouters from './routes/coordinatorRouters.js';
+import mailServerRouters from './routes/mailServerRouters.js';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 
@@ -54,6 +55,7 @@ app.use('/staffMember',verify,staffMemberRouters);
 app.use('/organization',verify,organizationRouters);
 app.use('/supervisor',verify,supervisorRouters);
 app.use('/coordinator',verify,coordinatorRouters);
+app.use('/mail',mailServerRouters);
 app.use('/token',tokenRouters);
 
 
