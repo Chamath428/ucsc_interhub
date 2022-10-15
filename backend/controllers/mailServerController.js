@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { acceptedMail } from '../templates/acceptRegisteration.js';
 
 const transporter = nodemailer.createTransport({
     port: 465,               // true for 465, false for other ports
@@ -10,12 +11,12 @@ const transporter = nodemailer.createTransport({
     secure: true,
     });
 
-    const mailData = {
+      const mailData = {
         from: 'internhub.ucsc.project@gmail.com',  // sender address
           to: 'chamath428@gmail.com',   // list of receivers
-          subject: 'Sending Email using Node.js',
+          subject: 'Change the subject',
           text: 'That was easy!',
-          html: '<b>Hey there! </b> <br> This is our first message sent with Nodemailer<br/>',
+          html: acceptedMail(),
         };
 
 export const sendRegisterationMail = ()=>{

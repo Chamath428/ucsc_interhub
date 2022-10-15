@@ -1,0 +1,18 @@
+.registered-container{
+    min-height: 70vh;
+    margin:80px auto;
+    width: 60%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../assets/images/header - background.jpg');
+}
+
+.registered-container img{
+    width: 400px;
+}
+
+.registered-container{
+    text-align: center;
+}
