@@ -9,6 +9,7 @@ import NavBarOnlyLogo from '../component/homepage/NavBarOnlyLogo/navBarOnlyLogo'
 import axios from 'axios';
 import { URL } from './URL';
 import '../styles/Signup.css';
+import { useHistory } from 'react-router-dom';
 import { registerCompany } from './authServer';
 
 function Signup() {
@@ -39,6 +40,7 @@ function Signup() {
     const [variant,setVariant] = useState("success");
 
     const [isRegisteredOtherUni,setIsRegisteredOtherUni] = useState(1);
+    const history = useHistory();
 
 
     const handleSubmit = (event) => {
@@ -81,7 +83,9 @@ function Signup() {
                 "data": data
               }
 
-            registerCompany(authRequest).then((response)=>{showAlert(response)}).catch(function (error) {
+            registerCompany(authRequest).then((response)=>{
+                history.push("/registered");
+            }).catch(function (error) {
             if (error.response) {
               setAlertPara("Something went wrong when registering the organization!");
               setVariant("danger");

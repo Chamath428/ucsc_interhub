@@ -31,7 +31,6 @@ const Login = ()=> {
                 "data" :data
             }
             userLogin(authRequest).then((response)=>{
-                console.log("awa");
                 showAlert(response)
                 setAuthTokens(response.data.accessToken,response.data.refreshToekn);
                 history.push("/".concat(response.data.role));

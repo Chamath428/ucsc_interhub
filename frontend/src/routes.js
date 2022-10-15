@@ -20,6 +20,7 @@ import SupervisorPage from "./pages/Supervisor/SupervisorPage";
 import StaffPage from "./pages/StaffMember/StaffMemberPage";
 import CoordinatorPage from "./pages/Coordinator/CoordinatorPage";
 import CompanyBase from "./pages/Company/companyPage";
+import RegisteredPage from "./pages/registeredPage";
 
 function PageRouting()
 {
@@ -29,6 +30,7 @@ function PageRouting()
             <Route path="/" exact component={HomePage} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Signup} />
+            <Route path="/registered" component={RegisteredPage}/>
 
             <Route path="/Student" component={StudentBase} />
             <Route path="/Supervisor" component={SupervisorPage} />
