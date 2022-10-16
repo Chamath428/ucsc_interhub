@@ -13,9 +13,33 @@ import StudentPassedInterviews from './StudentPassedInterviews';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import modalInterviewReject from '../../component/Modal/modalCenter';
+import { callServer } from '../authServer';
+import moment from 'moment'
 
 function StudentInterviews() {
-  const [value, onChange] = useState(new Date());
+  const [date, setDate] = useState();
+  const[dd,setDD]=useState();
+ 
+  const onDateChange = (newDate) => {
+    setDate(newDate);
+    console.log(newDate.toLocaleDateString());
+    
+    const data={
+      // selectedDate:newDate.toLocaleDateString().split("/").reverse().join("-")
+      selectedDate:moment(newDate).format('YYYY-MM-DD')
+    }
+    console.log(data.selectedDate);
+    const authRequest = {
+      "method": "post",
+      "url": "student/getSelectedInterviews",
+      "data": data
+    }
+    callServer(authRequest).then(
+      (response)=>{console.log(response)}
+      ).catch(
+        (error)=>{console.log(error)}
+        )
+  }
 
   return (
     <div>
@@ -31,7 +55,7 @@ function StudentInterviews() {
       <Tab eventKey="home" title="Your Interviews" >
         <div><br />
 
-          <h2>Your Interviews</h2><br />
+          <h2>Your Interviews {JSON.stringify(date)}</h2><br />
 
           <Container>
             <Row>
@@ -83,7 +107,13 @@ function StudentInterviews() {
               <Col sm={5}>
 
                 <Card body>
-                  <Calendar onChange={onChange} value={value} className="w-100 border-0"/> 
+                    <Calendar
+                    onChange={onDateChange}
+                    value={date}
+                    showNeighboringMonth={false}
+                    locale={"UTC"}
+                    className="w-100 border-0"
+                  />  
                 </Card>
 
                 <div className='d-flex pt-4 justify-content-between' >
@@ -110,8 +140,6 @@ function StudentInterviews() {
       </Tab>
       
       </Tabs>
-
-
 
       </div>
     </div>
