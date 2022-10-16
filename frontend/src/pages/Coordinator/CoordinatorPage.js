@@ -31,6 +31,7 @@ import CoordinatorManageCompany from "./coordinatorManageCompany";
 import CoordinatorManageStudents from "./coordinatorManageStudents";
 import SMAddStudents from "../StaffMember/sMAddStudents";
 import SMCompanyVisit from "../StaffMember/sMCompanyVisit";
+import CoordinatorProgram from "./CoordinatorProgram";
 
 
 function CoordinatorPage()
@@ -50,7 +51,8 @@ return(
                     dashTitle2='Student' dashLink2='Coordinator/Student'
                     dashTitle3='Company' dashLink3='Coordinator/Company'
                     dashTitle4='Manage Staff' dashLink4='Coordinator/System-User'
-                    dashTitle5='Announcement' dashLink5='Coordinator/Announcement'
+                    dashTitle5='Announcement' dashLink5='Coordinator/Announcement'                    
+                    dashTitle6='Program' dashLink6='Coordinator/Program'
                 />
 
             </aside>
@@ -75,6 +77,8 @@ return(
                     <Route exact path="/Coordinator/Schedule-Company-Visit" component={SMCompanyVisit} />
 
                     <Route exact path="/Coordinator/Company-Profile" component={CoordinatorRegisteredCompanyProfile} />
+
+                    <Route exact path="/Coordinator/Program" component={CoordinatorProgram} />
 
                 </div>  
             </main>
