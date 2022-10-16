@@ -17,10 +17,10 @@ class CoordinatorStudentBulkList extends Component {
 
 
 
+      <div className='contain mt-5 ms-5' style={{width :'90%'}}>
+      <div className='container'>
 
-
-      <Container>
-        <div className='contain'>
+     
 
           <div className='btn-container'>
             <Button  > View </Button>
@@ -100,10 +100,10 @@ class CoordinatorStudentBulkList extends Component {
 
             </div>
           </Row>
-        </div>
-      </Container>
+ 
 
-
+      </div>
+      </div>
     );
 
 

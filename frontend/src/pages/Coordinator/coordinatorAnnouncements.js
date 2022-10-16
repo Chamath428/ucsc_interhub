@@ -161,6 +161,50 @@ const CoordinatorAnnouncements = () => {
                     </div>
 
                 </Tab>
+
+                <Tab className="Announcements mt-5" eventKey="CompanyAnnouncements" title="Company Announcements">
+                    <div className='announcementcontain'>
+                        <h3>Company Announcements</h3>
+
+                        <div className='d-flex flex-row-reverse mb-3'>
+                            <Form.Group className="mb-1" controlId="formBasicSearchOrganization">
+                                <div className="d-flex flex-row align-item-center justify-content-center text-center" >
+                                    <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div>
+                                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search By Title" /></div>
+                            </Form.Group>
+                        </div>
+                        {/* <ToolkitProvider
+                            bootstrap4
+                            keyField="prce"
+                            data={this.products}
+                            columns={this.columns}
+                            search
+                        > */}
+                        <div class="table-wrapper-scroll-y myscrollbarannouncement ">
+                            {/* <SearchBar
+                                    // {...props.searchProps}
+                                    style={{ width: "400px", height: "40px" }}
+                                />
+                                <ClearButton
+                                    // {...props.searchProps}
+                                    clearAllFilter={this.clearAllFilter}
+                                /> */}
+                            <TableView headers={['Title', 'Visibility']}
+                                // list={[['Cool Project', '11', 'All'], ['Thing No One Wants to Do', '2', 'Student'], ['Site Revamp', '49', 'Company'], ['New Logo Design', '33 ', 'All'], ['Accessibility Updates', '4', 'Company'], ['Color Variations', '55', 'Student']]}
+                                list={announcementList}
+                            // {...props.baseProps}
+                            // filter={filterFactory()}
+                            // noDataIndication="There is no solution"
+                            >
+
+                            </TableView>
+                        </div>
+                        {/* </ToolkitProvider> */}
+
+                    </div>
+
+                </Tab>
+
                 <Tab className="Announcements mt-5" eventKey="AddAnnouncement" title="Add Announcements">
 
                     <div className='addannouncementcontain'>
@@ -168,18 +212,18 @@ const CoordinatorAnnouncements = () => {
                             <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
                                 <Alert.Heading>{alertPara}</Alert.Heading>
                             </Alert>
-                            <h3>Announcements</h3>
+                            <h3>Add an announcement</h3>
 
                             <Form onSubmit={createNewAnnouncements}>
 
 
                                 <Row className='align-item-center g-5 mt-2'>
-                                    <Form.Group className="mb-4  col-sm-6" controlId="formBasicTitle" onChange={(event) => { setTitle(event.target.value) }} >
+                                    <Form.Group className="mb-4  col-sm-8" controlId="formBasicTitle" onChange={(event) => { setTitle(event.target.value) }} >
                                         <Form.Label>Title</Form.Label>
                                         <Form.Control type="text" placeholder="Enter title " />
                                     </Form.Group>
 
-                                    <Form.Group className="mb-4  col-sm-6" controlId="formBasicAudience">
+                                    <Form.Group className="mb-4  col-sm-4" controlId="formBasicAudience">
                                         <Form.Label>Audience</Form.Label>
                                         <Form.Select onChange={(event) => { setType(event.target.value) }}>
                                             <option value="1">All</option>
@@ -216,17 +260,21 @@ const CoordinatorAnnouncements = () => {
                         </div>
                         <div className='AnnouncementRight mt-5 ms-5 ps-5'>
                             <Row className='mb-5 mt-5'>
-
+                                <Col>
                                 <InfoCard title={"No of Active Students "} count={"45"} icon={"people-fill"} cardWidth={12}></InfoCard>
+                                </Col>
                             </Row>
                             <Row className='mb-5'>
+                                <Col>
                                 <InfoCard title={"No of Active Company "} count={"26"} icon={"people-fill"} cardWidth={12}></InfoCard>
+                                </Col>
                             </Row>
 
 
                         </div>
                     </div>
                 </Tab>
+                
             </Tabs>
         </div>
     );
