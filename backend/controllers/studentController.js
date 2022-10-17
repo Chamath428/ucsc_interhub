@@ -49,14 +49,32 @@ export const getSelectedInterview=async (req,res) =>{
         // });
         const interviews = await prisma.$queryRaw `SELECT interview.interview_id,interview.date,interview.start_time,
                                                           company.name,
+                                                          company_contacts.telephone_no,
                                                           company_visit_types.type,
-                                                          interview_status_types.status	
+                                                          interview_status_types.status
                                                     FROM interview
                                                     LEFT JOIN company ON company.company_id=interview.company_id
+                                                    LEFT JOIN company_contacts ON company_contacts.company_id=interview.company_id
                                                     LEFT JOIN company_visit_types ON company_visit_types.id=interview.interview_type
                                                     LEFT JOIN interview_status_types ON interview_status_types.id=interview.interview_status
-                                                    WHERE interview.date=${req.body.selectedDate}`;
+                                                    WHERE interview.date=${req.body.selectedDate} AND interview.index_number=${req.body.indexNumber}`;
         res.status(200).send(interviews);
+    }catch(error){
+        res.status(400).send(error);
+    }
+}
+
+export const acceptInterview = async(req,res)=>{
+    try{
+        const intervie = await prisma.interview.update({
+            where:{
+                interview_id:req.body.interviewId
+            },
+            data:{
+                interview_status:2
+            }
+        });
+        res.status(200).json({message:"Invitation accepted!"})
     }catch(error){
         res.status(400).send(error);
     }

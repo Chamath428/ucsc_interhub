@@ -15,30 +15,48 @@ import Tabs from 'react-bootstrap/Tabs';
 import modalInterviewReject from '../../component/Modal/modalCenter';
 import { callServer } from '../authServer';
 import moment from 'moment'
+import jwt_decode from "jwt-decode";
 
 function StudentInterviews() {
   const [date, setDate] = useState();
-  const[dd,setDD]=useState();
+  const [interviews,setInterviews]= useState([]);
+  const indexNum = jwt_decode(sessionStorage.getItem("accessToken")).id;
  
   const onDateChange = (newDate) => {
     setDate(newDate);
-    console.log(newDate.toLocaleDateString());
-    
     const data={
-      // selectedDate:newDate.toLocaleDateString().split("/").reverse().join("-")
-      selectedDate:moment(newDate).format('YYYY-MM-DD')
+      selectedDate:moment(newDate).format('YYYY-MM-DD'),
+      indexNumber:indexNum
     }
-    console.log(data.selectedDate);
     const authRequest = {
       "method": "post",
       "url": "student/getSelectedInterviews",
       "data": data
     }
     callServer(authRequest).then(
-      (response)=>{console.log(response)}
+      (response)=>{
+        setInterviews(response.data)
+      }
       ).catch(
         (error)=>{console.log(error)}
-        )
+      )
+  }
+
+  const acceptInterview =(interview_id)=>{
+    const data={
+      interviewId:interview_id
+    }
+    const authRequest = {
+      "method": "post",
+      "url": "student/acceptInterview",
+      "data": data
+    }
+    callServer(authRequest).then(
+      (response)=>{
+        console.log(response)
+      }).catch(
+        (error)=>{console.log(error)}
+      )
   }
 
   return (
@@ -55,53 +73,48 @@ function StudentInterviews() {
       <Tab eventKey="home" title="Your Interviews" >
         <div><br />
 
-          <h2>Your Interviews {JSON.stringify(date)}</h2><br />
+          <h2>Your Interviews</h2><br />
 
           <Container>
             <Row>
               <Col sm={7}>
-              
-                <AccordionItem Header='Synopsys' body='A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. '
+
+              {interviews.length==0?(
+                <p>You have no Interviews to show.</p>
+                ):(
+                  interviews.map((interview)=>(
+                    
+                    <AccordionItem Header={interview.name} body='A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. '
                 
                 card1heading='Event Time'
-                card1context='10.00 am'
+                card1context={interview.start_time}
 
                 card2heading='Event Date'
-                card2context='23rd of August 2022'
+                card2context={interview.date}
 
                 card3heading='Event Location'
-                card3context='Via Zoom'
+                card3context={interview.type}
                 
                 card4heading='Contact Number'
-                card4context='0112 456 987'
+                card4context={interview.telephone_no}
+
+                card5heading='Interview status'
+                card5context={interview.status}
 
                 PrimaryBtn='Accept Invitation'
+                acceptInterview={acceptInterview}
+                interviewId={interview.interview_id}
+                status={interview.status=='Pending response'?'':'1'}
 
                 InfoBtn = 'Decline'
                 InfoBtnLink = 'handleShow'
 
                 ></AccordionItem>
-
-                <AccordionItem Header='WSO2' body='A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. '
-
-                card1heading='Event Time'
-                card1context='10.00 am'
-
-                card2heading='Event Date'
-                card2context='23rd of August 2022'
-
-                card3heading='Event Location'
-                card3context='No. 34A, Penny Lane, Liverpool'
-
-                card4heading='Contact Number'
-                card4context='0112 456 987'
-
-                PrimaryBtn='Accept Invitation'
-
-                InfoBtn = 'Decline'
-
-                ></AccordionItem>
-              
+                  
+                  ))
+                )
+              }
+                            
               </Col>
               
               <Col sm={5}>

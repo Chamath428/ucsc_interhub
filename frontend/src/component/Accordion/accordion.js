@@ -75,6 +75,20 @@ function AccordionItem(props) {
             </Col>
 
           </Row>
+
+          <Row>
+            <Col>
+              <Card style={{ width: '18rem' }} className='card5 mb-4'>
+                <Card.Header>{props.card5heading}</Card.Header>
+
+                <ListGroup variant="flush">
+                  <ListGroup.Item>{props.card5context}</ListGroup.Item>
+
+                </ListGroup>
+              </Card>   
+            </Col>
+
+          </Row>
           
           {/* <Button variant="primary" onClick={handleShow}>
             Launch demo modal
@@ -83,7 +97,7 @@ function AccordionItem(props) {
 
 
           <div style={{marginRight: '5px', display: 'inline'}}>
-          <PrimaryBtn text={props.PrimaryBtn} onClick={props.PrimaryBtnLink}></PrimaryBtn>
+          <Button variant="primary" disabled={props.status} onClick={()=>props.acceptInterview(props.interviewId)}>{props.PrimaryBtn}</Button>
           </div>
           {/* <InfoBtn text={props.InfoBtn} link={handleShow}></InfoBtn> */}
           <Button variant="outline-danger" onClick={handleShow}>Decline</Button>{' '}
