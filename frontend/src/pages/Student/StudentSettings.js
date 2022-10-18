@@ -226,26 +226,24 @@ render() {
                 </div>
                 </div>
                 
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
-                    <div className="card h-100">
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3 mb-3">
+
+                    <div className="card h-100 ">
                         <div className="card-body">
 
                         <Stack direction="horizontal" gap={2}>
 
-                            <div className="bg-light border ms-auto">
+                            <div className="ms-auto">
                                 <button type="button" id="submit" name="submit" className="btn btn-secondary mr-3">Cancel</button>
                             </div>
 
                             <div className="vr" />
 
-                            <div className="bg-light border">
+                            <div className="">
                                 <button type="button" id="submit" name="submit" className="btn btn-primary ml-3">Update</button>
-
                             </div>
                         </Stack>
-                            
-                            
-                        
+
                         </div>
                     </div>
                     </div>

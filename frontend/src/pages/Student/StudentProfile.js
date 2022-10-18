@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
 import Stack from 'react-bootstrap/Stack';
 import CardListItem from '../../component/Cards/CardList';
-
+import { Route } from 'react-router-dom'
 import ProfilePic from '../../component/Media/ProfilePicture/profilePic';
 import BodyCard from '../../component/Cards/bodyCard';
 import PrimaryBtn from '../../component/Buttons/primaryBtn';
@@ -16,6 +16,7 @@ import YoutubeEmbed from '../../component/YoutubeEmbed/youtubeEmbed';
 class StudentProfile extends Component {
 
     render() {
+
         return(
             <div className='container mt-5 ms-5' style={{width:'90%'}} >
 
@@ -57,8 +58,16 @@ class StudentProfile extends Component {
                         <Col className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 alignTop">
                                 <Card body>
                                     <Row>
-                                        <h1>Chamath Madushanka</h1>
-                                        <h5>BSc. Computer Science</h5>
+                                        <Col lg='9'>
+                                            <h1>Chamath Madushanka</h1>
+                                            <h5>BSc. Computer Science</h5>
+                                        </Col>
+                                        <Col lg='3' >
+                                            {/* Use composition and render a Route for Edit Profile button */}
+                                            <Route render={({ history}) => (
+                                            <Button variant="primary" className='float-right mr-2'  onClick={() => { history.push('/Student/Edit-Profile') }}>Edit Profile</Button>
+                                            )}/>
+                                        </Col>
                                     </Row>
                                     <Row className='m-2'>
                                         <BodyCard bodyText='A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now. When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary,'></BodyCard>
