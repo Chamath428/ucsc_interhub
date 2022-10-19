@@ -21,6 +21,7 @@ import StaffMemberStudents from "./sMStudenSelection";
 import StaffMemberManageStudents from "./StaffMemberManageStudents";
 import StaffMemberAdvertisements from "./sMAdvertisments";
 import StaffMemberManageCompany from "./staffMemberCompany";
+import StaffProfile from "./sMProfile";
 
 function StaffPage(){
 
@@ -39,6 +40,7 @@ return(
                     dashTitle2='Students' dashLink2='Staff/Student'
                     dashTitle3='Company' dashLink3='Staff/Company'
                     dashTitle4='Advertisement' dashLink4='Staff/Advertisement'
+                    dashTitle5='Profile' dashLink5='Staff/Profile'
                 />
             </aside>
     
@@ -58,6 +60,8 @@ return(
                     <Route exact path="/Staff/Add-student" component={SMAddStudents} />
 
                     <Route exact path="/Staff/Schedule-Company-Visit" component={SMCompanyVisit} />
+
+                    <Route exact path="/Staff/Profile" component={StaffProfile} />
                     
                     {/* <Route path="*" component={NotFound} /> */}
 
