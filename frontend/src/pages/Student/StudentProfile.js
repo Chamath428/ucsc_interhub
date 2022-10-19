@@ -58,15 +58,16 @@ class StudentProfile extends Component {
                         <Col className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 alignTop">
                                 <Card body>
                                     <Row>
-                                        <Col lg='9'>
+                                        <Col lg='7'>
                                             <h1>Chamath Madushanka</h1>
                                             <h5>BSc. Computer Science</h5>
                                         </Col>
-                                        <Col lg='3' >
+                                        <Col lg='5' >
                                             {/* Use composition and render a Route for Edit Profile button */}
                                             <Route render={({ history}) => (
                                             <Button variant="primary" className='float-right mr-2'  onClick={() => { history.push('/Student/Edit-Profile') }}>Edit Profile</Button>
                                             )}/>
+                                            <Button variant="outline-danger" className='float-right mr-2'   onClick={() => window.location = 'https://ucsc.cmb.ac.lk/'}>Deactivate</Button>
                                         </Col>
                                     </Row>
                                     <Row className='m-2'>
