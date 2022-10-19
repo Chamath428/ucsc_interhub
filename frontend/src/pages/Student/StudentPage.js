@@ -39,7 +39,6 @@ return(
                      dashTitle3='Interviews' dashLink3='Student/Interviews'
                      dashTitle4='Internship' dashLink4='Student/Internship'
                      dashTitle5='My Profile' dashLink5='Student/Profile'
-                     dashTitle6='Edit Profile' dashLink6='Student/Edit-Profile'       
                 />
             </aside>
 
