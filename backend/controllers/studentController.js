@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import {studentSchema} from '../models/studentModel.js';
 import { studenteditProfileSchema } from '../models/studentModel.js';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -31,17 +32,12 @@ export const createStudent = async(req,res)=>{
 
 
     export const studentEditProfile = async(req,res)=>{
-        // name: name,
-        // password: password,
-        // email : email,
-        // about_me : about_me,
-        // github : github,
-        // facebook : facebook,
-        // linkedin : linkedin,
         console.log("Comming")
         const {error,value} = studenteditProfileSchema.validate(req.body);
         console.log(error)
         if(!error){
+            const salt = await bcrypt.genSalt(10);
+            const hashPassword = await bcrypt.hash(req.body.password, salt);   
             try{
                 const student = await prisma.student.update({
                     where: {
@@ -49,7 +45,7 @@ export const createStudent = async(req,res)=>{
                       },
                     data:{
                         name : req.body.name,
-                        password : req.body.password,
+                        password : hashPassword,
                         email : req.body.email,
                         about_me : req.body.about_me,
                         github : req.body.github,
