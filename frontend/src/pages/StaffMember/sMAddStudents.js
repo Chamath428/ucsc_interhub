@@ -93,8 +93,10 @@ const SMAddStudents = () => {
                 <Form.Group as={Col} md="6" controlId="formBasicCourse">
                   <Form.Label>Course</Form.Label>
                   <Form.Select onChange={(event) => { setCourse(event.target.value) }}>
-                    <option value="1">CS</option>
-                    <option value="2">IS </option>
+                    <option value="1">CS - 3rd Year</option>
+                    <option value="2">IS - 3rd Year</option>
+                    <option value="3">CS - 4th Year</option>
+                    <option value="4">IS - 4th Year</option>
                   </Form.Select>
                 </Form.Group>
                 <Form.Group as={Col} md="6" controlId="formBasicGPA">

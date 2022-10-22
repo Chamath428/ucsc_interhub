@@ -143,7 +143,11 @@ export const CompanyVisit = async (req, res) => {
 
                     },
                 },
-                email_address:true,
+                pdc:{
+                    select:{
+                        first_name:true,
+                    },
+                },
                 date: true,
                 
                 start_time: true,
@@ -181,7 +185,8 @@ export const scheduleCompanyVisit = async (req,res)=>{
                     email_address:req.body.email_address,
                     date:req.body.date,
                     start_time:req.body.start_time,
-                    company_visit_type:req.body.company_visit_type
+                    company_visit_type:req.body.company_visit_type,
+                    status: req.body.status
                 }
             })
 
