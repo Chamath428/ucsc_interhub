@@ -304,8 +304,7 @@ const StaffMemberManageCompany = () => {
                         <h3>Scheduled Company Visits</h3>
                         {/* </div> */}
                         <div className='addcompanyvisit d-flex flex-row-reverse mb-1'>
-
-                            <Nav.Link as={Link} to="/Staff/Schedule-Company-Visit"> <DashboardButton inside={'+ Schedule Company Visit'}></DashboardButton></Nav.Link>
+                        <Nav.Link as={Link} to="/Staff/Schedule-Company-Visit"> <Button variant='primary'>+ Schedule Company Visit</Button></Nav.Link>
 
                         </div>
                         <Container className="mt-2">
