@@ -17,6 +17,7 @@ function AccordionItem(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [declineMessagge,setDeclineMessage] = useState("");
 
   return (
     <Accordion >
@@ -97,10 +98,10 @@ function AccordionItem(props) {
 
 
           <div style={{marginRight: '5px', display: 'inline'}}>
-          <Button variant="primary" disabled={props.status} onClick={()=>props.acceptInterview(props.interviewId)}>{props.PrimaryBtn}</Button>
+          <Button variant="primary" disabled={props.status} onClick={()=>props.acceptInterview(props.interviewId,props.interview_index)}>{props.PrimaryBtn}</Button>
           </div>
           {/* <InfoBtn text={props.InfoBtn} link={handleShow}></InfoBtn> */}
-          <Button variant="outline-danger" onClick={handleShow}>Decline</Button>{' '}
+          <Button variant="outline-danger" disabled={props.declined} onClick={handleShow}>Decline</Button>{' '}
 
           {/* modal start */}
           <Modal show={show} onHide={handleClose}>
@@ -110,14 +111,19 @@ function AccordionItem(props) {
             <Modal.Body>
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>State a reason to decline the offer</Form.Label>
-                <Form.Control as="textarea" placeholder='Enter your message briefly' rows={3} />
+                <Form.Control as="textarea" placeholder='Enter your message briefly' rows={3} onChange={(event)=>{setDeclineMessage(event.target.value)}} />
               </Form.Group>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Back
               </Button>
-              <Button variant="danger" onClick={handleClose}>
+              <Button variant="danger" onClick={
+                ()=>{
+                  props.declineInterview(props.interviewId,declineMessagge,props.interview_index)
+                  handleClose();
+                }
+                }>
                 Send message
               </Button>
             </Modal.Footer>

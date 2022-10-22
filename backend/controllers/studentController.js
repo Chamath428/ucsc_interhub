@@ -66,7 +66,7 @@ export const getSelectedInterview=async (req,res) =>{
 
 export const acceptInterview = async(req,res)=>{
     try{
-        const intervie = await prisma.interview.update({
+        const interview = await prisma.interview.update({
             where:{
                 interview_id:req.body.interviewId
             },
@@ -75,6 +75,29 @@ export const acceptInterview = async(req,res)=>{
             }
         });
         res.status(200).json({message:"Invitation accepted!"})
+    }catch(error){
+        res.status(400).send(error);
+    }
+}
+
+export const declineInterview = async(req,res)=>{
+    try{
+        const interview = await prisma.interview.update({
+            where:{
+                interview_id:req.body.interviewId
+            },
+            data:{
+                interview_status:3
+            }
+        });
+
+        const declineInterview = await prisma.interview_decline_message.create({
+        data:{
+            interview_id:req.body.interviewId,
+            message:req.body.decline_messagge
+        }
+        })
+        res.status(200).json({message:"Invitation declined!"})
     }catch(error){
         res.status(400).send(error);
     }

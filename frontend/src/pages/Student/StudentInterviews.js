@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import InfoCard from '../../component/Dashboard/InfoCard/infoCard'; 
 import Container from 'react-bootstrap/esm/Container';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Card from 'react-bootstrap/Card';
@@ -42,7 +42,7 @@ function StudentInterviews() {
       )
   }
 
-  const acceptInterview =(interview_id)=>{
+  const acceptInterview =(interview_id,interview_index)=>{
     const data={
       interviewId:interview_id
     }
@@ -53,11 +53,36 @@ function StudentInterviews() {
     }
     callServer(authRequest).then(
       (response)=>{
-        console.log(response)
+        interviews[interview_index].status="Accepted";
+        const interviews_copy = [...interviews];
+        setInterviews(interviews_copy);
       }).catch(
         (error)=>{console.log(error)}
       )
   }
+
+  const declineInterview=(interview_id,decline_messagge,interview_index)=>{
+    const data={
+      interviewId:interview_id,
+      decline_messagge:decline_messagge
+    }
+    const authRequest = {
+      "method": "post",
+      "url": "student/declineInterview",
+      "data": data
+    }
+    callServer(authRequest).then(
+      (response)=>{
+        const interviews_copy = [...interviews];
+        interviews_copy[interview_index].status="Declined";
+        setInterviews(interviews_copy);
+      }).catch(
+        (error)=>{console.log(error)}
+      )
+  }
+
+  useEffect(()=>{
+  },[interviews]);
 
   return (
     <div>
@@ -103,8 +128,11 @@ function StudentInterviews() {
 
                 PrimaryBtn='Accept Invitation'
                 acceptInterview={acceptInterview}
+                declineInterview={declineInterview}
                 interviewId={interview.interview_id}
+                interview_index={interviews.indexOf(interview)}
                 status={interview.status=='Pending response'?'':'1'}
+                declined={interview.status=='Declined'?'1':''}
 
                 InfoBtn = 'Decline'
                 InfoBtnLink = 'handleShow'
