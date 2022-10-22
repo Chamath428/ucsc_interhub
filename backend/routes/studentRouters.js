@@ -1,5 +1,6 @@
 import express from 'express';
 import {createStudent,getSelectedInterview,getAllInterviews,acceptInterview, declineInterview} from '../controllers/studentController.js';
+import {studentEditProfile} from '../controllers/studentController.js';
 
 const studentRouters = express.Router();
 
@@ -8,5 +9,6 @@ studentRouters.post('/getSelectedInterviews',getSelectedInterview)
 studentRouters.post('/getAllInterviews',getAllInterviews)
 studentRouters.post('/acceptInterview',acceptInterview)
 studentRouters.post('/declineInterview',declineInterview)
+studentRouters.post('/editProfile',studentEditProfile);
 
 export default studentRouters;

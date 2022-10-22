@@ -158,7 +158,7 @@ model company_visit {
   company_id                 Int
   email_address              String                     @db.VarChar(100)
   date                       String                     @db.VarChar(50)
-  start_time                 Int
+  start_time                 String                     @db.VarChar(50)
   company_visit_type         Int
   status                     Int
   company                    company                    @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "company_visit_ibfk_1")
@@ -171,12 +171,6 @@ model company_visit {
   @@index([company_visit_type], map: "company_visit_type")
   @@index([email_address], map: "email_address")
   @@index([status], map: "status")
-}
-
-model company_visit_status_types {
-  id            Int             @id @default(autoincrement())
-  status        String          @db.VarChar(20)
-  company_visit company_visit[]
 }
 
 model company_visit_types {
@@ -216,7 +210,7 @@ model internships {
 }
 
 model interview {
-  interview_id              Int                         @unique(map: "interview_id") @default(autoincrement())
+  interview_id              Int                         @default(autoincrement())
   company_id                Int
   index_number              Int
   date                      String                      @db.VarChar(30)
@@ -350,6 +344,7 @@ model student {
   student_applied_internships     student_applied_internships[]
   student_availability            student_availability?
   student_notification            student_notification[]
+  student_preferred_job_role      student_preferred_job_role[]
   student_work_experience         student_work_experience[]
 
   @@index([program_id], map: "program_id")
@@ -455,4 +450,40 @@ model supervisor_notification {
 
   @@id([notification_id, supervisor_id])
   @@index([supervisor_id], map: "supervisor_id")
+}
+
+model company_visit_status_types {
+  id            Int             @id @default(autoincrement())
+  status        String          @db.VarChar(20)
+  company_visit company_visit[]
+}
+
+model interview_decline_message {
+  id           Int    @id @default(autoincrement())
+  interview_id Int
+  message      String @db.LongText
+  // interview    interview @relation(fields: [interview_id], references: [interview_id], onDelete: Cascade, map: "interview_decline_message_ibfk_1")
+
+  @@index([interview_id], map: "interview_id")
+}
+
+model job_roles {
+  id                         Int                          @id @default(autoincrement())
+  job_role                   String                       @db.VarChar(100)
+  student_preferred_job_role student_preferred_job_role[]
+}
+
+model student_degree {
+  id     Int    @id @default(autoincrement())
+  degree String @db.VarChar(100)
+}
+
+model student_preferred_job_role {
+  index_number Int
+  job_role     Int
+  student      student   @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_preferred_job_role_ibfk_1")
+  job_roles    job_roles @relation(fields: [job_role], references: [id], onDelete: Cascade, map: "student_preferred_job_role_ibfk_2")
+
+  @@id([index_number, job_role])
+  @@index([job_role], map: "job_role")
 }

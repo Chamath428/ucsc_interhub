@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import {studentSchema} from '../models/studentModel.js';
+import { studenteditProfileSchema } from '../models/studentModel.js';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -112,4 +114,36 @@ export const declineInterview = async(req,res)=>{
         res.status(400).send(error);
     }
 }
+
+    export const studentEditProfile = async(req,res)=>{
+        console.log("Comming")
+        const {error,value} = studenteditProfileSchema.validate(req.body);
+        console.log(error)
+        if(!error){
+            const salt = await bcrypt.genSalt(10);
+            const hashPassword = await bcrypt.hash(req.body.password, salt);   
+            try{
+                const student = await prisma.student.update({
+                    where: {
+                        index_number: req.body.index_number,
+                      },
+                    data:{
+                        name : req.body.name,
+                        password : hashPassword,
+                        email : req.body.email,
+                        about_me : req.body.about_me,
+                        github : req.body.github,
+                        facebook : req.body.facebook,
+                        linkedin : req.body.linkedin
+                    }
+                })
+                const message = {"Message":"Student Created Successfull"}
+                res.status(200).send(student);
+            }catch(error){
+                res.status(400).send(error);
+            }
+            
+        }
+            res.status(500).send(error);
+    }
   

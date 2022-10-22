@@ -17,6 +17,7 @@ import { callServer } from '../authServer';
 import moment from 'moment'
 import jwt_decode from "jwt-decode";
 import '../../styles/studentInterview.css'
+import StudentAvailability from './StudentAvailability';
 
 function StudentInterviews() {
   const [date, setDate] = useState();
@@ -111,18 +112,18 @@ function StudentInterviews() {
   return (
     <div>
       <div className='container pt-5'>
-
+      <h2 className='mb-5'>Interviews</h2> 
       <Tabs
-      defaultActiveKey="home"
+      defaultActiveKey="yourInterview"
       id="justify-tab-example"
       className="mb-3 TabsStyle"
-      variant="pills"
+            
       >
 
-      <Tab eventKey="home" title="Your Interviews" >
-        <div><br />
+      <Tab eventKey="yourInterview" title="Your Interviews" >
+        <div className=''><br />
 
-          <h2>Your Interviews</h2><br />
+          <h3>Your Interviews</h3><br />
 
           <Container>
             <Row>
@@ -206,9 +207,16 @@ function StudentInterviews() {
         </div>
       </Tab>
 
-      <Tab eventKey="profile" title="Past Interviews">
+      <Tab eventKey="pastInterview" title="Past Interviews">
         <br />
         <StudentPassedInterviews />
+        <br />
+      </Tab>
+
+      <Tab eventKey="yourAvailability" title="Your Availability">
+        <br />
+        <StudentAvailability />
+        <br />
       </Tab>
       
       </Tabs>

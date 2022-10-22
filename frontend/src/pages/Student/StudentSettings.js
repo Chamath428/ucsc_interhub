@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
+import Alert from 'react-bootstrap/Alert';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -14,13 +15,63 @@ import BodyCard from '../../component/Cards/bodyCard';
 import PrimaryBtn from '../../component/Buttons/primaryBtn';
 import InfoBtn from '../../component/Buttons/outlineBtn';
 import YoutubeEmbed from '../../component/YoutubeEmbed/youtubeEmbed';
+import { useState } from 'react';
+import { callServer } from '../authServer';
+import axios from 'axios';
+import jwt_decode from "jwt-decode";
 
-class StudentEditProfile extends Component {
 
-render() {
+const StudentEditProfile = () =>{
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState(1);
+    const [email, setEmail] = useState("");
+    const [about_me, setAboutme] = useState("");
+    const [github, setGithub] = useState("");
+    const [facebook, setFacebook] = useState("");
+    const [linkedin, setLinkedin] = useState("");
+    const [show, setShow] = useState(false);
+    const [alertPara, setAlertPara] = useState("Student Added Successfully!");
+    const [variant, setVariant] = useState("success");
+  
+    const updateStudentProfile = (event) => {
+      event.preventDefault();
+      const data = {
+        index_number: parseInt(jwt_decode(sessionStorage.getItem("accessToken")).id),
+        name: name,
+        password: password,
+        email : email,
+        about_me : about_me,
+        github : github,
+        facebook : facebook,
+        linkedin : linkedin
+      }
+      const authRequest = {
+        "method": "post",
+        "url": "student/editProfile",
+        "data": data
+      }
+      callServer(authRequest).then((response) => { showAlert(response) }).catch(function (error) {
+        if (error.response) {
+          setAlertPara("Something went wrong when editing profile!");
+          setVariant("danger");
+          setShow(true);
+        }
+      })
+    }
+  
+    const showAlert = (response) => {
+      setAlertPara("Profile Update Successfully!");
+      setVariant("success");
+      setShow(true);
+    }
+
     return(
+
         <div className='container pt-5'>
             <div className="container">
+            <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
+              <Alert.Heading>{alertPara}</Alert.Heading>
+            </Alert>
                 <div className="row gutters">
                 <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                 <div className="card h-100">
@@ -66,21 +117,21 @@ render() {
                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div className="form-group">
                                     <label for="fullName">Full Name</label>
-                                    <Form.Control type="text" placeholder="name@example.com" />
+                                    <Form.Control type="text" placeholder="name@example.com" onChange={(event) => { setName(event.target.value) }} />
                                     {/* <input type="text" className="form-control" id="fullName" placeholder="Enter full name"> */}
                                 </div>
                             </div>
                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div className="form-group">
                                     <label for="eMail">Email</label>
-                                    <Form.Control type="email" placeholder="name@example.com" />
+                                    <Form.Control type="email" placeholder="name@example.com" onChange={(event) => { setEmail(event.target.value) }}/>
                                     {/* <input type="email" className="form-control" id="eMail" placeholder="Enter email ID"> */}
                                 </div>
                             </div>
                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-2">
                                 <div className="form-group">
                                     <label for="phone">InternHub Password</label>
-                                    <Form.Control type="password" placeholder="" />
+                                    <Form.Control type="password" placeholder="" onChange={(event) => { setPassword(event.target.value) }}/>
                                     {/* <input type="text" className="form-control" id="phone" placeholder="Enter phone number"> */}
                                 </div>
                             </div>
@@ -99,7 +150,7 @@ render() {
                             <div className="about">
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                                     <Form.Label>Add your About Me</Form.Label>
-                                    <Form.Control as="textarea" rows={3} />
+                                    <Form.Control as="textarea" rows={3} onChange={(event) => { setAboutme(event.target.value) }}/>
                                 </Form.Group>                            
                             </div>
 
@@ -115,7 +166,7 @@ render() {
                                         <div className="input-group-prepend">
                                         <div className="input-group-text"><i className="bi bi-facebook"></i></div>
                                         </div>
-                                        <Form.Control type="text" placeholder="facebook link" style={{ borderRadius: 5 }}/>
+                                        <Form.Control type="text" placeholder="facebook link" style={{ borderRadius: 5 }} onChange={(event) => { setFacebook(event.target.value) }}/>
                                     </div>
                                 </Form.Group>
                             </div>
@@ -128,7 +179,7 @@ render() {
                                         <div className="input-group-prepend">
                                         <div className="input-group-text"><i className="bi bi-linkedin"></i></div>
                                         </div>
-                                        <Form.Control type="text" placeholder="LinkedIn link" style={{ borderRadius:5 }}/>
+                                        <Form.Control type="text" placeholder="LinkedIn link" style={{ borderRadius:5 }} onChange={(event) => { setLinkedin(event.target.value) }}/>
                                     </div>
                                 </Form.Group>
 
@@ -143,7 +194,7 @@ render() {
                                         <div className="input-group-prepend">
                                         <div className="input-group-text"><i className="bi bi-github"></i></div>
                                         </div>
-                                        <Form.Control type="text" placeholder="Github link" style={{ borderRadius:5 }}/>
+                                        <Form.Control type="text" placeholder="Github link" style={{ borderRadius:5 }} onChange={(event) => { setGithub(event.target.value) }}/>
                                     </div>
                                 </Form.Group>
 
@@ -226,35 +277,33 @@ render() {
                 </div>
                 </div>
                 
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
-                    <div className="card h-100">
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3 mb-3">
+
+                    <div className="card h-100 ">
                         <div className="card-body">
 
                         <Stack direction="horizontal" gap={2}>
 
-                            <div className="bg-light border ms-auto">
+                            <div className="ms-auto">
                                 <button type="button" id="submit" name="submit" className="btn btn-secondary mr-3">Cancel</button>
                             </div>
 
                             <div className="vr" />
 
-                            <div className="bg-light border">
-                                <button type="button" id="submit" name="submit" className="btn btn-primary ml-3">Update</button>
-
+                            <div className="">
+                                <button type="button" id="submit" name="submit" className="btn btn-primary ml-3" onClick = {updateStudentProfile}>Update</button>
                             </div>
                         </Stack>
-                            
-                            
-                        
+
                         </div>
                     </div>
                     </div>
+                    
                 </div>
                 </div>
 
         </div>
     );
-}
 }
 
 export default StudentEditProfile;

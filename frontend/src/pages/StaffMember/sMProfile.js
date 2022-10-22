@@ -13,7 +13,7 @@ import PrimaryBtn from '../../component/Buttons/primaryBtn';
 import InfoBtn from '../../component/Buttons/outlineBtn';
 import YoutubeEmbed from '../../component/YoutubeEmbed/youtubeEmbed';
 
-class StudentProfile extends Component {
+class StaffProfile extends Component {
 
     render() {
 
@@ -26,82 +26,42 @@ class StudentProfile extends Component {
 
                         {/* Left side - Profile Pciture and buttons */}
 
-                        <Col className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 alignTop">
+                        <Col className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
 
                             <Card body>
                                 <ProfilePic/>
-                                
-                                <div className="d-grid gap-2">
-                                    <PrimaryBtn text='View my CV'></PrimaryBtn>
-                                </div><br />
-
-                                <div className="d-grid gap-2">
-                                    <InfoBtn text='Add me to wishlist'></InfoBtn>
+                                <div className="d-grid gap-3">
+                                    <Button onClick={() => window.location = 'mailto:yourmail@domain.com'} variant="outline-primary" className="btn btn-default w-100">kgg@ucsc.amb.ac.lk</Button>
+                                    <Button onClick={() => window.location = 'mailto:yourmail@domain.com'} variant="outline-primary" className="btn btn-default w-100">Visit PDC website</Button>
                                 </div>
-                                
                                 <div>
-                                    <br />
-                                    <div className="d-flex justify-content-between">
-                                        
-                                            <Button variant="outline-primary" style={{marginRight: '5px'}}><i className="bi bi-facebook ms-1"></i></Button>
-                                            <Button variant="outline-primary" style={{marginRight: '5px'}}><i className="bi bi-linkedin ms-1"></i></Button>
-                                            <Button variant="outline-primary" style={{marginRight: '5px'}}><i className="bi bi-github ms-1"></i></Button>
-                                    </div>
+                                   
                                 </div>
-
-
                             </Card>
-
-                        </Col>
-                            
+                        </Col>   
 
                         <Col className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 alignTop">
                                 <Card body>
                                     <Row>
                                         <Col lg='7'>
-                                            <h1>Chamath Madushanka</h1>
-                                            <h5>BSc. Computer Science</h5>
+                                            <h1>Staff Member Name</h1>
+                                            <h5>Staff Member Position</h5>
                                         </Col>
                                         <Col lg='5' >
                                             {/* Use composition and render a Route for Edit Profile button */}
-                                            <Route render={({ history}) => (
-                                            <Button variant="primary" className='float-right mr-2'  onClick={() => { history.push('/Student/Edit-Profile') }}>Edit Profile</Button>
-                                            )}/>
                                             <Button variant="outline-danger" className='float-right mr-2'   onClick={() => window.location = 'https://ucsc.cmb.ac.lk/'}>Deactivate</Button>
                                         </Col>
                                     </Row>
-                                    <Row className='m-2'>
+                                    <Row className='mt-2 ml-2 mr-2'>
                                         <BodyCard bodyText='A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now. When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary,'></BodyCard>
                                     </Row>
                                     
-                                    <Row className='m-2'>
-                                        <Col className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 alignTop">
-                       
-                                            <CardListItem header='Job Role Preferences' listItem1='Front End Developer' listItem2='Python Developer' listItem3='DevOps Engineer' listItem4='Network Engineer' listItem5='UI UX Designer'></CardListItem>
-                                        </Col>
-
-                                        <Col className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 alignTop">
-
-                                            <Card body className='flex'>
-                                                <YoutubeEmbed embedId="rokGy0huYEA" />
-                                            </Card>
-
-                                        </Col>                                        
-                                    </Row>
+                                   
                                 </Card>
                                 
                         </Col>
                     </Row>
-                {/* </Stack> */}
-                    <Row>
-                        <Col><br />
-                            {/* <Stack direction="horizontal" gap={3}> */}
 
-                                
-                        </Col>
-                        
-
-                    </Row>
 
                 
                 
@@ -110,5 +70,5 @@ class StudentProfile extends Component {
     }
     }
 
-export default StudentProfile;
+export default StaffProfile;
 
