@@ -16,11 +16,38 @@ import modalInterviewReject from '../../component/Modal/modalCenter';
 import { callServer } from '../authServer';
 import moment from 'moment'
 import jwt_decode from "jwt-decode";
+import '../../styles/studentInterview.css'
 
 function StudentInterviews() {
   const [date, setDate] = useState();
   const [interviews,setInterviews]= useState([]);
   const indexNum = jwt_decode(sessionStorage.getItem("accessToken")).id;
+  const [allDates,setAllDates]=useState([]);
+
+  const mark = [
+    '04-03-2020',
+    '03-03-2020',
+    '05-03-2020'
+]
+
+  useEffect(()=>{
+    const data = {
+      indexNumber:indexNum
+    }
+    const authRequest={
+      "method": "post",
+      "url": "student/getAllInterviews",
+      "data": data
+    }
+
+    callServer(authRequest).then((response)=>{
+      setInterviews(response.data[0]);
+      setAllDates(response.data[1]);
+      console.log(allDates);
+    }).catch((error)=>{
+      console.log(error);
+    })
+  },[]);
  
   const onDateChange = (newDate) => {
     setDate(newDate);
@@ -53,8 +80,8 @@ function StudentInterviews() {
     }
     callServer(authRequest).then(
       (response)=>{
-        interviews[interview_index].status="Accepted";
         const interviews_copy = [...interviews];
+        interviews_copy[interview_index].status="Accepted";
         setInterviews(interviews_copy);
       }).catch(
         (error)=>{console.log(error)}
@@ -80,9 +107,6 @@ function StudentInterviews() {
         (error)=>{console.log(error)}
       )
   }
-
-  useEffect(()=>{
-  },[interviews]);
 
   return (
     <div>
@@ -154,6 +178,13 @@ function StudentInterviews() {
                     showNeighboringMonth={false}
                     locale={"UTC"}
                     className="w-100 border-0"
+
+                    tileClassName={({ date, view }) => {
+                      if(allDates.find(x=>x.date===moment(date).format("YYYY-MM-DD"))){
+                       return  'highlight'
+                      }
+                    }}
+
                   />  
                 </Card>
 
