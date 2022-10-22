@@ -98,15 +98,6 @@ const StaffMemberManageCompany = () => {
             "data": {}
         }
         callServer(authRequestCompanyVisit).then((response) => {
-            // response.data.map((item) => {
-            //     setCompanyVisitList(prevState => [...prevState, {
-            //         name: item.company.name,
-            //         date: item.date,
-            //         start_time: item.start_time,
-            //         type: item.company_visit_types.type,
-            //         visited_type: item.visited_type
-            //     }])
-            // })
             setCompanyVisitList(response.data) 
            
         }).catch(function (error) {
@@ -352,7 +343,7 @@ const StaffMemberManageCompany = () => {
                                 <thead>
                                     <tr>
                                         <th>Comapny</th>
-                                        <th>E mail</th>
+                                        <th>Organized By</th>
                                         <th>Date</th>
                                         <th>Start Time</th>
                                         <th>Visit Type</th>
@@ -363,7 +354,7 @@ const StaffMemberManageCompany = () => {
                                  {companyVisitList.map((companyList)=>(
                                     <tr >
                                         <td>{companyList.company.name}</td>
-                                        <td>{companyList.email_address}</td >
+                                        <td>{companyList.pdc.first_name}</td >
                                         <td>{companyList.date}</td>
                                         <td>{companyList.start_time}</td>
                                         <td>{companyList.company_visit_types.type}</td>
