@@ -70,7 +70,7 @@ function StudentPassedInterviews() {
             
             <Col sm={5} style={{width:'100%'}} >
 
-              <Card body>
+              <Card body className='mx-2'>
                 <Calendar onChange={onChange} value={value} className="w-100 border-0"/> 
               </Card>
 

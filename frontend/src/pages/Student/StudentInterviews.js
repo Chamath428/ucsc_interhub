@@ -13,6 +13,7 @@ import StudentPassedInterviews from './StudentPassedInterviews';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import modalInterviewReject from '../../component/Modal/modalCenter';
+import StudentAvailability from './StudentAvailability';
 
 function StudentInterviews() {
   const [value, onChange] = useState(new Date());
@@ -20,18 +21,18 @@ function StudentInterviews() {
   return (
     <div>
       <div className='container pt-5'>
-
+      <h2 className='mb-5'>Interviews</h2> 
       <Tabs
-      defaultActiveKey="home"
+      defaultActiveKey="yourInterview"
       id="justify-tab-example"
       className="mb-3 TabsStyle"
-      variant="pills"
+            
       >
 
-      <Tab eventKey="home" title="Your Interviews" >
-        <div><br />
+      <Tab eventKey="yourInterview" title="Your Interviews" >
+        <div className=''><br />
 
-          <h2>Your Interviews</h2><br />
+          <h3>Your Interviews</h3><br />
 
           <Container>
             <Row>
@@ -82,7 +83,7 @@ function StudentInterviews() {
               
               <Col sm={5}>
 
-                <Card body>
+                <Card body className=' mx-2'>
                   <Calendar onChange={onChange} value={value} className="w-100 border-0"/> 
                 </Card>
 
@@ -104,9 +105,16 @@ function StudentInterviews() {
         </div>
       </Tab>
 
-      <Tab eventKey="profile" title="Past Interviews">
+      <Tab eventKey="pastInterview" title="Past Interviews">
         <br />
         <StudentPassedInterviews />
+        <br />
+      </Tab>
+
+      <Tab eventKey="yourAvailability" title="Your Availability">
+        <br />
+        <StudentAvailability />
+        <br />
       </Tab>
       
       </Tabs>
