@@ -11,6 +11,7 @@ import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import { URL } from '../URL';
 import { callServer } from '../authServer';
+import Table from 'react-bootstrap/Table';
 
 import '../../styles/coordinatorSystemUser.css';
 
@@ -28,7 +29,7 @@ const CoordinatorSystemUsers = () => {
     const [userList, setUserList] = useState([]);
 
     userList.map((item, index) => {
-        if (item.is_active==1) {
+        if (item.is_active==2) {
             item.is_active = "Active";
         }
         else {
@@ -116,25 +117,33 @@ const CoordinatorSystemUsers = () => {
 
                             <div class="table-wrapper-scroll-y .myscrollbarsystemuser ">
 
-                                {/* {userList.map((val, key) => {
-                                    return (
-                                        <h6 >{val.first_name}  </h6>
+                               
 
-                                    );
+                            <Table style={{ maxHeight: '60vh' }}>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Is Active</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 {userList.map((userList)=>(
+                                    <tr >
+                                        
+                                        <td>{userList.name}</td>
+                                        <td>{userList.role}</td>                                      
+                                        <td>{userList.is_active}</td>
+                                    
+                                    </tr>
+                                    
 
-                                }
-                                )} */}
-
-                                <TableView
-                                    headers={['Name', 'Position', 'Is Active']}
-
-                                    // list={[['Chamath Chinthana', 'Corrdinator', 'Active'], ['Thilina Madusanka', 'Staff Memner', 'Active'], ['Prathiksha Jayakodi', 'Staff Memner', 'Active'], ['Sameera Kumara', 'Corrdinator', 'Not Active'], ['Ayodya Ranasinghe', 'Corrdinator', 'Not Active'], ['Binura Jathilake', 'Staff Memner', 'Active']]}
-
-                                    list={userList}
-
-                                >
-
-                                </TableView>
+                                 ))}
+                                    
+                                </tbody>
+                            
+                            
+                            </Table>
 
 
                             </div>
