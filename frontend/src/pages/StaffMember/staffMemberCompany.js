@@ -14,6 +14,7 @@ import { URL } from '../URL';
 import { callServer } from '../authServer';
 
 import '../../styles/sMCompany.css';
+import SMCompanyVisitDetails from './sMCompanyVisitDetails';
 
 
 const StaffMemberManageCompany = () => {
@@ -291,14 +292,19 @@ const StaffMemberManageCompany = () => {
 
                     <div className='contain'>
                         {/* <div className='d-flex flex-row justify-content-sm-between '> */}
+                        <Row>
+                            <Col lg="6">
+                            <h3>Scheduled Company Visits</h3>
+                            {/* </div> */}
+                            </Col>
+                            <Col lg="6">
+                            <div className='addcompanyvisit d-flex flex-row-reverse'>
+                            <Nav.Link as={Link} to="/Staff/Schedule-Company-Visit"> <Button variant='primary'>+ Schedule Company Visit</Button></Nav.Link>
+                            </div>
+                            </Col>
+                        </Row>
 
-                        <h3>Scheduled Company Visits</h3>
-                        {/* </div> */}
-                        <div className='addcompanyvisit d-flex flex-row-reverse mb-1'>
-                        <Nav.Link as={Link} to="/Staff/Schedule-Company-Visit"> <Button variant='primary'>+ Schedule Company Visit</Button></Nav.Link>
-
-                        </div>
-                        <Container className="mt-2">
+                        <Container className="mt-0">
                             <Form className='container'>
                                 <Row className="mb-1">
                                     <Form.Group as={Col} md controlId="formGridState">
@@ -373,9 +379,12 @@ const StaffMemberManageCompany = () => {
                         </div>
 
 
+
                     </div>
 
-
+                </Tab>
+                <Tab className="CompanyTab mt-5" eventKey="VisitDetails" title="Visit Details">                  
+                <SMCompanyVisitDetails/>                 
                 </Tab>
             </Tabs>
         </div>
