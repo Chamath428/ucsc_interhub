@@ -24,8 +24,8 @@ function AdvertisementCard(props) {
         <Col lg={3}>
           <span>{props.company}</span>
         </Col>
-        <Col lg={2} className=" ">
-          <span>Remote</span>
+        <Col lg={2} className=' '>
+        <span>{props.status}</span>
         </Col>
         <Col lg={1} className="px-1">
           <Route
