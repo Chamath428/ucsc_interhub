@@ -7,7 +7,7 @@ import { Form } from 'react-bootstrap'
 import { callServer } from '../../pages/authServer'
 import Alert from 'react-bootstrap/Alert'
 
-function ProgramCreateModal() {
+function NextPhaseModal() {
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
@@ -52,13 +52,13 @@ function ProgramCreateModal() {
   return (
     <>
       <Button
-        variant="primary"
+        variant="success"
         active
         className="float-right mr-4"
         onClick={handleShow}
       >
-      <i class="bi bi-plus-circle mr-2"></i>
-      Create New Placement Program
+        <i class="bi bi-arrow-right-circle mr-2"></i>
+        Go to next Phase
       </Button>{' '}
       <Modal
         show={show}
@@ -76,32 +76,30 @@ function ProgramCreateModal() {
           <Alert.Heading>{alertPara}</Alert.Heading>
         </Alert> */}
         <Modal.Header closeButton>
-          <Modal.Title>Create a new placement program</Modal.Title>
+          <Modal.Title>Proceed to the next Step of the program</Modal.Title>
         </Modal.Header>
         <Modal.Body className="pl-4">
-          This action will reset the system to default status and let you add
-          the new batch of students. However, existing companies will stay on
-          the system.
+          Click confirm to proceed to the next step of the program.
           <br />
-          <Form onSubmit={createNewPlacementPrograme}>
+          <Form>
             <div>
-              <Form.Group className="mt-3" controlId="programStartDate">
-                <Form.Label>Start Date</Form.Label>
+              <Form.Group className="mt-3" controlId="">
+                <Form.Label>Choose the Phase</Form.Label>
                 <Row>
                   <Col lg="4">
-                    <Form.Control
-                      onChange={(event) => {
-                        setDate(event.target.value)
-                      }}
-                      type="date"
-                    />
+                    <Form.Select aria-label="Default select example">
+                        <option>Select the next phase</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </Form.Select>
                   </Col>
                 </Row>
               </Form.Group>
               <Form.Group className="mt-3 pr-5" controlId="notifyCompanies">
                 <Form.Check
                   type="checkbox"
-                  label="Notify companies about new industrial placement program"
+                  label="Notify companies about next phase"
                 />
               </Form.Group>
             </div>
@@ -112,7 +110,7 @@ function ProgramCreateModal() {
                   Close
                 </Button>{' '}
                 <Button variant="primary" type="submit"  onClick={() => window.location.reload(false)} >
-                  Create New Program
+                  Go to next phase
                 </Button>
               </Col>
             </Row>
@@ -131,4 +129,4 @@ function ProgramCreateModal() {
   )
 }
 
-export default ProgramCreateModal
+export default NextPhaseModal;
