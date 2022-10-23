@@ -33,6 +33,8 @@ function ProgramDeleteModal() {
           setShow(true)
         }
       })
+
+      window.location.reload(false);
   }
   const showAlert = (response) => {
     setAlertPara('Successfully!')

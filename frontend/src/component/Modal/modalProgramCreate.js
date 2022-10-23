@@ -110,7 +110,7 @@ function ProgramCreateModal() {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>{' '}
-                <Button variant="primary" type="submit"onClick={handleClose} >
+                <Button variant="primary" type="submit"  onClick={() => window.location.reload(false)} >
                   Create New Program
                 </Button>
               </Col>
