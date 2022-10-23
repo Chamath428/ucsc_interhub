@@ -1,4 +1,4 @@
-import React, { Component,useState } from 'react';
+import React, { Component,useState,useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
 import { Row,Col,Button} from 'react-bootstrap';
@@ -7,25 +7,112 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Calendar from 'react-calendar';
 import Card from 'react-bootstrap/Card';
-import { Accordion } from 'react-bootstrap';
 import TimePicker from 'react-time-picker';
 import DatePicker from 'react-date-picker';
-import AccordionItem from '../../component/Accordion/accordion';
+import AccordionCompany from '../../component/Accordion/accordianCompany';
 import InfoCard from '../../component/Dashboard/InfoCard/infoCard'; 
 import Nav from 'react-bootstrap/Nav';
 import { Link } from "react-router-dom";
 import 'react-calendar/dist/Calendar.css';
 import AnnouncementCard from '../../component/Cards/announcementCard';
+import jwtDecode from 'jwt-decode';
+import { callServer } from '../authServer';
+import '../../styles/studentInterview.css'
+import moment from 'moment';
 
 
 import '../../styles/companyManageScheduleInterviews.css';    
 
 const CompanyManageScheduleInterviews = () => {  
-    const [value, onChange] = useState(new Date());
+    const [date, setDate] = useState(new Date());
     const [valueCalendar, onChangeCalendar] = useState(new Date());
+    const[interviews,setInterviews]  = useState([]);
+    const [allDates,setAllDates]=useState([]);
   
     const [dateVal, onChangeDate] = useState(new Date());
     const [timeVal, onChangeTime] = useState(new Date());
+    
+
+      useEffect(()=>{
+        
+        const data ={
+          companyId:jwtDecode(sessionStorage.getItem("accessToken")).id
+        }
+
+        const authRequest = {
+          "method":"post",
+          "url":"organization/getAllInterviews",
+          "data":data
+        }
+
+        callServer(authRequest).then((response)=>{
+          setInterviews(response.data[0]);
+          setAllDates(response.data[1]);
+        }).catch((error)=>{
+          console.log(error);
+        })
+
+      },[])
+
+      const onDateChange = (newDate) => {
+        setDate(newDate);
+        const data={
+          selectedDate:moment(newDate).format('YYYY-MM-DD'),
+          companyId:jwtDecode(sessionStorage.getItem("accessToken")).id
+        }
+        const authRequest = {
+          "method": "post",
+          "url": "organization/getSelectedInterviews",
+          "data": data
+        }
+        callServer(authRequest).then(
+          (response)=>{
+            setInterviews(response.data)
+          }
+          ).catch(
+            (error)=>{console.log(error)}
+          )
+      }
+
+      const markAsDone=(interview_id,interview_index)=>{
+        const data ={
+          interviewId:interview_id
+        }
+
+        const authRequest={
+          "method":"post",
+          "url":"organization/markAsDone",
+          "data":data
+        }
+
+        callServer(authRequest).then((response)=>{
+          const interviews_copy = [...interviews];
+          interviews_copy[interview_index].status="Done";
+          setInterviews(interviews_copy);
+        }).catch((error)=>{
+          console.log(error);
+        })
+      }
+
+      const cancelInterview = (interview_id,interview_index)=>{
+        const data ={
+          interviewId:interview_id
+        }
+
+        const authRequest={
+          "method":"post",
+          "url":"organization/cancelInterview",
+          "data":data
+        }
+
+        callServer(authRequest).then((response)=>{
+          const interviews_copy = [...interviews];
+          interviews_copy[interview_index].status="Canceled";
+          setInterviews(interviews_copy);
+        }).catch((error)=>{
+          console.log(error);
+        })
+      }
 
         return (
             <div className='containinterview mt-5 ms-5'style={{width:'90%'}}>
@@ -44,73 +131,57 @@ const CompanyManageScheduleInterviews = () => {
         <Container className='mt-3'>
           <Row>
             <Col sm={7}>
-            
-              <AccordionItem Header='Mr. S. A. Dissanayake' body='Job Role Preference: Software Engineer'
+
+              {interviews.length==0?
+                <p>No interviews to show</p>
+                :interviews.map((interview)=>(
+              <AccordionCompany Header={interview.name} body='Job Role Preference: Software Engineer'
               
               card1heading='Interview Time'
-              card1context='10.00 am'
+              card1context={interview.start_time}
 
               card2heading='Interview Date'
-              card2context='23rd of August 2022'
+              card2context={interview.date}
 
               card3heading='Interview Type'
-              card3context='Via Zoom'
+              card3context={interview.type}
               
-              card4heading='Contact Number'
-              card4context='0112 456 987'
+              card4heading='Student Email Address'
+              card4context={interview.email}
+
+              card5heading='Interview status'
+              card5context={interview.status}
 
               PrimaryBtn='Done'
-
-              InfoBtn = 'Decline'
+              interview_id={interview.interview_id}
+              interview_index={interviews.indexOf(interview)}
+              status={(interview.status=='Done'||interview.status=='Declined'||interview.status=='Canceled')?'1':''}
+              markAsDone={markAsDone}
+              cancelInterview={cancelInterview}
               
-              ></AccordionItem>
-
-              <AccordionItem Header='Ms. F. Shazna' body='Job Role Preference: Business Analyst'
-
-              card1heading='Interview Time'
-              card1context='10.00 am'
-
-              card2heading='Interview Date'
-              card2context='23rd of August 2022'
-
-              card3heading='Interview Type'
-              card3context='On SIte'
-
-              card4heading='Contact Number'
-              card4context='0112 456 987'
-
-              PrimaryBtn='Done'
-
-              InfoBtn = 'Decline'
-
-              ></AccordionItem>
-
-              <AccordionItem Header='Ms. S. Athapaththu' body='Job Role Preference: U/UX Engineer'
-
-              card1heading='Interview Time'
-              card1context='10.00 am'
-
-              card2heading='Interview Date'
-              card2context='23rd of August 2022'
-
-              card3heading='Interview Type'
-              card3context='On SIte'
-
-              card4heading='Contact Number'
-              card4context='0112 456 987'
-
-              PrimaryBtn='Done'
-
-              InfoBtn = 'Decline'
-
-              ></AccordionItem>
-            
+              ></AccordionCompany>
+                ))
+            }
+                   
             </Col>
             
             <Col sm={5}>
 
               <Card body>
-                <Calendar onChange={onChange} value={value} className="w-100 border-0"/> 
+              <Calendar
+                    onChange={onDateChange}
+                    value={date}
+                    showNeighboringMonth={false}
+                    locale={"UTC"}
+                    className="w-100 border-0"
+
+                    tileClassName={({ date, view }) => {
+                      if(allDates.find(x=>x.date===moment(date).format("YYYY-MM-DD"))){
+                       return  'highlight'
+                      }
+                    }}
+
+                  /> 
               </Card>
 
               <div className='d-flex pt-4 justify-content-between' >

@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { organizationSchema,createAdvertiesmentSchema } from '../models/organizationModel.js';
 import crypto from 'crypto'; 
 import bcrypt from 'bcrypt';
+import { log } from 'console';
 
 const prisma = new PrismaClient();
 
@@ -148,5 +149,97 @@ export const getJobRoles = async (req,res)=>{
     }catch(error){
         console.log(error)
         res.status(400).send(error)
+    }
+}
+
+export const getAllInterviews= async (req,res)=>{
+    try{
+        const interviews = await prisma.$queryRaw `SELECT interview.interview_id,
+                                                        interview.start_time,
+                                                        interview.date,
+                                                        interview_status_types.status,
+                                                        student.name,
+                                                        student.email,
+                                                        company_visit_types.type
+                                                    FROM interview
+                                                    LEFT JOIN interview_status_types
+                                                    ON interview.interview_status=interview_status_types.id
+                                                    LEFT JOIN student
+                                                    ON interview.index_number=student.index_number
+                                                    LEFT JOIN company_visit_types
+                                                    ON interview.interview_type=company_visit_types.id
+                                                    WHERE interview.company_id=${req.body.companyId}`;
+
+        const dates = await prisma.interview.findMany({
+            select:{
+                date:true
+            },
+            where:{
+                company_id:req.body.companyId
+            }
+        })
+
+        res.status(200).send([interviews,dates]);
+    }catch(error){
+        res.status(400).json({message:"Someting went wrong when getting interview data!"});
+    }
+}
+
+export const getSelectedInterviews = async(req,res)=>{
+    try{
+        const interviews = await prisma.$queryRaw `SELECT interview.interview_id,
+                                                        interview.start_time,
+                                                        interview.date,
+                                                        interview_status_types.status,
+                                                        student.name,
+                                                        student.email,
+                                                        company_visit_types.type
+                                                    FROM interview
+                                                    LEFT JOIN interview_status_types
+                                                    ON interview.interview_status=interview_status_types.id
+                                                    LEFT JOIN student
+                                                    ON interview.index_number=student.index_number
+                                                    LEFT JOIN company_visit_types
+                                                    ON interview.interview_type=company_visit_types.id
+                                                    WHERE interview.company_id=${req.body.companyId} AND interview.date=${req.body.selectedDate}`;
+
+        res.status(200).send(interviews);
+    }catch(error){
+        res.status(400).json({message:"Someting went wrong when getting interview data!"});
+    }
+}
+
+export const markAsDone = async (req,res)=>{
+    try{
+        const interview = await prisma.interview.update({
+            where:{
+                interview_id:req.body.interviewId
+            },
+            data:{
+                interview_status:5
+            }
+        });
+        res.status(200).send(interview);
+    }catch(error){
+        console.log(error);
+        res.status(400).json({message:"Something went wrong when updating the interview!"});
+    }
+}
+
+export const cancelInterview = async (req,res)=>{
+    console.log(req.body.interviewId)
+    try{
+        const interview = await prisma.interview.update({
+            where:{
+                interview_id:req.body.interviewId
+            },
+            data:{
+                interview_status:4
+            }
+        });
+        res.status(200).send(interview);
+    }catch(error){
+        console.log(error);
+        res.status(400).json({message:"Something went wrong when canceling the interview!"});
     }
 }
