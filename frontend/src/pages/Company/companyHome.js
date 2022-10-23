@@ -39,10 +39,10 @@ return (
       <h3>Published Advertisement</h3>
       <div className="Advertisements mt-5 ms-5">
         <Row as={Col} sm>       
-          <AdvertisementCard jobrole="Software Engineer" company="LSEG" logo={LsegLogo}></AdvertisementCard>
-          <AdvertisementCard jobrole="Network Engineer" company="LSEG" logo={LsegLogo}></AdvertisementCard>
-          <AdvertisementCard jobrole="DevOps Engineer" company="LSEG" logo={LsegLogo}></AdvertisementCard>
-          <AdvertisementCard jobrole="Project Manager      .." company="LSEG" logo={LsegLogo}></AdvertisementCard>
+          <AdvertisementCard jobrole="Software Engineer" company="LSEG" logo={LsegLogo} actor="Company"></AdvertisementCard>
+          <AdvertisementCard jobrole="Network Engineer" company="LSEG" logo={LsegLogo} actor="Company"></AdvertisementCard>
+          <AdvertisementCard jobrole="DevOps Engineer" company="LSEG" logo={LsegLogo} actor="Company"></AdvertisementCard>
+          <AdvertisementCard jobrole="Project Manager      .." company="LSEG" logo={LsegLogo} actor="Company"></AdvertisementCard>
         </Row>
       </div>
 

@@ -22,6 +22,7 @@ import TopNavTest from "../../component/Dashboard/TopNav/topNavTest";
 import { Container } from "react-bootstrap";
 import StudentPassedInterviews from "./StudentPassedInterviews";
 import AnnouncementFullCard from "../../component/Cards/AnnouncementFullCard";
+import StudentAdvertisements from "./StudentAdvertisements";
 
 function StudentBase(){
 
@@ -59,7 +60,7 @@ return(
 
                             <Route exact path="/Student/Edit-Profile" component={StudentEditProfile} />
 
-                            <Route exact path="/Student/Advertisement" component={StaffMemberAdvertisements} />
+                            <Route exact path="/Student/Advertisement" component={StudentAdvertisements} />
 
                             <Route exact path="/Student/View-advertisement" component={ViewAdvertisement} />
 
