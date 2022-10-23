@@ -231,6 +231,15 @@ model interview {
   @@index([interview_type], map: "interview_type")
 }
 
+model interview_decline_message {
+  id           Int       @id @default(autoincrement())
+  interview_id Int
+  message      String    @db.LongText
+  interview    interview @relation(fields: [interview_id], references: [interview_id], onDelete: Cascade, map: "interview_decline_message_ibfk_1")
+
+  @@index([interview_id], map: "interview_id")
+}
+
 model interview_status_types {
   id        Int         @id @default(autoincrement())
   status    String      @db.VarChar(100)
@@ -285,13 +294,15 @@ model pdc_role {
 }
 
 model report_handle {
-  report_id       Int @unique
-  email_address   String            @db.VarChar(100)
-  deadline_date   String            @db.VarChar(50)
-  deadline_time   String            @db.VarChar(50)
-  report_link     String            @db.VarChar(100)
-  pdc             pdc               @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "report_handle_ibfk_2")
-  student_reports student_reports[]
+
+  report_id     Int
+  email_address String @db.VarChar(100)
+  deadline_date String @db.VarChar(50)
+  deadline_time String @db.VarChar(50)
+  report_link   String @db.VarChar(100)
+  pdc           pdc    @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "report_handle_ibfk_2")
+  // student_reports student_reports[]
+
 
   @@id([report_id, email_address])
   @@index([email_address], map: "email_address")
@@ -451,10 +462,12 @@ model company_visit_status_types {
 }
 
 model interview_decline_message {
-  id           Int       @id @default(autoincrement())
+  id           Int    @id @default(autoincrement())
   interview_id Int
-  message      String    @db.LongText
-  interview    interview @relation(fields: [interview_id], references: [interview_id], onDelete: Cascade, map: "interview_decline_message_ibfk_1")
+
+  message      String @db.LongText
+  // interview    interview @relation(fields: [interview_id], references: [interview_id], onDelete: Cascade, map: "interview_decline_message_ibfk_1")
+
 
   @@index([interview_id], map: "interview_id")
 }

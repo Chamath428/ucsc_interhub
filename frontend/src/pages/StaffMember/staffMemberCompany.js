@@ -14,6 +14,7 @@ import { URL } from '../URL';
 import { callServer } from '../authServer';
 
 import '../../styles/sMCompany.css';
+import SMCompanyVisitDetails from './sMCompanyVisitDetails';
 
 
 const StaffMemberManageCompany = () => {
@@ -98,15 +99,6 @@ const StaffMemberManageCompany = () => {
             "data": {}
         }
         callServer(authRequestCompanyVisit).then((response) => {
-            // response.data.map((item) => {
-            //     setCompanyVisitList(prevState => [...prevState, {
-            //         name: item.company.name,
-            //         date: item.date,
-            //         start_time: item.start_time,
-            //         type: item.company_visit_types.type,
-            //         visited_type: item.visited_type
-            //     }])
-            // })
             setCompanyVisitList(response.data) 
            
         }).catch(function (error) {
@@ -300,14 +292,19 @@ const StaffMemberManageCompany = () => {
 
                     <div className='contain'>
                         {/* <div className='d-flex flex-row justify-content-sm-between '> */}
+                        <Row>
+                            <Col lg="6">
+                            <h3>Scheduled Company Visits</h3>
+                            {/* </div> */}
+                            </Col>
+                            <Col lg="6">
+                            <div className='addcompanyvisit d-flex flex-row-reverse'>
+                            <Nav.Link as={Link} to="/Staff/Schedule-Company-Visit"> <Button variant='primary'>+ Schedule Company Visit</Button></Nav.Link>
+                            </div>
+                            </Col>
+                        </Row>
 
-                        <h3>Scheduled Company Visits</h3>
-                        {/* </div> */}
-                        <div className='addcompanyvisit d-flex flex-row-reverse mb-1'>
-                        <Nav.Link as={Link} to="/Staff/Schedule-Company-Visit"> <Button variant='primary'>+ Schedule Company Visit</Button></Nav.Link>
-
-                        </div>
-                        <Container className="mt-2">
+                        <Container className="mt-0">
                             <Form className='container'>
                                 <Row className="mb-1">
                                     <Form.Group as={Col} md controlId="formGridState">
@@ -352,7 +349,7 @@ const StaffMemberManageCompany = () => {
                                 <thead>
                                     <tr>
                                         <th>Comapny</th>
-                                        <th>E mail</th>
+                                        <th>Organized By</th>
                                         <th>Date</th>
                                         <th>Start Time</th>
                                         <th>Visit Type</th>
@@ -363,7 +360,7 @@ const StaffMemberManageCompany = () => {
                                  {companyVisitList.map((companyList)=>(
                                     <tr >
                                         <td>{companyList.company.name}</td>
-                                        <td>{companyList.email_address}</td >
+                                        <td>{companyList.pdc.first_name}</td >
                                         <td>{companyList.date}</td>
                                         <td>{companyList.start_time}</td>
                                         <td>{companyList.company_visit_types.type}</td>
@@ -382,9 +379,12 @@ const StaffMemberManageCompany = () => {
                         </div>
 
 
+
                     </div>
 
-
+                </Tab>
+                <Tab className="CompanyTab mt-5" eventKey="VisitDetails" title="Visit Details">                  
+                <SMCompanyVisitDetails/>                 
                 </Tab>
             </Tabs>
         </div>
