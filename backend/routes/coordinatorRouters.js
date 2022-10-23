@@ -1,5 +1,5 @@
 import express from 'express';
-import { ViewAnnouncements,ViewSystemUsers,RegisteredCompany,PendingCompany,CompanyVisit,StudentList,SelectedStudentList,createAnnouncements} from '../controllers/coordinatorController.js';
+import { ViewAnnouncements,ViewSystemUsers,RegisteredCompany,PendingCompany,CompanyVisit,StudentList,SelectedStudentList,createAnnouncements,ViewAllPrograms,CurrentProgramDetails} from '../controllers/coordinatorController.js';
 
 
 const coordinatorRouters = express.Router();
@@ -12,6 +12,10 @@ coordinatorRouters.post('/CompanyVisit',CompanyVisit);
 coordinatorRouters.post('/StudentList',StudentList);
 coordinatorRouters.post('/SelectedStudentList',SelectedStudentList);
 coordinatorRouters.post('/createAnnouncements',createAnnouncements);
+coordinatorRouters.post('/AllPrograms',ViewAllPrograms);
+coordinatorRouters.post('/CurrentProgramDetails',CurrentProgramDetails);
+
+
 
 export default coordinatorRouters;
 
