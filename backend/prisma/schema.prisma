@@ -189,25 +189,26 @@ model company_visit_types {
 }
 
 model internship_program {
-  program_id             Int                    @id @default(autoincrement())
-  batch_no               Int?
-  start_date             String                 @db.VarChar(50)
-  end_date               String?                @db.VarChar(50)
-  status                 Int                    @default(1)
-  is_active              Int                    @default(1)
-  email_address          String                 @db.VarChar(100)
-  pdc                    pdc                    @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "internship_program_ibfk_1")
-  interview_status_types interview_status_types @relation(fields: [status], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "internship_program_ibfk_2")
-  advertisement          advertisement[]
-  student                student[]
+  program_id                Int                       @id @default(autoincrement())
+  batch_no                  Int?
+  start_date                String                    @db.VarChar(50)
+  end_date                  String?                   @db.VarChar(50)
+  status                    Int                       @default(1)
+  is_active                 Int                       @default(1)
+  email_address             String                    @db.VarChar(100)
+  pdc                       pdc                       @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "internship_program_ibfk_1")
+  internship_program_status internship_program_status @relation(fields: [status], references: [id], onDelete: Cascade, map: "internship_program_ibfk_2")
+  advertisement             advertisement[]
+  student                   student[]
 
   @@index([email_address], map: "email_address")
   @@index([status], map: "status")
 }
 
 model internship_program_status {
-  id   Int    @id @default(autoincrement())
-  type String @db.VarChar(50)
+  id                 Int                  @id @default(autoincrement())
+  type               String               @db.VarChar(50)
+  internship_program internship_program[]
 }
 
 model internships {
@@ -276,6 +277,12 @@ model job_roles {
   student_preferred_job_role student_preferred_job_role[]
 }
 
+model job_roles {
+  id                         Int                          @id @default(autoincrement())
+  job_role                   String                       @db.VarChar(100)
+  student_preferred_job_role student_preferred_job_role[]
+}
+
 model notification {
   notification_id         Int                       @id
   message                 String                    @db.VarChar(1000)
@@ -329,13 +336,13 @@ model pdc_role {
 }
 
 model report_handle {
-  report_id     Int
-  email_address String @db.VarChar(100)
-  deadline_date String @db.VarChar(50)
-  deadline_time String @db.VarChar(50)
-  report_link   String @db.VarChar(100)
-  pdc           pdc    @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "report_handle_ibfk_2")
-  // student_reports student_reports[]
+  report_id       Int               @unique
+  email_address   String            @db.VarChar(100)
+  deadline_date   String            @db.VarChar(50)
+  deadline_time   String            @db.VarChar(50)
+  report_link     String            @db.VarChar(100)
+  pdc             pdc               @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "report_handle_ibfk_2")
+  student_reports student_reports[]
 
   @@id([report_id, email_address])
   @@index([email_address], map: "email_address")

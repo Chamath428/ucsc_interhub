@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
 import CardListItem from '../../component/Cards/CardList';
+import FilesUploadComponent from '../../component/FileUpload/fileUpload';
 
 import ProfilePic from '../../component/Media/ProfilePicture/profilePic';
 import BodyCard from '../../component/Cards/bodyCard';
@@ -32,23 +33,34 @@ const StudentEditProfile = () =>{
     const [show, setShow] = useState(false);
     const [alertPara, setAlertPara] = useState("Student Added Successfully!");
     const [variant, setVariant] = useState("success");
+
+    const [profilePic,setProfilePic] = useState();
+    // const [profileVideo,setProfileVideo] = useState();
   
     const updateStudentProfile = (event) => {
       event.preventDefault();
-      const data = {
-        index_number: parseInt(jwt_decode(sessionStorage.getItem("accessToken")).id),
-        name: name,
-        password: password,
-        email : email,
-        about_me : about_me,
-        github : github,
-        facebook : facebook,
-        linkedin : linkedin
-      }
+      const data = new FormData();
+     
+     
+     
+        data.append("index_number", parseInt(jwt_decode(sessionStorage.getItem("accessToken")).id))
+        data.append("name", name)
+        data.append("password", password,)
+        data.append("email",  email,)
+        data.append("about_me",  about_me,)
+        data.append("github",  github,)
+        data.append("facebook",  facebook,)
+        data.append("linkedin",  linkedin)
+        data.append("profilePic",  profilePic)
+        // data.append("profileVideo",  profileVideo)
+     
+
+
       const authRequest = {
         "method": "post",
         "url": "student/editProfile",
-        "data": data
+        "data": data,
+        headers:{ 'Content-Type': 'multipart/form-data'}
       }
       callServer(authRequest).then((response) => { showAlert(response) }).catch(function (error) {
         if (error.response) {
@@ -85,17 +97,23 @@ const StudentEditProfile = () =>{
 
                                         <Form.Group controlId="profilePicture" className="mb-3">
                                             <Form.Label>Upload Profile Picture</Form.Label>
-                                            <Form.Control type="file" accept="image/*"/>
+                                            <Form.Control type="file" accept="image/*" onChange={(event)=> {
+                                                console.log(event.target.files)
+                                                setProfilePic(event.target.files[0])
+                                                }} />
                                         </Form.Group>
-
+{/* 
                                         <Form.Group controlId="studentCV" className="mb-3">
                                             <Form.Label>Upload your CV</Form.Label>
-                                            <Form.Control type="file" accept=".pdf"/>
-                                        </Form.Group>
+                                            <FilesUploadComponent type="file" accept=".pdf"/>
+                                        </Form.Group> */}
 
                                         <Form.Group controlId="studentCV" className="mb-3">
                                             <Form.Label>Upload your intro video</Form.Label>
-                                            <Form.Control type="file" />
+                                            {/* <Form.Control type="file" accept="image/*" onChange={(event)=> {
+                                                console.log(event.target.files)
+                                                setProfileVideo(event.target.files[1])
+                                                }} /> */}
                                         </Form.Group>
                                     
                                     </div>
