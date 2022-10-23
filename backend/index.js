@@ -32,7 +32,9 @@ app.use(express.json())
 // app.use(cors(corsOptions)); //Cross Origine Resourses Sharing
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.listen(PORT,console.log("Server is Running"));
+app.use(express.static('uploads'))
 
 const verify = (req,res,next) => {
     const authHeader = req.headers.authorization;
