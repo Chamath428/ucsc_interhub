@@ -4,8 +4,9 @@ import Figure from 'react-bootstrap/Figure';
 import DashboardButton from '../../Dashboard/DashboardButton/dashboardButton';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from "react-router-dom";
-
+import { Route } from 'react-router-dom/cjs/react-router-dom';
 import './advertisementCard.css';
+import ViewAdvertisement from '../../../pages/Company/companyAdvertisementPreview';
 
 function AdvertisementCard(props) {
   return (
@@ -32,7 +33,9 @@ function AdvertisementCard(props) {
         <span>Remote</span>
         </Col>
         <Col lg={1} className='px-1'>
-        <Button size='sm' variant="primary" className='px-4'>View</Button>
+        <Route render={({ history}) => (
+        <Button size='sm' variant="primary" className='px-4' onClick={() => { history.push('/Student/View-advertisement') }}>View</Button>
+        )}/>
         </Col>
         <Col lg={1}>
         <Button size='sm' variant="outline-primary" className='mr-4 pt-1' ><i class="bi bi-bookmark"></i></Button>
