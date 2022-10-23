@@ -13,6 +13,5 @@ coordinatorRouters.post('/StudentList',StudentList);
 coordinatorRouters.post('/SelectedStudentList',SelectedStudentList);
 coordinatorRouters.post('/createAnnouncements',createAnnouncements);
 
-
 export default coordinatorRouters;
 

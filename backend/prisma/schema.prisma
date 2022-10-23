@@ -210,7 +210,7 @@ model internships {
 }
 
 model interview {
-  interview_id              Int                         @default(autoincrement())
+  interview_id              Int                         @default(autoincrement()) @unique
   company_id                Int
   index_number              Int
   date                      String                      @db.VarChar(30)
@@ -266,6 +266,7 @@ model pdc {
   password           String               @db.VarChar(100)
   profile_picture    String?              @db.VarChar(100)
   role               Int
+  is_active          Int
   pdc_role           pdc_role             @relation(fields: [role], references: [id], onDelete: Cascade, map: "pdc_ibfk_1")
   announcement       announcement[]
   company_visit      company_visit[]
@@ -293,6 +294,7 @@ model pdc_role {
 }
 
 model report_handle {
+
   report_id     Int
   email_address String @db.VarChar(100)
   deadline_date String @db.VarChar(50)
@@ -300,6 +302,7 @@ model report_handle {
   report_link   String @db.VarChar(100)
   pdc           pdc    @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "report_handle_ibfk_2")
   // student_reports student_reports[]
+
 
   @@id([report_id, email_address])
   @@index([email_address], map: "email_address")
@@ -404,7 +407,7 @@ model student_reports {
   supervisor                               supervisor?         @relation(fields: [supervisor_id], references: [supervisor_id], onDelete: Cascade, map: "student_reports_ibfk_2")
   report_type_report_typeTostudent_reports report_type         @relation(fields: [report_type], references: [id], onDelete: Cascade, map: "student_reports_ibfk_4")
   report_status_types                      report_status_types @relation(fields: [report_status], references: [id], onDelete: Cascade, map: "student_reports_ibfk_5")
-  // report_handle                            report_handle       @relation(fields: [report_id], references: [report_id], onDelete: Cascade, map: "student_reports_ibfk_6")
+  report_handle                            report_handle       @relation(fields: [report_id], references: [report_id], onDelete: Cascade, map: "student_reports_ibfk_6")
 
   @@index([internship_id], map: "internship_id")
   @@index([report_id], map: "report_id")
@@ -461,8 +464,10 @@ model company_visit_status_types {
 model interview_decline_message {
   id           Int    @id @default(autoincrement())
   interview_id Int
+
   message      String @db.LongText
   // interview    interview @relation(fields: [interview_id], references: [interview_id], onDelete: Cascade, map: "interview_decline_message_ibfk_1")
+
 
   @@index([interview_id], map: "interview_id")
 }
@@ -486,4 +491,9 @@ model student_preferred_job_role {
 
   @@id([index_number, job_role])
   @@index([job_role], map: "job_role")
+}
+
+model pdc_member_is_active {
+  id     Int    @id @default(autoincrement())
+  status String @db.VarChar(100)
 }
