@@ -183,7 +183,6 @@ export const StudentList = async (req, res) => {
 
             select: {
 
-
                 student: {
                     select: {
                         index_number: true,
@@ -192,23 +191,25 @@ export const StudentList = async (req, res) => {
 
                     },
                 },
-                interview_status_types: {
-                    select: {
-                        types: true,
-                    },
-                },
+                
                 company: {
                     select: {
                         name: true,
                     }
                 },
+                interview_status_types: {
+                    select: {
+                        status: true,
+                    },
+                },
             }
 
         })
         res.status(200).send(StudentList);
-
         // console.dir(StudentList, { depth: null })
     } catch (error) {
+    console.log("hu");
+        // console.log(error.message)
         res.status(400).send(error);
     }
 
