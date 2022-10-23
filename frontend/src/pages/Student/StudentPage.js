@@ -21,6 +21,7 @@ import CoordinatorRegisteredCompanyProfile from "../Coordinator/CoordinatorRegis
 import TopNavTest from "../../component/Dashboard/TopNav/topNavTest";
 import { Container } from "react-bootstrap";
 import StudentPassedInterviews from "./StudentPassedInterviews";
+import AnnouncementFullCard from "../../component/Cards/AnnouncementFullCard";
 
 function StudentBase(){
 
@@ -66,7 +67,11 @@ return(
                         
                             <Route exact path="/Student/StudentPassedInterviews" component={StudentPassedInterviews} />
 
-                            {/* <Route path="*" component={NotFound} /> */}
+                            {/* Components */}
+                            <Route exact path="/Student/AnnouncementPage" component={AnnouncementFullCard} />
+
+
+                            {/* <Route exact path="*" component={NotFound} /> */}
 
             
                     </main>
