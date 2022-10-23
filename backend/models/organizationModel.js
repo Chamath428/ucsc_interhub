@@ -23,3 +23,13 @@ export const organizationSchema = joi.object({
     confirm_password:joi.string().required(),
     is_registered_other_uni : joi.number().required()
 })
+
+export const createAdvertiesmentSchema = joi.object({
+    title:joi.string().required(),
+    jobCategory:joi.number().required(),
+    vacancies:joi.number().required(),
+    description:joi.string().required(),
+    technologies:joi.allow(),
+    videoUrl:joi.allow(),
+    companyId:joi.number().required()
+})

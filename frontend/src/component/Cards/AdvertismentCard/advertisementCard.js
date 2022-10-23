@@ -29,7 +29,7 @@ function AdvertisementCard(props) {
         <span>{props.company}</span>
         </Col>
         <Col lg={2} className=' '>
-        <span>Remote</span>
+        <span>{props.status}</span>
         </Col>
         <Col lg={1} className='px-1'>
         <Button size='sm' variant="primary" className='px-4'>View</Button>
