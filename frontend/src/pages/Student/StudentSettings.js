@@ -93,7 +93,7 @@ const StudentEditProfile = () =>{
                                 <div className="user-avatar">
                                     <div className='align-self-center'>
 
-                                        <ProfilePic/>
+                                        <ProfilePic url="https://i.pinimg.com/736x/0a/53/c3/0a53c3bbe2f56a1ddac34ea04a26be98.jpg"/>
 
                                         <Form.Group controlId="profilePicture" className="mb-3">
                                             <Form.Label>Upload Profile Picture</Form.Label>
