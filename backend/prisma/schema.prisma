@@ -9,6 +9,7 @@ datasource db {
 
 model advertisement {
   advertisement_id            Int                           @id @default(autoincrement())
+  title                       String                        @db.VarChar(255)
   job_role                    Int
   job_description             String?                       @db.VarChar(2000)
   requested_interns           Int?
@@ -68,35 +69,36 @@ model announcement_types {
 }
 
 model company {
-  company_id              Int                    @id @default(autoincrement())
-  name                    String                 @db.VarChar(200)
-  registration_number     String                 @unique(map: "registration_number") @db.VarChar(100)
-  date_of_establishment   String                 @db.VarChar(50)
-  description             String?                @db.VarChar(1000)
-  website                 String                 @db.VarChar(200)
-  address                 String                 @db.VarChar(500)
-  fax_no                  Int?
-  company_status          Int
-  no_of_employees         Int
-  no_of_project_managers  Int
-  no_of_tech_leads        Int
-  is_registered_other_uni Int
-  password                String                 @db.VarChar(100)
-  username                String                 @unique(map: "username") @db.VarChar(100)
-  profile_picture         String?                @db.VarChar(1000)
-  intro_video             String?                @db.VarChar(1000)
-  company_status_types    company_status_types   @relation(fields: [company_status], references: [id], onDelete: Cascade, map: "company_ibfk_1")
-  advertisement           advertisement[]
-  company_clients         company_clients[]
-  company_contacts        company_contacts[]
-  company_events          company_events[]
-  company_hr              company_hr?
-  company_notification    company_notification[]
-  company_partners        company_partners[]
-  company_visit           company_visit[]
-  internships             internships[]
-  interview               interview[]
-  supervisor              supervisor[]
+  company_id                  Int                           @id @default(autoincrement())
+  name                        String                        @db.VarChar(200)
+  registration_number         String                        @unique(map: "registration_number") @db.VarChar(100)
+  date_of_establishment       String                        @db.VarChar(50)
+  description                 String?                       @db.VarChar(1000)
+  website                     String                        @db.VarChar(200)
+  address                     String                        @db.VarChar(500)
+  fax_no                      Int?
+  company_status              Int
+  no_of_employees             Int
+  no_of_project_managers      Int
+  no_of_tech_leads            Int
+  is_registered_other_uni     Int
+  password                    String                        @db.VarChar(100)
+  username                    String                        @unique(map: "username") @db.VarChar(100)
+  profile_picture             String?                       @db.VarChar(1000)
+  intro_video                 String?                       @db.VarChar(1000)
+  company_status_types        company_status_types          @relation(fields: [company_status], references: [id], onDelete: Cascade, map: "company_ibfk_1")
+  advertisement               advertisement[]
+  company_clients             company_clients[]
+  company_contacts            company_contacts[]
+  company_events              company_events[]
+  company_hr                  company_hr?
+  company_notification        company_notification[]
+  company_partners            company_partners[]
+  company_visit               company_visit[]
+  internships                 internships[]
+  interview                   interview[]
+  student_applied_internships student_applied_internships[]
+  supervisor                  supervisor[]
 
   @@index([company_status], map: "company_status")
 }
@@ -407,12 +409,15 @@ model student_academic_qualifications {
 model student_applied_internships {
   index_number     Int
   advertisement_id Int
-  is_wish_list     Int
+  is_wish_list     Int           @default(0)
+  company_id       Int
   student          student       @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_applied_internships_ibfk_1")
   advertisement    advertisement @relation(fields: [advertisement_id], references: [advertisement_id], onDelete: Cascade, map: "student_applied_internships_ibfk_2")
+  company          company       @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "student_applied_internships_ibfk_3")
 
   @@id([index_number, advertisement_id])
   @@index([advertisement_id], map: "advertisement_id")
+  @@index([company_id], map: "company_id")
 }
 
 model student_availability {

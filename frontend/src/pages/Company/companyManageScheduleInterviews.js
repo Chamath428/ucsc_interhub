@@ -11,8 +11,6 @@ import TimePicker from 'react-time-picker';
 import DatePicker from 'react-date-picker';
 import AccordionCompany from '../../component/Accordion/accordianCompany';
 import InfoCard from '../../component/Dashboard/InfoCard/infoCard'; 
-import Nav from 'react-bootstrap/Nav';
-import { Link } from "react-router-dom";
 import 'react-calendar/dist/Calendar.css';
 import AnnouncementCard from '../../component/Cards/announcementCard';
 import jwtDecode from 'jwt-decode';
@@ -28,6 +26,7 @@ const CompanyManageScheduleInterviews = () => {
     const [valueCalendar, onChangeCalendar] = useState(new Date());
     const[interviews,setInterviews]  = useState([]);
     const [allDates,setAllDates]=useState([]);
+    const [applicants,setApplicants]=useState([]);
   
     const [dateVal, onChangeDate] = useState(new Date());
     const [timeVal, onChangeTime] = useState(new Date());
@@ -48,6 +47,7 @@ const CompanyManageScheduleInterviews = () => {
         callServer(authRequest).then((response)=>{
           setInterviews(response.data[0]);
           setAllDates(response.data[1]);
+          setApplicants(response.data[2]);
         }).catch((error)=>{
           console.log(error);
         })
@@ -227,9 +227,12 @@ const CompanyManageScheduleInterviews = () => {
                   
                           <Form.Select aria-label="Default select example">
                             <option>Select A Name</option>
-                            <option value="1">One</option>
+                            {applicants.map((applicant)=>(
+                              <option value={applicant.index_number}>{applicant.name}</option>
+                            ))}
+                            {/* <option value="1">One</option>
                             <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="3">Three</option> */}
                           </Form.Select> 
 
                       </Form.Group>

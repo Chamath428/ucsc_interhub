@@ -85,6 +85,7 @@ export const createAdvertiesment = async(req,res)=>{
 
             const addvertiesment = await prisma.advertisement.create({
                 data:{
+                    title:req.body.title,
                     job_role:req.body.jobCategory,
                     job_description:req.body.description,
                     requested_interns:req.body.vacancies,
@@ -116,6 +117,7 @@ export const createAdvertiesment = async(req,res)=>{
 export const getAllAdvertiesments = async (req,res)=>{
     try{
         const advertiesments = await prisma.$queryRaw `SELECT advertisement.advertisement_id,
+                                                              advertisement.title,
                                                               company.name,
                                                               job_roles.job_role,
                                                               advertisement_status.type
@@ -179,7 +181,21 @@ export const getAllInterviews= async (req,res)=>{
             }
         })
 
-        res.status(200).send([interviews,dates]);
+        const applicants = await prisma.$queryRaw `SELECT student_applied_internships.index_number,
+                                                          student_applied_internships.advertisement_id,
+                                                          student.name,
+                                                          advertisement.title,
+                                                          job_roles.job_role
+                                                    FROM student_applied_internships
+                                                    LEFT JOIN student
+                                                    ON student_applied_internships.index_number=student.index_number
+                                                    LEFT JOIN advertisement
+                                                    ON student_applied_internships.advertisement_id=advertisement.advertisement_id
+                                                    LEFT JOIN job_roles
+                                                    ON advertisement.job_role=job_roles.id
+                                                    WHERE student_applied_internships.company_id=${req.body.companyId}`
+
+        res.status(200).send([interviews,dates,applicants]);
     }catch(error){
         res.status(400).json({message:"Someting went wrong when getting interview data!"});
     }
