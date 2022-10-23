@@ -34,14 +34,15 @@ export const createStudent = async(req,res)=>{
     export const studentEditProfile = async(req,res)=>{
         console.log("Comming")
         const {error,value} = studenteditProfileSchema.validate(req.body);
-        console.log(error)
+        console.log(req.files['profilePic'])
+        console.log(req.files['profileVideo'])
         if(!error){
             const salt = await bcrypt.genSalt(10);
             const hashPassword = await bcrypt.hash(req.body.password, salt);   
             try{
                 const student = await prisma.student.update({
                     where: {
-                        index_number: req.body.index_number,
+                        index_number: parseInt (req.body.index_number),
                       },
                     data:{
                         name : req.body.name,
@@ -50,12 +51,14 @@ export const createStudent = async(req,res)=>{
                         about_me : req.body.about_me,
                         github : req.body.github,
                         facebook : req.body.facebook,
-                        linkedin : req.body.linkedin
+                        linkedin : req.body.linkedin,
+                        profile_picture : req.files.profilePic[0].filename
                     }
                 })
                 const message = {"Message":"Student Created Successfull"}
                 res.status(200).send(student);
             }catch(error){
+                console.log(error);
                 res.status(400).send(error);
             }
             
