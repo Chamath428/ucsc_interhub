@@ -20,11 +20,11 @@ const CoordinatorManageStudents = () => {
     const [studentList, setStudentList] = useState([]);
     const [selectedStudentList, setSelectedStudentList] = useState([]);
 
-    const [sort, setSort] = useState(1);
+    // const [sort, setSort] = useState(1);
 
     // const [studentSortList, studentSortList1] = useState([]);
-    console.log(studentList);
 
+    
     studentList.map((item, index) => {
         if (item.cv) {
             item.cv = "True";
@@ -32,12 +32,13 @@ const CoordinatorManageStudents = () => {
             item.cv = "False";
         }
     });
+    
 
     useEffect(() => {
         const authRequest = {
-            method: "post",
-            url: "coordinator/StudentList",
-            data: {},
+            "method": "post",
+            "url": "coordinator/StudentList",
+            "data": {},
         };
 
         callServer(authRequest)
@@ -49,7 +50,7 @@ const CoordinatorManageStudents = () => {
                             index_number: item.student.index_number,
                             nameStudent: item.student.name,
                             cv: item.student.cv,
-                            types: item.interview_status_types.types,
+                            types: item.interview_status_types.status,
                             nameCompany: item.company.name,
                         },
                     ]);
@@ -92,33 +93,33 @@ const CoordinatorManageStudents = () => {
             });
     }, []);
 
-    const Fun = (event) => {
-        if (studentList) {
-            const sort = event.target.value;
+    // const Fun = (event) => {
+    //     if (studentList) {
+    //         const sort = event.target.value;
 
-            if (sort == 1) {
-                setStudentList(
-                    studentList.sort((a, b) => a.index_number - b.index_number)
-                );
-                alert("1");
-                console.log(studentList);
-            }
-            if (sort == 2) {
-                setStudentList(
-                    studentList.sort((a, b) => (a.nameStudent > b.nameStudent ? 1 : -1))
-                );
-                alert("2");
-                console.log(studentList);
-            }
-            if (sort == 3) {
-                setStudentList(
-                    sort((a, b) => (a.nameCompany > b.nameCompany ? 1 : -1))
-                );
-                alert("3");
-                console.log(studentList);
-            }
-        }
-    };
+    //         if (sort == 1) {
+    //             setStudentList(
+    //                 studentList.sort((a, b) => a.index_number - b.index_number)
+    //             );
+    //             alert("1");
+    //             console.log(studentList);
+    //         }
+    //         if (sort == 2) {
+    //             setStudentList(
+    //                 studentList.sort((a, b) => (a.nameStudent > b.nameStudent ? 1 : -1))
+    //             );
+    //             alert("2");
+    //             console.log(studentList);
+    //         }
+    //         if (sort == 3) {
+    //             setStudentList(
+    //                 sort((a, b) => (a.nameCompany > b.nameCompany ? 1 : -1))
+    //             );
+    //             alert("3");
+    //             console.log(studentList);
+    //         }
+    //     }
+    // };
 
     return (
         <div className="containstudent mt-5 ms-5" style={{ width: "90%" }}>
@@ -172,7 +173,7 @@ const CoordinatorManageStudents = () => {
                                         <Form.Select
                                             sm={10}
                                             defaultValue="Choose..."
-                                            onChange={Fun}
+                                            // onChange={Fun}
                                         >
                                             <option value="1">Index Number</option>
                                             <option value="2">Name</option>
@@ -287,7 +288,7 @@ const CoordinatorManageStudents = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 {studentList.map((selectedStudentList)=>(
+                                 {selectedStudentList.map((selectedStudentList)=>(
                                     <tr >
                                         
                                         <td>{selectedStudentList.index_number}</td>

@@ -1,0 +1,9 @@
+.react-calendar .highlight {
+    /* color:white;
+    background-color: black; */
+    background: linear-gradient(
+        to left top,
+        #4e73df 50%,
+        transparent 50%) no-repeat;
+}
+ 

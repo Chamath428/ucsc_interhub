@@ -1,6 +1,6 @@
 import express from "express";
 // import StudentEditProfile from '../../frontend/src/pages/Student/StudentSettings.js';
-import { createStudent } from "../controllers/studentController.js";
+import {createStudent,getSelectedInterview,getAllInterviews,acceptInterview, declineInterview} from '../controllers/studentController.js';
 import { studentEditProfile } from "../controllers/studentController.js";
 import { upload } from "../lib/file-upload.js";
 
@@ -12,5 +12,10 @@ studentRouters.post(
   upload.fields([{ name: 'profilePic', maxCount: 1 }]),
   studentEditProfile
 );
+studentRouters.post('/getSelectedInterviews',getSelectedInterview)
+studentRouters.post('/getAllInterviews',getAllInterviews)
+studentRouters.post('/acceptInterview',acceptInterview)
+studentRouters.post('/declineInterview',declineInterview)
+
 
 export default studentRouters;
