@@ -225,7 +225,7 @@ model internship_program_status {
 
 model internships {
   internship_id   Int               @id @default(autoincrement())
-  job_role        String            @db.VarChar(100)
+  job_role        Int
   started_date    String            @db.VarChar(50)
   index_number    Int
   company_id      Int
@@ -233,27 +233,29 @@ model internships {
   student         student           @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "internships_ibfk_1")
   company         company           @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "internships_ibfk_2")
   supervisor      supervisor?       @relation(fields: [supervisor_id], references: [supervisor_id], onDelete: Cascade, map: "internships_ibfk_3")
+  job_roles       job_roles         @relation(fields: [job_role], references: [id], onDelete: NoAction, map: "internships_ibfk_4")
   student_reports student_reports[]
 
   @@index([company_id], map: "company_id")
   @@index([index_number], map: "index_number")
   @@index([supervisor_id], map: "supervisor_id")
+  @@index([job_role], map: "job_role")
 }
 
 model interview {
   interview_id              Int                         @unique(map: "interview_id") @default(autoincrement())
   company_id                Int
   index_number              Int
-  date                      String                      @db.VarChar(30)
-  start_time                String                      @db.VarChar(20)
-  end_time                  String                      @db.VarChar(20)
+  date                      String                      @db.VarChar(50)
+  start_time                String                      @db.VarChar(50)
+  end_time                  String?                     @db.VarChar(20)
   interview_type            Int
-  interview_status          Int
+  interview_status          Int?                        @default(1)
   advertiesment_id          Int?
   company                   company                     @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "interview_ibfk_1")
   student                   student                     @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "interview_ibfk_2")
   company_visit_types       company_visit_types         @relation(fields: [interview_type], references: [id], onDelete: Cascade, map: "interview_ibfk_3")
-  interview_status_types    interview_status_types      @relation(fields: [interview_status], references: [id], onDelete: Cascade, map: "interview_ibfk_4")
+  interview_status_types    interview_status_types?     @relation(fields: [interview_status], references: [id], onDelete: Cascade, map: "interview_ibfk_4")
   advertisement             advertisement?              @relation(fields: [advertiesment_id], references: [advertisement_id], onDelete: NoAction, onUpdate: NoAction, map: "interview_ibfk_5")
   interview_decline_message interview_decline_message[]
 
@@ -284,6 +286,7 @@ model job_roles {
   id                         Int                          @id @default(autoincrement())
   job_role                   String                       @db.VarChar(100)
   advertisement              advertisement[]
+  internships                internships[]
   student_preferred_job_role student_preferred_job_role[]
 }
 
@@ -374,7 +377,7 @@ model student {
   cv                              String?                           @db.VarChar(100)
   intro_video                     String?                           @db.VarChar(100)
   profile_picture                 String?                           @db.VarChar(100)
-  student_status                  Int?
+  student_status                  Int?                              @default(1)
   degree                          Int
   gpa                             String                            @db.VarChar(10)
   about_me                        String?                           @db.VarChar(1000)
@@ -385,6 +388,7 @@ model student {
   program_id                      Int
   internship_program              internship_program                @relation(fields: [program_id], references: [program_id], onDelete: Cascade, map: "student_ibfk_1")
   student_status_type             student_status_type?              @relation(fields: [student_status], references: [id], onDelete: Cascade, map: "student_ibfk_2")
+  student_degree                  student_degree                    @relation(fields: [degree], references: [id], onDelete: NoAction, map: "student_ibfk_4")
   internships                     internships[]
   interview                       interview[]
   student_academic_qualifications student_academic_qualifications[]
@@ -396,6 +400,7 @@ model student {
 
   @@index([program_id], map: "program_id")
   @@index([student_status], map: "student_status")
+  @@index([degree], map: "degree")
 }
 
 model student_academic_qualifications {
@@ -430,8 +435,9 @@ model student_availability {
 }
 
 model student_degree {
-  id     Int    @id @default(autoincrement())
-  degree String @db.VarChar(100)
+  id      Int       @id @default(autoincrement())
+  degree  String    @db.VarChar(100)
+  student student[]
 }
 
 model student_notification {

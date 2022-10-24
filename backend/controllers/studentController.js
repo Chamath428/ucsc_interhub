@@ -50,6 +50,7 @@ export const getSelectedInterview=async (req,res) =>{
 }
 
 export const getAllInterviews = async (req,res)=>{
+    console.log(req.body.indexNumber)
     try{
         const interviews = await prisma.$queryRaw `SELECT interview.interview_id,interview.date,interview.start_time,
                                                           company.name,
@@ -72,6 +73,7 @@ export const getAllInterviews = async (req,res)=>{
         })
         res.status(200).send([interviews,dates]);
     }catch(error){
+        console.log(error)
         res.status(400).send(error);
     }
 }

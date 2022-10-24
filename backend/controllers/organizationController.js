@@ -243,7 +243,6 @@ export const markAsDone = async (req,res)=>{
 }
 
 export const cancelInterview = async (req,res)=>{
-    console.log(req.body.interviewId)
     try{
         const interview = await prisma.interview.update({
             where:{
@@ -257,5 +256,17 @@ export const cancelInterview = async (req,res)=>{
     }catch(error){
         console.log(error);
         res.status(400).json({message:"Something went wrong when canceling the interview!"});
+    }
+}
+
+export const createInterview = async(req,res)=>{
+    try{
+        console.log(req.body.time)
+        const interview = await prisma.$queryRaw `INSERT INTO interview(company_id,index_number,date,start_time,interview_type)
+                                                  VALUES(${req.body.companyId},${req.body.indexNumber},${req.body.date},${req.body.time},${req.body.type})`
+        res.status(200).send(interview);
+    }catch(error){
+        console.log(error);
+        res.status(400).json({message:"Something went wrong when creating the interview"});
     }
 }

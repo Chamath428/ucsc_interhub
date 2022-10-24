@@ -5,7 +5,8 @@ import {createAdvertiesment,
         getAllInterviews,
         markAsDone,
         cancelInterview,
-        getSelectedInterviews} from '../controllers/organizationController.js';
+        getSelectedInterviews,
+        createInterview} from '../controllers/organizationController.js';
 
 const organizationRouters = expree.Router();
 
@@ -16,6 +17,7 @@ organizationRouters.post('/getAllInterviews',getAllInterviews);
 organizationRouters.post('/markAsDone',markAsDone);
 organizationRouters.post('/cancelInterview',cancelInterview);
 organizationRouters.post('/getSelectedInterviews',getSelectedInterviews);
+organizationRouters.post('/createInterview',createInterview);
 
 // organizationRouters.post('/register',registerOrganization); this function moved to the user routes
 

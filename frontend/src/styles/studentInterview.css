@@ -5,4 +5,12 @@
         #4e73df 50%,
         transparent 50%) no-repeat;
 }
- 
+
+
+.react-calendar .highlight-red {
+    color:black;
+    background: linear-gradient(
+        to left top,
+        #de3448 50%,
+        transparent 50%) no-repeat;
+}
