@@ -1,6 +1,8 @@
 import express from "express";
 // import StudentEditProfile from '../../frontend/src/pages/Student/StudentSettings.js';
-import {createStudent,getSelectedInterview,getAllInterviews,acceptInterview, declineInterview, studentEditProfileView, uploadCSV} from '../controllers/studentController.js';
+
+import {createStudent,getSelectedInterview,getAllInterviews,acceptInterview, declineInterview, studentEditProfileView, getAllAdvertiesments,, uploadCSV} from '../controllers/studentController.js';
+
 import { studentEditProfile } from "../controllers/studentController.js";
 import { upload } from "../lib/file-upload.js";
 
@@ -18,6 +20,6 @@ studentRouters.post('/acceptInterview',acceptInterview)
 studentRouters.post('/declineInterview',declineInterview)
 studentRouters.post('/uploadCSV', upload.single('csv'), uploadCSV)
 studentRouters.post('/editProfileView/*',studentEditProfileView)
-
+studentRouters.post('/getAllAdvertiesmentS',getAllAdvertiesments);
 
 export default studentRouters;

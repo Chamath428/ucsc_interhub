@@ -21,11 +21,11 @@ import { useState } from 'react';
 import { callServer } from '../authServer';
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
-
+import { useHistory } from 'react-router-dom';
 
 const StudentEditProfile = () =>{
     const [name, setName] = useState("");
-    const [password, setPassword] = useState(1);
+    const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [about_me, setAboutme] = useState("");
     const [github, setGithub] = useState("");
@@ -39,6 +39,7 @@ const StudentEditProfile = () =>{
     const [profileVideo,setProfileVideo] = useState();
 
     const [editProfileView, setEditProfileView] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
         const authAciveRequest = {
@@ -56,8 +57,9 @@ const StudentEditProfile = () =>{
             setGithub(response.data.github);
             setFacebook(response.data.facebook);
             setLinkedin(response.data.linkedin);
-            setProfilePic(response.data.profile_picture);
+            setEditProfileView(response.data.profile_picture);
             setProfileVideo(response.data.intro_video)
+        
     
         }).catch(function (error) {
           if (error.response) {
@@ -94,7 +96,12 @@ const StudentEditProfile = () =>{
         "data": data,
         headers:{ 'Content-Type': 'multipart/form-data'}
       }
-      callServer(authRequest).then((response) => { showAlert(response) }).catch(function (error) {
+      callServer(authRequest).then((response) => {
+        
+        showAlert(response)
+        history.push("/Student/Edit-Profile");
+    
+    }).catch(function (error) {
         if (error.response) {
           setAlertPara("Something went wrong when editing profile!");
           setVariant("danger");
@@ -125,7 +132,7 @@ const StudentEditProfile = () =>{
                                 <div className="user-avatar">
                                     <div className='align-self-center'>
 
-                                        <ProfilePic url="https://i.pinimg.com/736x/0a/53/c3/0a53c3bbe2f56a1ddac34ea04a26be98.jpg"/>
+                                        <ProfilePic url= {"http://localhost:5000/"+editProfileView}/>
 
                                         <Form.Group controlId="profilePicture" className="mb-3">
                                             <Form.Label>Upload Profile Picture</Form.Label>
