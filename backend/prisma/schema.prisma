@@ -266,7 +266,7 @@ model interview_decline_message {
 model interview_status_types {
   id                 Int                  @id @default(autoincrement())
   status             String               @db.VarChar(100)
-  internship_program internship_program[]
+  // internship_program internship_program[]
   interview          interview[]
 }
 
@@ -277,11 +277,11 @@ model job_roles {
   student_preferred_job_role student_preferred_job_role[]
 }
 
-model job_roles {
-  id                         Int                          @id @default(autoincrement())
-  job_role                   String                       @db.VarChar(100)
-  student_preferred_job_role student_preferred_job_role[]
-}
+// model job_roles {
+//   id                         Int                          @id @default(autoincrement())
+//   job_role                   String                       @db.VarChar(100)
+//   student_preferred_job_role student_preferred_job_role[]
+// }
 
 model notification {
   notification_id         Int                       @id
@@ -342,7 +342,7 @@ model report_handle {
   deadline_time   String            @db.VarChar(50)
   report_link     String            @db.VarChar(100)
   pdc             pdc               @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "report_handle_ibfk_2")
-  student_reports student_reports[]
+  // student_reports student_reports[]
 
   @@id([report_id, email_address])
   @@index([email_address], map: "email_address")
