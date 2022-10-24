@@ -29,7 +29,7 @@ class StudentProfile extends Component {
                         <Col className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 alignTop">
 
                             <Card body>
-                                <ProfilePic/>
+                                <ProfilePic url="https://i.pinimg.com/736x/0a/53/c3/0a53c3bbe2f56a1ddac34ea04a26be98.jpg"/>
                                 
                                 <div className="d-grid gap-2">
                                     <PrimaryBtn text='View my CV'></PrimaryBtn>

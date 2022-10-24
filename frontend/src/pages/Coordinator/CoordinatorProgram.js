@@ -21,6 +21,7 @@ import ProgramCreateModal from "../../component/Modal/modalProgramCreate";
 import { callServer } from "../authServer";
 import Table from "react-bootstrap/Table";
 import { useState } from "react";
+import NextPhaseModal from "../../component/Modal/modalNextPhase";
 
 const CoordinatorProgram = () => {
     // const barStatus = this.props.barStatus;
@@ -41,6 +42,11 @@ const CoordinatorProgram = () => {
         }
     });
 
+    allProgrameList.map((item, index) => {
+        if (item.end_date == null) {
+            item.end_date = "Not Yet";
+        } 
+    });
     currentProgrameDetails.map((item, index) => {
         if (item.is_active == 1) {
             item.is_active = "Active";
@@ -49,7 +55,7 @@ const CoordinatorProgram = () => {
         }
     });
     currentProgrameDetails.map((item, index) => {
-        if (item.end_date == '') {
+        if (item.end_date == null) {
             item.end_date = "Not Yet";
         }
     });
@@ -66,7 +72,7 @@ const CoordinatorProgram = () => {
                     setAllProgrameList((prevState) => [
                         ...prevState,
                         {
-                            batch_no: item.batch_no,
+                            program_id: item.program_id,
                             start_date: item.start_date,
                             end_date: item.end_date,
                             status: item.internship_program_status.type,
@@ -136,6 +142,7 @@ const CoordinatorProgram = () => {
                             </Col>
                             <Col>
                                 <ProgramCreateModal />{" "}
+                                <NextPhaseModal />{" "}
                             </Col>
                         </Row>
 
@@ -215,7 +222,7 @@ const CoordinatorProgram = () => {
                         <Table style={{ maxHeight: "60vh" }}>
                             <thead>
                                 <tr>
-                                    <th>Batch No</th>
+                                    <th>Program_Id</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Status</th>
@@ -225,7 +232,7 @@ const CoordinatorProgram = () => {
                             <tbody>
                                 {allProgrameList.map((allProgrameList) => (
                                     <tr>
-                                        <td>{allProgrameList.batch_no}</td>
+                                        <td>{allProgrameList.program_id}</td>
                                         <td>{allProgrameList.start_date}</td>
                                         <td>{allProgrameList.end_date}</td>
                                         <td>{allProgrameList.status}</td>

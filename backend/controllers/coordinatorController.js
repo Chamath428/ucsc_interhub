@@ -1,4 +1,4 @@
-import { coordinatorSchema } from "../models/coordinatorModel.js";
+import { coordinatorSchema ,coordinatorPlacement} from "../models/coordinatorModel.js";
 import { PrismaClient } from "@prisma/client";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
@@ -221,7 +221,7 @@ export const ViewAllPrograms = async (req, res) => {
     try {
         const ViewAllPrograms = await prisma.internship_program.findMany({
             select: {
-                batch_no: true,
+                program_id: true,
                 is_active: true,
                 end_date: true,
                 start_date: true,
@@ -292,4 +292,70 @@ export const CurrentProgramDetails = async (req, res) => {
         console.log(error.message);
         res.status(400).send(error);
     }
+};
+
+
+
+export const createNewPlacementPrograme = async (req, res) => {
+  
+    var status  = 1;
+    var is_active=1;
+    const { error, value } = coordinatorPlacement.validate(req.body);
+    // console.log(value);
+    //    console.log(error);
+
+    if (!error) {
+
+       
+        try {
+
+            const updatePlacementActivity = await prisma.internship_program.updateMany({
+                where: {
+                    is_active: 1,
+                },
+                data: {
+                    is_active: 0,
+                },
+              });
+            const createNewPlacementPrograme = await prisma.internship_program.create({
+                data: {
+                    start_date: req.body.start_date,
+                    status:status,
+                    is_active:is_active,
+                    email_address: req.body.email_address,
+                    
+                },
+            });
+           
+            res.status(200).send(createNewPlacementPrograme);
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    } else {
+    
+        res.status(500).send(error);
+    }
+};
+
+
+export const endCurrentPrograme = async (req, res) => {
+        
+       
+        try {
+
+            const endCurrentPrograme = await prisma.internship_program.updateMany({
+                where: {
+                    is_active: 1,
+                },
+                data: {
+                    is_active: 0,
+                },
+              });
+            
+           
+            res.status(200).send(endCurrentPrograme);
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    
 };

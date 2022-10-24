@@ -2,6 +2,8 @@ import { PrismaClient } from '@prisma/client'
 import {studentSchema} from '../models/studentModel.js';
 import { studenteditProfileSchema } from '../models/studentModel.js';
 import bcrypt from 'bcrypt';
+import fs from "fs";
+import readline from "readline";
 
 const prisma = new PrismaClient();
 
@@ -139,7 +141,8 @@ export const declineInterview = async(req,res)=>{
                         github : req.body.github,
                         facebook : req.body.facebook,
                         linkedin : req.body.linkedin,
-                        profile_picture : req.files.profilePic[0].filename
+                        profile_picture : req.files.profilePic[0].filename,
+                        intro_video : req.files.profileVideo[0].filename
                     }
                 })
                 const message = {"Message":"Student Created Successfull"}
@@ -151,5 +154,105 @@ export const declineInterview = async(req,res)=>{
             
         }
             res.status(500).send(error);
+    }
+
+   export const uploadCSV  = async (req, res) => { 
+ 
+    const stream = fs.createReadStream(req.file.path);
+    const rl = readline.createInterface({ input: stream });
+    let data = [];
+     
+    rl.on("line", (row) => {
+        data.push(row.split(","));
+    });
+     
+    rl.on("close", async () => {
+        console.log(data);
+        for (let i = 1; i < data.length; i++) {
+            const row = data[i];
+            const student = await prisma.student.create({
+                data:{
+                    index_number :parseInt(row[0]),
+                    registration_number : row[1],
+                    name : row[2],
+                    nic:row[3],
+                    email:row[4],
+                    degree : parseInt(row[5]),
+                    gpa :  row[6],
+                    student_status:1,
+                    program_id :1
+                }
+            })
+            
+        }
+       
+        res.json({"msg":"success"})
+    });
+   
+
+    
+   }
+
+    export const studentEditProfileView = async (req, res) => { 
+
+        
+        try {
+            var indexno=parseInt(req.params['0'])
+            console.log(indexno)
+            const student = await prisma.student.findUnique({
+                where: 
+                {
+                    index_number : indexno , 
+                },
+    
+                select: {
+                    name: true,
+                    // company_contacts: {
+                    //     select: {
+                    //         telephone_no: true,
+                    //     },
+                    // },
+                    // password : hashPassword,
+                    email : true,
+                    about_me : true,
+                    github : true,
+                    facebook : true,
+                    linkedin : true,
+                    profile_picture : true,
+                    intro_video : true
+                }
+            })
+            res.status(200).send(student);
+    
+            // console.dir(registeredCompany, { depth: null })
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    
+    }
+
+
+    export const getAllAdvertiesments = async (req,res)=>{
+        try{
+            const advertiesments = await prisma.$queryRaw `SELECT advertisement.advertisement_id,
+                                                                  company.name,
+                                                                  job_roles.job_role,
+                                                                  advertisement_status.type
+                                                                  FROM advertisement
+                                                                  LEFT JOIN
+                                                                  company
+                                                                  ON advertisement.company_id=company.company_id
+                                                                  LEFT JOIN
+                                                                  job_roles
+                                                                  ON advertisement.job_role=job_roles.id
+                                                                  LEFT JOIN
+                                                                  advertisement_status
+                                                                  ON advertisement.status=advertisement_status.id
+                                                                  WHERE advertisement.status = 2
+                                                            ORDER BY advertisement.advertisement_id DESC`;
+            res.status(200).send(advertiesments)
+        }catch(error){
+            res.status(400).json({message:"Something went wrong when fetchingn the data!"})
+        }
     }
   

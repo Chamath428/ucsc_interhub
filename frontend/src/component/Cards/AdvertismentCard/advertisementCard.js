@@ -28,20 +28,11 @@ function AdvertisementCard(props) {
         <span>{props.status}</span>
         </Col>
         <Col lg={1} className="px-1">
-          <Route
-            render={({ history }) => (
-              <Button
-                size="sm"
-                variant="primary"
-                className="px-4"
-                onClick={() => {
-                  history.push("/Student/View-advertisement");
-                }}
-              >
+          <Link to={'/'+props.actor+'/View-advertisement'}>
+              <Button variant="primary" >
                 View
               </Button>
-            )}
-          />
+          </Link>
         </Col>
         <Col lg={1}>
           <Button size="sm" variant="outline-primary" className="mr-4 pt-1">
