@@ -30,7 +30,7 @@ export const getNewAccessToken = async(req,res) =>{
 export const generateAccessToken = (username,userRole) =>{
     const accessToken = jwt.sign({id:username,role:userRole},
                                 "TheSecrectKey",
-                                {expiresIn:"15m"});
+                                {expiresIn:"45m"});
     
     return accessToken;
 }

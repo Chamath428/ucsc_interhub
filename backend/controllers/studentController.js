@@ -136,7 +136,8 @@ export const declineInterview = async(req,res)=>{
                         github : req.body.github,
                         facebook : req.body.facebook,
                         linkedin : req.body.linkedin,
-                        profile_picture : req.files.profilePic[0].filename
+                        profile_picture : req.files.profilePic[0].filename,
+                        intro_video : req.files.profileVideo[0].filename
                     }
                 })
                 const message = {"Message":"Student Created Successfull"}
@@ -148,5 +149,44 @@ export const declineInterview = async(req,res)=>{
             
         }
             res.status(500).send(error);
+    }
+
+
+    export const studentEditProfileView = async (req, res) => { 
+
+        
+        try {
+            var indexno=parseInt(req.params['0'])
+            console.log(indexno)
+            const student = await prisma.student.findUnique({
+                where: 
+                {
+                    index_number : indexno , 
+                },
+    
+                select: {
+                    name: true,
+                    // company_contacts: {
+                    //     select: {
+                    //         telephone_no: true,
+                    //     },
+                    // },
+                    // password : hashPassword,
+                    email : true,
+                    about_me : true,
+                    github : true,
+                    facebook : true,
+                    linkedin : true,
+                    profile_picture : true,
+                    intro_video : true
+                }
+            })
+            res.status(200).send(student);
+    
+            // console.dir(registeredCompany, { depth: null })
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    
     }
   

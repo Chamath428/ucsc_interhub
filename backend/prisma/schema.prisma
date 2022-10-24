@@ -407,7 +407,7 @@ model student_reports {
   supervisor                               supervisor?         @relation(fields: [supervisor_id], references: [supervisor_id], onDelete: Cascade, map: "student_reports_ibfk_2")
   report_type_report_typeTostudent_reports report_type         @relation(fields: [report_type], references: [id], onDelete: Cascade, map: "student_reports_ibfk_4")
   report_status_types                      report_status_types @relation(fields: [report_status], references: [id], onDelete: Cascade, map: "student_reports_ibfk_5")
-  report_handle                            report_handle       @relation(fields: [report_id], references: [report_id], onDelete: Cascade, map: "student_reports_ibfk_6")
+  // report_handle                            report_handle       @relation(fields: [report_id], references: [report_id], onDelete: Cascade, map: "student_reports_ibfk_6")
 
   @@index([internship_id], map: "internship_id")
   @@index([report_id], map: "report_id")
@@ -461,16 +461,16 @@ model company_visit_status_types {
   company_visit company_visit[]
 }
 
-model interview_decline_message {
-  id           Int    @id @default(autoincrement())
-  interview_id Int
+// model interview_decline_message {
+//   id           Int    @id @default(autoincrement())
+//   interview_id Int
 
-  message      String @db.LongText
-  // interview    interview @relation(fields: [interview_id], references: [interview_id], onDelete: Cascade, map: "interview_decline_message_ibfk_1")
+//   message      String @db.LongText
+//   // interview    interview @relation(fields: [interview_id], references: [interview_id], onDelete: Cascade, map: "interview_decline_message_ibfk_1")
 
 
-  @@index([interview_id], map: "interview_id")
-}
+//   @@index([interview_id], map: "interview_id")
+// }
 
 model job_roles {
   id                         Int                          @id @default(autoincrement())
