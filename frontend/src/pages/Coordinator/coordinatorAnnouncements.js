@@ -50,6 +50,10 @@ const CoordinatorAnnouncements = () => {
     const [announcementList, setAnnouncementList] = useState([]);
     // search bar creating
 
+    const companyFilterAnnouncementList = announcementList.filter(announcementList => {
+        return announcementList.type === 'Company';
+      });
+
     useEffect(() => {
         const authRequest = {
             method: "post",
@@ -216,10 +220,10 @@ const CoordinatorAnnouncements = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {announcementList.map((announcementList) => (
+                                    {companyFilterAnnouncementList.map((companyFilterAnnouncementList) => (
                                         <tr>
-                                            <td>{announcementList.title}</td>
-                                            <td>{announcementList.type}</td>
+                                            <td>{companyFilterAnnouncementList.title}</td>
+                                            <td>{companyFilterAnnouncementList.type}</td>
                                         </tr>
                                     ))}
                                 </tbody>

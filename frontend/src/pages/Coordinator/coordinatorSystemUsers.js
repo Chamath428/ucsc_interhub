@@ -12,6 +12,7 @@ import Alert from 'react-bootstrap/Alert';
 import { URL } from '../URL';
 import { callServer } from '../authServer';
 import Table from 'react-bootstrap/Table';
+import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 
 import '../../styles/coordinatorSystemUser.css';
 
@@ -29,7 +30,7 @@ const CoordinatorSystemUsers = () => {
     const [userList, setUserList] = useState([]);
 
     userList.map((item, index) => {
-        if (item.is_active==2) {
+        if (item.is_active==1) {
             item.is_active = "Active";
         }
         else {
@@ -49,6 +50,7 @@ const CoordinatorSystemUsers = () => {
                     name: item.first_name + " " + item.last_name,
                     role: item.pdc_role.role,
                     is_active: item.is_active,
+                    email: item.email_address ,
                 }])
             })
            
@@ -129,9 +131,9 @@ const CoordinatorSystemUsers = () => {
                                 </thead>
                                 <tbody>
                                  {userList.map((userList)=>(
+
                                     <tr >
-                                        
-                                        <td>{userList.name}</td>
+                                        <Link  to={{pathname:"/Coordinator/StaffProfile",state:userList}}><td>{userList.name}</td></Link>
                                         <td>{userList.role}</td>                                      
                                         <td>{userList.is_active}</td>
                                     
