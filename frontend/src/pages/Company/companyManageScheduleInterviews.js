@@ -1,4 +1,4 @@
-import React, { Component,useState } from 'react';
+import React, { Component,useState,useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
 import { Row,Col,Button} from 'react-bootstrap';
@@ -7,28 +7,204 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Calendar from 'react-calendar';
 import Card from 'react-bootstrap/Card';
-import { Accordion } from 'react-bootstrap';
 import TimePicker from 'react-time-picker';
 import DatePicker from 'react-date-picker';
-import AccordionItem from '../../component/Accordion/accordion';
+import AccordionCompany from '../../component/Accordion/accordianCompany';
 import InfoCard from '../../component/Dashboard/InfoCard/infoCard'; 
-import Nav from 'react-bootstrap/Nav';
-import { Link } from "react-router-dom";
 import 'react-calendar/dist/Calendar.css';
 import AnnouncementCard from '../../component/Cards/announcementCard';
+import jwtDecode from 'jwt-decode';
+import { callServer } from '../authServer';
+import '../../styles/studentInterview.css'
+import moment from 'moment';
+import Alert from 'react-bootstrap/Alert';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
 
 import '../../styles/companyManageScheduleInterviews.css';    
 
 const CompanyManageScheduleInterviews = () => {  
-    const [value, onChange] = useState(new Date());
+    const [date, setDate] = useState(new Date());
     const [valueCalendar, onChangeCalendar] = useState(new Date());
+    const [interviews,setInterviews]  = useState([]);
+    const [allDates,setAllDates]=useState([]);
+    const [applicants,setApplicants]=useState([]);
+    const [indexNumber,setIndexNumber] = useState(0);
+    const [studentInterviews,setStudentInterviews] = useState([]);
+    const [studentDates,setStudentDates] = useState([]);
+    const [interviewDate,setInterviewDate]=useState();
+    const [interviewTime,setInterviewTime]=useState();
+    const [interviewType,setInterviewType]=useState(0);
+    const [show, setShow] = useState(false);
+    const [alertPara, setAlertPara] = useState("Interview Added Successfully!");
+    const [variant, setVariant] = useState("success");
   
     const [dateVal, onChangeDate] = useState(new Date());
     const [timeVal, onChangeTime] = useState(new Date());
+    const history = useHistory();
+    
+
+      useEffect(()=>{
+        
+        const data ={
+          companyId:jwtDecode(sessionStorage.getItem("accessToken")).id
+        }
+
+        const authRequest = {
+          "method":"post",
+          "url":"organization/getAllInterviews",
+          "data":data
+        }
+
+        callServer(authRequest).then((response)=>{
+          setInterviews(response.data[0]);
+          setAllDates(response.data[1]);
+          setApplicants(response.data[2]);
+        }).catch((error)=>{
+          console.log(error);
+        })
+
+      },[])
+
+      const onDateChange = (newDate) => {
+        setDate(newDate);
+        const data={
+          selectedDate:moment(newDate).format('YYYY-MM-DD'),
+          companyId:jwtDecode(sessionStorage.getItem("accessToken")).id
+        }
+        const authRequest = {
+          "method": "post",
+          "url": "organization/getSelectedInterviews",
+          "data": data
+        }
+        callServer(authRequest).then(
+          (response)=>{
+            setInterviews(response.data)
+          }
+          ).catch(
+            (error)=>{console.log(error)}
+          )
+      }
+
+      const markAsDone=(interview_id,interview_index)=>{
+        const data ={
+          interviewId:interview_id
+        }
+
+        const authRequest={
+          "method":"post",
+          "url":"organization/markAsDone",
+          "data":data
+        }
+
+        callServer(authRequest).then((response)=>{
+          const interviews_copy = [...interviews];
+          interviews_copy[interview_index].status="Done";
+          setInterviews(interviews_copy);
+        }).catch((error)=>{
+          console.log(error);
+        })
+      }
+
+      const cancelInterview = (interview_id,interview_index)=>{
+        const data ={
+          interviewId:interview_id
+        }
+
+        const authRequest={
+          "method":"post",
+          "url":"organization/cancelInterview",
+          "data":data
+        }
+
+        callServer(authRequest).then((response)=>{
+          const interviews_copy = [...interviews];
+          interviews_copy[interview_index].status="Canceled";
+          setInterviews(interviews_copy);
+        }).catch((error)=>{
+          console.log(error);
+        })
+      }
+
+      const getStudentInterviews=(index_number)=>{
+        setIndexNumber(index_number);
+        const data ={
+          indexNumber:parseInt(index_number)
+        }
+
+        const authRequest={
+          "method":"post",
+          "url":"student/getAllInterviews",
+          "data":data
+        }
+
+        callServer(authRequest).then((response)=>{
+          setStudentInterviews(response.data[0]);
+          setStudentDates(response.data[1]);
+        }).catch((error)=>{
+          console.log(error);
+        })
+      }
+
+      const createInterview=()=>{
+          if(parseInt(indexNumber)==0){
+              setAlertPara("Please select an applicant!");
+              setVariant("danger");
+              setShow(true);
+          }else if(timeCheck(timeVal)){
+              setAlertPara("Applicant already has an interview at the selected time!");
+              setVariant("danger");
+              setShow(true);
+          }else if(interviewType==0){
+            setAlertPara("Please select an interview type!");
+            setVariant("danger");
+            setShow(true);
+          }else{
+            const data ={
+              indexNumber:parseInt(indexNumber),
+              time:timeVal,
+              date:moment(dateVal).format('YYYY-MM-DD'),
+              companyId:jwtDecode(sessionStorage.getItem("accessToken")).id,
+              type:parseInt(interviewType)
+            }
+
+            const authRequest={
+              "method":"post",
+              "url":"organization/createInterview",
+              "data":data
+            }
+
+            callServer(authRequest).then((response)=>{
+              window.location.reload(false);
+            }).catch((error)=>{
+              setAlertPara("Something went wrong when creating the interview!");
+              setVariant("danger");
+              setShow(true);
+            })
+          }
+      }
+
+      function timeCheck(selectedTime){
+        let boo=false;
+        studentInterviews.map((studentInterview)=>{
+          if(studentInterview.start_time==selectedTime){
+            console.log(studentInterview.start_time)
+            boo= true;
+          }   
+        })
+        return boo
+      }
+
+
+      const showAlert = (response) => {
+        setAlertPara("Interview Added Successfully!");
+        setVariant("success");
+        setShow(true);
+      }
 
         return (
             <div className='containinterview mt-5 ms-5'style={{width:'90%'}}>
+                      
             <Tabs 
                 defaultActiveKey="ScheduledInterviews"
                 className="ManageInterviewTab"
@@ -37,80 +213,63 @@ const CompanyManageScheduleInterviews = () => {
                 <Tab className="InterviewTab" eventKey="ScheduledInterviews" title="Scheduled Interviews">
                 <div className='contain-interview'>
                         <div className='d-flex flex-row justify-content-sm-between mt-5 mb-5'>
-
-                            <h3>Scheduled Interviews</h3> 
+                            <h3>Scheduled Interviews</h3>                       
                         </div>
                         
         <Container className='mt-3'>
           <Row>
             <Col sm={7}>
-            
-              <AccordionItem Header='Mr. S. A. Dissanayake' body='Job Role Preference: Software Engineer'
+
+              {interviews.length==0?
+                <p>No interviews to show</p>
+                :interviews.map((interview)=>(
+              <AccordionCompany Header={interview.name} body='Job Role Preference: Software Engineer'
               
               card1heading='Interview Time'
-              card1context='10.00 am'
+              card1context={interview.start_time}
 
               card2heading='Interview Date'
-              card2context='23rd of August 2022'
+              card2context={interview.date}
 
               card3heading='Interview Type'
-              card3context='Via Zoom'
+              card3context={interview.type}
               
-              card4heading='Contact Number'
-              card4context='0112 456 987'
+              card4heading='Student Email Address'
+              card4context={interview.email}
+
+              card5heading='Interview status'
+              card5context={interview.status}
 
               PrimaryBtn='Done'
-
-              InfoBtn = 'Decline'
+              interview_id={interview.interview_id}
+              interview_index={interviews.indexOf(interview)}
+              status={(interview.status=='Done'||interview.status=='Declined'||interview.status=='Canceled')?'1':''}
+              markAsDone={markAsDone}
+              cancelInterview={cancelInterview}
               
-              ></AccordionItem>
-
-              <AccordionItem Header='Ms. F. Shazna' body='Job Role Preference: Business Analyst'
-
-              card1heading='Interview Time'
-              card1context='10.00 am'
-
-              card2heading='Interview Date'
-              card2context='23rd of August 2022'
-
-              card3heading='Interview Type'
-              card3context='On SIte'
-
-              card4heading='Contact Number'
-              card4context='0112 456 987'
-
-              PrimaryBtn='Done'
-
-              InfoBtn = 'Decline'
-
-              ></AccordionItem>
-
-              <AccordionItem Header='Ms. S. Athapaththu' body='Job Role Preference: U/UX Engineer'
-
-              card1heading='Interview Time'
-              card1context='10.00 am'
-
-              card2heading='Interview Date'
-              card2context='23rd of August 2022'
-
-              card3heading='Interview Type'
-              card3context='On SIte'
-
-              card4heading='Contact Number'
-              card4context='0112 456 987'
-
-              PrimaryBtn='Done'
-
-              InfoBtn = 'Decline'
-
-              ></AccordionItem>
-            
+              ></AccordionCompany>
+                ))
+            }
+                   
             </Col>
             
             <Col sm={5}>
 
               <Card body>
-                <Calendar onChange={onChange} value={value} className="w-100 border-0"/> 
+              <Calendar
+                    onChange={onDateChange}
+                    value={date}
+                    showNeighboringMonth={false}
+                    locale={"UTC"}
+                    className="w-100 border-0"
+
+                    tileClassName={({ date, view }) => {
+                      if(allDates.find(x=>x.date===moment(date).format("YYYY-MM-DD"))){
+                       return  'highlight'
+                      }
+                    }}
+
+                  /> 
               </Card>
 
               <div className='d-flex pt-4 justify-content-between' >
@@ -138,12 +297,14 @@ const CompanyManageScheduleInterviews = () => {
       </div>
                 </Tab>
                 <Tab className="InterviewTab" eventKey="ScheduleInterviews" title="Schedule Interviews">
-            
                     <div className='contain-interview'>
                         <div className='d-flex flex-row justify-content-sm-between mt-5 mb-5'>
 
                         <h3>Schedule an interview</h3>
                         </div> 
+                        <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
+                        <Alert.Heading>{alertPara}</Alert.Heading>
+                      </Alert>
                         <div className='row mt-3'>
             
             <div className="card col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mt-3">
@@ -154,24 +315,21 @@ const CompanyManageScheduleInterviews = () => {
                     <div className='col-9 mt-2'>
                       <Form.Group className="mb-3" controlId="jobTitle">
                   
-                          <Form.Select aria-label="Default select example">
-                            <option>Select A Name</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                          <Form.Select aria-label="Default select example" onChange={(event) => { getStudentInterviews(event.target.value) }}>
+                            <option value="0">Select A Name</option>
+                            {applicants.map((applicant)=>(
+                              <option value={applicant.index_number}>{applicant.name}</option>
+                            ))}
                           </Form.Select> 
 
                       </Form.Group>
                     </div>
 
-                    <div className='col-3 mt-2'>
-                    <Button variant="primary" >Apply</Button>{' '}                  
-                    </div>
                   </div>
                 </Form>
 
                 <div className='row mt-3 mb-3 p-3 pt-4'>
-              
+                    <Form>
                   <div className="row gutters mb-4">
                     
                       <h5>Fill the interview details</h5>
@@ -183,7 +341,7 @@ const CompanyManageScheduleInterviews = () => {
                           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
                               <label for="changeTime0" className='mt-3'>Pick Interview Date</label>
                               <Col sm="10">
-                              <DatePicker onChange={onChangeDate} value={dateVal} />                  
+                              <DatePicker onChange={onChangeDate} value={dateVal} />                
                               </Col>
                           </Form.Group> 
 
@@ -191,71 +349,56 @@ const CompanyManageScheduleInterviews = () => {
                           <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
                             <label for="changeTime0" className='mt-3'>Pick start time</label>
                             <Col sm="10">
-                            <TimePicker onChange={onChangeTime} value={timeVal} />  
+                            <TimePicker onChange={onChangeTime} disableClock value={timeVal} />    
                             </Col>
                           </Form.Group>
 
-                          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                            <label for="changeTime0" className='mt-3'>Pick end time</label>
-                            <Col sm="10">
-                            <TimePicker onChange={onChangeTime} value={timeVal} />  
-                            </Col>
-                          </Form.Group>
 
                       </div>
                   </div>
                 
                 {/* Choose the interview method */}
                 <div className='row gutters'>
-                      <Form>
+
                         <h5>Choose the interview method</h5>
                         {['radio'].map((type) => (
                           <div key={`inline-${type}`} className="mt-1 mb-3">
                             <Form.Check
                               inline
-                              label="Physical"
+                              label="Online"
                               name="interviewMethod"
                               type={type}
+                              value="1"
+                              onClick={(event) => { setInterviewType(event.target.value)}}
                               id={`inline-${type}-1`}
                             />
                             <Form.Check
                               inline
-                              label="Online"
+                              label="Onsite"
                               name="interviewMethod"
                               type={type}
+                              value="2"
+                              onClick={(event) => { setInterviewType(event.target.value)}}
                               id={`inline-${type}-2`}
-                            />
-                            <Form.Check
-                              inline
-                              label="Will be informed later"
-                              name="interviewMethod"
-                              type={type}
-                              id={`inline-${type}-3`}
                             />
                           </div>
                         ))}
-                         <div className='row gutters'>
-          <div className="card-body h-100 col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mt-3">
+                    <div className='row gutters'>
+                       <div className="card-body h-100 col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mt-3">
                    
                       <Stack direction="horizontal" gap={2}>
 
-                          <div className="bg-light ms-auto">
-                              <button type="button" id="submit" name="submit" className="btn btn-secondary mr-3">Cancel</button>
-                          </div>
-
-
-                          <div className="bg-light">
-                              <button type="button" id="submit" name="submit" className="btn btn-primary ml-3">Schedule Interview</button>
-
+                          <div className="bg-light" style={{width:'100%',display:'flex',flexDirection:'row-reverse'}}>
+                              <button type="button" id="submit" onClick={createInterview} name="submit" className="btn btn-primary ml-3">Schedule Interview</button>
                           </div>
                       </Stack>
                             
                         </div>
                         
                     </div>
-                    </Form> 
+                   
                 </div>
-                  
+                </Form> 
                 {/* end of left side column */}
                 </div>  
             </div>
@@ -263,12 +406,30 @@ const CompanyManageScheduleInterviews = () => {
             <div className="col-xl-5 col-lg-5 col-md-5 col-sm-6 col-12 mt-3">
               
                 <Card body>
-                    <Calendar onChange={onChangeCalendar} value={valueCalendar} className="w-100 border-0"/> 
+                    <Calendar 
+                    onChange={onChangeCalendar} 
+                    value={valueCalendar} 
+                    className="w-100 border-0"
+                    
+                    tileClassName={({ date, view }) => {
+                      if(studentDates.find(x=>x.date===moment(date).format("YYYY-MM-DD"))){
+                       return  'highlight-red'
+                      }
+                    }}
+
+                    /> 
                   </Card>
+                
+                <Card className='mt-2 p-2'>
+                <h5>Other interviews of the student</h5>
 
-                <AnnouncementCard Header='Friday, 26th August 10.00am' Title='Mr. D.S. Senananayake' Button='View'/>
+                {studentInterviews.length==0?
+                <p>No interviews to show</p>
+                :studentInterviews.map((studentInterview)=>(
+                  <AnnouncementCard Header={studentInterview.date} Title={`Starting Time:${studentInterview.start_time}`} Button='View'/>
+                ))}
 
-                <AnnouncementCard Header='Friday, 26th August 3.00pm' Title='Mrs. R.D. Bandaranayake' Button='View'/>
+                </Card>
 
             </div>
 

@@ -99,7 +99,9 @@ const StudentAdvertisements =()=>{
                      company={add.name}
                     //  status={add.type}
                      logo={LsegLogo}
-                     actor="Student">
+                     
+                     actor="Student"
+                     data={add.advertisement_id}>
 
                      </AdvertisementCard>
                     ))

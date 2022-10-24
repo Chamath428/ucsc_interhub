@@ -58,10 +58,13 @@ const CompanyAdvertisements =()=>{
                 ):(
                   adds.map((add)=>(
                     <AdvertisementCard
+                     title={add.title}
                      jobrole={add.job_role}
-                     company={add.name}
                      status={add.type}
-                     logo={LsegLogo}>
+                     logo={LsegLogo}
+                     actor="Company"
+                     data={add.advertisement_id}
+                     >
 
                      </AdvertisementCard>
                     ))

@@ -13,13 +13,16 @@ import PrimaryBtn from '../../component/Buttons/primaryBtn';
 import InfoBtn from '../../component/Buttons/outlineBtn';
 import YoutubeEmbed from '../../component/YoutubeEmbed/youtubeEmbed';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
+import { callServer } from '../authServer';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ApplyforRoleButton from '../../component/Modal/modalApplyJob';
 import Figure from 'react-bootstrap/Figure';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-const ViewAdvertisement = () => {  
+const ViewAdvertisement = (props) => {  
+  console.log(props.location.state)
 
   const [value, onChange] = useState(new Date());
 
@@ -27,8 +30,30 @@ const ViewAdvertisement = () => {
   const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('1');
 
+  const [adds,setAdds] = useState([]);
+
+  useEffect(()=>{
+      const data={
+          addId:props.location.state
+      }
+      const authRequest = {
+          "method":"post",
+          "url": "student/getAdvertisementPreview",
+          "data": data
+      }
+
+      callServer(authRequest).then((response)=>{
+          console.log(response);
+          setAdds(response.data[0]);
+      }).catch((error)=>{
+          console.log(error);
+      })
+
+  },[])
+
 return (
   <Container >
+
   {/* main cards */}
   <div className='container pt-5 mb-5'>
     <h5 className='mb-3'>View Advertisement</h5>
@@ -43,14 +68,21 @@ return (
                 <h1>Job Title</h1>
                 </Row>
                 <Row>
+                {/* advertisement_id: 9
+                job_description: "maru job eka"
+                job_role: "Software Engineer"
+                name: "LSEG"
+                requested_interns: 2
+                technologies: "java"
+                type: "Published" */}
                   <Col md="auto">
-                  <h6><i class="bi bi-tag mr-2"></i>Job category</h6>
+                  <h6><i class="bi bi-tag mr-2"></i>{adds.job_role}</h6>
                   </Col>
                   <Col md="auto">
-                  <h6><i class="bi bi-award mr-2"></i>C, C++, Java</h6>
+                  <h6><i class="bi bi-award mr-2"></i>{adds.technologies}</h6>
                   </Col>
                   <Col md="auto">
-                  <h6><i class="bi bi-person mr-2"></i>10 Positions</h6>
+                  <h6><i class="bi bi-person mr-2"></i>{adds.requested_interns} Positions</h6>
                   </Col>
                 </Row>
             </Col>
@@ -80,7 +112,7 @@ return (
                 <Card.Title>Job Description</Card.Title>
                 {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
                 <Card.Text>
-                As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent. You will help the team design beautiful interfaces that solve business challenges for our clients. We work with a number of Tier 1 banks on building web-based applications for AML, KYC and Sanctions List management workflows. This role is ideal if you are looking to segue your career into the FinTech or Big Data arenas.
+                {adds.job_description}                
                 </Card.Text>
                
               </Card.Body>
@@ -89,13 +121,13 @@ return (
           {/* Other job qualifications */}
           <Row className='mx-0 my-3 mx-3 mb-5'>
             <Col lg='12'>
-              <Card>
+              {/* <Card>
                 <Card.Header>Job Qualifications</Card.Header>
                 <ListGroup variant="flush">
                   <ListGroup.Item>Qualification - 1</ListGroup.Item>
                   <ListGroup.Item>Qualification - 2</ListGroup.Item>
                 </ListGroup>
-              </Card>
+              </Card> */}
             </Col>
           </Row>
           {/* Job Advertisement Video */}
@@ -138,10 +170,10 @@ return (
               src="https://media-exp1.licdn.com/dms/image/C4E0BAQG8bdX5sQ24KQ/company-logo_200_200/0/1620025336126?e=1674691200&v=beta&t=kPOUrRlckOzp95zQUpH_K0qzHQGe7gOX7udRwH1Wqmw"
             />
           </Figure>
-          <h4>Company Name</h4>
+          <h4>{adds.name}</h4>
           {/* <ProfilePic/> */}      
           <div className="d-grid gap-2 mt-4 mb-0">
-              <Button variant='secondary'>View Company Offers</Button>
+              {/* <Button variant='secondary'>View Company Offers</Button> */}
               <Button variant='outline-secondary'><i class="bi bi-linkedin mr-2"></i>LinkedIn</Button>
 
           </div>

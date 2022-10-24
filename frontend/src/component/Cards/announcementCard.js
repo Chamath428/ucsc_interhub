@@ -12,8 +12,6 @@ function AnnouncementCard(props) {
           {props.Text}
         </Card.Text>
         <div className='d-flex flex-row-reverse'>
-        {/* <Button variant="primary" >{props.Button}</Button> */}
-        <Link to={props.location}><Button variant="primary" className='float-right mr-2'>See More</Button></Link>  
         </div>
       </Card.Body>
     </Card>

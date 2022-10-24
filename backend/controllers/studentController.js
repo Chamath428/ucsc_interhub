@@ -52,6 +52,7 @@ export const getSelectedInterview=async (req,res) =>{
 }
 
 export const getAllInterviews = async (req,res)=>{
+    console.log(req.body.indexNumber)
     try{
         const interviews = await prisma.$queryRaw `SELECT interview.interview_id,interview.date,interview.start_time,
                                                           company.name,
@@ -74,6 +75,7 @@ export const getAllInterviews = async (req,res)=>{
         })
         res.status(200).send([interviews,dates]);
     }catch(error){
+        console.log(error)
         res.status(400).send(error);
     }
 }
@@ -90,6 +92,7 @@ export const acceptInterview = async(req,res)=>{
         });
         res.status(200).json({message:"Invitation accepted!"})
     }catch(error){
+        console.log(error)
         res.status(400).send(error);
     }
 }
@@ -246,6 +249,40 @@ export const declineInterview = async(req,res)=>{
                                                                   advertisement_status
                                                                   ON advertisement.status=advertisement_status.id
                                                                   WHERE advertisement.status = 2
+                                                            ORDER BY advertisement.advertisement_id DESC`;
+            res.status(200).send(advertiesments)
+        }catch(error){
+            res.status(400).json({message:"Something went wrong when fetchingn the data!"})
+        }
+    }
+
+
+
+    export const getAdvertisementPreview = async (req,res)=>{
+        try{
+            
+            const advertiesments = await prisma.$queryRaw `SELECT advertisement.advertisement_id,
+                                                                  company.name,
+                                                                  job_roles.job_role,
+                                                                  advertisement_status.type,
+                                                                  advertisement_technologies.technologies,
+                                                                  advertisement.requested_interns,
+                                                                  advertisement.job_description
+                                                                  FROM advertisement
+                                                                  LEFT JOIN
+                                                                  company
+                                                                  ON advertisement.company_id=company.company_id
+                                                                  LEFT JOIN
+                                                                  job_roles
+                                                                  ON advertisement.job_role=job_roles.id
+                                                                  LEFT JOIN
+                                                                  advertisement_status
+                                                                  ON advertisement.status=advertisement_status.id 
+                                                                  LEFT JOIN 
+                                                                  advertisement_technologies 
+                                                                  ON advertisement.advertisement_id = advertisement_technologies.advertisement_id
+                                                            WHERE
+                                                                  advertisement.advertisement_id=${req.body.addId}
                                                             ORDER BY advertisement.advertisement_id DESC`;
             res.status(200).send(advertiesments)
         }catch(error){

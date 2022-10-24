@@ -1,4 +1,4 @@
-import { coordinatorSchema ,coordinatorPlacement} from "../models/coordinatorModel.js";
+import { coordinatorSchema ,coordinatorPlacement,deactiveAccount} from "../models/coordinatorModel.js";
 import { PrismaClient } from "@prisma/client";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
@@ -33,6 +33,7 @@ export const ViewSystemUsers = async (req, res) => {
     try {
         const user = await prisma.pdc.findMany({
             select: {
+                email_address :true,
                 first_name: true,
                 last_name: true,
                 is_active: true,
@@ -358,4 +359,76 @@ export const endCurrentPrograme = async (req, res) => {
             res.status(400).send(error);
         }
     
+};
+
+
+export const homeCardDetails = async (req, res) => {
+    const findMaxProgrameId = await prisma.internship_program.aggregate({
+        _max: {
+            program_id: true,
+        },
+
+    });  
+    const max = findMaxProgrameId._max.program_id;
+    const countActiveCompany = await prisma.company.aggregate({
+        where: {
+            company_status  : 2,
+        },
+        _count: {
+            company_id  : true,
+        },
+      });
+      const countStudent = await prisma.student.aggregate({
+        where: {
+            program_id  : max,
+        },
+        _count: {
+            index_number : true,
+        },
+      });
+      
+    try {
+
+        const countAnnousment = await prisma.announcement.aggregate({
+        
+            _count: {
+                announcement_id  : true,
+            },
+          });
+       
+        res.status(200).send([{announcement_id:countAnnousment._count.announcement_id,company_id:countActiveCompany._count.company_id,index_number:countStudent._count.index_number}]);
+        // console.log({announcement_id:countAnnousment._count.announcement_id,company_id:countActiveCompany._count.company_id,index_number:countStudent._count.index_number})
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+};
+
+
+
+export const deactiveAccounts = async (req, res) => {
+        
+    const { error, value } = deactiveAccount.validate(req.body);
+   
+
+    if (!error) {
+        try {
+            const deactiveAccounts = await prisma.pdc.updateMany({
+                where: {
+                    email_address : value.email,
+                },
+                data: {
+                    is_active: 0,
+                },
+            });
+
+            res.status(200).send(deactiveAccounts);
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    } else {
+        res.status(500).send(error);
+    }
+    
+
 };
