@@ -28,7 +28,7 @@ function AdvertisementCard(props) {
         <span>{props.status}</span>
         </Col>
         <Col lg={1} className="px-1">
-          <Link to={'/'+props.actor+'/View-advertisement'}>
+          <Link to={{pathname:'/'+props.actor+'/View-advertisement', state:props.data}}>
               <Button variant="primary" >
                 View
               </Button>

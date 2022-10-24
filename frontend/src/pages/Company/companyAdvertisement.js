@@ -61,7 +61,10 @@ const CompanyAdvertisements =()=>{
                      title={add.title}
                      jobrole={add.job_role}
                      status={add.type}
-                     logo={LsegLogo}>
+                     logo={LsegLogo}
+                     actor="Company"
+                     data={add.advertisement_id}
+                     >
 
                      </AdvertisementCard>
                     ))
