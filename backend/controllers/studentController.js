@@ -176,6 +176,7 @@ export const declineInterview = async(req,res)=>{
                     email:row[4],
                     degree : parseInt(row[5]),
                     gpa :  row[6],
+                    student_status:1,
                     program_id :1
                 }
             })
