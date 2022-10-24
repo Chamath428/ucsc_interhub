@@ -19,29 +19,20 @@ function AdvertisementCard(props) {
           </Figure>
         </Col>
         <Col lg={4} className="  font-weight-bold">
-          <span>{props.jobrole}</span>
+          <span>{props.title}</span>
         </Col>
         <Col lg={3}>
-          <span>{props.company}</span>
+          <span>{props.jobrole}</span>
         </Col>
         <Col lg={2} className=' '>
         <span>{props.status}</span>
         </Col>
         <Col lg={1} className="px-1">
-          <Route
-            render={({ history }) => (
-              <Button
-                size="sm"
-                variant="primary"
-                className="px-4"
-                onClick={() => {
-                  history.push("/Student/View-advertisement");
-                }}
-              >
+          <Link to={{pathname:'/'+props.actor+'/View-advertisement', state:props.data}}>
+              <Button variant="primary" >
                 View
               </Button>
-            )}
-          />
+          </Link>
         </Col>
         <Col lg={1}>
           <Button size="sm" variant="outline-primary" className="mr-4 pt-1">

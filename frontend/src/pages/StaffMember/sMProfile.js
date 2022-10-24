@@ -16,6 +16,7 @@ import { callServer } from "../authServer";
 
 
 
+
 const StaffProfile = (props) => {
     
     let history = useHistory();
@@ -114,6 +115,7 @@ const StaffProfile = (props) => {
         </div>
     );
 };
+
 
 export default StaffProfile;
 

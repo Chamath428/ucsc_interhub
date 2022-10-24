@@ -21,6 +21,7 @@ import ProgramCreateModal from "../../component/Modal/modalProgramCreate";
 import { callServer } from "../authServer";
 import Table from "react-bootstrap/Table";
 import { useState } from "react";
+import NextPhaseModal from "../../component/Modal/modalNextPhase";
 
 const CoordinatorProgram = () => {
     // const barStatus = this.props.barStatus;
@@ -141,6 +142,7 @@ const CoordinatorProgram = () => {
                             </Col>
                             <Col>
                                 <ProgramCreateModal />{" "}
+                                <NextPhaseModal />{" "}
                             </Col>
                         </Row>
 

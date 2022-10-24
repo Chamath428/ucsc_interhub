@@ -57,7 +57,8 @@ function ProgramCreateModal() {
         className="float-right mr-4"
         onClick={handleShow}
       >
-        + Create New Placement Program
+      <i class="bi bi-plus-circle mr-2"></i>
+      Create New Placement Program
       </Button>{' '}
       <Modal
         show={show}
