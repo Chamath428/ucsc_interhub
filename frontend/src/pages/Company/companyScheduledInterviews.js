@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import InfoCard from '../../component/Dashboard/InfoCard/infoCard'; 
 import Container from 'react-bootstrap/esm/Container';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Card from 'react-bootstrap/Card';
@@ -9,16 +9,35 @@ import { Accordion } from 'react-bootstrap';
 import AccordionItem from '../../component/Accordion/accordion';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import jwtDecode from 'jwt-decode';
+import { callServer } from '../authServer';
 
 function CompanyScheduledInterviews() {
   const [value, onChange] = useState(new Date());
+  const[interviews,setInterviews]  = useState([]);
+
+  useEffect(()=>{
+    console.log("inside effec");
+    const authRequest = {
+      "method":"post",
+      "url":"organization/getAllInterviews",
+      "data":data
+    }
+
+    callServer(authRequest).then((response)=>{
+      console.log(response.data);
+    }).catch((error)=>{
+      console.log(error);
+    })
+
+  },[])
 
   return (
     <div>
       <div className='container pt-5'>
 
 
-        <h2>Scheduled Interviews</h2><br />
+        <h2>Not in use Scheduled Interviews</h2><br />
 
         <Container>
           <Row>

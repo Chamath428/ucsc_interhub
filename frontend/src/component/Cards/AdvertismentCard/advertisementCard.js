@@ -19,10 +19,10 @@ function AdvertisementCard(props) {
           </Figure>
         </Col>
         <Col lg={4} className="  font-weight-bold">
-          <span>{props.jobrole}</span>
+          <span>{props.title}</span>
         </Col>
         <Col lg={3}>
-          <span>{props.company}</span>
+          <span>{props.jobrole}</span>
         </Col>
         <Col lg={2} className=' '>
         <span>{props.status}</span>

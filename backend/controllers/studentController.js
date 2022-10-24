@@ -2,6 +2,8 @@ import { PrismaClient } from '@prisma/client'
 import {studentSchema} from '../models/studentModel.js';
 import { studenteditProfileSchema } from '../models/studentModel.js';
 import bcrypt from 'bcrypt';
+import fs from "fs";
+import readline from "readline";
 
 const prisma = new PrismaClient();
 
@@ -50,6 +52,7 @@ export const getSelectedInterview=async (req,res) =>{
 }
 
 export const getAllInterviews = async (req,res)=>{
+    console.log(req.body.indexNumber)
     try{
         const interviews = await prisma.$queryRaw `SELECT interview.interview_id,interview.date,interview.start_time,
                                                           company.name,
@@ -72,6 +75,7 @@ export const getAllInterviews = async (req,res)=>{
         })
         res.status(200).send([interviews,dates]);
     }catch(error){
+        console.log(error)
         res.status(400).send(error);
     }
 }
@@ -88,6 +92,7 @@ export const acceptInterview = async(req,res)=>{
         });
         res.status(200).json({message:"Invitation accepted!"})
     }catch(error){
+        console.log(error)
         res.status(400).send(error);
     }
 }
@@ -151,6 +156,42 @@ export const declineInterview = async(req,res)=>{
             res.status(500).send(error);
     }
 
+   export const uploadCSV  = async (req, res) => { 
+ 
+    const stream = fs.createReadStream(req.file.path);
+    const rl = readline.createInterface({ input: stream });
+    let data = [];
+     
+    rl.on("line", (row) => {
+        data.push(row.split(","));
+    });
+     
+    rl.on("close", async () => {
+        console.log(data);
+        for (let i = 1; i < data.length; i++) {
+            const row = data[i];
+            const student = await prisma.student.create({
+                data:{
+                    index_number :parseInt(row[0]),
+                    registration_number : row[1],
+                    name : row[2],
+                    nic:row[3],
+                    email:row[4],
+                    degree : parseInt(row[5]),
+                    gpa :  row[6],
+                    student_status:1,
+                    program_id :1
+                }
+            })
+            
+        }
+       
+        res.json({"msg":"success"})
+    });
+   
+
+    
+   }
 
     export const studentEditProfileView = async (req, res) => { 
 
