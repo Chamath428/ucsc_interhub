@@ -1,4 +1,4 @@
-import { coordinatorSchema ,coordinatorPlacement,deactiveAccount} from "../models/coordinatorModel.js";
+import { coordinatorSchema ,coordinatorPlacement,deactiveAccount,pharse} from "../models/coordinatorModel.js";
 import { PrismaClient } from "@prisma/client";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
@@ -431,4 +431,38 @@ export const deactiveAccounts = async (req, res) => {
     }
     
 
+};
+
+
+
+
+export const goPhase = async (req, res) => {
+  
+    
+    const { error, value } = pharse.validate(req.body);
+
+
+    if (!error) {
+       
+        try {
+ 
+            const updatePharse = await prisma.internship_program.updateMany({
+                where: {
+                    is_active: 1,
+                },
+                data: {
+                    status:req.body.phase,
+                },
+              });
+            
+            
+            res.status(200).send(updatePharse);
+        } catch (error) {
+    
+            res.status(500).send(error);
+        }
+    } else {
+
+        res.status(500).send(error);
+    }
 };

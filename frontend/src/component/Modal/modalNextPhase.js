@@ -13,22 +13,22 @@ function NextPhaseModal() {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
-  const [alertPara, setAlertPara] = useState('create Successfully!')
+  const [alertPara, setAlertPara] = useState('update Successfully!')
   const [variant, setVariant] = useState('success')
+  const [phaseNo, setPhase] = useState()
 
-  const [date, setDate] = useState('')
+  const phaseNo1 = parseInt(phaseNo);
 
-  const createNewPlacementPrograme = (event) => {
+  const goPhaseFun = (event) => {
     event.preventDefault()
-
     const data = {
-      start_date: date,
-      email_address: 'coordinator@g.com',
+      phase: phaseNo1,
+
     }
 
     const authRequest = {
       method: 'post',
-      url: 'coordinator/createNewPlacementPrograme',
+      url: 'coordinator/goPhase',
       data: data,
     }
     callServer(authRequest)
@@ -37,14 +37,15 @@ function NextPhaseModal() {
       })
       .catch(function (error) {
         if (error.response) {
-          setAlertPara('Something went wrong when creating the placement!')
+          setAlertPara('Something went wrong when updateing the placement pharse!')
           setVariant('danger')
           setShow(true)
         }
       })
+    window.location.reload(false)
   }
   const showAlert = (response) => {
-    setAlertPara('Placement added Successfully!')
+    setAlertPara('Placement pharse update Successfully!')
     setVariant('success')
     setShow(true)
   }
@@ -87,11 +88,15 @@ function NextPhaseModal() {
                 <Form.Label>Choose the Phase</Form.Label>
                 <Row>
                   <Col lg="4">
-                    <Form.Select aria-label="Default select example">
-                        <option>Select the next phase</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <Form.Select aria-label="Default select example"
+                      onChange={(event) => {
+                        setPhase(event.target.value);
+                      }}
+                    >
+                      <option>Select the next phase</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
                     </Form.Select>
                   </Col>
                 </Row>
@@ -109,7 +114,7 @@ function NextPhaseModal() {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>{' '}
-                <Button variant="primary" type="submit"  onClick={() => window.location.reload(false)} >
+                <Button variant="primary" onClick={goPhaseFun} >
                   Go to next phase
                 </Button>
               </Col>
