@@ -26,7 +26,6 @@ model advertisement {
   advertisement_technologies  advertisement_technologies[]
   interview                   interview[]
   student_applied_internships student_applied_internships[]
-  <<<<<<< HEAD
 
   @@index([company_id], map: "company_id")
   @@index([job_role], map: "job_role")
@@ -38,8 +37,6 @@ model advertisement_status {
   id            Int             @id @default(autoincrement())
   type          String          @db.VarChar(50)
   advertisement advertisement[]
-  =======
-  >>>>>>> 366920c32effda87af8a84c1225db3eb6ceb65e5
 }
 
 model advertisement_technologies {
@@ -241,8 +238,8 @@ model internships {
 
   @@index([company_id], map: "company_id")
   @@index([index_number], map: "index_number")
-  @@index([supervisor_id], map: "supervisor_id")
   @@index([job_role], map: "job_role")
+  @@index([supervisor_id], map: "supervisor_id")
 }
 
 model interview {
@@ -346,13 +343,13 @@ model pdc_role {
 }
 
 model report_handle {
-  report_id     Int    @unique(map: "report_id")
-  email_address String @db.VarChar(100)
-  deadline_date String @db.VarChar(50)
-  deadline_time String @db.VarChar(50)
-  report_link   String @db.VarChar(100)
-  pdc           pdc    @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "report_handle_ibfk_2")
-  // student_reports student_reports[]
+  report_id       Int               @unique(map: "report_id")
+  email_address   String            @db.VarChar(100)
+  deadline_date   String            @db.VarChar(50)
+  deadline_time   String            @db.VarChar(50)
+  report_link     String            @db.VarChar(100)
+  pdc             pdc               @relation(fields: [email_address], references: [email_address], onDelete: Cascade, map: "report_handle_ibfk_2")
+  student_reports student_reports[]
 
   @@id([report_id, email_address])
   @@index([email_address], map: "email_address")
@@ -401,9 +398,9 @@ model student {
   student_preferred_job_role      student_preferred_job_role[]
   student_work_experience         student_work_experience[]
 
+  @@index([degree], map: "degree")
   @@index([program_id], map: "program_id")
   @@index([student_status], map: "student_status")
-  @@index([degree], map: "degree")
 }
 
 model student_academic_qualifications {
@@ -419,7 +416,6 @@ model student_applied_internships {
   advertisement_id Int
   is_wish_list     Int           @default(0)
   company_id       Int
-  cv               String        @db.VarChar(100)
   student          student       @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_applied_internships_ibfk_1")
   advertisement    advertisement @relation(fields: [advertisement_id], references: [advertisement_id], onDelete: Cascade, map: "student_applied_internships_ibfk_2")
   company          company       @relation(fields: [company_id], references: [company_id], onDelete: Cascade, map: "student_applied_internships_ibfk_3")
@@ -525,10 +521,4 @@ model supervisor_notification {
 
   @@id([notification_id, supervisor_id])
   @@index([supervisor_id], map: "supervisor_id")
-}
-
-model advertisement_status {
-  id            Int             @id @default(autoincrement())
-  type          String          @db.VarChar(50)
-  advertisement advertisement[]
 }
