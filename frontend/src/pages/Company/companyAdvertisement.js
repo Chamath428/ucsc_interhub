@@ -8,11 +8,33 @@ import AdvertisementCard from '../../component/Cards/AdvertismentCard/advertisem
 import LsegLogo from '../../assets/images/lsegLogo.png';
 import { Link } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
-
+import { useState,useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
+import { callServer } from '../authServer';
   
-class CompanyAdvertisements extends Component {
+const CompanyAdvertisements =()=>{
 
-    render() {
+        const [adds,setAdds] = useState([]);
+        
+        useEffect(()=>{
+            const data={
+                companyId:jwtDecode(sessionStorage.getItem("accessToken")).id
+            }
+            const authRequest = {
+                "method":"post",
+                "url": "organization/getAllAdvertiesmentS",
+                "data": data
+            }
+
+            callServer(authRequest).then((response)=>{
+                console.log(response);
+                setAdds(response.data);
+            }).catch((error)=>{
+                console.log(error);
+            })
+
+        },[])
+
         return (
            
             <div className='contain'>
@@ -31,11 +53,21 @@ class CompanyAdvertisements extends Component {
                 </div> 
                 <div className="Advertisements mt-5">
                     <Row as={Col} sm>
-                        <AdvertisementCard jobrole="SE" company="LSEG" logo={LsegLogo}></AdvertisementCard>
-                        <AdvertisementCard jobrole="Network Engineer" company="LSEG" logo={LsegLogo}></AdvertisementCard>
-                        <AdvertisementCard jobrole="DevOps Engineer" company="LSEG" logo={LsegLogo}></AdvertisementCard>
-                        <AdvertisementCard jobrole="Project Manager" company="LSEG" logo={LsegLogo}></AdvertisementCard>                          
- 
+                     {adds.length==0?(
+                <p>You have no Advertisements to show.</p>
+                ):(
+                  adds.map((add)=>(
+                    <AdvertisementCard
+                     jobrole={add.job_role}
+                     company={add.name}
+                     status={add.type}
+                     logo={LsegLogo}>
+
+                     </AdvertisementCard>
+                    ))
+                )
+              }
+                    
                    </Row>
                 </div>
 
@@ -43,8 +75,7 @@ class CompanyAdvertisements extends Component {
             </div>
 
         );
-    }
-// 
+
 }
 
 export default CompanyAdvertisements;

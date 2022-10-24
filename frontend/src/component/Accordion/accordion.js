@@ -30,23 +30,23 @@ function AccordionItem(props) {
           
           <Row>
             <Col>
-              <Card style={{ width: '18rem' }} className='card1 mb-4'>
+              {props.card1heading && <Card style={{ width: '18rem' }} className='card1 mb-4'>
                 <Card.Header>{props.card1heading}</Card.Header>
                 <ListGroup variant="flush">
                   <ListGroup.Item>{props.card1context}</ListGroup.Item>
 
                 </ListGroup>
-              </Card>   
+              </Card>}
             </Col>
 
             <Col>
-              <Card style={{ width: '18rem' }} className='card2 mb-4'>
+              {props.card2heading && <Card style={{ width: '18rem' }} className='card2 mb-4'>
                 <Card.Header>{props.card2heading}</Card.Header>
                 <ListGroup variant="flush">
                   <ListGroup.Item>{props.card2context}</ListGroup.Item>
 
                 </ListGroup>
-              </Card>   
+              </Card> } 
             </Col>
 
           </Row>
@@ -54,39 +54,39 @@ function AccordionItem(props) {
 
           <Row>
             <Col>
-              <Card style={{ width: '18rem' }} className='card3 mb-4'>
+              {props.card3heading && <Card style={{ width: '18rem' }} className='card3 mb-4'>
                 <Card.Header>{props.card3heading}</Card.Header>
 
                 <ListGroup variant="flush">
                   <ListGroup.Item>{props.card3context}</ListGroup.Item>
 
                 </ListGroup>
-              </Card>   
+              </Card> }
             </Col>
 
             <Col>
-              <Card style={{ width: '18rem' }} className='card4 mb-4'>
+              {props.card4heading && <Card style={{ width: '18rem' }} className='card4 mb-4'>
                 <Card.Header>{props.card4heading}</Card.Header>
 
                 <ListGroup variant="flush">
                   <ListGroup.Item>{props.card4context}</ListGroup.Item>
 
                 </ListGroup>
-              </Card>   
+              </Card> }  
             </Col>
 
           </Row>
 
           <Row>
             <Col>
-              <Card style={{ width: '18rem' }} className='card5 mb-4'>
+              {props.card5heading && <Card style={{ width: '18rem' }} className='card5 mb-4'>
                 <Card.Header>{props.card5heading}</Card.Header>
 
                 <ListGroup variant="flush">
                   <ListGroup.Item>{props.card5context}</ListGroup.Item>
 
                 </ListGroup>
-              </Card>   
+              </Card> } 
             </Col>
 
           </Row>

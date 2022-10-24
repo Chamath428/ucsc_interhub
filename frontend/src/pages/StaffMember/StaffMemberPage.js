@@ -22,6 +22,8 @@ import StaffMemberManageStudents from "./StaffMemberManageStudents";
 import StaffMemberAdvertisements from "./sMAdvertisments";
 import StaffMemberManageCompany from "./staffMemberCompany";
 import StaffProfile from "./sMProfile";
+import AnnouncementFullCard from "../../component/Cards/AnnouncementFullCard";
+import ViewAdvertisement from "../Company/companyAdvertisementPreview";
 
 function StaffPage(){
 
@@ -54,6 +56,10 @@ return(
                     <Route exact path="/Staff/Company" component={StaffMemberManageCompany} />
 
                     <Route exact path="/Staff/Advertisement" component={StaffMemberAdvertisements} />
+
+                    {/* Components */}
+                    <Route exact path="/Staff/AnnouncementPage" component={AnnouncementFullCard} />
+                    <Route exact path="/Staff/View-advertisement" component={ViewAdvertisement} />
 
                     {/* buttons from here */}
 
