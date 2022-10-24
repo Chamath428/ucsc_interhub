@@ -200,3 +200,82 @@ export const scheduleCompanyVisit = async (req,res)=>{
         res.status(500).send(error);
     }
 }
+
+export const AllStudents = async (req, res) => {
+
+    try {
+        const AllStudents = await prisma.student.findMany({
+            select: {
+                index_number: true,
+                registration_number: true,
+                name: true,
+                degree: true,
+                student_status: true
+            }
+        })
+        res.status(200).send(AllStudents);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
+export const SelectedStudents = async (req, res) => {
+
+    try {
+        const SelectedStudents = await prisma.student.findMany({
+            where: {
+                student_status: 4,
+            },
+            select: {
+                index_number: true,
+                registration_number: true,
+                name: true,
+                degree: true,
+                internships: {
+                    select: {
+                         company: {
+                        select:{
+                        name : true,
+                    },},
+                        job_roles:{
+                            select:{
+                                job_role :true,
+                            },
+                        },
+                    
+                    },
+                    // company: {
+                    //     select:{
+                    //     name : true,}
+                    // },
+                },
+                
+            },
+        })
+        res.status(200).send(SelectedStudents);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
+export const SearchAllStudentsByCourse = async (req, res) => {
+
+    try {
+        const SearchAllStudentsByCourse = await prisma.student.findMany({
+            where: {
+                degree: true,
+            },
+            select: {
+                index_number: true,
+                registration_number: true,
+                name: true,
+                degree: true,
+                student_status: true
+            },
+        })
+        res.status(200).send(SearchAllStudentsByCourse);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
