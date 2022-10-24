@@ -22,6 +22,7 @@ const SMAddStudents = () => {
   const [show, setShow] = useState(false);
   const [alertPara, setAlertPara] = useState("Student Added Successfully!");
   const [variant, setVariant] = useState("success");
+  const [uploadCSVFile,setCSVFile] = useState();
 
   const createStudent = (event) => {
     event.preventDefault();
@@ -33,6 +34,18 @@ const SMAddStudents = () => {
       gpa: gpa,
       program_id: 1
     }
+
+    // const uploadCSV = (event) => {
+    //   event.preventDefault();
+    //   const data2 = FileReader();
+      // {
+      //   index_number: parseInt(indexNumber),
+      //   registration_number: registerationNumber,
+      //   name: name,
+      //   degree: parseInt(course),
+      //   gpa: gpa,
+      //   program_id: 1
+      // }
     const authRequest = {
       "method": "post",
       "url": "student/create",
@@ -52,6 +65,21 @@ const SMAddStudents = () => {
     setVariant("success");
     setShow(true);
   }
+
+//Upload CSV file
+// const authCSVRequest = {
+//   "method": "post",
+//   "url": "student/uploadCSV",
+//   "data": data,
+//   headers:{ 'Content-Type': 'multipart/form-data'}
+// }
+// callServer(authCSVRequest).then((response) => { showAlert(response) }).catch(function (error) {
+//   if (error.response) {
+//     setAlertPara("Something went wrong when uploading CSV File");
+//     setVariant("danger");
+//     setShow(true);
+//   }
+// })
 
 
 
@@ -123,8 +151,19 @@ const SMAddStudents = () => {
                   <div style={{ flex: 1, height: '1px', backgroundColor: 'black' }} />
                 </div>
                 <p>You can upload a CSV file that has the above details and create multiple students at once.</p></Form.Group>
-              <div className='d-flex flex-row-reverse mb-3'>
-                <DashboardButton inside={'Upload a CSV File'}></DashboardButton>
+              
+            </Form>
+           
+            <Form >
+            <Form.Group as={Col} md="8" controlId="profilePicture" className="mb-3">
+                  <Form.Label>Choose CSV File</Form.Label>
+                  <Form.Control type="file" accept="*/csv" onChange={(event)=> {
+                      console.log(event.target.files)
+                      setCSVFile(event.target.files[0])
+                      }} />
+              </Form.Group>
+                <div className='d-flex flex-row-reverse mb-3'>
+                <DashboardButton inside={'Upload CSV File'} ></DashboardButton>
               </div>
             </Form>
           </div>
