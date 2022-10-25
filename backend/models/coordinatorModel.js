@@ -19,3 +19,9 @@ export const deactiveAccount = joi.object({
     email:joi.required(),
 
 })
+
+export const pharse = joi.object({
+    phase:joi.required(),
+    
+
+})

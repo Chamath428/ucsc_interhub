@@ -95,6 +95,7 @@ const StudentAdvertisements =()=>{
                 ):(
                   adds.map((add)=>(
                     <AdvertisementCard
+                     title={add.title}
                      jobrole={add.job_role}
                      company={add.name}
                     //  status={add.type}
