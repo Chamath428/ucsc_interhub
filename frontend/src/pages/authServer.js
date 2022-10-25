@@ -26,23 +26,26 @@ const getNewTokens = async () => {
     refreshToekn: sessionStorage.getItem("refreshToekn"),
   };
   axios.post(`${URL}/token/getNewToekn`, data).then((response) => {
-    setAuthTokens(response.body.accessToken, response.body.refreshToekn);
+    setAuthTokens(response.data[0], response.data[1]);
+    window.location.reload(false);
   });
 };
 
 const axiosJWT = axios.create(); //this axio will use for validating calles
 
 axiosJWT.interceptors.request.use(
-  async (config) => {
+  async (config) => {   
     let currentDate = new Date();
     if (
       jwt_decode(sessionStorage.getItem("accessToken")).exp * 1000 <
       currentDate.getTime()
     ) {
+      console.log("here")
       await getNewTokens();
       config.headers["authorization"] =
         "Bearer " + sessionStorage.getItem("accessToken");
     }
+    
     return config;
   },
   (error) => {
@@ -50,7 +53,7 @@ axiosJWT.interceptors.request.use(
   }
 );
 
-export const callServer = (authRequest) => {
+export const callServer =  (authRequest) => {
   const headers = {
     ...authRequest.headers,
     Authorization: "Bearer " + sessionStorage.getItem("accessToken"),
