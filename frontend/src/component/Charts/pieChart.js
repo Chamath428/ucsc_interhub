@@ -8,14 +8,14 @@ export default class App extends React.Component {
 
   render() {
     const header = this.props.header;
-    const valRegistered = this.props.valRegistered;
-    const valNotRegistered = this.props.valNotRegistered;
+    const valRegistered = this.props.valSelected;
+    const valNotRegistered = this.props.valAll;
 
 
 
     let data = [
-      { title: "Registered\n"+valRegistered, value: valRegistered, color: "#4a6cf7" },
-      { title: "Not Registered\n"+valNotRegistered, value: valNotRegistered, color: "#c2e8ff" },
+      { title: "Selected\n"+valRegistered, value: valRegistered, color: "#4a6cf7" },
+      { title: "Not Selected\n"+valNotRegistered, value: valNotRegistered, color: "#c2e8ff" },
 
     ];
 
@@ -47,8 +47,8 @@ export default class App extends React.Component {
 
 
         label={({ dataEntry }) => {
-          if (dataEntry.title === "Registered\n"+valRegistered) {
-            return "Registered\n" + dataEntry.value;
+          if (dataEntry.title === "Selected\n"+valRegistered) {
+            return "Selected\n" + dataEntry.value;
           }
         }}
         labelPosition={0}

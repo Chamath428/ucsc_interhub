@@ -15,6 +15,30 @@ const CoordinatorHome = () => {
     const [alertPara, setAlertPara] = useState("User added Successfully!");
     const [variant, setVariant] = useState("success");
     const [CardDetails, setCardDetails] = useState([]);
+    const [chartDetails, setChartDetails] = useState([]);
+
+    // console.log(CardDetails[0])
+    // var totalStudent = 0;
+    // var totalCompany = 0;
+    // var totalCs = 0;
+    // var selectCs = 0;
+    // var totalIs = 0;
+    // var selectIs = 0;
+
+
+
+    // if (CardDetails.length > 0) {
+    //     totalStudent = CardDetails[0].countStudent;
+    //     totalCompany = CardDetails[0].countActiveCompany;
+
+    // }
+    // if (chartDetails.length > 0) {
+    //     totalCs = chartDetails.csTotal;
+    //     selectCs = chartDetails.selectTotalCs;
+    //     totalIs = chartDetails.isTotal;
+    //     selectIs = chartDetails.selectTotalIs;
+
+    // }
 
     useEffect(() => {
         const authRequest = {
@@ -25,7 +49,7 @@ const CoordinatorHome = () => {
 
         callServer(authRequest)
             .then((response) => {
-                
+
 
                 response.data.map((item) => {
                     setCardDetails((prevState) => [
@@ -47,8 +71,43 @@ const CoordinatorHome = () => {
                     setShow(true);
                 }
             });
-    }, []);
 
+        const getChartData = {
+            method: "post",
+            url: "coordinator/getChartData",
+            data: {},
+        };
+
+        callServer(getChartData)
+            .then((response) => {
+
+                response.data.map((item) => {
+                    setChartDetails((prevState) => [
+                        ...prevState,
+                        {
+                            csTotal: item.totalCsStu,
+                            selectTotalCs: item.totalSelectedCsStu,
+                            isTotal: item.totalIsStu,
+                            selectTotalIs: item.totalSelectedIsStu,
+                            totalStudent: item.totalStudent,
+                            totalSelectStudent: item.totalSelectedStu,
+
+
+
+
+                        },
+                    ]);
+
+                });
+            })
+            .catch(function (error) {
+                if (error.response) {
+                    setAlertPara("Something went wrong!");
+                    setVariant("danger");
+                    setShow(true);
+                }
+            });
+    }, []);
 
     return (
 
@@ -70,11 +129,20 @@ const CoordinatorHome = () => {
                 ))}
 
             </Row>
-            <Row className="chart-contain" >
 
-                <Col> <PieChart header={"Selected Students"} valRegistered={100} valNotRegistered={90} /></Col>
-                <Col>  <ApexCharts header={"View No of student Companywise"} Numbers={[30, 12, 10]} companyName={['IFS', 'Cisco Labs', 'LSEG']} /></Col>
-                <Col> <PieChart header={"Registered Company"} valRegistered={40} valNotRegistered={12} /></Col>
+            <Row className="chart-contain" >
+                {chartDetails.map((chartDetails) => (
+                    <>
+
+                        <Col> <PieChart header={"Selected Cs Students"} valSelected={parseInt(chartDetails.selectTotalCs)} valAll={parseInt(chartDetails.csTotal)} /></Col>
+                        <Col> <PieChart header={"Selected Is Students"} valSelected={parseInt(chartDetails.selectTotalIs)} valAll={parseInt(chartDetails.isTotal)} /></Col>
+                        <Col>  <ApexCharts header={"View Overall"} Numbers={[parseInt(chartDetails.totalStudent),parseInt(chartDetails.totalSelectStudent)]} companyName={['Total student', 'Selected student', ]} /></Col>
+
+
+                    </>
+                ))}
+
+
 
             </Row>
         </Container>
@@ -82,6 +150,8 @@ const CoordinatorHome = () => {
 
 
     );
-};
 
+
+
+};
 export default CoordinatorHome;

@@ -10,11 +10,11 @@ export default class App extends React.Component {
         const numbers = this.props.Numbers;
         const companyName = this.props.companyName;
 
-
+// console.log(companyName)
         const myData = [
             { title: companyName[0], value: numbers[0], color: "#4a6cf7" },
             { title: companyName[1], value: numbers[1], color: "#0871b1" },
-            { title: companyName[2], value: numbers[2], color: "#c2e8ff" },
+            
         ];
         
         return (
