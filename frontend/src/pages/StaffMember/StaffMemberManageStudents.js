@@ -20,7 +20,9 @@ const StaffMemberManageStudents = () => {
     const [variant, setVariant] = useState("success");
     const [allStudentsList, setAllStudentsList] = useState([]);
     const [selectedStudentsList, setSelectedStudentsList] = useState([]);
-    const[searchByCourseAllList,searchAllStudentsByCourse] = useState();
+    const[selectedCourse,setselectedCourse] = useState("0");
+    const[selectedStatus,setselectedStatus] = useState("0");
+    const[sortedAllStudentList,setSortedAllStudents] = useState("0");
     const[searchByCourseSelectedList,searchSelectedStudentsByCourse] = useState();
     
     useEffect(() => {
@@ -57,14 +59,19 @@ const StaffMemberManageStudents = () => {
                 setShow(true);
             }
         })
-        const authRequestAllStudentsSearchByCourse = {
+    }, []);
+
+    const searchAllStudentsByCourse = (courseNumber)=>{
+        setselectedCourse(courseNumber)
+        const authRequestAllStudentsFilterByCourse = {
             "method": "post",
             "url": "staffMember/AllStudentsSearchByCourse",
-            "data": {}
+            "data": {
+                degree:parseInt(courseNumber)
+            }
         }
 
-        callServer(authRequestAllStudentsSearchByCourse).then((response) => {
-
+        callServer(authRequestAllStudentsFilterByCourse).then((response) => {
             setAllStudentsList(response.data);
         }).catch(function (error) {
             if (error.response) {
@@ -73,8 +80,47 @@ const StaffMemberManageStudents = () => {
                 setShow(true);
             }
         })
-        
-    }, []);
+    }
+    const searchAllStudentsByStatus = (statusNumber)=>{
+        setselectedStatus(statusNumber)
+        const authRequestAllStudentsFilterByStatus = {
+            "method": "post",
+            "url": "staffMember/SearchStudentsSearchByEntrolled",
+            "data": {
+                student_status:parseInt(statusNumber)
+            }
+        }
+
+        callServer(authRequestAllStudentsFilterByStatus).then((response) => {
+            setAllStudentsList(response.data);
+        }).catch(function (error) {
+            if (error.response) {
+                setAlertPara("Something went wrong!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+    }
+    const sortAllStudents = (sortData)=>{
+        setSortedAllStudents(sortData)
+        const authRequestSortAllStudentsFilter = {
+            "method": "post",
+            "url": "staffMember/SortAllStudents",
+            "data": {
+                sort_data:parseInt(sortData)
+            }
+        }
+
+        callServer(authRequestSortAllStudentsFilter).then((response) => {
+            setAllStudentsList(response.data);
+        }).catch(function (error) {
+            if (error.response) {
+                setAlertPara("Something went wrong!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+    }
         return (
             <div className='containstudent mt-5 ms-5'style={{width:'90%'}}>
             <Tabs 
@@ -100,7 +146,7 @@ const StaffMemberManageStudents = () => {
                                             <Form.Group as={Col} md controlId="formGridState">
                                                 <Form.Label className="fw-bold" column sm={5}>Course</Form.Label>
                                                 <Form.Select sm={10} defaultValue="Choose..." onChange={(event) => { searchAllStudentsByCourse(event.target.value) }}>
-                                                    <option value="all">All CS and IS</option>
+                                                    <option value="0">All CS and IS</option>
                                                     <option value="1">CS - 3rd Year</option>
                                                     <option value="2">IS - 3rd Year</option>
                                                     <option value="3">CS - 4th Year</option>
@@ -109,20 +155,19 @@ const StaffMemberManageStudents = () => {
                                             </Form.Group>
                                             
                                             <Form.Group as={Col} sm controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Enrolled</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose...">
-                                                    <option>All</option>
-                                                    <option>Selected</option>
-                                                    <option>Not Selected</option>
+                                                <Form.Label className="fw-bold" column sm={5} >Enrolled</Form.Label>
+                                                <Form.Select sm={10} defaultValue="Choose..." onChange={(event) => { searchAllStudentsByStatus(event.target.value) }}>
+                                                    <option value="0">All</option>
+                                                    <option value="1">Selected</option>
+                                                    <option value="2">Not Selected</option>
                                                 </Form.Select>
                                             </Form.Group>   
 
                                             <Form.Group as={Col} sm controlId="formGridState">
                                                 <Form.Label className="fw-bold" column sm={5}>Sort By</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose...">
+                                                <Form.Select sm={10} defaultValue="Choose..." onChange={(event) => { sortAllStudents(event.target.value) }}>
                                                 <option value="1">Index Number</option>
                                                 <option value="2">Name</option>
-                                                <option value="3">Company</option>
                                                 
                                                 </Form.Select>
                                             </Form.Group>
@@ -190,7 +235,7 @@ const StaffMemberManageStudents = () => {
                         <Form className='container'>
                                         <Row className="mb-1">
                                             <Form.Group as={Col} md controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5} onChange={(event) => { searchSelectedStudentsByCourse(event.target.value) }}>Course</Form.Label>
+                                                <Form.Label className="fw-bold" column sm={5} >Course</Form.Label>
                                                 <Form.Select sm={10} defaultValue="Choose...">
                                                     <option value="all">All CS and IS</option>
                                                     <option value="1">CS - 3rd Year</option>
@@ -255,7 +300,9 @@ const StaffMemberManageStudents = () => {
                                         ))}
                                         {selectedStudentsList.internships.map((selectedJobRole)=>(
                                                 <td>{selectedJobRole.job_roles.job_role}</td>
+                                                // <td>{selectedJobRole.job_role}</td>
                                         ))}
+                                        {/* <td>{selectedStudentsList.internships.job_role}</td> */}
                                        
                                     
                                     </tr>

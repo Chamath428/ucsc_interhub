@@ -14,7 +14,7 @@ import { URL } from '../URL';
 import { callServer } from '../authServer';
 
 import '../../styles/sMCompany.css';
-import SMCompanyVisitDetails from './sMCompanyVisitDetails';
+// import SMCompanyVisitDetails from './sMCompanyVisitDetails';
 
 
 const StaffMemberManageCompany = () => {
@@ -27,6 +27,12 @@ const StaffMemberManageCompany = () => {
     const [inactiveRegisteredCompanyList, setInactiveRegisteredCompanyList] = useState([]);
     const [pendingCompanyList, setPendingCompanyList] = useState([]);
     const [companyVisitList, setCompanyVisitList] = useState([]);
+    const [setSearchActiveCompany,searchActiveCompany] = useState("");
+    const [setSearchInactiveCompany,searchInactiveCompany] = useState("");
+    const [setSearchPendingCompany,searchPendingCompany] = useState("");
+    const[FilteredCompanyVisitByType,FilterByCompanyVisitType] = useState("0");
+    const[FilteredCompanyVisitByStatus,FilterByCompanyVisitStatus] = useState("0");
+
 
 
     useEffect(() => {
@@ -111,10 +117,47 @@ const StaffMemberManageCompany = () => {
 
 
     }, []);
-    const fff = (com)=>{
-        console.log(com);
-     
-      }
+
+    const FilterCompanyVisitByType = (typeNumber)=>{
+        FilterByCompanyVisitType(typeNumber)
+        const authRequestCompanyVisitFilterByType = {
+            "method": "post",
+            "url": "staffMember/CompanyVisitByType",
+            "data": {
+                company_visit_type:parseInt(typeNumber)
+            }
+        }
+
+        callServer(authRequestCompanyVisitFilterByType).then((response) => {
+            setCompanyVisitList(response.data) 
+        }).catch(function (error) {
+            if (error.response) {
+                setAlertPara("Something went wrong!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+    }
+    const FilterCompanyVisitByStatus = (statusNumber)=>{
+        FilterByCompanyVisitStatus(statusNumber)
+        const authRequestCompanyVisitFilterByStatus = {
+            "method": "post",
+            "url": "staffMember/CompanyVisitByStatus",
+            "data": {
+                company_visit_status:parseInt(statusNumber)
+            }
+        }
+
+        callServer(authRequestCompanyVisitFilterByStatus).then((response) => {
+            setCompanyVisitList(response.data) 
+        }).catch(function (error) {
+            if (error.response) {
+                setAlertPara("Something went wrong!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+    }
     return (
         <div className='containcompany mt-5 ms-5' style={{ width: '90%' }}>
             <Tabs
@@ -132,7 +175,7 @@ const StaffMemberManageCompany = () => {
                             <Form.Group className="mt-3 mb-3" controlId="formBasicSearchOrganization">
                                 <div className="d-flex flex-row align-item-center justify-content-center text-center" >
                                     <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div>
-                                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search organization" /></div>
+                                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search organization" onChange={(event) => { searchActiveCompany(event.target.value) }}/></div>
                             </Form.Group>
                         </div>
 
@@ -155,7 +198,14 @@ const StaffMemberManageCompany = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 {activeRegisteredCompanyList.map((activeRegisteredCompanyList)=>(
+                                 {activeRegisteredCompanyList.filter((activeRegisteredCompanyList)=>{
+                                    if(setSearchActiveCompany == ""){
+                                        return activeRegisteredCompanyList
+                                    }
+                                    else if(activeRegisteredCompanyList.name.toLowerCase().includes(setSearchActiveCompany.toLowerCase())){
+                                        return activeRegisteredCompanyList
+                                    }
+                                 }).map((activeRegisteredCompanyList)=>(
                                     <tr >
                                         
                                         <td>{activeRegisteredCompanyList.name}</td>
@@ -187,7 +237,7 @@ const StaffMemberManageCompany = () => {
                             <Form.Group className="mt-3 mb-3" controlId="formBasicSearchOrganization">
                                 <div className="d-flex flex-row align-item-center justify-content-center text-center" >
                                     <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div>
-                                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search organization" /></div>
+                                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search organization" onChange={(event) => { searchInactiveCompany(event.target.value) }}/></div>
                             </Form.Group>
                         </div>
 
@@ -210,7 +260,14 @@ const StaffMemberManageCompany = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 {inactiveRegisteredCompanyList.map((inactiveRegisteredCompanyList)=>(
+                                {inactiveRegisteredCompanyList.filter((inactiveRegisteredCompanyList)=>{
+                                    if(setSearchInactiveCompany == ""){
+                                        return inactiveRegisteredCompanyList
+                                    }
+                                    else if(inactiveRegisteredCompanyList.name.toLowerCase().includes(setSearchInactiveCompany.toLowerCase())){
+                                        return inactiveRegisteredCompanyList
+                                    }
+                                 }).map((inactiveRegisteredCompanyList)=>(
                                     <tr >
                                         
                                         <td>{inactiveRegisteredCompanyList.name}</td>
@@ -243,7 +300,7 @@ const StaffMemberManageCompany = () => {
                             <Form.Group className="mt-3 mb-3" controlId="formBasicSearchOrganization">
                                 <div className="d-flex flex-row align-item-center justify-content-center text-center" >
                                     <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div>
-                                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search organization" /></div>
+                                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search organization" onChange={(event) => { searchPendingCompany(event.target.value) }}/></div>
                             </Form.Group>
                         </div>
 
@@ -266,7 +323,14 @@ const StaffMemberManageCompany = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 {pendingCompanyList.map((pendingCompanyList)=>(
+                                {pendingCompanyList.filter((pendingCompanyList)=>{
+                                    if(setSearchPendingCompany == ""){
+                                        return pendingCompanyList
+                                    }
+                                    else if(pendingCompanyList.name.toLowerCase().includes(setSearchPendingCompany.toLowerCase())){
+                                        return pendingCompanyList
+                                    }
+                                 }).map((pendingCompanyList)=>(
                                     <tr >
                                         
                                         <td>{pendingCompanyList.name}</td>
@@ -309,19 +373,19 @@ const StaffMemberManageCompany = () => {
                                 <Row className="mb-1">
                                     <Form.Group as={Col} md controlId="formGridState">
                                         <Form.Label className="fw-bold" column sm={5}>Visit Type</Form.Label>
-                                        <Form.Select sm={10} defaultValue="Choose...">
-                                            <option>All</option>
-                                            <option>Online</option>
-                                            <option>Onsite</option>
+                                        <Form.Select sm={10} defaultValue="Choose..." onChange={(event) => { FilterCompanyVisitByType(event.target.value) }}>
+                                            <option value="0">All</option>
+                                            <option value="1">Online</option>
+                                            <option value="2">Onsite</option>
                                         </Form.Select>
                                     </Form.Group>
 
                                     <Form.Group as={Col} sm controlId="formGridState">
                                         <Form.Label className="fw-bold" column sm={5}>Visited</Form.Label>
-                                        <Form.Select sm={10} defaultValue="Choose...">
-                                            <option>All</option>
-                                            <option>Visited</option>
-                                            <option>Not Visited</option>
+                                        <Form.Select sm={10} defaultValue="Choose..." onChange={(event) => { FilterCompanyVisitByStatus(event.target.value) }}>
+                                            <option value="0">All</option>
+                                            <option value="1">Visited</option>
+                                            <option value="2">Not Visited</option>
                                         </Form.Select>
                                     </Form.Group>
 
@@ -359,7 +423,7 @@ const StaffMemberManageCompany = () => {
                                 <tbody>
                                  {companyVisitList.map((companyList)=>(
                                     <tr >
-                                        <td>{companyList.company.name}</td>
+                                        <Link  to={{pathname:"/Staff/Visit-Details",state:companyList}}><td>{companyList.company.name}</td></Link>
                                         <td>{companyList.pdc.first_name}</td >
                                         <td>{companyList.date}</td>
                                         <td>{companyList.start_time}</td>
@@ -383,9 +447,9 @@ const StaffMemberManageCompany = () => {
                     </div>
 
                 </Tab>
-                <Tab className="CompanyTab mt-5" eventKey="VisitDetails" title="Visit Details">                  
+                {/* <Tab className="CompanyTab mt-5" eventKey="VisitDetails" title="Visit Details">                  
                 <SMCompanyVisitDetails/>                 
-                </Tab>
+                </Tab> */}
             </Tabs>
         </div>
     );
