@@ -28,6 +28,7 @@ const CoordinatorSystemUsers = () => {
     const [variant, setVariant] = useState("success");
 
     const [userList, setUserList] = useState([]);
+    const [SearchAllUsers,setSearchAllUsers] = useState("");
 
     userList.map((item, index) => {
         if (item.is_active==1) {
@@ -111,7 +112,11 @@ const CoordinatorSystemUsers = () => {
                             <Form.Group className="mb-1" controlId="formBasicSearchOrganization">
                                 <div className="d-flex flex-row align-item-center justify-content-center text-center" >
                                     <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div>
-                                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search Students" /></div>
+                                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search..." 
+                                        onChange={(event) => { setSearchAllUsers(event.target.value) }}
+                                    
+                                    />
+                                    </div>
                             </Form.Group>
                         </div>
                         <Form >
@@ -130,7 +135,20 @@ const CoordinatorSystemUsers = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 {userList.map((userList)=>(
+                                {userList.filter((userList)=>{
+                                    if(SearchAllUsers == ""){
+                                        return userList
+                                    }
+                                    if(userList.name.toLowerCase().includes(SearchAllUsers.toLowerCase())){
+                                        return userList
+                                    }
+                                    if(userList.role.toLowerCase().includes(SearchAllUsers.toLowerCase())){
+                                        return userList
+                                    }
+                                    if(userList.is_active.toLowerCase().includes(SearchAllUsers.toLowerCase())){
+                                        return userList
+                                    }
+                                 }).map((userList)=>(
 
                                     <tr >
                                         <Link  to={{pathname:"/Coordinator/StaffProfile",state:userList}}><td>{userList.name}</td></Link>

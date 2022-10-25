@@ -19,6 +19,7 @@ const CoordinatorManageStudents = () => {
     const [variant, setVariant] = useState("success");
     const [studentList, setStudentList] = useState([]);
     const [selectedStudentList, setSelectedStudentList] = useState([]);
+    const [searchSelectStudent, setSearchSelectStudent] = useState("");
 
     // const [sort, setSort] = useState(1);
 
@@ -232,6 +233,8 @@ const CoordinatorManageStudents = () => {
                                         className="searchbox"
                                         type="searchbox text"
                                         placeholder="Search Student"
+                                        onChange={(event) => { setSearchSelectStudent(event.target.value) }}
+
                                     />
                                 </div>
                             </Form.Group>
@@ -288,7 +291,14 @@ const CoordinatorManageStudents = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 {selectedStudentList.map((selectedStudentList)=>(
+                                {selectedStudentList.filter((selectedStudentList) => {
+                                        if (searchSelectStudent == "") {
+                                            return selectedStudentList
+                                        }
+                                        else if (selectedStudentList.name.toLowerCase().includes(searchSelectStudent.toLowerCase())) {
+                                            return selectedStudentList
+                                        }
+                                    }).map((selectedStudentList)=>(
                                     <tr >
                                         
                                         <td>{selectedStudentList.index_number}</td>

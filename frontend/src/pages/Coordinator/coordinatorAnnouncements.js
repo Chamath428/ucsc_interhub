@@ -49,6 +49,9 @@ const CoordinatorAnnouncements = () => {
     const [variant, setVariant] = useState("success");
     const [announcementList, setAnnouncementList] = useState([]);
     // search bar creating
+    const [SearchAllAnouncement,setSearchAllAnouncementList] = useState("");
+    const [SearchCompanyAnouncement,setSearchCompanyAnouncementList] = useState("");
+
 
     const companyFilterAnnouncementList = announcementList.filter(announcementList => {
         return announcementList.type === 'Company';
@@ -143,6 +146,7 @@ const CoordinatorAnnouncements = () => {
                                         className="searchbox"
                                         type="searchbox text"
                                         placeholder="Search By Title"
+                                        onChange={(event) => { setSearchAllAnouncementList(event.target.value) }}
                                     />
                                 </div>
                             </Form.Group>
@@ -172,7 +176,14 @@ const CoordinatorAnnouncements = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {announcementList.map((announcementList) => (
+                                {announcementList.filter((announcementList)=>{
+                                    if(SearchAllAnouncement == ""){
+                                        return announcementList
+                                    }
+                                    else if(announcementList.title.toLowerCase().includes(SearchAllAnouncement.toLowerCase())){
+                                        return announcementList
+                                    }
+                                 }).map((announcementList) => (
                                         <tr>
                                             <td>{announcementList.title}</td>
                                             <td>{announcementList.type}</td>
@@ -206,6 +217,7 @@ const CoordinatorAnnouncements = () => {
                                         className="searchbox"
                                         type="searchbox text"
                                         placeholder="Search By Title"
+                                        onChange={(event) => { setSearchCompanyAnouncementList(event.target.value) }}
                                     />
                                 </div>
                             </Form.Group>
@@ -220,7 +232,14 @@ const CoordinatorAnnouncements = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {companyFilterAnnouncementList.map((companyFilterAnnouncementList) => (
+                                {companyFilterAnnouncementList.filter((companyFilterAnnouncementList)=>{
+                                    if(SearchCompanyAnouncement == ""){
+                                        return companyFilterAnnouncementList
+                                    }
+                                    else if(companyFilterAnnouncementList.title.toLowerCase().includes(SearchCompanyAnouncement.toLowerCase())){
+                                        return companyFilterAnnouncementList
+                                    }
+                                 }).map((companyFilterAnnouncementList) => (
                                         <tr>
                                             <td>{companyFilterAnnouncementList.title}</td>
                                             <td>{companyFilterAnnouncementList.type}</td>

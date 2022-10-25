@@ -11,6 +11,7 @@ import Nav from 'react-bootstrap/Nav';
 import axios from 'axios';
 import { URL } from '../URL';
 import { callServer } from '../authServer';
+import Table from "react-bootstrap/Table";
 
 import '../../styles/sMCompany.css';
 
@@ -23,10 +24,12 @@ const CoordinatorManageCompany = () => {
     const [registeredCompanyList, setRegisteredCompanyList] = useState([]);
     const [pendingCompanyList, setPendingCompanyList] = useState([]);
     const [companyVisitList, setCompanyVisitList] = useState([]);
+    const [searchRgisteredCompany, setSearchRgisteredCompany] = useState("");
+    const [searchPendingCompany, setSearchPendingCompany] = useState("");
 
 
     companyVisitList.map((item, index) => {
-        if (item.visited_type==1) {
+        if (item.visited_type == 1) {
             item.visited_type = "Yes";
         }
         else {
@@ -149,17 +152,48 @@ const CoordinatorManageCompany = () => {
                             <Form.Group className="mt-3 mb-3" controlId="formBasicSearchOrganization">
                                 <div className="d-flex flex-row align-item-center justify-content-center text-center" >
                                     <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div>
-                                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search organization" /></div>
+                                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search organization"
+                                        onChange={(event) => { setSearchRgisteredCompany(event.target.value) }}
+
+                                    /></div>
                             </Form.Group>
                         </div>
 
 
                         <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                            <TableView headers={['Company', 'Contact No', 'Company Registration Number']}
-                                // list={[['WSO2', '0114-222642', '8342132'], ['99x', '0114-432345', '7895421'], ['LSEG', '0112-212321', '6543211'], ['Avonet-Technologies', '0112-123987', '8435232'], ['CiscoLab', '0114-222611', '8222132'], ['Dialog-Axiata', '0113-443245', '8895421'], ['IFS', '0112-542321', '7543211'], ['Virtusa', '0112-663987', '8835132']]}
+                            {/* <TableView headers={['Company', 'Contact No', 'Company Registration Number']}
+                                list={[['WSO2', '0114-222642', '8342132'], ['99x', '0114-432345', '7895421'], ['LSEG', '0112-212321', '6543211'], ['Avonet-Technologies', '0112-123987', '8435232'], ['CiscoLab', '0114-222611', '8222132'], ['Dialog-Axiata', '0113-443245', '8895421'], ['IFS', '0112-542321', '7543211'], ['Virtusa', '0112-663987', '8835132']]}
                                 list={registeredCompanyList}
                             >
-                            </TableView>
+                            </TableView> */}
+
+                            <Table style={{ maxHeight: "60vh" }}>
+                                <thead>
+                                    <tr>
+                                        <th>Company</th>
+                                        <th>Contact No</th>
+                                        <th>Company Registration Number</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {registeredCompanyList.filter((registeredCompanyList) => {
+                                        if (searchRgisteredCompany == "") {
+                                            return registeredCompanyList
+                                        }
+                                        else if (registeredCompanyList.name.toLowerCase().includes(searchRgisteredCompany.toLowerCase())) {
+                                            return registeredCompanyList
+                                        }
+                                    }).map((registeredCompanyList) => (
+                                        <tr>
+                                            <td>{registeredCompanyList.name}</td>
+                                            <td>{registeredCompanyList.telephone_no}</td>
+                                            <td>{registeredCompanyList.registration_number}</td>
+
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
 
                         </div>
                     </div>
@@ -168,28 +202,59 @@ const CoordinatorManageCompany = () => {
                 <Tab className="CompanyTab mt-5" eventKey="Pending Companies" title="Pending Companies" >
 
                     <div>
-                            <Row className='justify-content-between mb-5'>
-                                <Col lg={8}>
-                                    <h3 className='mt-2'>Pending Companies</h3>
-                                    <h6>Waiting for your approval</h6>
+                        <Row className='justify-content-between mb-5'>
+                            <Col lg={8}>
+                                <h3 className='mt-2'>Pending Companies</h3>
+                                <h6>Waiting for your approval</h6>
 
-                                </Col>
-                                <Col>
-                                    <Form.Group controlId="formBasicSearchOrganization">
+                            </Col>
+                            <Col>
+                                <Form.Group controlId="formBasicSearchOrganization">
                                     <div className="d-flex flex-row align-item-center justify-content-center text-center" >
                                         <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div>
-                                        <Form.Control className="searchbox" type="searchbox text" placeholder="Search organization" /></div>
-                                    </Form.Group>
-                                </Col>
-                            </Row>
+                                        <Form.Control className="searchbox" type="searchbox text" placeholder="Search organization"
+                                            onChange={(event) => { setSearchPendingCompany(event.target.value) }}
+
+                                        /></div>
+                                </Form.Group>
+                            </Col>
+                        </Row>
 
                         <Link to="/Coordinator/CompanyPending"><Button>Pending Company Page (Link this to company name in table)</Button></Link>
                         <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                            <TableView headers={['Company', 'Contact No', 'Company Registration Number']}
-                                // list={[['Ntrylab', '0114-560642', '8453212'], ['Xempler', '0112-234322', '8433215'], ['JavaLab', '0113-234321', '8223212'], ['KriatWeb', '0112-123987', '2345321']]}
+                            {/* <TableView headers={['Company', 'Contact No', 'Company Registration Number']}
+                                list={[['Ntrylab', '0114-560642', '8453212'], ['Xempler', '0112-234322', '8433215'], ['JavaLab', '0113-234321', '8223212'], ['KriatWeb', '0112-123987', '2345321']]}
                                 list={pendingCompanyList}
                             >
-                            </TableView>
+                            </TableView> */}
+
+                            <Table style={{ maxHeight: "60vh" }}>
+                                <thead>
+                                    <tr>
+                                        <th>Company</th>
+                                        <th>Contact No</th>
+                                        <th>Company Registration Number</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {pendingCompanyList.filter((pendingCompanyList) => {
+                                        if (searchPendingCompany == "") {
+                                            return pendingCompanyList
+                                        }
+                                        else if (pendingCompanyList.name.toLowerCase().includes(searchPendingCompany.toLowerCase())) {
+                                            return pendingCompanyList
+                                        }
+                                    }).map((pendingCompanyList) => (
+                                        <tr>
+                                            <td>{pendingCompanyList.name}</td>
+                                            <td>{pendingCompanyList.telephone_no}</td>
+                                            <td>{pendingCompanyList.registration_number}</td>
+
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
                         </div>
                     </div>
                 </Tab>
