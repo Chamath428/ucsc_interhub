@@ -7,6 +7,7 @@ import organizationRouters from './routes/organizationRouters.js';
 import supervisorRouters from './routes/supervisorRouters.js';
 import tokenRouters from './routes/tokenRouters.js';
 import coordinatorRouters from './routes/coordinatorRouters.js';
+import mailServerRouters from './routes/mailServerRouters.js';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 
@@ -31,7 +32,9 @@ app.use(express.json())
 // app.use(cors(corsOptions)); //Cross Origine Resourses Sharing
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.listen(PORT,console.log("Server is Running"));
+app.use(express.static('uploads'))
 
 const verify = (req,res,next) => {
     const authHeader = req.headers.authorization;
@@ -54,6 +57,7 @@ app.use('/staffMember',verify,staffMemberRouters);
 app.use('/organization',verify,organizationRouters);
 app.use('/supervisor',verify,supervisorRouters);
 app.use('/coordinator',verify,coordinatorRouters);
+app.use('/mail',mailServerRouters);
 app.use('/token',tokenRouters);
 
 

@@ -29,9 +29,11 @@
 .my-custom-scrollbar-visit {
     height:50vh;
     /* margin-top: 3%; */
-    width: 100%;
-    position: relative;
+    width: 90%;
+    position:relative;
+    float:right;
     overflow: auto;
+    
 }
 
 .companysearchbox{
@@ -71,4 +73,8 @@
     width: 90%;
    }
   
+}
+
+.companyNameList{
+    border-color: transparent;
 }

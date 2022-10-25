@@ -18,7 +18,7 @@ class StaffMemberAdvertisements extends Component {
     render() {
         return (
            
-            <div className='contain mt-5 ms-5'style={{width:'90%'}}>
+            <div className='contain mt-0 ms-5'style={{width:'90%'}}>
                 <div className='d-flex flex-row justify-content-sm-between'>
 
                 <h3>Advertisements</h3>
@@ -65,10 +65,10 @@ class StaffMemberAdvertisements extends Component {
 
                 <div className="Advertisements ">
                     <Row as={Col} sm>
-                        <AdvertisementCard jobrole="SE" company="LSEG" logo={LsegLogo}></AdvertisementCard>
-                        <AdvertisementCard jobrole="SE" company="WS02" logo={Wso2Logo}></AdvertisementCard>  
-                        <AdvertisementCard jobrole="Network Engineer" company="LSEG" logo={LsegLogo}></AdvertisementCard>  
-                        <AdvertisementCard jobrole="UI/UX Designer" company=" 99X" logo={N99XLogo}></AdvertisementCard>   
+                        <AdvertisementCard jobrole="Software Engineer" company="LSEG" logo={"https://media-exp1.licdn.com/dms/image/C4D0BAQGdXLeDAzp0wQ/company-logo_200_200/0/1663662838677?e=1674086400&v=beta&t=JjYvke6yO54by4vRIwHvhRcP3t5forhBEkwaJT_h0-Y"} actor="Staff"></AdvertisementCard>
+                        <AdvertisementCard jobrole="Business Analyst" company="WS02" logo={"https://media-exp1.licdn.com/dms/image/C4D0BAQFchI_Xw-FFhQ/company-logo_200_200/0/1597299923263?e=1674086400&v=beta&t=oMQPkPhslR6mS12UDEXJPOT4stztPeVd0ZcfUqWh0f4"} actor="Staff"></AdvertisementCard>  
+                        <AdvertisementCard jobrole="Quality Assurance" company="Rootcode Labs" logo={"https://media-exp1.licdn.com/dms/image/C560BAQGHuvWnG93BTA/company-logo_200_200/0/1602658902214?e=1674086400&v=beta&t=9J-q16QC9x56gfmYNTzNsxffpUoshhUnNp-_rbid0i0"} actor="Staff"></AdvertisementCard>  
+                        <AdvertisementCard jobrole="Software Engineer" company=" 99X" logo={"https://media-exp1.licdn.com/dms/image/C560BAQEVg8fDYKXBCw/company-logo_200_200/0/1601228756308?e=1674086400&v=beta&t=HmQvFNB1BWTxS1_NXhFGEroQidebf-pBAaSazQSqKPY"} actor="Staff"></AdvertisementCard>   
  
                    </Row>
                 </div>

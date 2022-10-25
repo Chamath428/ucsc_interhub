@@ -13,5 +13,6 @@ export const staffMemberScheduleCompanyVisit =joi.object({
     email_address : joi.string().email().required(),
     date :joi.date().required(),
     start_time: joi.string(),
-    company_visit_type : joi.number().required()
+    company_visit_type : joi.number().required(),
+    status : joi.number().required()
 })

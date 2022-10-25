@@ -25,7 +25,14 @@ const CoordinatorManageCompany = () => {
     const [companyVisitList, setCompanyVisitList] = useState([]);
 
 
-
+    companyVisitList.map((item, index) => {
+        if (item.visited_type==1) {
+            item.visited_type = "Yes";
+        }
+        else {
+            item.visited_type = "No";
+        }
+    });
     useEffect(() => {
 
         const authRequestRegistered = {

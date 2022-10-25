@@ -20,6 +20,9 @@ import ViewAdvertisement from "../Company/companyAdvertisementPreview";
 import CoordinatorRegisteredCompanyProfile from "../Coordinator/CoordinatorRegisteredCompanyProfile";
 import TopNavTest from "../../component/Dashboard/TopNav/topNavTest";
 import { Container } from "react-bootstrap";
+import StudentPassedInterviews from "./StudentPassedInterviews";
+import AnnouncementFullCard from "../../component/Cards/AnnouncementFullCard";
+import StudentAdvertisements from "./StudentAdvertisements";
 
 function StudentBase(){
 
@@ -33,12 +36,11 @@ return(
 
             <aside className="sidebarArea shadow" id="sidebarArea">
                 <SideBar 
-                     dashTitle1='Dashboard' dashLink1='Student/'
+                     dashTitle1='Dashboard' dashLink1='Student'
                      dashTitle2='Advertisements' dashLink2='Student/Advertisement'
                      dashTitle3='Interviews' dashLink3='Student/Interviews'
                      dashTitle4='Internship' dashLink4='Student/Internship'
                      dashTitle5='My Profile' dashLink5='Student/Profile'
-                     dashTitle6='Edit Profile' dashLink6='Student/Edit-Profile'
                 />
             </aside>
 
@@ -47,7 +49,6 @@ return(
                 <div>
                     <main>
                     
-                        <div>
 
                             <Route exact path="/Student" component={StudentHome} />
 
@@ -59,34 +60,27 @@ return(
 
                             <Route exact path="/Student/Edit-Profile" component={StudentEditProfile} />
 
-                            <Route exact path="/Student/Advertisement" component={StaffMemberAdvertisements} />
+                            <Route exact path="/Student/Advertisement" component={StudentAdvertisements} />
 
                             <Route exact path="/Student/View-advertisement" component={ViewAdvertisement} />
 
                             <Route exact path="/Student/View-company-profile" component={CoordinatorRegisteredCompanyProfile} />
+                        
+                            <Route exact path="/Student/StudentPassedInterviews" component={StudentPassedInterviews} />
 
-                            {/* <Route path="*" component={NotFound} /> */}
+                            {/* Components */}
+                            <Route exact path="/Student/AnnouncementPage" component={AnnouncementFullCard} />
 
-                        </div>  
+
+                            {/* <Route exact path="*" component={NotFound} /> */}
+
             
                     </main>
 
                 </div>
 
             </div>
-            
-            {/* <SideBar
-                dashTitle1='Dashboard' dashLink1='Student/'
-                dashTitle2='Advertisements' dashLink2='Student/Advertisement'
-                dashTitle3='Interviews' dashLink3='Student/Interviews'
-                dashTitle4='Internship' dashLink4='Student/Internship'
-                dashTitle5='My Profile' dashLink5='Student/Profile'
-                dashTitle6='Edit Profile' dashLink6='Student/Edit-Profile'
-            ></SideBar> */}
-
-        
-            
-        
+                    
         </div>
 
     </div>

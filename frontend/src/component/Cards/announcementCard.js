@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-
+import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 function AnnouncementCard(props) {
   return (
     <Card className='mt-3 mb-5'>
@@ -11,7 +12,6 @@ function AnnouncementCard(props) {
           {props.Text}
         </Card.Text>
         <div className='d-flex flex-row-reverse'>
-        <Button variant="primary">{props.Button}</Button>
         </div>
       </Card.Body>
     </Card>

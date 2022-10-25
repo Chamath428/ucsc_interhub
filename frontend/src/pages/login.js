@@ -29,10 +29,9 @@ const Login = ()=> {
                 "url":"user/login",
                 "data" :data
             }
-            userLogin(authRequest).then(async (response)=>{
-                showAlert(response);
+            userLogin(authRequest).then((response)=>{
+                showAlert(response)
                 Setauthtokens(response.data.accessToken,response.data.refreshToekn);
-                console.log("awa");
                 history.push("/".concat(response.data.role));
             }).catch(function (error) {
                 if (error.response) {

@@ -13,8 +13,7 @@ import { Button } from 'react-bootstrap';
 import { NavItem } from 'react-bootstrap';
 
 // import { Link, useLocation } from "react-router-dom";
-// import user1 from "../../../assets/images/users/user4.jpg";
-// import probg from "../../../assets/images/bg/download.jpg";
+
 
 import { useLocation } from "react-router-dom";
 
@@ -51,7 +50,7 @@ const SideBar = (props) =>{
     
     <hr className="sidebar-divider"/>
 
-    <Nav.Link activeClassName="dash nav-link"  as={Link}  eventKey={'/'+props.dashLink1} to={'/'+props.dashLink1} >{props.dashTitle1}</Nav.Link>
+    <Nav.Link className="dash nav-link"  as={Link}  eventKey={'/'+props.dashLink1} to={'/'+props.dashLink1} >{props.dashTitle1}</Nav.Link>
 
     <hr className="sidebar-divider"/>
 
@@ -98,6 +97,52 @@ const SideBar = (props) =>{
     <hr className="sidebar-divider"/>
 
     <Nav.Link as={Link} eventKey={'/'+props.dashLink6} to={'/'+props.dashLink6} >{props.dashTitle6}</Nav.Link>
+
+    <hr className="sidebar-divider"/>
+
+    </li>}
+
+    {props.dashTitle7 && <li className="nav-item ">
+    <hr className="sidebar-divider"/>
+
+    <Nav.Link as={Link} eventKey={'/'+props.dashLink7} to={'/'+props.dashLink7} >{props.dashTitle7}</Nav.Link>
+
+    <hr className="sidebar-divider"/>
+
+    </li>}
+
+    {props.dashTitle8 && <li className="nav-item ">
+    <hr className="sidebar-divider"/>
+
+    <Nav.Link as={Link} eventKey={'/'+props.dashLink8} to={'/'+props.dashLink8} >{props.dashTitle8}</Nav.Link>
+
+    <hr className="sidebar-divider"/>
+
+    </li>}
+
+    {props.dashTitle8 && <li className="nav-item ">
+    <hr className="sidebar-divider"/>
+
+    <Nav.Link as={Link} eventKey={'/'+props.dashLink8} to={'/'+props.dashLink8} >{props.dashTitle8}</Nav.Link>
+
+    <hr className="sidebar-divider"/>
+
+    </li>}
+
+
+    {props.dashTitle9 && <li className="nav-item ">
+    <hr className="sidebar-divider"/>
+
+    <Nav.Link as={Link} eventKey={'/'+props.dashLink9} to={'/'+props.dashLink9} >{props.dashTitle9}</Nav.Link>
+
+    <hr className="sidebar-divider"/>
+
+    </li>}
+
+    {props.dashTitle10 && <li className="nav-item ">
+    <hr className="sidebar-divider"/>
+
+    <Nav.Link as={Link} eventKey={'/'+props.dashLink10} to={'/'+props.dashLink10} >{props.dashTitle10}</Nav.Link>
 
     <hr className="sidebar-divider"/>
 

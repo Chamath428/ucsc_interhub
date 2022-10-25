@@ -11,6 +11,8 @@ import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import { URL } from '../URL';
 import { callServer } from '../authServer';
+import Table from 'react-bootstrap/Table';
+import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 
 import '../../styles/coordinatorSystemUser.css';
 
@@ -27,7 +29,14 @@ const CoordinatorSystemUsers = () => {
 
     const [userList, setUserList] = useState([]);
 
-    
+    userList.map((item, index) => {
+        if (item.is_active==1) {
+            item.is_active = "Active";
+        }
+        else {
+            item.is_active = "Not Active";
+        }
+    });
     useEffect(() => {
         const authRequest = {
             "method": "post",
@@ -39,7 +48,9 @@ const CoordinatorSystemUsers = () => {
             response.data.map((item) => {
                 setUserList(prevState => [...prevState, {
                     name: item.first_name + " " + item.last_name,
-                    role: item.pdc_role.role
+                    role: item.pdc_role.role,
+                    is_active: item.is_active,
+                    email: item.email_address ,
                 }])
             })
            
@@ -108,25 +119,33 @@ const CoordinatorSystemUsers = () => {
 
                             <div class="table-wrapper-scroll-y .myscrollbarsystemuser ">
 
-                                {/* {userList.map((val, key) => {
-                                    return (
-                                        <h6 >{val.first_name}  </h6>
+                               
 
-                                    );
+                            <Table style={{ maxHeight: '60vh' }}>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Is Active</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 {userList.map((userList)=>(
 
-                                }
-                                )} */}
+                                    <tr >
+                                        <Link  to={{pathname:"/Coordinator/StaffProfile",state:userList}}><td>{userList.name}</td></Link>
+                                        <td>{userList.role}</td>                                      
+                                        <td>{userList.is_active}</td>
+                                    
+                                    </tr>
+                                    
 
-                                <TableView
-                                    headers={['Name', 'Position', 'Is Active']}
-
-                                    // list={[['Chamath Chinthana', 'Corrdinator', 'Active'], ['Thilina Madusanka', 'Staff Memner', 'Active'], ['Prathiksha Jayakodi', 'Staff Memner', 'Active'], ['Sameera Kumara', 'Corrdinator', 'Not Active'], ['Ayodya Ranasinghe', 'Corrdinator', 'Not Active'], ['Binura Jathilake', 'Staff Memner', 'Active']]}
-
-                                    list={userList}
-
-                                >
-
-                                </TableView>
+                                 ))}
+                                    
+                                </tbody>
+                            
+                            
+                            </Table>
 
 
                             </div>

@@ -8,3 +8,14 @@ export const studentSchema = joi.object({
     gpa : joi.string().required(),
     program_id : joi.number().required(),
 })
+
+export const studenteditProfileSchema = joi.object({
+    index_number : joi.number().integer().min(5).required(),
+    name : joi.string().required(),
+    password : joi.string(),
+    email : joi.string().email(),
+    about_me : joi.string(),
+    github : joi.string().uri(),
+    facebook : joi.string().uri(),
+    linkedin : joi.string().uri(),
+})

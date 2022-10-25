@@ -15,9 +15,8 @@ class CoordinatorStudent extends Component {
     render() {
         return (
 
-
-
-            <div className='contain'>
+            <div className='contain mt-5 ms-5' style={{width :'90%'}}>
+            <div className='container'>
 
                 <div className='d-flex flex-row justify-content-sm-between'>
 
@@ -79,9 +78,10 @@ class CoordinatorStudent extends Component {
                 </div>
 
 
+            
+
             </div>
-
-
+            </div>
         );
     }
 
