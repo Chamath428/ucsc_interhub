@@ -16,15 +16,16 @@ import BodyCard from '../../component/Cards/bodyCard';
 import PrimaryBtn from '../../component/Buttons/primaryBtn';
 import InfoBtn from '../../component/Buttons/outlineBtn';
 import YoutubeEmbed from '../../component/YoutubeEmbed/youtubeEmbed';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { callServer } from '../authServer';
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
-
+import { useHistory } from 'react-router-dom';
 
 const StudentEditProfile = () =>{
     const [name, setName] = useState("");
-    const [password, setPassword] = useState(1);
+    const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [about_me, setAboutme] = useState("");
     const [github, setGithub] = useState("");
@@ -35,7 +36,40 @@ const StudentEditProfile = () =>{
     const [variant, setVariant] = useState("success");
 
     const [profilePic,setProfilePic] = useState();
-    // const [profileVideo,setProfileVideo] = useState();
+    const [profileVideo,setProfileVideo] = useState();
+
+    const [editProfileView, setEditProfileView] = useState([]);
+    const history = useHistory();
+
+    useEffect(() => {
+        const authAciveRequest = {
+          "method": "post",
+          "url": "student/editProfileView/"+ parseInt(jwt_decode(sessionStorage.getItem("accessToken")).id),
+          "data": {}
+        }
+    
+        callServer(authAciveRequest).then((response) => {
+            // setEditProfileView(response.data);
+            setName(response.data.name);
+            setPassword(response.data.password);
+            setEmail(response.data.email);
+            setAboutme(response.data.about_me);
+            setGithub(response.data.github);
+            setFacebook(response.data.facebook);
+            setLinkedin(response.data.linkedin);
+            setEditProfileView(response.data.profile_picture);
+            setProfileVideo(response.data.intro_video)
+        
+    
+        }).catch(function (error) {
+          if (error.response) {
+            setAlertPara("Something went wrong when viewing details!");
+            setVariant("danger");
+            setShow(true);
+            
+          }
+        })
+      }, []);
   
     const updateStudentProfile = (event) => {
       event.preventDefault();
@@ -52,7 +86,7 @@ const StudentEditProfile = () =>{
         data.append("facebook",  facebook,)
         data.append("linkedin",  linkedin)
         data.append("profilePic",  profilePic)
-        // data.append("profileVideo",  profileVideo)
+        data.append("profileVideo",  profileVideo)
      
 
 
@@ -62,7 +96,12 @@ const StudentEditProfile = () =>{
         "data": data,
         headers:{ 'Content-Type': 'multipart/form-data'}
       }
-      callServer(authRequest).then((response) => { showAlert(response) }).catch(function (error) {
+      callServer(authRequest).then((response) => {
+        
+        showAlert(response)
+        history.push("/Student/Edit-Profile");
+    
+    }).catch(function (error) {
         if (error.response) {
           setAlertPara("Something went wrong when editing profile!");
           setVariant("danger");
@@ -93,12 +132,12 @@ const StudentEditProfile = () =>{
                                 <div className="user-avatar">
                                     <div className='align-self-center'>
 
-                                        <ProfilePic url="https://i.pinimg.com/736x/0a/53/c3/0a53c3bbe2f56a1ddac34ea04a26be98.jpg"/>
+                                        <ProfilePic url= {"http://localhost:5000/"+editProfileView}/>
 
                                         <Form.Group controlId="profilePicture" className="mb-3">
                                             <Form.Label>Upload Profile Picture</Form.Label>
                                             <Form.Control type="file" accept="image/*" onChange={(event)=> {
-                                                console.log(event.target.files)
+                                                console.log(event.target.files) 
                                                 setProfilePic(event.target.files[0])
                                                 }} />
                                         </Form.Group>
@@ -110,10 +149,10 @@ const StudentEditProfile = () =>{
 
                                         <Form.Group controlId="studentCV" className="mb-3">
                                             <Form.Label>Upload your intro video</Form.Label>
-                                            {/* <Form.Control type="file" accept="image/*" onChange={(event)=> {
+                                            <Form.Control type="file" accept="video/*" onChange={(event)=> {
                                                 console.log(event.target.files)
-                                                setProfileVideo(event.target.files[1])
-                                                }} /> */}
+                                                setProfileVideo(event.target.files[0])
+                                                }} />
                                         </Form.Group>
                                     
                                     </div>
@@ -135,21 +174,21 @@ const StudentEditProfile = () =>{
                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div className="form-group">
                                     <label for="fullName">Full Name</label>
-                                    <Form.Control type="text" placeholder="name@example.com" onChange={(event) => { setName(event.target.value) }} />
+                                    <Form.Control type="text" placeholder="name@example.com" value ={name} onChange={(event) => { setName(event.target.value) }} />
                                     {/* <input type="text" className="form-control" id="fullName" placeholder="Enter full name"> */}
                                 </div>
                             </div>
                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div className="form-group">
                                     <label for="eMail">Email</label>
-                                    <Form.Control type="email" placeholder="name@example.com" onChange={(event) => { setEmail(event.target.value) }}/>
+                                    <Form.Control type="email" placeholder="name@example.com" value ={email} onChange={(event) => { setEmail(event.target.value) }}/>
                                     {/* <input type="email" className="form-control" id="eMail" placeholder="Enter email ID"> */}
                                 </div>
                             </div>
                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-2">
                                 <div className="form-group">
                                     <label for="phone">InternHub Password</label>
-                                    <Form.Control type="password" placeholder="" onChange={(event) => { setPassword(event.target.value) }}/>
+                                    <Form.Control type="password" placeholder='' value={password} onChange={(event) => { setPassword(event.target.value) }}/>
                                     {/* <input type="text" className="form-control" id="phone" placeholder="Enter phone number"> */}
                                 </div>
                             </div>
@@ -168,7 +207,7 @@ const StudentEditProfile = () =>{
                             <div className="about">
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                                     <Form.Label>Add your About Me</Form.Label>
-                                    <Form.Control as="textarea" rows={3} onChange={(event) => { setAboutme(event.target.value) }}/>
+                                    <Form.Control as="textarea" rows={3} value = {about_me} onChange={(event) => { setAboutme(event.target.value) }}/>
                                 </Form.Group>                            
                             </div>
 
@@ -184,7 +223,7 @@ const StudentEditProfile = () =>{
                                         <div className="input-group-prepend">
                                         <div className="input-group-text"><i className="bi bi-facebook"></i></div>
                                         </div>
-                                        <Form.Control type="text" placeholder="facebook link" style={{ borderRadius: 5 }} onChange={(event) => { setFacebook(event.target.value) }}/>
+                                        <Form.Control type="text" placeholder="facebook link" style={{ borderRadius: 5 }} value = {facebook} onChange={(event) => { setFacebook(event.target.value) }}/>
                                     </div>
                                 </Form.Group>
                             </div>
@@ -197,7 +236,7 @@ const StudentEditProfile = () =>{
                                         <div className="input-group-prepend">
                                         <div className="input-group-text"><i className="bi bi-linkedin"></i></div>
                                         </div>
-                                        <Form.Control type="text" placeholder="LinkedIn link" style={{ borderRadius:5 }} onChange={(event) => { setLinkedin(event.target.value) }}/>
+                                        <Form.Control type="text" placeholder="LinkedIn link" style={{ borderRadius:5 }} value = {linkedin} onChange={(event) => { setLinkedin(event.target.value) }}/>
                                     </div>
                                 </Form.Group>
 
@@ -212,7 +251,7 @@ const StudentEditProfile = () =>{
                                         <div className="input-group-prepend">
                                         <div className="input-group-text"><i className="bi bi-github"></i></div>
                                         </div>
-                                        <Form.Control type="text" placeholder="Github link" style={{ borderRadius:5 }} onChange={(event) => { setGithub(event.target.value) }}/>
+                                        <Form.Control type="text" placeholder="Github link" style={{ borderRadius:5 }} value = {github} onChange={(event) => { setGithub(event.target.value) }}/>
                                     </div>
                                 </Form.Group>
 

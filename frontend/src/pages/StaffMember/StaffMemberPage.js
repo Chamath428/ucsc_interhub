@@ -25,6 +25,8 @@ import StaffProfile from "./sMProfile";
 import AnnouncementFullCard from "../../component/Cards/AnnouncementFullCard";
 import ViewAdvertisement from "../Company/companyAdvertisementPreview";
 import CompanyPendingProfile from "../Company/companyPendingPage";
+import VisitDetails from "./sMCompanyVisitDetails";
+
 
 function StaffPage(){
 
@@ -71,6 +73,8 @@ return(
                     <Route exact path="/Staff/Schedule-Company-Visit" component={SMCompanyVisit} />
 
                     <Route exact path="/Staff/Profile" component={StaffProfile} />
+
+                    <Route exact path="/Staff/Visit-Details" component={VisitDetails} />
                     
                     {/* <Route path="*" component={NotFound} /> */}
 

@@ -16,44 +16,55 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ModalConfirmation from '../../component/Modal/modalConfirmation';
 
-const SMCompanyVisitDetails = () => {
+const SMCompanyVisitDetails = (props) => {
+    const visitDetails = props.location.state;
+    console.log(visitDetails);
+    const company = visitDetails.company.name;
+    const organizer = visitDetails.pdc.first_name
+    const date = visitDetails.date;
+    const time = visitDetails.start_time;
+    const type = visitDetails.company_visit_types.type;
+    const status = visitDetails.company_visit_status_types.status;
+
   return (
     <Container>
     <div className='my-4 '>
         <div>
             <h5>Visit to</h5>
-            <h2>Company Name</h2><br />
+            <h2>{company}</h2><br />
+            <h5>Organized By</h5>
+            <h2>{organizer}</h2><br/>
 
             <Row className='row justify-content-between'>
-            <Col  lg="3" >
+            <Col  md="3" >
                 <Card className='mx-1' border="primary">
-                    <Card.Header className='font-weight-bold'><i class="bi bi-calendar mr-2"> </i>Status</Card.Header>
+                    <Card.Header className='font-weight-bold'><i class="bi bi-calendar mr-2"> </i>Organized By</Card.Header>
                     <ListGroup variant="flush">
-                        <ListGroup.Item>Active</ListGroup.Item>
+                        <ListGroup.Item>{status}</ListGroup.Item>
                     </ListGroup>
                 </Card>
             </Col>
-            <Col  lg="3" >
+            <Col  md="3" >
                 <Card className='mx-1'>
                     <Card.Header className='font-weight-bold'><i class="bi bi-calendar mr-2"> </i>Date</Card.Header>
                     <ListGroup variant="flush">
-                        <ListGroup.Item>10.10.2022</ListGroup.Item>
+                        <ListGroup.Item>{date}</ListGroup.Item>
                     </ListGroup>
                 </Card>
             </Col>
-            <Col  lg="3">
+            <Col  md="3">
                 <Card className='mx-1'>
                     <Card.Header className='font-weight-bold'><i class="bi bi-clock mr-2" /> Time</Card.Header>
                     <ListGroup variant="flush">
-                        <ListGroup.Item>10.00 AM</ListGroup.Item>
+                        <ListGroup.Item>{time}</ListGroup.Item>
                     </ListGroup>
                 </Card>
             </Col>
-            <Col  lg="3">
+            <Col  md="3">
                 <Card className='mx-1'>
-                <Card.Header className='font-weight-bold'><i class="bi bi-people-fill mr-2" /> Status</Card.Header>
+                <Card.Header className='font-weight-bold'><i class="bi bi-people-fill mr-2" /> Type</Card.Header>
                     <ListGroup variant="flush">
-                        <ListGroup.Item>Online</ListGroup.Item>
+                        <ListGroup.Item>{type}</ListGroup.Item>
                     </ListGroup>
                 </Card>
             </Col>

@@ -19,16 +19,19 @@ function AdvertisementCard(props) {
           </Figure>
         </Col>
         <Col lg={4} className="  font-weight-bold">
-          <span>{props.jobrole}</span>
+          <span>{props.title}</span>
         </Col>
-        <Col lg={3}>
+        {/* <Col lg={4}>
           <span>{props.company}</span>
+        </Col> */}
+        <Col lg={3}>
+          <span>{props.jobrole}</span>
         </Col>
         <Col lg={2} className=' '>
         <span>{props.status}</span>
         </Col>
         <Col lg={1} className="px-1">
-          <Link to={'/'+props.actor+'/View-advertisement'}>
+          <Link to={{pathname:'/'+props.actor+'/View-advertisement', state:props.data}}>
               <Button variant="primary" >
                 View
               </Button>

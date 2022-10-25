@@ -14,3 +14,14 @@ export const coordinatorPlacement = joi.object({
     email_address:joi.string().required(),
 
 })
+
+export const deactiveAccount = joi.object({
+    email:joi.required(),
+
+})
+
+export const pharse = joi.object({
+    phase:joi.required(),
+    
+
+})

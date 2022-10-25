@@ -7,15 +7,40 @@ import AdvertisementCard from '../../component/Cards/AdvertismentCard/advertisem
 import Wso2Logo from '../../assets/images/wso2Logo.jpg';
 import LsegLogo from '../../assets/images/lsegLogo.png';
 import N99XLogo from '../../assets/images/99xLogo.png';
+import { useState,useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
+import { callServer } from '../authServer';
 
 
 
 import '../../styles/sMAdvertisments.css';    
 
 
-class StudentAdvertisements extends Component {
+const StudentAdvertisements =()=>{
 
-    render() {
+    const [adds,setAdds] = useState([]);
+
+    useEffect(()=>{
+        const data={
+            // companyId:jwtDecode(sessionStorage.getItem("accessToken")).id
+        }
+        const authRequest = {
+            "method":"post",
+            "url": "student/getAllAdvertiesmentS",
+            "data": data
+        }
+
+        callServer(authRequest).then((response)=>{
+            console.log(response);
+            setAdds(response.data);
+        }).catch((error)=>{
+            console.log(error);
+        })
+
+    },[])
+
+
+
         return (
            
             <div className='contain mt-0 ms-5'style={{width:'90%'}}>
@@ -65,11 +90,25 @@ class StudentAdvertisements extends Component {
 
                 <div className="Advertisements ">
                     <Row as={Col} sm>
-                        <AdvertisementCard jobrole="Software Engineer" company="LSEG" logo={"https://media-exp1.licdn.com/dms/image/C4D0BAQGdXLeDAzp0wQ/company-logo_200_200/0/1663662838677?e=1674086400&v=beta&t=JjYvke6yO54by4vRIwHvhRcP3t5forhBEkwaJT_h0-Y"} actor="Student"></AdvertisementCard>
-                        <AdvertisementCard jobrole="Business Analyst" company="WS02" logo={"https://media-exp1.licdn.com/dms/image/C4D0BAQFchI_Xw-FFhQ/company-logo_200_200/0/1597299923263?e=1674086400&v=beta&t=oMQPkPhslR6mS12UDEXJPOT4stztPeVd0ZcfUqWh0f4"} actor="Student"></AdvertisementCard>  
-                        <AdvertisementCard jobrole="Quality Assurance" company="Rootcode Labs" logo={"https://media-exp1.licdn.com/dms/image/C560BAQGHuvWnG93BTA/company-logo_200_200/0/1602658902214?e=1674086400&v=beta&t=9J-q16QC9x56gfmYNTzNsxffpUoshhUnNp-_rbid0i0"} actor="Student"></AdvertisementCard>  
-                        <AdvertisementCard jobrole="Software Engineer" company=" 99X" logo={"https://media-exp1.licdn.com/dms/image/C560BAQEVg8fDYKXBCw/company-logo_200_200/0/1601228756308?e=1674086400&v=beta&t=HmQvFNB1BWTxS1_NXhFGEroQidebf-pBAaSazQSqKPY"} actor="Student"></AdvertisementCard>   
- 
+                     {adds.length==0?(
+                <p>You have no Advertisements to show.</p>
+                ):(
+                  adds.map((add)=>(
+                    <AdvertisementCard
+                     title={add.title}
+                     jobrole={add.job_role}
+                     company={add.name}
+                    //  status={add.type}
+                     logo={LsegLogo}
+                     
+                     actor="Student"
+                     data={add.advertisement_id}>
+
+                     </AdvertisementCard>
+                    ))
+                )
+              }
+                    
                    </Row>
                 </div>
 
@@ -77,7 +116,6 @@ class StudentAdvertisements extends Component {
             </div>
 
         );
-    }
 // 
 }
 

@@ -25,12 +25,6 @@ function StudentInterviews() {
   const indexNum = jwt_decode(sessionStorage.getItem("accessToken")).id;
   const [allDates,setAllDates]=useState([]);
 
-  const mark = [
-    '04-03-2020',
-    '03-03-2020',
-    '05-03-2020'
-]
-
   useEffect(()=>{
     const data = {
       indexNumber:indexNum

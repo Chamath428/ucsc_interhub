@@ -10,12 +10,8 @@ function App() {
   return (
 
     <div className="App">
-      
-          <PageRouting/>
-
-         
-       
-        </div>
+          <PageRouting/>     
+    </div>
   );
 }
 
