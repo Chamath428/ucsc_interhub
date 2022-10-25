@@ -20,12 +20,13 @@ const SMCompanyVisit = () => {
   const [show, setShow] = useState(false);
   const [alertPara, setAlertPara] = useState("User added Successfully!");
   const [variant, setVariant] = useState("success");
-  const [companyList, setCompanyList] = useState([]);
+  const [company, setCompanyList] = useState([]);
   const[companyName,setCompanyName] = useState("");
   const[companyID,setCompanyID] = useState("");
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const[visitType,setVisitType] = useState("");
+  const [setSearchCompanyName,searchCompanyName] = useState("");
 
   useEffect(() => {
     const authAciveRequest = {
@@ -135,7 +136,7 @@ const SMCompanyVisit = () => {
             <Form.Group as={Col} md="8" className="companysearch mb-3 mt-3" controlId="formBasicSearchOrganization">
               <div className="d-flex flex-row align-item-center justify-content-center text-center" >
                 <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div>
-                <Form.Control type="searchbox text" className="companysearchbox" placeholder="Search organization" /></div>
+                <Form.Control type="searchbox text" className="companysearchbox" placeholder="Search organization"  onChange={(event) => { searchCompanyName(event.target.value) }}/></div>
             </Form.Group>
 
             <div className="table-wrapper-scroll-y my-custom-scrollbar-visit ">
@@ -147,7 +148,14 @@ const SMCompanyVisit = () => {
               </thead>
               <tbody>
             
-                 {companyList.map((company)=>(
+                 {company.filter((company)=>{
+                        if(setSearchCompanyName == ""){
+                            return company
+                        }
+                        else if(company.name.toLowerCase().includes(setSearchCompanyName.toLowerCase())){
+                            return company
+                        }
+                      }).map((company)=>(
                   <tr ><button className='companyNameList' onClick={()=> {
                     // console.log(company.company_id);
                     setCompanyName(company.name)

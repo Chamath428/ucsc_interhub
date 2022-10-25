@@ -19,6 +19,7 @@ import ModalConfirmation from '../../component/Modal/modalConfirmation';
 const SMCompanyVisitDetails = (props) => {
     const visitDetails = props.location.state;
     console.log(visitDetails);
+    const id = visitDetails.company_visit_id;
     const company = visitDetails.company.name;
     const organizer = visitDetails.pdc.first_name
     const date = visitDetails.date;
@@ -26,6 +27,24 @@ const SMCompanyVisitDetails = (props) => {
     const type = visitDetails.company_visit_types.type;
     const status = visitDetails.company_visit_status_types.status;
 
+    const confirmStatus =()=>{
+
+        const data={
+            company_visit_id : id
+        }
+        const authRequest = {
+            "method": "post",
+            "url": "staffMember/confirmStatus",
+            "data": data
+        }
+        // callServer(authRequest).then(
+        //     (response)=>{
+        //     interviews_copy[interview_index].status="Accepted";
+        //     setInterviews(interviews_copy);
+        //     }).catch(
+        //     (error)=>{console.log(error)}
+        //     )
+        }
   return (
     <Container>
     <div className='my-4 '>
@@ -76,7 +95,7 @@ const SMCompanyVisitDetails = (props) => {
                     <ModalConfirmation ButtonText="Cancel Event" ButtonColour="outline-danger" Title="Confirm Delete" Body="This action cancel this event and notify the cancelled status to Company and UCSC - PDC Staff Members. Do you wish to continue?" SecondaryButton="Back" PrimaryButton="Cancel Event" PrimaryButtonColour="danger"/>
                     </div>
                     <div className="">
-                    <Button variant="primary"><i class="bi bi-check-circle mr-2"></i>Completed</Button>
+                    <Button onClick={confirmStatus} disabled= {status=="Visited"? true:false} variant="primary" ><i class="bi bi-check-circle mr-2"></i>Completed</Button>
                     </div>
                 </Stack>
                 </div>

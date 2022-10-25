@@ -208,7 +208,7 @@ const StaffMemberManageCompany = () => {
                                  }).map((activeRegisteredCompanyList)=>(
                                     <tr >
                                         
-                                        <td>{activeRegisteredCompanyList.name}</td>
+                                        <Link  to={{pathname:"/Staff/ActiveCompany",state:activeRegisteredCompanyList}}><td>{activeRegisteredCompanyList.name}</td></Link>
                                         {activeRegisteredCompanyList.company_contacts.map((contactActiveCompanies)=>(
                                                 <td>{contactActiveCompanies.telephone_no}</td>
                                         ))}
@@ -270,7 +270,7 @@ const StaffMemberManageCompany = () => {
                                  }).map((inactiveRegisteredCompanyList)=>(
                                     <tr >
                                         
-                                        <td>{inactiveRegisteredCompanyList.name}</td>
+                                        <Link  to={{pathname:"/Staff/InactiveCompany",state:inactiveRegisteredCompanyList}}><td>{inactiveRegisteredCompanyList.name}</td></Link>
                                         {inactiveRegisteredCompanyList.company_contacts.map((contactInactiveCompanies)=>(
                                                 <td>{contactInactiveCompanies.telephone_no}</td>
                                         ))}
@@ -333,7 +333,7 @@ const StaffMemberManageCompany = () => {
                                  }).map((pendingCompanyList)=>(
                                     <tr >
                                         
-                                        <td>{pendingCompanyList.name}</td>
+                                        <Link  to={{pathname:"/Staff/PendingCompany",state:pendingCompanyList}}><td>{pendingCompanyList.name}</td></Link>
                                         {pendingCompanyList.company_contacts.map((contactPendingCompanies)=>(
                                                 <td>{contactPendingCompanies.telephone_no}</td>
                                         ))}
@@ -429,6 +429,7 @@ const StaffMemberManageCompany = () => {
                                         <td>{companyList.start_time}</td>
                                         <td>{companyList.company_visit_types.type}</td>
                                         <td>{companyList.company_visit_status_types.status}</td>
+                                        <td>{companyList.company_visit_id}</td>
                                     
                                     </tr>
                                     

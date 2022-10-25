@@ -23,7 +23,11 @@ const StaffMemberManageStudents = () => {
     const[selectedCourse,setselectedCourse] = useState("0");
     const[selectedStatus,setselectedStatus] = useState("0");
     const[sortedAllStudentList,setSortedAllStudents] = useState("0");
-    const[searchByCourseSelectedList,searchSelectedStudentsByCourse] = useState();
+    const[sortedSelectedStudentList,setSortedSelectedStudents] = useState("0");
+    const[searchByCourseSelectedList,setselectedCourseSelectedStudents] = useState("0");
+    const [searchSelectedStudent,setSearchSelectedStudent] = useState("");
+    const [category,setCategory] = useState(0);
+    const [jobRoles,setJobRoles]=useState([]);
     
     useEffect(() => {
 
@@ -59,6 +63,23 @@ const StaffMemberManageStudents = () => {
                 setShow(true);
             }
         })
+        const data={};
+    const authRequest = {
+      "method": "post",
+      "url": "staffMember/getJobRoles",
+      "data": data
+    }
+
+    callServer(authRequest).then((response)=>{
+      console.log(response.data);
+      setJobRoles(response.data);
+    }).catch((error)=>{
+      if (error.response) {
+        setAlertPara("Something went wrong when getting the job roles!");
+        setVariant("danger");
+        setShow(true);
+      }
+    })
     }, []);
 
     const searchAllStudentsByCourse = (courseNumber)=>{
@@ -121,6 +142,47 @@ const StaffMemberManageStudents = () => {
             }
         })
     }
+    const sortSelectedStudents = (sortData)=>{
+        setSortedSelectedStudents(sortData)
+        const authRequestSortSelectedStudentsFilter = {
+            "method": "post",
+            "url": "staffMember/SortSelectedStudents",
+            "data": {
+                sort_data:parseInt(sortData)
+            }
+        }
+
+        callServer(authRequestSortSelectedStudentsFilter).then((response) => {
+            setSelectedStudentsList(response.data);
+        }).catch(function (error) {
+            if (error.response) {
+                setAlertPara("Something went wrong!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+    }
+    const searchSelectedStudentByCourse = (courseNumber)=>{
+        setselectedCourseSelectedStudents(courseNumber)
+        const authRequestSelectedStudentsFilterByCourse = {
+            "method": "post",
+            "url": "staffMember/SelectedStudentsSearchByCourse",
+            "data": {
+                degree:parseInt(courseNumber)
+            }
+        }
+
+        callServer(authRequestSelectedStudentsFilterByCourse).then((response) => {
+            setSelectedStudentsList(response.data);
+        }).catch(function (error) {
+            if (error.response) {
+                setAlertPara("Something went wrong!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+    }
+    
         return (
             <div className='containstudent mt-5 ms-5'style={{width:'90%'}}>
             <Tabs 
@@ -228,7 +290,7 @@ const StaffMemberManageStudents = () => {
                         <Form.Group className="mb-1" controlId="formBasicSearchOrganization">
                         <div className="d-flex flex-row align-item-center justify-content-center text-center" > 
                         <div className='searchicon text-center p-2'><i className="bi bi-search"></i></div> 
-                        <Form.Control className="searchbox" type="searchbox text" placeholder="Search Student" /></div>
+                        <Form.Control className="searchbox" type="searchbox text" placeholder="Search Student" onChange={(event) => { setSearchSelectedStudent(event.target.value) }}/></div>
                         </Form.Group>
                         </div>
                         <Container className="mt-2">
@@ -236,7 +298,7 @@ const StaffMemberManageStudents = () => {
                                         <Row className="mb-1">
                                             <Form.Group as={Col} md controlId="formGridState">
                                                 <Form.Label className="fw-bold" column sm={5} >Course</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose...">
+                                                <Form.Select sm={10} defaultValue="Choose..." onChange={(event) => { searchSelectedStudentByCourse(event.target.value) }}>
                                                     <option value="all">All CS and IS</option>
                                                     <option value="1">CS - 3rd Year</option>
                                                     <option value="2">IS - 3rd Year</option>
@@ -247,19 +309,20 @@ const StaffMemberManageStudents = () => {
                                             
                                             <Form.Group as={Col} sm controlId="formGridState">
                                                 <Form.Label className="fw-bold" column sm={5}>Company</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose...">
-                                                    <option>All</option>
-                                                    <option>...</option>
-                                                </Form.Select>
+                                                <Form.Select aria-label="Default select example" required onChange={(event) => { setCategory(event.target.value) }}>
+                                                    <option value="all">Select Job Category</option>
+                                                    {jobRoles.map((jobRole)=>(
+                                                        <option value={jobRole.id}>{jobRole.job_role}</option>
+                                                    ))}
+                                                    </Form.Select> 
+                                                
                                             </Form.Group>   
 
                                             <Form.Group as={Col} sm controlId="formGridState">
                                                 <Form.Label className="fw-bold" column sm={5}>Sort By</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose...">
+                                                <Form.Select sm={10} defaultValue="Choose..." onChange={(event) => { sortSelectedStudents(event.target.value) }}>
                                                 <option value="1">Index Number</option>
                                                 <option value="2">Name</option>
-                                                <option value="3">Company</option>
-                                                <option value="4">GPA</option>
                                                 
                                                 </Form.Select>
                                             </Form.Group>
@@ -286,7 +349,14 @@ const StaffMemberManageStudents = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {selectedStudentsList.map((selectedStudentsList)=>(
+                                {selectedStudentsList.filter((selectedStudentsList)=>{
+                                    if(searchSelectedStudent == ""){
+                                        return selectedStudentsList
+                                    }
+                                    else if(selectedStudentsList.name.toLowerCase().includes(searchSelectedStudent.toLowerCase())){
+                                        return selectedStudentsList
+                                    }
+                                 }).map((selectedStudentsList)=>(
                                     console.log(selectedStudentsList),
                                     <tr >
                                         
