@@ -21,6 +21,9 @@ function AdvertisementCard(props) {
         <Col lg={4} className="  font-weight-bold">
           <span>{props.title}</span>
         </Col>
+        {/* <Col lg={4}>
+          <span>{props.company}</span>
+        </Col> */}
         <Col lg={3}>
           <span>{props.jobrole}</span>
         </Col>
