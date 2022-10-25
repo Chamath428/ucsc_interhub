@@ -235,6 +235,7 @@ export const declineInterview = async(req,res)=>{
     export const getAllAdvertiesments = async (req,res)=>{
         try{
             const advertiesments = await prisma.$queryRaw `SELECT advertisement.advertisement_id,
+                                                                  advertisement.title,
                                                                   company.name,
                                                                   job_roles.job_role,
                                                                   advertisement_status.type

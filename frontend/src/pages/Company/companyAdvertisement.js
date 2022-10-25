@@ -63,7 +63,7 @@ const CompanyAdvertisements =()=>{
                      status={add.type}
                      logo={LsegLogo}
                      actor="Company"
-                     data={add.advertisement_id}
+                     data={add.advertisement_id}            
                      >
 
                      </AdvertisementCard>
