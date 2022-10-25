@@ -19,3 +19,13 @@ export const studenteditProfileSchema = joi.object({
     facebook : joi.string().uri(),
     linkedin : joi.string().uri(),
 })
+
+
+export const studentappliedInternshipsSchema = joi.object({
+    // index_number : joi.number().integer().required(),
+    // advertisement_id : joi.number().integer().required(),
+    // cv : joi.string().required(),
+    // is_wish_list : joi.number().integer().required(),
+    // company_id : joi.number().integer().required()
+
+})

@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import {studentSchema} from '../models/studentModel.js';
 import { studenteditProfileSchema } from '../models/studentModel.js';
+import { studentappliedInternshipsSchema } from '../models/studentModel.js';
 import bcrypt from 'bcrypt';
 import fs from "fs";
 import readline from "readline";
@@ -289,5 +290,44 @@ export const declineInterview = async(req,res)=>{
         }catch(error){
             res.status(400).json({message:"Something went wrong when fetchingn the data!"})
         }
+    }
+
+
+
+    export const uploadCV = async(req,res)=>{
+        console.log("Comming")
+        // const {error,value} = studentappliedInternshipsSchema.validate(req.body);
+        // console.log(error)
+        // if(!error){
+           
+            // const salt = await bcrypt.genSalt(10);
+            // const hashPassword = await bcrypt.hash(req.body.password, salt);   
+            try{
+                console.log("try")
+                const student = await prisma.student_applied_internships.create({
+                    // where: {
+                    //     index_number: 19000219,
+                    //   },
+                    data:{
+
+                        index_number: 19000219,
+                        advertisement_id: 16,
+                        cv : req.file.filename,
+                        is_wish_list : 0,
+                        company_id : 39
+
+                    }
+                })
+                // console.log("eee");
+
+                const message = {"Message":"Student Created Successfull"}
+                res.status(200).send(student);
+            }catch(error){
+                console.log(error);
+                res.status(400).send(error);
+            }
+            
+    //    } 
+    //         res.status(500).send(error);
     }
   
