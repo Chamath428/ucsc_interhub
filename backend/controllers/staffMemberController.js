@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import {staffMemberSchema,staffMemberScheduleCompanyVisit} from '../models/staffMemberModel.js';
-import bcrypt from 'bcrypt';
-
+ 
 const prisma = new PrismaClient();
 
 export const createStaffMember = async (req,res)=>{
@@ -172,6 +171,178 @@ export const CompanyVisit = async (req, res) => {
         res.status(400).send(error);
     }
 }
+export const FilterCompanyVisitByType = async (req, res) => {
+
+    if(req.body.company_visit_type){
+        try {
+            const FilterCompanyVisitByType = await prisma.company_visit.findMany({
+    
+                where:{
+                    company_visit_type: req.body.company_visit_type
+                },
+                select: {
+                    company: {
+                        select: {
+                            name: true,
+    
+                        },
+                    },
+                    pdc:{
+                        select:{
+                            first_name:true,
+                        },
+                    },
+                    date: true,
+                    
+                    start_time: true,
+                    company_visit_types: {
+                        select: {
+                            type: true,
+                        },
+                    },
+                    company_visit_status_types:{
+                        select: {
+                            status:true,
+                        },
+                    },
+    
+    
+                }
+            })
+            res.status(200).send(FilterCompanyVisitByType);
+    
+            // console.dir(CompanyVisit, { depth: null })
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
+    else{
+        try {
+            const FilterCompanyVisitByType = await prisma.company_visit.findMany({
+                select: {
+                    company: {
+                        select: {
+                            name: true,
+    
+                        },
+                    },
+                    pdc:{
+                        select:{
+                            first_name:true,
+                        },
+                    },
+                    date: true,
+                    
+                    start_time: true,
+                    company_visit_types: {
+                        select: {
+                            type: true,
+                        },
+                    },
+                    company_visit_status_types:{
+                        select: {
+                            status:true,
+                        },
+                    },
+    
+    
+                }
+            })
+            res.status(200).send(FilterCompanyVisitByType);
+    
+            // console.dir(CompanyVisit, { depth: null })
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
+    
+}
+export const FilterCompanyVisitByStatus = async (req, res) => {
+
+    if(req.body.company_visit_status){
+        try {
+            const FilterCompanyVisitByStatus = await prisma.company_visit.findMany({
+    
+                where:{
+                    status: req.body.company_visit_status
+                },
+                select: {
+                    company: {
+                        select: {
+                            name: true,
+    
+                        },
+                    },
+                    pdc:{
+                        select:{
+                            first_name:true,
+                        },
+                    },
+                    date: true,
+                    
+                    start_time: true,
+                    company_visit_types: {
+                        select: {
+                            type: true,
+                        },
+                    },
+                    company_visit_status_types:{
+                        select: {
+                            status:true,
+                        },
+                    },
+    
+    
+                }
+            })
+            res.status(200).send(FilterCompanyVisitByStatus);
+    
+            // console.dir(CompanyVisit, { depth: null })
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
+    else{
+        try {
+            const FilterCompanyVisitByStatus = await prisma.company_visit.findMany({
+                select: {
+                    company: {
+                        select: {
+                            name: true,
+    
+                        },
+                    },
+                    pdc:{
+                        select:{
+                            first_name:true,
+                        },
+                    },
+                    date: true,
+                    
+                    start_time: true,
+                    company_visit_types: {
+                        select: {
+                            type: true,
+                        },
+                    },
+                    company_visit_status_types:{
+                        select: {
+                            status:true,
+                        },
+                    },
+    
+    
+                }
+            })
+            res.status(200).send(FilterCompanyVisitByStatus);
+    
+            // console.dir(CompanyVisit, { depth: null })
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
+    
+}
 export const scheduleCompanyVisit = async (req,res)=>{
     const{error,value}=staffMemberScheduleCompanyVisit.validate(req.body);
 
@@ -233,21 +404,20 @@ export const SelectedStudents = async (req, res) => {
                 degree: true,
                 internships: {
                     select: {
-                         company: {
-                        select:{
-                        name : true,
-                    },},
-                        job_roles:{
+                        company: {
+                            select:{
+                                name : true,
+                                },
+                            },
+                        // job_role : true
+                        job_roles: {
                             select:{
                                 job_role :true,
                             },
                         },
                     
                     },
-                    // company: {
-                    //     select:{
-                    //     name : true,}
-                    // },
+                    
                 },
                 
             },
@@ -259,23 +429,165 @@ export const SelectedStudents = async (req, res) => {
 
 }
 export const SearchAllStudentsByCourse = async (req, res) => {
-
-    try {
-        const SearchAllStudentsByCourse = await prisma.student.findMany({
-            where: {
-                degree: true,
-            },
-            select: {
-                index_number: true,
-                registration_number: true,
-                name: true,
-                degree: true,
-                student_status: true
-            },
-        })
-        res.status(200).send(SearchAllStudentsByCourse);
-    } catch (error) {
+    console.log(req.body.degree)
+    if(req.body.degree){
+        try {
+            const SearchAllStudentsByCourse = await prisma.student.findMany({
+               where: {
+                   degree: req.body.degree
+               },
+               select: {
+                   index_number: true,
+                   registration_number: true,
+                   name: true,
+                   degree: true,
+                   student_status: true
+               },
+           })
+           res.status(200).send(SearchAllStudentsByCourse);
+       }
+       catch (error) {
+        console.log(error)
         res.status(400).send(error);
+    }
+    }
+    else{
+        try {
+            const SearchAllStudentsByCourse = await prisma.student.findMany({
+               
+               select: {
+                   index_number: true,
+                   registration_number: true,
+                   name: true,
+                   degree: true,
+                   student_status: true
+               },
+           })
+           res.status(200).send(SearchAllStudentsByCourse);
+       }
+       catch (error) {
+        console.log(error)
+        res.status(400).send(error);
+    }
+    }
+  
+
+}
+export const SearchAllStudentsByEntrolled = async (req, res) => {
+    console.log(req.body.student_status)
+    if(req.body.student_status == 1){
+        try {
+            const SearchAllStudentsByEntrolled = await prisma.student.findMany({
+               where: {
+                   student_status: 4
+               },
+               select: {
+                   index_number: true,
+                   registration_number: true,
+                   name: true,
+                   degree: true,
+                   student_status: true
+               },
+           })
+           res.status(200).send(SearchAllStudentsByEntrolled);
+       }
+       catch (error) {
+        console.log(error)
+        res.status(400).send(error);
+    }
+    }
+    else if(req.body.student_status == 2){
+        try {
+            const SearchAllStudentsByEntrolled = await prisma.student.findMany({
+                where: 
+                {
+                    NOT: [
+                        {
+                         student_status: 4
+                        },
+                      ],
+                },
+               select: {
+                   index_number: true,
+                   registration_number: true,
+                   name: true,
+                   degree: true,
+                   student_status: true
+               },
+           })
+           res.status(200).send(SearchAllStudentsByEntrolled);
+       }
+       catch (error) {
+        console.log(error)
+        res.status(400).send(error);
+    }
+    } 
+    else{
+        try {
+            const SearchAllStudentsByEntrolled = await prisma.student.findMany({
+               
+               select: {
+                   index_number: true,
+                   registration_number: true,
+                   name: true,
+                   degree: true,
+                   student_status: true
+               },
+           })
+           res.status(200).send(SearchAllStudentsByEntrolled);
+       }
+       catch (error) {
+        console.log(error)
+        res.status(400).send(error);
+    }
     }
 
 }
+
+export const SortAllStudents = async (req, res) => {
+    console.log(req.body.sort_data)
+    if(req.body.sort_data ==1){
+        try {
+            const SortAllStudents = await prisma.student.findMany({
+               orderBy: {
+                   index_number: ("asc")
+               },
+               select: {
+                   index_number: true,
+                   registration_number: true,
+                   name: true,
+                   degree: true,
+                   student_status: true
+               },
+           })
+           res.status(200).send(SortAllStudents);
+       }
+       catch (error) {
+        console.log(error)
+        res.status(400).send(error);
+    }
+    }
+    else if(req.body.sort_data ==2){
+        try {
+            const SortAllStudents = await prisma.student.findMany({
+               orderBy: {
+                   name: ("asc")
+               },
+               select: {
+                   index_number: true,
+                   registration_number: true,
+                   name: true,
+                   degree: true,
+                   student_status: true
+               },
+           })
+           res.status(200).send(SortAllStudents);
+       }
+       catch (error) {
+        console.log(error)
+        res.status(400).send(error);
+    }
+    }   
+
+}
+
