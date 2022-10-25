@@ -33,6 +33,7 @@ import SMAddStudents from "../StaffMember/sMAddStudents";
 import SMCompanyVisit from "../StaffMember/sMCompanyVisit";
 import CoordinatorProgram from "./CoordinatorProgram";
 import AnnouncementFullCard from "../../component/Cards/AnnouncementFullCard";
+import CompanyPendingProfile from "../Company/companyPendingPage";
 
 function CoordinatorPage()
 {
@@ -82,6 +83,8 @@ return(
                         
                     {/* Components */}
                     <Route exact path="/Coordinator/AnnouncementPage" component={AnnouncementFullCard} />   
+                    <Route exact path="/Coordinator/CompanyPending" component={CompanyPendingProfile} />
+
                 </div>  
             </main>
         </div>
