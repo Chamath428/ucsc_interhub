@@ -4,9 +4,27 @@ import { Link } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import DashboardButton from '../DashboardButton/dashboardButton';
 import InfoBtn from '../../Buttons/outlineBtn';
+import { userLogout } from '../../../pages/authServer';
+import { useHistory } from 'react-router-dom';
 
-class TopNav extends Component {
-    render() { 
+const TopNav =()=> {
+
+  const history =  useHistory();
+
+  const logout=()=>{
+
+    const authRequest={
+      "data":{}
+    }
+
+    userLogout(authRequest).then((response)=>{
+      history.push("/");
+    }).catch((error)=>{
+      console.log("Something went wrong when loging out!")
+    })
+
+  }
+
 
       const headerLink = this.props.headerLink;
 
@@ -103,7 +121,8 @@ class TopNav extends Component {
           </div>
       </li>
 
-        <Nav.Link className='p-0' as={Link} to="/"> <InfoBtn text={'Log Out'}></InfoBtn></Nav.Link>
+        {/* <Nav.Link className='p-0' as={Link} to="/"> <InfoBtn text={'Log Out'}></InfoBtn></Nav.Link> */}
+        <InfoBtn text={'Log Out'}></InfoBtn>
 
            </ul>
      
@@ -113,7 +132,7 @@ class TopNav extends Component {
 
 
         );
-    }
+
 }
  
 export default TopNav;
