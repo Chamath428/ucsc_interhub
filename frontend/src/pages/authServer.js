@@ -8,8 +8,8 @@ export const userLogin = (authRequest) => {
   return axios.post(`${URL}/${authRequest.url}`, authRequest.data);
 };
 
-export const userLogout = (authRequest) => {
-  return axios.post(`${URL}/${authRequest.url}`, authRequest.data);
+export const userLogout = async (authRequest) => {
+  return await axios.post(`${URL}/${authRequest.url}`, authRequest.data);
 };
 
 export const registerCompany = (authRequest) => {
