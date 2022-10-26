@@ -14,12 +14,10 @@ import CompanyRejectButton from '../../component/Modal/modalCompanyPendingReject
 import CompanyApproveButton from '../../component/Modal/modalCompanyPendingApprove';
 
 const CompanyPendingProfile = (props) => {
-    const pendingCompanyDetails = props.location.state;
-    console.log(pendingCompanyDetails);
-    const company = pendingCompanyDetails.name;
-    const regNo = pendingCompanyDetails.registration_number;
-
-
+    // const pendingCompanyDetails = props.location.state;
+    // console.log(pendingCompanyDetails);
+    // const company = pendingCompanyDetails.name;
+    // const regNo = pendingCompanyDetails.registration_number;
 
     return (
 
@@ -32,14 +30,14 @@ const CompanyPendingProfile = (props) => {
                 <Col>
                     <Row>
                         <Col lg={8} >
-                            <h3>{company}</h3>
+                            <h3>SyscoLabs</h3>
                         </Col>
-                        <Col className='ml-1'>
+                        {/* <Col className='ml-1'>
                             <CompanyRejectButton/>
                             <CompanyApproveButton/>
-                        </Col>
+                        </Col> */}
                     </Row>
-                    <Row style={{ width: '100%' }}>
+                    <Row style={{ width: '98%' }}>
                         <p>
                             Technology and the need to eat have shaped human civilization for eons - starting from the humble fire that first taught us how to cook our food millions of years ago, to present-day digital techscapes that enable complex systems to feed billions.
                         </p>
@@ -51,7 +49,7 @@ const CompanyPendingProfile = (props) => {
                 <Row><h3>Details of the Company</h3></Row>
                 <Row>
 
-                    <Col>  <InputField label="Organization/Company Name" value={company} /> </Col>
+                    <Col>  <InputField label="Organization/Company Name" value="SyscoLabs" /> </Col>
                     <Col>   <InputField label="Date of Establishment " value="2022/08/20" /></Col>
 
                 </Row>
