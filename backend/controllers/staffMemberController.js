@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { response } from 'express';
 import {staffMemberSchema,staffMemberScheduleCompanyVisit} from '../models/staffMemberModel.js';
  
 const prisma = new PrismaClient();
@@ -959,46 +960,53 @@ export const SelectedStudentsSearchByJobRole = async (req, res) => {
     console.log(req.body.jobRole)
     if(req.body.jobRole){
         try {
-            const SearchSelectedStudentsByJobRole = await prisma.student.findMany({
-                where: {AND:[{
-                    student_status: 4,
-                },
-                {
-                    internships:{
-                        jobRoles:{
-                            job_role: req.body.jobRole
-                        },
-                    },
-                },],},
-                select: {
-                    index_number: true,
-                    registration_number: true,
-                    name: true,
-                    student_degree:{
-                        select: {
-                            degree:true,
-                      },
-                    },   
-                    internships: {
-                        select: {
-                            company: {
-                                select:{
-                                    name : true,
-                                    },
-                                },
-                            // job_role : true
-                            job_roles: {
-                                select:{
-                                    job_role :true,
-                                },
-                            },
-                        
-                        },
-                        
-                    },
+            const SearchSelectedStudentsByJobRole = await prisma.$queryRaw `SELECT internships.index_number, student.registration_number, student.name AS student_name, student_degree.degree, company.name AS company_name, job_roles.job_role
+            FROM internships
+            LEFT JOIN student ON internships.index_number= student.index_number
+            LEFT JOIN student_degree ON student.degree = student_degree.id
+            LEFT JOIN company ON internships.company_id = company.company_id
+            LEFT JOIN job_roles ON internships.job_role = job_roles.id
+            WHERE student.student_status = 4 AND internships.job_role =${req.body.jobRole}`
+            // const SearchSelectedStudentsByJobRole = await prisma.student.findMany({
+            //     where: {AND:[{
+            //         student_status: 4,
+            //     },
+            //     {
                     
-                },
-           })
+            //         internships:{                       
+            //             job_role: parseInt(req.body.jobRole),
+            //         }, 
+            //     },],},
+            //     select: {
+            //         index_number: true,
+            //         registration_number: true,
+            //         name: true,
+            //         student_degree:{
+            //             select: {
+            //                 degree:true,
+            //           },
+            //         },   
+            //         internships: {
+            //             select: {
+            //                 company: {
+            //                     select:{
+            //                         name : true,
+            //                         },
+            //                     },
+            //                 // job_role : true
+            //                 job_roles: {
+            //                     select:{
+            //                         job_role :true,
+            //                     },
+            //                 },
+                        
+            //             },
+                        
+            //         },
+                    
+                // },
+        //    })
+           console.log(SearchSelectedStudentsByJobRole)
            res.status(200).send(SearchSelectedStudentsByJobRole);
        }
        catch (error) {
