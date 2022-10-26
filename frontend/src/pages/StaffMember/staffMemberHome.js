@@ -15,10 +15,10 @@ function StaffMemberHome() {
   const [value, onChange] = useState(new Date());
 
   return (
-    <div id="Staffhome" className="contain ms-5 mt-5">
+    <div id="Staffhome" className="contain ms-5 mt-0">
       <div className="top">
         <div className="d-flex flex-row justify-content-sm-between">
-          <h3>Dashboard</h3>
+          <h2 className="mb-4">Staff Dashboard</h2>
         </div>
         <div className="SMCard">
           <Row>
@@ -42,7 +42,7 @@ function StaffMemberHome() {
             ></InfoCard>
             <InfoCard
               title={"Progress Reports"}
-              count={"247/285"}
+              count={"247/275"}
               icon={"file-earmark-text-fill"}
               cardWidth={3}
             ></InfoCard>

@@ -165,9 +165,10 @@ const CoordinatorManageStudents = () => {
                     <div className="announcementcontain mx-0 px-0">
 
 
-                        <Nav.Link as={Link} to="/Coordinator/Add-student">
-                            {" "}
-                            <DashboardButton inside={"+ Add Student"}></DashboardButton>
+                        <Nav.Link as={Link} to="/Coordinator/Add-student" className="px-0">
+                            <Button variant="primary">
+                                <i class="bi bi-plus-circle mr-2"></i>Add Student
+                            </Button>
                         </Nav.Link>
                     </div >
                     <Container className="mt-2">
@@ -198,6 +199,7 @@ const CoordinatorManageStudents = () => {
                                 </Form.Group>
 
 
+
                                 <Form.Group as={Col} sm controlId="formGridState">
                                     <Form.Label className="fw-bold" column sm={5}>
                                         Sort By
@@ -212,9 +214,9 @@ const CoordinatorManageStudents = () => {
                                         <option value="3">Company</option>
                                     </Form.Select>
                                 </Form.Group>
-                            </Row>
-                        </Form>
-                    </Container>
+                            </Row >
+                        </Form >
+                    </Container >
 
 
                     <div className="table-wrapper-scroll-y my-custom-scrollbar">
@@ -241,121 +243,121 @@ const CoordinatorManageStudents = () => {
                             </tbody>
                         </Table>
                     </div>
-                
-            </Tab>
-            <Tab
-                className="StudentTab mt-5"
-                eventKey="Selected"
-                title="Selected Students"
-            >
-                <div className="announcementcontain">
-                    <Row>
-                        <Col lg="4">
-                            <Form.Group
-                                className="mb-1"
-                                controlId="formBasicSearchOrganization"
-                            >
-                                <div className="d-flex flex-row align-item-center justify-content-center text-center">
-                                    <InputGroup className="mb-3">
-                                        <InputGroup.Text
-                                            id="basic-addon1"
-                                            className="bg-primary text-white"
-                                        >
-                                            <i class="bi bi-search"></i>
-                                        </InputGroup.Text>
+
+                </Tab >
+                <Tab
+                    className="StudentTab mt-5"
+                    eventKey="Selected"
+                    title="Selected Students"
+                >
+                    <div className="announcementcontain">
+                        <Row>
+                            <Col lg="4">
+                                <Form.Group
+                                    className="mb-1"
+                                    controlId="formBasicSearchOrganization"
+                                >
+                                    <div className="d-flex flex-row align-item-center justify-content-center text-center">
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Text
+                                                id="basic-addon1"
+                                                className="bg-primary text-white"
+                                            >
+                                                <i class="bi bi-search"></i>
+                                            </InputGroup.Text>
 
 
-                                        <Form.Control
-                                            className="searchbox"
-                                            type="searchbox text"
-                                            placeholder="Search Student"
-                                            onChange={(event) => {
-                                                setSearchSelectStudent(event.target.value);
-                                            }}
-                                        />
-                                    </InputGroup >
-                                </div >
-                            </Form.Group >
-                        </Col >
-                    </Row >
-                    <Container className="mt-2 mx-0 px-0">
-                        <Form className="container mx-0 px-0">
-                            <Row>
-                                <Form.Group as={Col} md controlId="formGridState">
-                                    <Form.Label className="fw-bold" column sm={5}>
-                                        Course
-                                    </Form.Label>
-                                    <Form.Select sm={10} defaultValue="Choose...">
-                                        <option>CS and IS</option>
-                                        <option>CS</option>
-                                        <option>IS</option>
-                                    </Form.Select>
-                                </Form.Group>
+                                            <Form.Control
+                                                className="searchbox"
+                                                type="searchbox text"
+                                                placeholder="Search Student"
+                                                onChange={(event) => {
+                                                    setSearchSelectStudent(event.target.value);
+                                                }}
+                                            />
+                                        </InputGroup >
+                                    </div >
+                                </Form.Group >
+                            </Col >
+                        </Row >
+                        <Container className="mt-2 mx-0 px-0">
+                            <Form className="container mx-0 px-0">
+                                <Row>
+                                    <Form.Group as={Col} md controlId="formGridState">
+                                        <Form.Label className="fw-bold" column sm={5}>
+                                            Course
+                                        </Form.Label>
+                                        <Form.Select sm={10} defaultValue="Choose...">
+                                            <option>CS and IS</option>
+                                            <option>CS</option>
+                                            <option>IS</option>
+                                        </Form.Select>
+                                    </Form.Group>
 
-                                <Form.Group as={Col} sm controlId="formGridState">
-                                    <Form.Label className="fw-bold" column sm={5}>
-                                        Company
-                                    </Form.Label>
-                                    <Form.Select sm={10} defaultValue="Choose...">
-                                        <option>All</option>
-                                        <option>...</option>
-                                    </Form.Select>
-                                </Form.Group>
+                                    <Form.Group as={Col} sm controlId="formGridState">
+                                        <Form.Label className="fw-bold" column sm={5}>
+                                            Company
+                                        </Form.Label>
+                                        <Form.Select sm={10} defaultValue="Choose...">
+                                            <option>All</option>
+                                            <option>...</option>
+                                        </Form.Select>
+                                    </Form.Group>
 
-                                <Form.Group as={Col} sm controlId="formGridState">
-                                    <Form.Label className="fw-bold" column sm={5}>
-                                        Sort By
-                                    </Form.Label>
-                                    <Form.Select sm={10} defaultValue="Choose...">
-                                        <option value="1">Index Number</option>
-                                        <option value="2">Name</option>
-                                        <option value="3">Company</option>
-                                        <option value="4">GPA</option>
-                                    </Form.Select>
-                                </Form.Group>
-                            </Row>
-                        </Form>
-                    </Container>
+                                    <Form.Group as={Col} sm controlId="formGridState">
+                                        <Form.Label className="fw-bold" column sm={5}>
+                                            Sort By
+                                        </Form.Label>
+                                        <Form.Select sm={10} defaultValue="Choose...">
+                                            <option value="1">Index Number</option>
+                                            <option value="2">Name</option>
+                                            <option value="3">Company</option>
+                                            <option value="4">GPA</option>
+                                        </Form.Select>
+                                    </Form.Group>
+                                </Row>
+                            </Form>
+                        </Container>
 
-                    <div className="table-wrapper-scroll-y my-custom-scrollbar ">
-                        <Table style={{ maxHeight: "60vh" }}>
-                            <thead className='bg-primary text-white thead-primary'>
-                                <tr>
-                                    <th>Index No</th>
-                                    <th>Name</th>
-                                    <th>Compnay Selected For</th>
-                                    <th>GPA</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {selectedStudentList
-                                    .filter((selectedStudentList) => {
-                                        if (searchSelectStudent == "") {
-                                            return selectedStudentList;
-                                        } else if (
-                                            selectedStudentList.name
-                                                .toLowerCase()
-                                                .includes(searchSelectStudent.toLowerCase())
-                                        ) {
-                                            return selectedStudentList;
-                                        }
-                                    })
-                                    .map((selectedStudentList) => (
-                                        <tr>
-                                            <td>{selectedStudentList.index_number}</td>
-                                            <td>{selectedStudentList.nameStudent}</td>
-                                            <td>{selectedStudentList.nameCompany}</td>
-                                            <td>{selectedStudentList.gpa}</td>
-                                        </tr>
-                                    ))}
-                            </tbody>
-                        </Table>
-                    </div>
-                </div >
-            </Tab >
-        </Tabs >
-    </div >
-  );
+                        <div className="table-wrapper-scroll-y my-custom-scrollbar ">
+                            <Table style={{ maxHeight: "60vh" }}>
+                                <thead className='bg-primary text-white thead-primary'>
+                                    <tr>
+                                        <th>Index No</th>
+                                        <th>Name</th>
+                                        <th>Compnay Selected For</th>
+                                        <th>GPA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {selectedStudentList
+                                        .filter((selectedStudentList) => {
+                                            if (searchSelectStudent == "") {
+                                                return selectedStudentList;
+                                            } else if (
+                                                selectedStudentList.name
+                                                    .toLowerCase()
+                                                    .includes(searchSelectStudent.toLowerCase())
+                                            ) {
+                                                return selectedStudentList;
+                                            }
+                                        })
+                                        .map((selectedStudentList) => (
+                                            <tr>
+                                                <td>{selectedStudentList.index_number}</td>
+                                                <td>{selectedStudentList.nameStudent}</td>
+                                                <td>{selectedStudentList.nameCompany}</td>
+                                                <td>{selectedStudentList.gpa}</td>
+                                            </tr>
+                                        ))}
+                                </tbody>
+                            </Table>
+                        </div>
+                    </div >
+                </Tab >
+            </Tabs >
+        </div >
+    );
 
 };
 
