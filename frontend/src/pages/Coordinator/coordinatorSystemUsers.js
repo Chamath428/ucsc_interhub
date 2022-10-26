@@ -197,7 +197,7 @@ const CoordinatorSystemUsers = () => {
           </div>
         </Tab>
         <Tab className="SystemUsers mt-5" eventKey="AddUsers" title="Create staff member account">
-        <Row>
+          <Row>
             <Col lg="8">
               <Alert
                 variant={variant}
@@ -272,12 +272,13 @@ const CoordinatorSystemUsers = () => {
                 </Form.Group>
 
                 <div className="d-flex flex-row-reverse mb-3">
-                <Button variant='primary'><i class="bi bi-plus-circle mr-2"></i>Create Account</Button>
+                  <Button variant='primary'><i class="bi bi-plus-circle mr-2"></i>Create Account</Button>
                 </div>
               </Form>
             </Col>
 
-                <Col lg="3" className="align-items-right ml-5">              <Row className="mb-5 mt-5">
+            <Col lg="3" className="align-items-right ml-5">
+              <Row className="mb-5 mt-5">
                 <InfoCard
                   title={"No of Active Staff Memners"}
                   count={"27"}
