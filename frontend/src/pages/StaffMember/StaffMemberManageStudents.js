@@ -288,7 +288,10 @@ const StaffMemberManageStudents = () => {
                                  {allStudentsList.map((allStudentsList)=>(
                                     <tr >
                                         
-                                        <td>{allStudentsList.index_number}</td>
+                                        <Link to={{
+                            pathname: "/Staff/StudentDetails",
+                            state: allStudentsList,
+                          }}><td>{allStudentsList.index_number}</td></Link>
                                         <td>{allStudentsList.registration_number}</td>
                                         <td>{allStudentsList.name}</td>
                                         <td>{allStudentsList.student_degree.degree}</td>
@@ -397,7 +400,10 @@ const StaffMemberManageStudents = () => {
                                     console.log(selectedStudentsList),
                                     <tr >
                                         
-                                        <td>{selectedStudentsList.index_number}</td>
+                                        <Link to={{
+                            pathname: "/Staff/StudentDetails",
+                            state: selectedStudentsList,
+                          }}><td>{selectedStudentsList.index_number}</td></Link>
                                         <td>{selectedStudentsList.registration_number}</td>
                                         <td>{selectedStudentsList.name}</td>
                                         <td>{selectedStudentsList.student_degree?.degree}</td>
