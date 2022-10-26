@@ -26,7 +26,7 @@ export default class App extends React.Component {
                     animationDuration={600}
                     data={myData}
                     label={(data) => data.dataEntry.title }
-                    labelPosition={70}
+                    labelPosition={60}
                     labelStyle={{
                         fontSize: "6px",
                         fontColor: "FFFFFA",
