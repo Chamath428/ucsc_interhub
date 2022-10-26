@@ -1,58 +1,59 @@
-import React, { Component,useEffect, useState  } from 'react';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/esm/Container';
-import { Row,Col,Button } from 'react-bootstrap';
-import TableView from '../../component/Dashboard/Table/tableView';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-import Table from 'react-bootstrap/Table';
-import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
-import Nav from 'react-bootstrap/Nav';
+import React, { Component, useEffect, useState } from "react";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/esm/Container";
+import { Row, Col, Button } from "react-bootstrap";
+import TableView from "../../component/Dashboard/Table/tableView";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+import Table from "react-bootstrap/Table";
+import DashboardButton from "../../component/Dashboard/DashboardButton/dashboardButton";
+import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import { callServer } from '../authServer';
 import SelectSearch from 'react-select-search';
 import 'react-select-search/style.css'
 import '../../styles/sMStudent.css';    
 
+
 const StaffMemberManageStudents = () => {
-    
-    const [show, setShow] = useState(false);
-    const [alertPara, setAlertPara] = useState("User added Successfully!");
-    const [variant, setVariant] = useState("success");
-    const [allStudentsList, setAllStudentsList] = useState([]);
-    const [selectedStudentsList, setSelectedStudentsList] = useState([]);
-    const[selectedCourse,setselectedCourse] = useState("0");
-    const[selectedStatus,setselectedStatus] = useState("0");
-    const[sortedAllStudentList,setSortedAllStudents] = useState("0");
-    const[sortedSelectedStudentList,setSortedSelectedStudents] = useState("0");
-    const[searchByCourseSelectedList,setselectedCourseSelectedStudents] = useState("0");
-    const [searchSelectedStudent,setSearchSelectedStudent] = useState("");
-    const [category,setCategory] = useState(0);
-    const [jobRoles,setJobRoles]=useState([]);
-    
-    useEffect(() => {
+  const [show, setShow] = useState(false);
+  const [alertPara, setAlertPara] = useState("User added Successfully!");
+  const [variant, setVariant] = useState("success");
+  const [allStudentsList, setAllStudentsList] = useState([]);
+  const [selectedStudentsList, setSelectedStudentsList] = useState([]);
+  const [selectedCourse, setselectedCourse] = useState("0");
+  const [selectedStatus, setselectedStatus] = useState("0");
+  const [sortedAllStudentList, setSortedAllStudents] = useState("0");
+  const [sortedSelectedStudentList, setSortedSelectedStudents] = useState("0");
+  const [searchByCourseSelectedList, setselectedCourseSelectedStudents] =
+    useState("0");
+  const [searchSelectedStudent, setSearchSelectedStudent] = useState("");
+  const [category, setCategory] = useState(0);
+  const [jobRoles, setJobRoles] = useState([]);
 
-        const authRequestAllStudents = {
-            "method": "post",
-            "url": "staffMember/AllStudents",
-            "data": {}
+  useEffect(() => {
+    const authRequestAllStudents = {
+      method: "post",
+      url: "staffMember/AllStudents",
+      data: {},
+    };
+
+    callServer(authRequestAllStudents)
+      .then((response) => {
+        setAllStudentsList(response.data);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          setAlertPara("Something went wrong!");
+          setVariant("danger");
+          setShow(true);
         }
-
-        callServer(authRequestAllStudents).then((response) => {
-
-            setAllStudentsList(response.data);
-        }).catch(function (error) {
-            if (error.response) {
-                setAlertPara("Something went wrong!");
-                setVariant("danger");
-                setShow(true);
-            }
-        })
-        const authRequestSelectedStudents = {
-            "method": "post",
-            "url": "staffMember/SelectedStudents",
-            "data": {}
-        }
+      });
+    const authRequestSelectedStudents = {
+      method: "post",
+      url: "staffMember/SelectedStudents",
+      data: {},
+    };
 
         callServer(authRequestSelectedStudents).then((response) => {
 
@@ -76,65 +77,72 @@ const StaffMemberManageStudents = () => {
                 degree:parseInt(courseNumber)
             }
         }
+      });
+  }, []);
 
-        callServer(authRequestAllStudentsFilterByCourse).then((response) => {
-            setAllStudentsList(response.data);
-        }).catch(function (error) {
-            if (error.response) {
-                setAlertPara("Something went wrong!");
-                setVariant("danger");
-                setShow(true);
-            }
-        })
-    }
-    const searchAllStudentsByStatus = (statusNumber)=>{
-        setselectedStatus(statusNumber)
-        const authRequestAllStudentsFilterByStatus = {
-            "method": "post",
-            "url": "staffMember/SearchStudentsSearchByEntrolled",
-            "data": {
-                student_status:parseInt(statusNumber)
-            }
+  const searchAllStudentsByCourse = (courseNumber) => {
+    setselectedCourse(courseNumber);
+    const authRequestAllStudentsFilterByCourse = {
+      method: "post",
+      url: "staffMember/AllStudentsSearchByCourse",
+      data: {
+        degree: parseInt(courseNumber),
+      },
+    };
+
+    callServer(authRequestAllStudentsFilterByCourse)
+      .then((response) => {
+        setAllStudentsList(response.data);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          setAlertPara("Something went wrong!");
+          setVariant("danger");
+          setShow(true);
         }
+      });
+  };
+  const searchAllStudentsByStatus = (statusNumber) => {
+    setselectedStatus(statusNumber);
+    const authRequestAllStudentsFilterByStatus = {
+      method: "post",
+      url: "staffMember/SearchStudentsSearchByEntrolled",
+      data: {
+        student_status: parseInt(statusNumber),
+      },
+    };
 
-        callServer(authRequestAllStudentsFilterByStatus).then((response) => {
-            setAllStudentsList(response.data);
-        }).catch(function (error) {
-            if (error.response) {
-                setAlertPara("Something went wrong!");
-                setVariant("danger");
-                setShow(true);
-            }
-        })
-    }
-    const sortAllStudents = (sortData)=>{
-        setSortedAllStudents(sortData)
-        const authRequestSortAllStudentsFilter = {
-            "method": "post",
-            "url": "staffMember/SortAllStudents",
-            "data": {
-                sort_data:parseInt(sortData)
-            }
+    callServer(authRequestAllStudentsFilterByStatus)
+      .then((response) => {
+        setAllStudentsList(response.data);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          setAlertPara("Something went wrong!");
+          setVariant("danger");
+          setShow(true);
         }
+      });
+  };
+  const sortAllStudents = (sortData) => {
+    setSortedAllStudents(sortData);
+    const authRequestSortAllStudentsFilter = {
+      method: "post",
+      url: "staffMember/SortAllStudents",
+      data: {
+        sort_data: parseInt(sortData),
+      },
+    };
 
-        callServer(authRequestSortAllStudentsFilter).then((response) => {
-            setAllStudentsList(response.data);
-        }).catch(function (error) {
-            if (error.response) {
-                setAlertPara("Something went wrong!");
-                setVariant("danger");
-                setShow(true);
-            }
-        })
-    }
-    const sortSelectedStudents = (sortData)=>{
-        setSortedSelectedStudents(sortData)
-        const authRequestSortSelectedStudentsFilter = {
-            "method": "post",
-            "url": "staffMember/SortSelectedStudents",
-            "data": {
-                sort_data:parseInt(sortData)
-            }
+    callServer(authRequestSortAllStudentsFilter)
+      .then((response) => {
+        setAllStudentsList(response.data);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          setAlertPara("Something went wrong!");
+          setVariant("danger");
+          setShow(true);
         }
 
         callServer(authRequestSortSelectedStudentsFilter).then((response) => {
@@ -200,7 +208,20 @@ const StaffMemberManageStudents = () => {
             "data": {
                 degree:parseInt(courseNumber)
             }
+   
         }
+      });
+  };
+  const searchSelectedStudentByCourse = (courseNumber) => {
+    setselectedCourseSelectedStudents(courseNumber);
+    const authRequestSelectedStudentsFilterByCourse = {
+      method: "post",
+      url: "staffMember/SelectedStudentsSearchByCourse",
+      data: {
+        degree: parseInt(courseNumber),
+      },
+    };
+
 
         callServer(authRequestSelectedStudentsFilterByCourse).then((response) => {
             setSelectedStudentsList(response.data);
@@ -225,55 +246,92 @@ const StaffMemberManageStudents = () => {
                 <div className='contain1'>
                         <div className='d-flex flex-row justify-content-sm-between '>
 
-                            <h3>Manage Students</h3> 
-                        </div>
-                        <div className='addstudent d-flex flex-row-reverse mb-1'>
-                            {/* <DashboardButton inside={'+ Add Student'}></DashboardButton> */}
+  return (
+    <div className="containstudent ms-5" style={{ width: "90%" }}>
+        <h2 className="mb-4">Manage Students</h2>
+        <Tabs defaultActiveKey="StudentList" className="ManageStudentTab">
+        <Tab
+          className="StudentTab mt-5"
+          eventKey="StudentList"
+          title="Student List"
+        >
+          <div className="contain1">
+            <div className="d-flex flex-row justify-content-sm-between ">
+            </div>
+            <Row>
+                <Col lg="4" className="mx-0 px-0">
+                    <Nav.Link as={Link} to="/Staff/Add-student">
+                    {" "}
+                    <Button variant='primary'><i class="bi bi-plus-circle mr-2"></i>Add Student</Button>
+                    </Nav.Link>
+                </Col>
+            </Row>              {/* <DashboardButton inside={'+ Add Student'}></DashboardButton> */}
 
-                            <Nav.Link as={Link} to="/Staff/Add-student"> <DashboardButton inside={'+ Add Student'}></DashboardButton></Nav.Link>
+             
+            <Container className="mt-2 mx-0 px-0">
+              <Form className="container mx-0 px-0">
+                <Row className="mb-1">
+                  <Form.Group as={Col} md controlId="formGridState">
+                    <Form.Label className="fw-bold" column sm={5}>
+                      Course
+                    </Form.Label>
+                    <Form.Select
+                      sm={10}
+                      defaultValue="Choose..."
+                      onChange={(event) => {
+                        searchAllStudentsByCourse(event.target.value);
+                      }}
+                    >
+                      <option value="0">All CS and IS</option>
+                      <option value="1">CS - 3rd Year</option>
+                      <option value="2">IS - 3rd Year</option>
+                      <option value="3">CS - 4th Year</option>
+                      <option value="4">IS - 4th Year</option>
+                    </Form.Select>
+                  </Form.Group>
 
-                        </div>
-                        <Container className="mt-2">
-                        <Form className='container'>
-                                        <Row className="mb-1">
-                                            <Form.Group as={Col} md controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Course</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose..." onChange={(event) => { searchAllStudentsByCourse(event.target.value) }}>
-                                                    <option value="0">All CS and IS</option>
-                                                    <option value="1">CS - 3rd Year</option>
-                                                    <option value="2">IS - 3rd Year</option>
-                                                    <option value="3">CS - 4th Year</option>
-                                                    <option value="4">IS - 4th Year</option>
-                                                </Form.Select>
-                                            </Form.Group>
-                                            
-                                            <Form.Group as={Col} sm controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5} >Enrolled</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose..." onChange={(event) => { searchAllStudentsByStatus(event.target.value) }}>
-                                                    <option value="0">All</option>
-                                                    <option value="1">Selected</option>
-                                                    <option value="2">Not Selected</option>
-                                                </Form.Select>
-                                            </Form.Group>   
+                  <Form.Group as={Col} sm controlId="formGridState">
+                    <Form.Label className="fw-bold" column sm={5}>
+                      Enrolled
+                    </Form.Label>
+                    <Form.Select
+                      sm={10}
+                      defaultValue="Choose..."
+                      onChange={(event) => {
+                        searchAllStudentsByStatus(event.target.value);
+                      }}
+                    >
+                      <option value="0">All</option>
+                      <option value="1">Selected</option>
+                      <option value="2">Not Selected</option>
+                    </Form.Select>
+                  </Form.Group>
 
-                                            <Form.Group as={Col} sm controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Sort By</Form.Label>
-                                                <Form.Select sm={10} defaultValue="Choose..." onChange={(event) => { sortAllStudents(event.target.value) }}>
-                                                <option value="1">Index Number</option>
-                                                <option value="2">Name</option>
-                                                
-                                                </Form.Select>
-                                            </Form.Group>
-                                        </Row>   
-                                    </Form>    
-                    
-                        </Container>
+                  <Form.Group as={Col} sm controlId="formGridState">
+                    <Form.Label className="fw-bold" column sm={5}>
+                      Sort By
+                    </Form.Label>
+                    <Form.Select
+                      sm={10}
+                      defaultValue="Choose..."
+                      onChange={(event) => {
+                        sortAllStudents(event.target.value);
+                      }}
+                    >
+                      <option value="1">Index Number</option>
+                      <option value="2">Name</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Row>
+              </Form>
+            </Container>
 
-                        <div className="table-wrapper-scroll-y my-custom-scrollbar">
-                                    {/* <TableView headers = {['Index No','Name','CV','Interviews','Company']}
+            <div className="table-wrapper-scroll-y my-custom-scrollbar">
+              {/* <TableView headers = {['Index No','Name','CV','Interviews','Company']}
                                     list={[['190020432','Shanika Jayathunga','True','None','LSEG'],['190020532','Jayani Kulasekara','True','called','Avonet Technologies'],['190030423','Prathiksha Jayakodi','False','None','WSO2'],['190020455','Sameera Kumara','True','None','Dialog Axiata'],['190027632','Ayodya Ranasinghe','True','None','99X'],['190020444','Binura Jathilake','True','called','LSEG']]}>
                                         
                                     </TableView> */}
+
                            <Table style={{ maxHeight: '60vh' }}>
                                 <thead>
                                     <tr>
@@ -297,15 +355,42 @@ const StaffMemberManageStudents = () => {
                                     </tr>
                                     
 
-                                 ))}
-                                    
-                                </tbody>
-                            
-                            
-                            </Table>         
-                        
-                        </div>
+                  <Form.Group as={Col} sm controlId="formGridState">
+                    <Form.Label className="fw-bold" column sm={5}>
+                      Company
+                    </Form.Label>
+                    <Form.Select
+                      aria-label="Default select example"
+                      required
+                      onChange={(event) => {
+                        setCategory(event.target.value);
+                      }}
+                    >
+                      <option value="all">Select Job Category</option>
+                      {jobRoles.map((jobRole) => (
+                        <option value={jobRole.id}>{jobRole.job_role}</option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
 
+                  <Form.Group as={Col} sm controlId="formGridState">
+                    <Form.Label className="fw-bold" column sm={5}>
+                      Sort By
+                    </Form.Label>
+                    <Form.Select
+                      sm={10}
+                      defaultValue="Choose..."
+                      onChange={(event) => {
+                        sortSelectedStudents(event.target.value);
+                      }}
+                    >
+                      <option value="1">Index Number</option>
+                      <option value="2">Name</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Row>
+              </Form>
+            </Container>
 
                     </div>
 
@@ -374,6 +459,7 @@ const StaffMemberManageStudents = () => {
                                     list={[['190020432','Shanika Jayathunga','LSEG','3.3232'],['190020532','Jayani Kulasekara','Avonet Technologies','3.0231'],['190030423','Prathiksha Jayakodi','WSO2','3.8503'],['190020455','Sameera Kumara','Dialog Axiata','2.3456'],['190027632','Ayodya Ranasinghe','99X','2.9998'],['190020444','Binura Jathilake','LSEG','3.5674']]}>
                                         
                                     </TableView> */}
+
                             <Table style={{ maxHeight: '60vh' }}>
                                 <thead>
                                     <tr>
@@ -431,7 +517,8 @@ const StaffMemberManageStudents = () => {
             </div>   
         );
 
-// 
-}
+
+  //
+};
 
 export default StaffMemberManageStudents;

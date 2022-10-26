@@ -557,16 +557,130 @@ export const getChartData = async (req, res) => {
         });
 
         const totalSelectedIsStudent = SelectedIsStudent1._count.index_number + SelectedIsStudent2._count.index_number;
-        const noOfAllStudent= totalIsStudent+ totalCsStudent;
-        const noOfSelectedStudent= totalSelectedCsStudent+ totalSelectedIsStudent;
+        const noOfAllStudent = totalIsStudent + totalCsStudent;
+        const noOfSelectedStudent = totalSelectedCsStudent + totalSelectedIsStudent;
 
 
-        res.status(200).send([{ totalCsStu: totalCsStudent,totalSelectedCsStu:totalSelectedCsStudent,  totalIsStu: totalIsStudent,totalSelectedIsStu:totalSelectedIsStudent,totalStudent: noOfAllStudent,totalSelectedStu:noOfSelectedStudent}]);
+        res.status(200).send([{ totalCsStu: totalCsStudent, totalSelectedCsStu: totalSelectedCsStudent, totalIsStu: totalIsStudent, totalSelectedIsStu: totalSelectedIsStudent, totalStudent: noOfAllStudent, totalSelectedStu: noOfSelectedStudent }]);
         // console.log({SelectedCsStudent:SelectedCsStudent._count.index_number})
         // console.log([{ totalCsStu: totalCsStudent,totalSelectedCsStu:totalSelectedCsStudent,  totalIsStu: totalIsStudent,totalSelectedIsStu:totalSelectedIsStudent,totalStudent: noOfAllStudent,totalSelectedStu:noOfSelectedStudent}])
     } catch (error) {
 
         res.status(500).send(error);
+    }
+
+};
+
+
+export const AllStudentsSearchByCourse = async (req, res) => {
+    console.log(req.body.degree)
+    if (req.body.degree) {
+
+        try {
+
+
+            const SearchAllStudentsByCourse = await prisma.interview.findMany({
+
+                includes: {
+                    student: { where: { index_number: 354335 } },
+                    select: {
+
+
+                        student: {
+
+                            select: {
+                                index_number: true,
+                                name: true,
+                                cv: true,
+                            },
+                        },
+
+                        company: {
+                            select: {
+                                name: true,
+                            },
+                        },
+                        interview_status_types: {
+                            select: {
+                                status: true,
+                            },
+                        },
+                    },
+                }
+
+
+            })
+            res.status(200).send(SearchAllStudentsByCourse);
+            console.log(SearchAllStudentsByCourse)
+        }
+        catch (error) {
+            console.log(error)
+            res.status(400).send(error);
+        }
+    }
+    else {
+        console.log("else2")
+
+        try {
+            const SearchAllStudentsByCourse = await prisma.student.findMany({
+
+                select: {
+                    student: {
+                        select: {
+                            index_number: true,
+                            name: true,
+                            cv: true,
+                        },
+                    },
+
+                    company: {
+                        select: {
+                            name: true,
+                        },
+                    },
+                    interview_status_types: {
+                        select: {
+                            status: true,
+                        },
+                    },
+                },
+            })
+            res.status(200).send(SearchAllStudentsByCourse);
+        }
+        catch (error) {
+            console.log("else3")
+
+            // console.log(error)
+            res.status(400).send(error);
+        }
+    }
+
+
+}
+
+
+export const companyWiseNoStudent = async (req, res) => {
+
+
+    try {
+
+        let CompanyCountList =       
+         await prisma.$queryRaw `SELECT company.name,COUNT(index_number)as "count"
+         FROM internships 
+         LEFT JOIN company ON internships.company_id=company.company_id
+          GROUP BY internships.company_id `;
+        //   CompanyCountList.toJSON = function() {       
+        //     return this.toString()
+        //   }
+        CompanyCountList=JSON.stringify(
+            CompanyCountList,
+            (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
+          )
+        res.status(200).send(CompanyCountList);
+        // console.log(CompanyCountList)
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error);
     }
 
 };
