@@ -14,8 +14,8 @@ export default class App extends React.Component {
 
 
     let data = [
-      { title: "Selected\n"+valRegistered, value: valRegistered, color: "#4a6cf7" },
-      { title: "Not Selected\n"+valNotRegistered, value: valNotRegistered, color: "#c2e8ff" },
+      { title: "Selected\n"+valRegistered, value: valRegistered, color: "#355CCC" },
+      { title: "Not Selected\n"+valNotRegistered, value: valNotRegistered, color: "#B9D9EB" },
 
     ];
 
@@ -25,22 +25,21 @@ export default class App extends React.Component {
         <h5>{header}</h5>
         <PieChart
           animate
-          animationDuration={600}
+          animationDuration={1000}
           animationEasing="ease-in"
           center={[50, 50]}
           data={data}
-          lineWidth={15}
+          lineWidth={35}
           lengthAngle={360}
           paddingAngle={0}
-          radius={50}
-          rounded
-          startAngle={0}
+          radius={30}
+          startAngle={270}
           viewBoxSize={[100, 100]}
           labelStyle={{
             fontSize: "6px",
-            fontColor: "FFFFFA",
+            fontColor: "fff",
             fontWeight: "500",
-            fontFamily: "monospace"
+            fontFamily: "Segoe UI"
           }}
           // label={(data) => data.dataEntry.title}
           // labelPosition={0}
@@ -48,7 +47,7 @@ export default class App extends React.Component {
 
         label={({ dataEntry }) => {
           if (dataEntry.title === "Selected\n"+valRegistered) {
-            return "Selected\n" + dataEntry.value;
+            return dataEntry.value+" / "+valNotRegistered;
           }
         }}
         labelPosition={0}

@@ -42,8 +42,11 @@ const StudentHome = () => {
 
 
 return (
-
-        <Stack
+  <div className="contain mt-5 ms-5" style={{ width: "90%" }}>
+  <div className="container">
+    <h2 className="mb-4">Student Home</h2>
+    
+            <Stack
           direction="horizontal"
           gap={4}
           className="d-flex justify-content-between mt-4"
@@ -67,36 +70,7 @@ return (
             icon="megaphone-fill"
           />
         </Stack>
-      </div>
-      <Container className="mt-5">
-        <h3>Applied Vacancies</h3>
-
-        <Stack
-          direction="horizontal"
-          gap={4}
-          className="d-flex justify-content-between mt-4"
-        >
-          <LinkCard
-            Title="Synopsys"
-            subTitle="Software Engineer"
-            Link="Visit Page"
-          />
-          <LinkCard
-            Title="Enactor"
-            subTitle="Software Engineer"
-            Link="Visit Page"
-          />
-          <LinkCard
-            Title="99x"
-            subTitle="Software Engineer"
-            Link="Visit Page"
-          />
-          <LinkCard
-            Title="LSEG"
-            subTitle="Software Engineer"
-            Link="Visit Page"
-          />
-        </Stack>
+      
 
         <div className="mt-5">
           <h3>Announcements</h3>
@@ -108,7 +82,9 @@ return (
             location="/Student/AnnouncementPage"
           ></AnnouncementCard>
 
-  </div><Container className='mt-5'>
+        </div>
+        
+        <Container className='mt-5'>
 
       <h3>Applied Vacancies</h3>
 
@@ -163,7 +139,8 @@ return (
           ></AnnouncementCard>
         </div>
       </Container>
-    </div>
+  </div>
+  </div>
   );
 };
 

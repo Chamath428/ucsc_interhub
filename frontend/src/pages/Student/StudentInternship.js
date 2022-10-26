@@ -9,7 +9,7 @@ import 'react-calendar/dist/Calendar.css';
 import Card from 'react-bootstrap/Card';
 import React, { useState } from 'react';
 import SubmitModalReport from '../../component/Modal/modalSubmitReport';
-
+import Row from 'react-bootstrap/Row';
 const StudentInternship = () => {  
 
   const [value, onChange] = useState(new Date());
@@ -18,16 +18,19 @@ return (
   <div className="contain mt-5 ms-5" style={{ width: "90%" }}>
   <div className="container">
 
-          <h3>My Internship</h3>
+  <h2 className="mb-4">My Internship</h2>
 
-          <Stack direction="horizontal" gap={2} className='d-flex justify-content-between mt-4'>
+        <Container className="mt-2 mx-0 px-0">
+              <div className="container mx-0 px-0 mb-4 mt-3 mr-4">
+                <Row className="mb-1 mr-3">
 
-            <InfoCard title='Employer' count='Synopsys' icon='building' cardWidth='3'></InfoCard>
-            <InfoCard title='Duration' count='7 Weeks' icon='person-fill' cardWidth='3'></InfoCard>
-            <InfoCard title='Supervisor' count='M. Bodhinayake' icon='calendar-check-fill' cardWidth='3'></InfoCard>
+          <InfoCard title='Employer' count='Synopsys' icon='building' cardWidth='4'></InfoCard>
+          <InfoCard title='Duration' count='7 Weeks' icon='person-fill' cardWidth='4'></InfoCard>
+          <InfoCard title='Supervisor' count='M. Bodhinayake' icon='calendar-check-fill' cardWidth='4'></InfoCard>
 
-          </Stack>
-
+        </Row>
+        </div>
+        </Container>
 
         {/* applied cards */}
         <Container className='mt-5'>
@@ -64,7 +67,7 @@ return (
       </div>
 
       <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mt-5 pt-3">
-        <Card body>
+        <Card body className='mt-4'>
           <Calendar onChange={onChange} value={value} className="w-100 border-0"/> 
         </Card> 
 

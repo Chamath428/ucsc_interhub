@@ -9,11 +9,12 @@ export default class App extends React.Component {
         const header = this.props.header;
         const numbers = this.props.Numbers;
         const companyName = this.props.companyName;
+        const viewBoxSize= [100, 100];
 
 // console.log(companyName)
         const myData = [
-            { title: companyName[0], value: numbers[0], color: "#4a6cf7" },
-            { title: companyName[1], value: numbers[1], color: "#0871b1" },
+            { title: companyName[0], value: numbers[0], color: "#355CCC" },
+            { title: companyName[1], value: numbers[1], color: "#B9D9EB" },
             
         ];
         
@@ -23,16 +24,16 @@ export default class App extends React.Component {
 
                 <PieChart
                     animate
-                    animationDuration={600}
+                    radius={30}
+                    animationDuration={1000}
                     data={myData}
                     label={(data) => data.dataEntry.title }
                     labelPosition={60}
                     labelStyle={{
-                        fontSize: "6px",
+                        fontSize: "5px",
                         fontColor: "FFFFFA",
                         fontWeight: "500",
-                        fontFamily: "monospace"
-                        
+                        fontFamily: "Segoe UI"
                     }}
                    
                     // label={(data) => data.dataEntry.title}
