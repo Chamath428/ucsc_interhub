@@ -36,3 +36,8 @@
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     }
+
+    .activecls:active{
+        background-color: #cecfcf;
+        color: blueviolet;
+    }
