@@ -142,7 +142,7 @@ callServer(authCSVRequest).then((response) => { showAlert(response) }).catch(fun
                 </Form.Group>
               </Row>
               <div className='d-flex flex-row-reverse mb-3'>
-                <Button type='submit'>+ Create Student</Button>
+                <Button type='submit'><i class="bi bi-plus-circle mr-2"></i> Create Student</Button>
               </div>
 
 
@@ -173,7 +173,7 @@ callServer(authCSVRequest).then((response) => { showAlert(response) }).catch(fun
                       }} />
               </Form.Group>
                 <div className='d-flex flex-row-reverse mb-3'>
-                <Button type='button' onClick={uploadCSV} > Upload CSV File </Button>
+                <Button type='button' onClick={uploadCSV} ><i class="bi bi-cloud-arrow-up mr-2"></i> Upload CSV File </Button>
               </div>
             </Form>
           </div>
