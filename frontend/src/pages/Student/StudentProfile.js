@@ -67,7 +67,7 @@ class StudentProfile extends Component {
                                             <Route render={({ history}) => (
                                             <Button variant="primary" className='float-right mr-2'  onClick={() => { history.push('/Student/Edit-Profile') }}>Edit Profile</Button>
                                             )}/>
-                                            <Button variant="outline-danger" className='float-right mr-2'   onClick={() => window.location = 'https://ucsc.cmb.ac.lk/'}>Deactivate</Button>
+                                            {/* <Button variant="outline-danger" className='float-right mr-2'   onClick={() => window.location = 'https://ucsc.cmb.ac.lk/'}>Deactivate</Button> */}
                                         </Col>
                                     </Row>
                                     <Row className='m-2'>
@@ -83,7 +83,8 @@ class StudentProfile extends Component {
                                         <Col className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 alignTop">
 
                                             <Card body className='flex'>
-                                                <YoutubeEmbed embedId="rokGy0huYEA" />
+                                                {/* <YoutubeEmbed embedId="rokGy0huYEA" /> */}
+                                                <video controls="true" width = '200' src='http://localhost:5000/5f1c4a77-515c-485a-b644-038c47d5775d-2022-07-30-12-49-07.mkv'></video>
                                             </Card>
 
                                         </Col>                                        

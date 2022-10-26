@@ -41,7 +41,34 @@ const StudentEditProfile = () =>{
     const [editProfileView, setEditProfileView] = useState([]);
     const history = useHistory();
 
+    const [jobRoles,setJobRoles]=useState([]);
+    const [category1,setCategory1] = useState(0);
+    const [category2,setCategory2] = useState(0);
+    const [category3,setCategory3] = useState(0);
+    const [category4,setCategory4] = useState(0);
+    const [category5,setCategory5] = useState(0);
+
+
     useEffect(() => {
+
+        const data={};
+        const authRequest = {
+          "method": "post",
+          "url": "organization/getJobRoles",
+          "data": data
+        }
+    
+        callServer(authRequest).then((response)=>{
+          console.log(response.data);
+          setJobRoles(response.data);
+        }).catch((error)=>{
+          if (error.response) {
+            setAlertPara("Something went wrong when getting the job roles!");
+            setVariant("danger");
+            setShow(true);
+          }
+        })
+
         const authAciveRequest = {
           "method": "post",
           "url": "student/editProfileView/"+ parseInt(jwt_decode(sessionStorage.getItem("accessToken")).id),
@@ -58,7 +85,12 @@ const StudentEditProfile = () =>{
             setFacebook(response.data.facebook);
             setLinkedin(response.data.linkedin);
             setEditProfileView(response.data.profile_picture);
-            setProfileVideo(response.data.intro_video)
+            setProfileVideo(response.data.intro_video);
+            setCategory1(response.data.category1);
+            setCategory2(response.data.category2);
+            setCategory3(response.data.category3);
+            setCategory4(response.data.category4);
+            setCategory5(response.data.category5);
         
     
         }).catch(function (error) {
@@ -87,6 +119,11 @@ const StudentEditProfile = () =>{
         data.append("linkedin",  linkedin)
         data.append("profilePic",  profilePic)
         data.append("profileVideo",  profileVideo)
+        data.append("category1", category1)
+        data.append("category2", category2)
+        data.append("category3", category3)
+        data.append("category4", category4)
+        data.append("category5", category5)
      
 
 
@@ -265,12 +302,12 @@ const StudentEditProfile = () =>{
 
                                 <div className="form-group">
                                     <label for="sTate">Job Role 1 (Priority No. 1)</label>
-                                    <Form.Select aria-label="Default select example">
-                                            <option>Choose a job role</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                    </Form.Select>
+                                    <Form.Select aria-label="Default select example" required onChange={(event) => { setCategory1(event.target.value) }}>
+                                        <option>Select Job Category</option>
+                                        {jobRoles.map((jobRole)=>(
+                                        <option value={jobRole.id}>{jobRole.job_role}</option>
+                                    ))}
+                                    </Form.Select>      
                                 </div>
                             </div>
 
@@ -278,12 +315,12 @@ const StudentEditProfile = () =>{
 
                                 <div className="form-group">
                                     <label for="sTate">Job Role 2(Priority No. 2)</label>
-                                    <Form.Select aria-label="Default select example">
-                                            <option>Choose a job role</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                    </Form.Select>
+                                    <Form.Select aria-label="Default select example" required onChange={(event) => { setCategory2(event.target.value) }}>
+                                        <option>Select Job Category</option>
+                                        {jobRoles.map((jobRole)=>(
+                                        <option value={jobRole.id}>{jobRole.job_role}</option>
+                                    ))}
+                                    </Form.Select> 
                                 </div>
                             </div>
 
@@ -291,12 +328,12 @@ const StudentEditProfile = () =>{
 
                                 <div className="form-group">
                                     <label for="sTate">Job Role 3 (Priority No. 3)</label>
-                                    <Form.Select aria-label="Default select example">
-                                            <option>Choose a job role</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                    </Form.Select>
+                                    <Form.Select aria-label="Default select example" required onChange={(event) => { setCategory3(event.target.value) }}>
+                                        <option>Select Job Category</option>
+                                        {jobRoles.map((jobRole)=>(
+                                        <option value={jobRole.id}>{jobRole.job_role}</option>
+                                ))}
+                                </Form.Select> 
                                 </div>
                             </div>
 
@@ -304,12 +341,12 @@ const StudentEditProfile = () =>{
 
                                 <div className="form-group">
                                     <label for="sTate">Job Role 4 (Priority No. 4)</label>
-                                    <Form.Select aria-label="Default select example">
-                                            <option>Choose a job role</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                    </Form.Select>
+                                    <Form.Select aria-label="Default select example" required onChange={(event) => { setCategory4(event.target.value) }}>
+                                        <option>Select Job Category</option>
+                                        {jobRoles.map((jobRole)=>(
+                                        <option value={jobRole.id}>{jobRole.job_role}</option>
+                                ))}
+                             </Form.Select> 
                                 </div>
                             </div>
 
@@ -317,12 +354,12 @@ const StudentEditProfile = () =>{
 
                                 <div className="form-group">
                                     <label for="sTate">Job Role 5 (Priority No. 5)</label>
-                                    <Form.Select aria-label="Default select example">
-                                            <option>Choose a job role</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                    </Form.Select>
+                                    <Form.Select aria-label="Default select example" required onChange={(event) => { setCategory5(event.target.value) }}>
+                                        <option>Select Job Category</option>
+                                        {jobRoles.map((jobRole)=>(
+                                        <option value={jobRole.id}>{jobRole.job_role}</option>
+                                ))}
+                                     </Form.Select> 
                                 </div>
                             </div>
 
