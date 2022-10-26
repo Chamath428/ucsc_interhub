@@ -56,11 +56,20 @@ function ApplyforRoleButton({adData}) {
         setShow(true);
       }
     })
+
+    const showAlert = (response) => {
+      setAlertPara("Profile Update Successfully!");
+      setVariant("success");
+      setShow(true);
+    }
   }
 
 
   return (
     <>
+                {/* <Alert variant={variant} show={show} onClose={() => setShow(true)} dismissible>
+              <Alert.Heading>{alertPara}</Alert.Heading>
+            </Alert> */}
 
       <Button variant="primary" active className=''  onClick={handleShow}>
         Apply for role
@@ -98,6 +107,8 @@ function ApplyforRoleButton({adData}) {
                 <Button variant="primary" type="button" onClick={uploadCV}>
                   Apply for the role
                 </Button>
+              
+
                 {/* </Link> */}
 
               </Col>

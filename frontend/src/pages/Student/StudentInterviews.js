@@ -112,6 +112,7 @@ function StudentInterviews() {
   };
 
   return (
+
     <div className="contain mt-5 ms-5" style={{ width: "90%" }}>
       <div className="container">
         <h2 className="mb-5">Interviews</h2>
@@ -136,9 +137,6 @@ function StudentInterviews() {
                       interviews.map((interview) => (
                         <AccordionItem
                           Header={interview.name}
-                          body="A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. "
-                          card1heading="Event Time"
-                          card1context={interview.start_time}
                           card2heading="Event Date"
                           card2context={interview.date}
                           card3heading="Event Location"
@@ -220,6 +218,7 @@ function StudentInterviews() {
             <br />
           </Tab>
         </Tabs>
+
       </div>
     </div>
   );

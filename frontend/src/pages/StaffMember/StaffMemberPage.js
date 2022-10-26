@@ -30,6 +30,7 @@ import ActiveCompany from "../Coordinator/CoordinatorCompanyProfileDetails"
 import InactiveCompany from "../Coordinator/CoordinatorCompanyProfileDetails"
 
 import PendingCompany from "../Company/companyPendingPage";
+import StudentDetails from "../Student/StudentProfileview";
 
 
 function StaffPage(){
@@ -85,6 +86,8 @@ return(
                     <Route exact path="/Staff/InactiveCompany" component={InactiveCompany}/>
                     
                     <Route exact path="/Staff/PendingCompany" component={PendingCompany}/>
+
+                    <Route exact path="/Staff/StudentDetails" component={StudentDetails}/>
                     
                     {/* <Route path="*" component={NotFound} /> */}
 

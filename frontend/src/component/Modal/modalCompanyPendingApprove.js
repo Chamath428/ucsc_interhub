@@ -1,17 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Form } from 'react-bootstrap';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { callServer } from "../../pages/authServer";
 
-function CompanyApproveButton() {
+const CompanyApproveButton =(props)=> {
+  const[approveCompanyRequests,setApproveCompanyRequests] = useState("0");
+  const [alertPara, setAlertPara] = useState("User added Successfully!");
+  const [variant, setVariant] = useState("success");
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  console.log(props.id);
 
+  const ApproveRequest = (companyId)=>{
+    setApproveCompanyRequests(companyId)
+    const authRequest = {
+        "method": "post",
+        "url": "staffMember/AcceptCompanyRequest",
+        "data": {
+            id:parseInt(companyId)
+        }
+    }
+
+    callServer(authRequest).then((response) => {
+    }).catch(function (error) {
+        if (error.response) {
+            setAlertPara("Something went wrong!");
+            setVariant("danger");
+            setShow(true);
+        }
+    })
+}
   return (
     <>
 
@@ -49,7 +74,7 @@ function CompanyApproveButton() {
                 <Button variant="secondary" onClick={handleClose} >
                     Back
                 </Button>{' '}
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" >
                     Notify Approval
                 </Button>
               </Col>

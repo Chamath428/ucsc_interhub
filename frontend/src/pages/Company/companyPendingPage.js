@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -14,11 +14,35 @@ import CompanyRejectButton from '../../component/Modal/modalCompanyPendingReject
 import CompanyApproveButton from '../../component/Modal/modalCompanyPendingApprove';
 
 const CompanyPendingProfile = (props) => {
-    // const pendingCompanyDetails = props.location.state;
-    // console.log(pendingCompanyDetails);
-    // const company = pendingCompanyDetails.name;
-    // const regNo = pendingCompanyDetails.registration_number;
+    const CompanyDetails = props.location.state;
+    console.log(CompanyDetails);
+    const id = CompanyDetails.company_id;
+    const company = CompanyDetails.name;
+    const regNo = CompanyDetails.registration_number;
+    const date_of_establishment= CompanyDetails.date_of_establishment;
+    const description = CompanyDetails.description;
+    const website = CompanyDetails.website;
+    const address = CompanyDetails.address;
+    const fax_no = CompanyDetails.fax_no;
+    const no_of_employees = CompanyDetails.no_of_employees;
+    const no_of_tech_leads = CompanyDetails.no_of_tech_leads;
+    const no_of_project_managers = CompanyDetails.no_of_project_managers;
 
+    // useEffect(()=>{
+    //     console.log("inside effec");
+    //     const authRequest = {
+    //       "method":"post",
+    //       "url":"staffMember/PendingCompanyDetails",
+    //       "data":data
+    //     }
+    
+    //     callServer(authRequest).then((response)=>{
+    //       console.log(response.data);
+    //     }).catch((error)=>{
+    //       console.log(error);
+    //     })
+    
+    //   },[])
     return (
 
         <Container className='contain mt-0 ms-5' style={{ width: '90%' }}>
@@ -30,7 +54,7 @@ const CompanyPendingProfile = (props) => {
                 <Col>
                     <Row>
                         <Col lg={8} >
-                            <h3>SyscoLabs</h3>
+                            <h3>{company}</h3>
                         </Col>
                         {/* <Col className='ml-1'>
                             <CompanyRejectButton/>
@@ -39,7 +63,7 @@ const CompanyPendingProfile = (props) => {
                     </Row>
                     <Row style={{ width: '98%' }}>
                         <p>
-                            Technology and the need to eat have shaped human civilization for eons - starting from the humble fire that first taught us how to cook our food millions of years ago, to present-day digital techscapes that enable complex systems to feed billions.
+                            {description}
                         </p>
                     </Row>
 
@@ -49,29 +73,29 @@ const CompanyPendingProfile = (props) => {
                 <Row><h3>Details of the Company</h3></Row>
                 <Row>
 
-                    <Col>  <InputField label="Organization/Company Name" value="SyscoLabs" /> </Col>
-                    <Col>   <InputField label="Date of Establishment " value="2022/08/20" /></Col>
+                    <Col>  <InputField label="Organization/Company Name" value={company} /> </Col>
+                    <Col>   <InputField label="Date of Establishment " value={date_of_establishment} /></Col>
 
                 </Row>
                 <Row>
-                    <Col><InputField label="Company Registration Number" value="R11" /></Col>
-                    <Col><InputField label="Current Address" value=" 65 Walukarama Rd, Colombo 00300" /></Col>
+                    <Col><InputField label="Company Registration Number" value={regNo} /></Col>
+                    <Col><InputField label="Current Address" value={address}/></Col>
                 </Row>
                 <Row>
                     <Col><InputField label="Telephone Number" value="0114 721 194" /></Col>
-                    <Col><InputField label="Fax Number" value="+47 982 42 529." /></Col>
+                    <Col><InputField label="Fax Number" value={fax_no} /></Col>
                 </Row>
                 <Row>
                     <Col><InputField label="Partners (If any)" value="No" /></Col>
                     <Col><InputField label="Clients (Optional)" value="No" /></Col>
                 </Row>
                 <Row>
-                    <Col><InputField label="Company Website Link" value="https://99x.io/" /></Col>
+                    <Col><InputField label="Company Website Link" value={website} /></Col>
 
                 </Row>
                 <Row>
                     
-                    <TextArea  label="Company Description" value="Sysco LABS is the innovation arm of Sysco Corporation (NYSE:SYY), the world's largest foodservice company. Sysco is the global leader in marketing, selling and distributing food products as well as equipment and supplies to the hospitality industry." />
+                    <TextArea  label="Company Description" value={description} />
                 </Row>
 
             </Row>
@@ -97,12 +121,12 @@ const CompanyPendingProfile = (props) => {
 
                 <Row><h3>Employee Hierarchy </h3></Row>
                 <Row>
-                    <Col><InputField label="Number of Employees" value="1405" /></Col>
-                    <Col><InputField label="Number of Project Managers" value="20" /></Col>
+                    <Col><InputField label="Number of Employees" value={no_of_employees}/></Col>
+                    <Col><InputField label="Number of Project Managers" value={no_of_project_managers} /></Col>
 
                 </Row>
                 <Row>
-                    <Col><InputField label="Number of Tech Leads" value="50" /></Col>
+                    <Col><InputField label="Number of Tech Leads" value={no_of_tech_leads} /></Col>
 
                 </Row>
 
@@ -144,7 +168,7 @@ const CompanyPendingProfile = (props) => {
                         </Col>
                         <Col className='ml-5'>
                             <CompanyRejectButton/>
-                            <CompanyApproveButton/>
+                            <CompanyApproveButton id={id}/>
 
                         </Col>
                     </Row>

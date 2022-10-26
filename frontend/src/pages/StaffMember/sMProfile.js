@@ -1,4 +1,4 @@
-import React, { Component,useEffect, useState} from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -6,38 +6,57 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
 import Stack from 'react-bootstrap/Stack';
 import CardListItem from '../../component/Cards/CardList';
-import { Route,useHistory  } from 'react-router-dom'
+import { Route, useHistory } from 'react-router-dom'
 import ProfilePic from '../../component/Media/ProfilePicture/profilePic';
 import BodyCard from '../../component/Cards/bodyCard';
 import PrimaryBtn from '../../component/Buttons/primaryBtn';
 import InfoBtn from '../../component/Buttons/outlineBtn';
 import YoutubeEmbed from '../../component/YoutubeEmbed/youtubeEmbed';
 import { callServer } from "../authServer";
-
-
+import jwtDecode from "jwt-decode";
 
 
 const StaffProfile = (props) => {
-    
+
     let history = useHistory();
     const [show, setShow] = useState(false);
     const [alertPara, setAlertPara] = useState("User added Successfully!");
     const [variant, setVariant] = useState("success");
+    const [profileData,setProfileData] = useState([]);
+    // const [Urole,setRole] = useState([]);
 
-    const profileDetails = props.location.state;
-    // console.log(profileDetails);
-    const name = profileDetails.name;
-    const role = profileDetails.role;
-    const email = profileDetails.email;
 
+    const staffId = props.location.state;
+ 
     
+    useEffect(()=>{
+        
+        const data ={
+            userId:(staffId?staffId:jwtDecode(sessionStorage.getItem("accessToken")).id)
+        };
+        const authRequest = {
+            method: "post",
+            url: "staffMember/getProfileData",
+            data: data,
+          };
+
+          callServer(authRequest).then((response) => {
+            setProfileData(response.data);
+            // setRole(profileData.pdc_role);
+            // console.log(Urole.role)
+            },).catch((error)=>{
+                console.log(error);
+            })
+
+        },[]);
+
 
     const deactiveAccounts = (event) => {
         event.preventDefault();
 
         const data = {
-           email:email,
-          
+            // email: email,
+
         };
 
         const authRequest = {
@@ -56,7 +75,7 @@ const StaffProfile = (props) => {
                     setShow(true);
                 }
             });
-            history.goBack();
+        history.goBack();
     };
     const showAlert = (response) => {
         setAlertPara("Deactivate Successfully!");
@@ -78,7 +97,7 @@ const StaffProfile = (props) => {
                     <Card body>
                         <ProfilePic url="https://i.pinimg.com/736x/0a/53/c3/0a53c3bbe2f56a1ddac34ea04a26be98.jpg" />
                         <div className="d-grid gap-3">
-                            <Button onClick={() => window.location = 'mailto:yourmail@domain.com'} variant="outline-primary" className="btn btn-default w-100">{email}</Button>
+                            <Button onClick={() => window.location = 'mailto:yourmail@domain.com'} variant="outline-primary" className="btn btn-default w-100">{profileData.email_address}</Button>
                             <Button onClick={() => window.location = 'mailto:yourmail@domain.com'} variant="outline-primary" className="btn btn-default w-100">Visit PDC website</Button>
                         </div>
                         <div>
@@ -91,15 +110,15 @@ const StaffProfile = (props) => {
                     <Card body>
                         <Row>
                             <Col lg='7'>
-                                <h1>{name}</h1>
-                                <h5>{role}</h5>
+                                <h1>{profileData.first_name+" "+profileData.last_name}</h1>
+                                <h5>{profileData.role==1?"Coordinator":"Staff Member"}</h5>
                             </Col>
                             <Col lg='5' >
                                 {/* Use composition and render a Route for Edit Profile button */}
 
-                                <Button variant="outline-danger" className='float-right mr-2'  onClick={deactiveAccounts} >Deactivate</Button>
+                                <Button variant="outline-danger" className='float-right mr-2' onClick={deactiveAccounts} >Deactivate</Button>
 
-        
+
                             </Col>
                         </Row>
                         {/* <Row className='mt-2 ml-2 mr-2'>

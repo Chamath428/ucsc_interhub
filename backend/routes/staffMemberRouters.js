@@ -2,7 +2,11 @@ import express from 'express';
 import { createStaffMember,scheduleCompanyVisit,ActiveRegisteredCompany,
     InactiveRegisteredCompany,PendingCompany,CompanyVisit,ActiveCompany, FilterCompanyVisitByType,FilterCompanyVisitByStatus,SortCompanyVisit,
     AllStudents,SelectedStudents,SearchAllStudentsByCourse,SearchAllStudentsByEntrolled,SortAllStudents,SelectedStudentsSearchByCourse,
-    SortSelectedStudents,getJobRoles, confirmStatus,SelectedStudentsSearchByJobRole,
+
+
+    SortSelectedStudents,getJobRoles, completeVisit,SelectedStudentsSearchByJobRole,getProfileData,AcceptCompanyRequest,
+
+
    
 } from '../controllers/staffMemberController.js';
 
@@ -15,6 +19,7 @@ staffMemberRouters.post('/ActiveCompany',ActiveCompany);
 staffMemberRouters.post('/ActiveRegisteredCompany',ActiveRegisteredCompany);
 staffMemberRouters.post('/InactiveRegisteredCompany',InactiveRegisteredCompany);
 staffMemberRouters.post('/PendingCompany',PendingCompany);
+staffMemberRouters.post('/AcceptCompanyRequest',AcceptCompanyRequest);
 staffMemberRouters.post('/CompanyVisit',CompanyVisit);
 staffMemberRouters.post('/AllStudents',AllStudents);
 staffMemberRouters.post('/SelectedStudents',SelectedStudents);
@@ -28,7 +33,11 @@ staffMemberRouters.post('/SelectedStudentsSearchByJobRole',SelectedStudentsSearc
 staffMemberRouters.post('/CompanyVisitByType',FilterCompanyVisitByType);
 staffMemberRouters.post('/CompanyVisitByStatus',FilterCompanyVisitByStatus);
 staffMemberRouters.post('/SortCompanyVisit',SortCompanyVisit);
-staffMemberRouters.post('/confirmStatus',confirmStatus);
+staffMemberRouters.post('/getProfileData',getProfileData);
+
+staffMemberRouters.post('/completeVisit',completeVisit);
+
+
 
 
 
