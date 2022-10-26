@@ -270,3 +270,42 @@ export const createInterview = async(req,res)=>{
         res.status(400).json({message:"Something went wrong when creating the interview"});
     }
 }
+
+export const getApplicantList = async (req,res)=>{
+    try{
+        const applicantList = await prisma.$queryRaw `SELECT student_applied_internships.advertisement_id,student_applied_internships.index_number,student_applied_internships.is_wish_list,student.name,advertisement.title
+        FROM student_applied_internships
+        LEFT JOIN
+        student
+        ON student_applied_internships.index_number=student.index_number
+        LEFT JOIN advertisement
+        ON student_applied_internships.advertisement_id=advertisement.advertisement_id
+        WHERE student_applied_internships.company_id=${req.body.companyId}`;
+
+        const wishlistedStudent = await prisma.$queryRaw `SELECT student_applied_internships.advertisement_id,student_applied_internships.index_number,student_applied_internships.is_wish_list,student.name,advertisement.title
+        FROM student_applied_internships
+        LEFT JOIN
+        student
+        ON student_applied_internships.index_number=student.index_number
+        LEFT JOIN advertisement
+        ON student_applied_internships.advertisement_id=advertisement.advertisement_id
+        WHERE student_applied_internships.company_id=${req.body.companyId} AND student_applied_internships.is_wish_list=1`;
+
+        console.log([applicantList,wishlistedStudent]);
+        
+        res.status(200).send([applicantList,wishlistedStudent]);
+    }catch(error){
+        res.status(200).send(error);
+    }
+}
+
+export const addToWishList = async (req,res)=>{
+    console.log(req.body.advertisement_id)
+    try{
+        const applicant = await prisma.$queryRaw `UPDATE student_applied_internships SET is_wish_list=${req.body.is_wish_list} WHERE index_number=${req.body.index_number} AND advertisement_id=${req.body.advertisement_id}`;
+        res.status(200).send(applicant);
+    }catch(error){
+        console.log(error)
+        res.status(400).send(error);
+    }
+}
