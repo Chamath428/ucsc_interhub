@@ -12,9 +12,21 @@ import DashboardButton from '../../component/Dashboard/DashboardButton/dashboard
 
 
 
-class CoordinatorCompanyProfileDetails extends Component {
-
-    render() {
+const CoordinatorCompanyProfileDetails = (props) => {
+    const CompanyDetails = props.location.state;
+    console.log(CompanyDetails);
+    const company = CompanyDetails.name;
+    const regNo = CompanyDetails.registration_number;
+    const date_of_establishment= CompanyDetails.date_of_establishment;
+    const description = CompanyDetails.description;
+    const website = CompanyDetails.website;
+    const address = CompanyDetails.address;
+    const fax_no = CompanyDetails.fax_no;
+    const no_of_employees = CompanyDetails.no_of_employees;
+    const no_of_tech_leads = CompanyDetails.no_of_tech_leads;
+    const no_of_project_managers = CompanyDetails.no_of_project_managers;
+    
+ 
         return (
 
             <Container className='contain mt-5 ms-5' style={{ width: '90%' }}>
@@ -23,11 +35,10 @@ class CoordinatorCompanyProfileDetails extends Component {
                         <Logo></Logo>
                     </Col>
                     <Col>
-                        <Row><h3>SyscoLABS</h3></Row>
+                        <Row><h3>{company}</h3></Row>
                         <Row style={{ width: '100%' }}>
                             <p>
-                                Technology and the need to eat have shaped human civilization for eons - starting from the humble fire that first taught us how to cook our food millions of years ago, to present-day digital techscapes that enable complex systems to feed billions.
-
+                                {description}
 
                             </p>
                         </Row>
@@ -38,29 +49,29 @@ class CoordinatorCompanyProfileDetails extends Component {
                     <Row><h3>Details of the Company</h3></Row>
                     <Row>
 
-                        <Col>  <InputField label="Organization/Company Name" value="99X" /> </Col>
-                        <Col>   <InputField label="Date of Establishment " value="2022/08/20" /></Col>
+                        <Col>  <InputField label="Organization/Company Name" value={company} /> </Col>
+                        <Col>   <InputField label="Date of Establishment " value={date_of_establishment} /></Col>
 
                     </Row>
                     <Row>
-                        <Col><InputField label="Company Registration Number" value="R11" /></Col>
-                        <Col><InputField label="Current Address" value=" 65 Walukarama Rd, Colombo 00300" /></Col>
+                        <Col><InputField label="Company Registration Number" value={regNo} /></Col>
+                        <Col><InputField label="Current Address" value={address} /></Col>
                     </Row>
                     <Row>
                         <Col><InputField label="Telephone Number" value="0114 721 194" /></Col>
-                        <Col><InputField label="Fax Number" value="+47 982 42 529." /></Col>
+                        <Col><InputField label="Fax Number" value={fax_no} /></Col>
                     </Row>
                     <Row>
                         <Col><InputField label="Partners (If any)" value="No" /></Col>
                         <Col><InputField label="Clients (Optional)" value="No" /></Col>
                     </Row>
                     <Row>
-                        <Col><InputField label="Company Website Link" value="https://99x.io/" /></Col>
+                        <Col><InputField label="Company Website Link" value={fax_no} /></Col>
 
                     </Row>
                     <Row>
                        
-                        <TextArea  label="Company Description" value="Sysco LABS is the innovation arm of Sysco Corporation (NYSE:SYY), the world's largest foodservice company. Sysco is the global leader in marketing, selling and distributing food products as well as equipment and supplies to the hospitality industry." />
+                        <TextArea  label="Company Description" value={description} />
                     </Row>
 
                 </Row>
@@ -86,12 +97,12 @@ class CoordinatorCompanyProfileDetails extends Component {
 
                     <Row><h3>Employee Hierarchy </h3></Row>
                     <Row>
-                        <Col><InputField label="Number of Employees" value="1405" /></Col>
-                        <Col><InputField label="Number of Project Managers" value="20" /></Col>
+                        <Col><InputField label="Number of Employees" value={no_of_employees} /></Col>
+                        <Col><InputField label="Number of Project Managers" value={no_of_project_managers} /></Col>
 
                     </Row>
                     <Row>
-                        <Col><InputField label="Number of Tech Leads" value="50" /></Col>
+                        <Col><InputField label="Number of Tech Leads" value={no_of_tech_leads} /></Col>
 
                     </Row>
 
@@ -144,6 +155,5 @@ class CoordinatorCompanyProfileDetails extends Component {
         );
     }
 
-}
 
 export default CoordinatorCompanyProfileDetails;
