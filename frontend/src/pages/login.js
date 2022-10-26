@@ -6,6 +6,7 @@ import DashboardButton from '../component/Dashboard/DashboardButton/dashboardBut
 import Alert from 'react-bootstrap/Alert';
 import { useHistory } from 'react-router-dom';
 import NavBarOnlyLogo from '../component/homepage/NavBarOnlyLogo/navBarOnlyLogo';
+import LoginNavBar from '../component/homepage/HomeNavBar/loginNavBar';
 import { userLogin } from './authServer';
 import Setauthtokens from './authServer';
 
@@ -50,23 +51,24 @@ const Login = ()=> {
 
         return (
             <div>
-            <Container className="login-container shadow-lg mb-5 bg-body rounded form-container">
-                <NavBarOnlyLogo></NavBarOnlyLogo>
+            <Container className="login-container shadow-lg bg-body form-container px-0">
+            <LoginNavBar />
                 <Row className="login-row d-flex justify-content-around align-items-center" >
-                    <Col lg="6" className="left-column d-flex flex-column justify-content-center align-items-center text-center">
+                    <Col lg="6" className="left-column d-flex flex-column justify-content-center align-items-center text-center pl-0 ml-0" >
 
-                            <img src={HandShake} />
-                            <div className=''>
-                                <h2>Thousands Of Job Opportunities Waiting For You!</h2>
+                            <img className='m-0 align-items-left' src={HandShake} />
+                            <div className='py-2 px-2 mb-2'>
+                                <h2>Hundreds Of Job Opportunities Waiting For You!</h2>
                             </div>
                     </Col>
 
-                    <Col lg="6" className="right-column d-flex justify-content-center align-items-center">
-                    <div className="form-div  p-3 d-flex flex-column gap-4 text-center">
+                    <Col lg="5" className="right-column d-flex justify-content-center align-items-center mr-4 px-0">
+                    <div className="form-div  p-3 mr-2 d-flex flex-column gap-4 text-center shadow-none  ">
                         <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
                             <Alert.Heading>{alertPara}</Alert.Heading>
                         </Alert>
-                        <h2>Hello Again!</h2>
+
+                        <h2 className='mt-0'>Login</h2>
                             <Form onSubmit={handleSubmit}>
                                 <div className=' d-flex flex-column gap-3'>
                                     <Form.Group className="mb-3">
@@ -77,22 +79,23 @@ const Login = ()=> {
                                         <Form.Control type="password" placeholder="Password" onChange={(event)=>{setPassword(event.target.value)}}/>
                                     </Form.Group>
                                     
-                                    <div className='d-flex justify-content-between'>
-                                        <div>
+                                    <div className='d-flex justify-content-between ml-4'>
+                                        <div className='align-items-center'>
                                             <Form.Check 
                                                 type="switch"
                                                 id="custom-switch"
                                                 label="Remember Me"
                                             />
                                         </div>
-                                        <div className="text-md-right">
-                                                <a href="#">Forgot Password</a>
-                                        </div>
+
                                     </div>
 
                                     <div className="d-grid">   
                                     <DashboardButton inside={'Login'}></DashboardButton>
                                     </div>
+                                    <div className="text-md-center">
+                                                <a href="#">Forgot Password</a>
+                                        </div>
                                 </div>
                             </Form>
                     </div>
