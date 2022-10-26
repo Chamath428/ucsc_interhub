@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@200;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Segoe UI:wght@200;400;500;600;700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 
 .App {
   font-size: 16px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   text-decoration: none;
   /* background-color: #f1f5f9; */
   min-height: 100vh;
