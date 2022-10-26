@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import {studentSchema} from '../models/studentModel.js';
 import { studenteditProfileSchema } from '../models/studentModel.js';
+import { studentappliedInternshipsSchema } from '../models/studentModel.js';
 import bcrypt from 'bcrypt';
 import fs from "fs";
 import readline from "readline";
@@ -263,6 +264,7 @@ export const declineInterview = async(req,res)=>{
         try{
             
             const advertiesments = await prisma.$queryRaw `SELECT advertisement.advertisement_id,
+                                                                  company.company_id,
                                                                   company.name,
                                                                   job_roles.job_role,
                                                                   advertisement_status.type,
@@ -289,5 +291,49 @@ export const declineInterview = async(req,res)=>{
         }catch(error){
             res.status(400).json({message:"Something went wrong when fetchingn the data!"})
         }
+    }
+
+
+
+    export const uploadCV = async(req,res)=>{
+        console.log("Comming")
+        console.log(req.params);
+        // const {error,value} = studentappliedInternshipsSchema.validate(req.body);
+        console.log(req.body)
+        // if(!error){
+           
+            // const salt = await bcrypt.genSalt(10);
+            // const hashPassword = await bcrypt.hash(req.body.password, salt);   
+            try{
+
+                var indexno=parseInt(req.params['0'])
+                // var addId=parseInt(req.params['1'])
+                
+                console.log("try")
+                const student = await prisma.student_applied_internships.create({
+                    // where: {
+                    //     index_number: 19000219,
+                    //   },
+                    data:{
+
+                        index_number: indexno,
+                        advertisement_id: req.body.addId,
+                        cv : req.file.filename,
+                        is_wish_list : 0,
+                        company_id : req.body.comId
+
+                    }
+                })
+                console.log("eee");
+
+                const message = {"Message":"Student Created Successfull"}
+                res.status(200).send(student);
+            }catch(error){
+                console.log(error);
+                res.status(400).send(error);
+            }
+            
+    //    } 
+            // res.status(500).send(error);
     }
   
