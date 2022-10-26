@@ -130,7 +130,7 @@ const CoordinatorManageStudents = () => {
           eventKey="StudentList"
           title="Student List"
         >
-          <div className="announcementcontain mx-0 px-0">
+        <div className="announcementcontain mx-0 px-0">
             <Row>
               <Col lg="4" >
               <Nav.Link as={Link} to="/Coordinator/Add-student" className="px-0">
