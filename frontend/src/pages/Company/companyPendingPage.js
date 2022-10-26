@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -14,11 +14,26 @@ import CompanyRejectButton from '../../component/Modal/modalCompanyPendingReject
 import CompanyApproveButton from '../../component/Modal/modalCompanyPendingApprove';
 
 const CompanyPendingProfile = (props) => {
-    // const pendingCompanyDetails = props.location.state;
-    // console.log(pendingCompanyDetails);
-    // const company = pendingCompanyDetails.name;
-    // const regNo = pendingCompanyDetails.registration_number;
+    const pendingCompanyDetails = props.location.state;
+    console.log(pendingCompanyDetails);
+    const company = pendingCompanyDetails.name;
+    const regNo = pendingCompanyDetails.registration_number;
 
+    // useEffect(()=>{
+    //     console.log("inside effec");
+    //     const authRequest = {
+    //       "method":"post",
+    //       "url":"staffMember/PendingCompanyDetails",
+    //       "data":data
+    //     }
+    
+    //     callServer(authRequest).then((response)=>{
+    //       console.log(response.data);
+    //     }).catch((error)=>{
+    //       console.log(error);
+    //     })
+    
+    //   },[])
     return (
 
         <Container className='contain mt-0 ms-5' style={{ width: '90%' }}>
@@ -30,7 +45,7 @@ const CompanyPendingProfile = (props) => {
                 <Col>
                     <Row>
                         <Col lg={8} >
-                            <h3>SyscoLabs</h3>
+                            <h3>{company}</h3>
                         </Col>
                         {/* <Col className='ml-1'>
                             <CompanyRejectButton/>
@@ -49,7 +64,7 @@ const CompanyPendingProfile = (props) => {
                 <Row><h3>Details of the Company</h3></Row>
                 <Row>
 
-                    <Col>  <InputField label="Organization/Company Name" value="SyscoLabs" /> </Col>
+                    <Col>  <InputField label="Organization/Company Name" value={company} /> </Col>
                     <Col>   <InputField label="Date of Establishment " value="2022/08/20" /></Col>
 
                 </Row>

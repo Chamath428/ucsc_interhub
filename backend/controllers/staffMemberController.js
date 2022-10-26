@@ -39,7 +39,21 @@ export const ActiveRegisteredCompany = async (req, res) => {
             },
 
             select: {
+                company_id:true,
                 name: true,
+                date_of_establishment:true,
+                description:true,
+                website:true,
+                address:true,
+                fax_no:true,
+                company_status_types:{
+                    select:{
+                        type:true,
+                    },
+                },
+                no_of_employees:true,
+                no_of_tech_leads:true,
+                no_of_project_managers:true,
                 company_contacts: {
                     select: {
                         telephone_no: true,
@@ -136,6 +150,7 @@ export const CompanyVisit = async (req, res) => {
         const CompanyVisit = await prisma.company_visit.findMany({
 
             select: {
+                company_visit_id:true,
                 company: {
                     select: {
                         name: true,
@@ -1056,17 +1071,22 @@ export const SelectedStudentsSearchByJobRole = async (req, res) => {
 
 
 }
-export const confirmStatus = async (req, res) => {
-    try {
-        const confirmStatus = await prisma.company_visit.update({
-            where: {
-                company_visit_id: req.body.id
-            },
-            data: {
-                status: 2
-            }
 
-        });
+export const completeVisit = async (req,res)=>{
+    console.log(req.body.company_visit_id)
+    try{
+        // const confirmStatus = await prisma.company_visit.update({
+        //     where:{
+        //         company_visit_id:req.body.company_visit_id,
+        //     },
+        //     data:{
+        //         status: 2
+        //     }
+            
+        // });
+
+        const confirmStatus = await prisma.$queryRaw`UPDATE company_visit SET status=2 WHERE company_visit_id=${req.body.company_visit_id}`
+
         res.status(200).send(confirmStatus);
     } catch (error) {
         console.log(error)

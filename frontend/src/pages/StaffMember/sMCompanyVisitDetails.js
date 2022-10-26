@@ -10,6 +10,7 @@ import Stack from 'react-bootstrap/Stack';
 import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
 import {callServer} from '../authServer';
 import Alert from 'react-bootstrap/Alert';
+// import {Link, Routes, Route, useNavigate} from 'react-router-dom';
 
 import '../../styles/sMCompanyVisit.css';
 import Card from 'react-bootstrap/Card';
@@ -17,6 +18,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import ModalConfirmation from '../../component/Modal/modalConfirmation';
 
 const SMCompanyVisitDetails = (props) => {
+    // const navigate = useNavigate();
     const visitDetails = props.location.state;
     console.log(visitDetails);
     const id = visitDetails.company_visit_id;
@@ -27,32 +29,39 @@ const SMCompanyVisitDetails = (props) => {
     const type = visitDetails.company_visit_types.type;
     const status = visitDetails.company_visit_status_types.status;
 
-    const confirmStatus =()=>{
+    const completeVisit =()=>{
 
         const data={
             company_visit_id : id
         }
         const authRequest = {
             "method": "post",
-            "url": "staffMember/confirmStatus",
+            "url": "staffMember/completeVisit",
             "data": data
-        }
-        // callServer(authRequest).then(
-        //     (response)=>{
-        //     interviews_copy[interview_index].status="Accepted";
-        //     setInterviews(interviews_copy);
-        //     }).catch(
-        //     (error)=>{console.log(error)}
-        //     )
-        }
+        };
+        callServer(authRequest).then((response)=>{
+                
+        }).catch((error)=>{
+            console.log(error)
+        })
+    }
   return (
     <Container>
     <div className='my-4 '>
         <div>
-            <h5>Visit to</h5>
-            <h2>{company}</h2><br />
-            <h5>Organized By</h5>
-            <h2>{organizer}</h2><br/>
+            <Row className='mt-5'>
+            <Col md="auto">
+                <h5>Visit to</h5>
+                <h2>{company}</h2><br />
+                <h5>Organized By</h5>
+                <h2>{organizer}</h2><br/>
+            </Col> 
+            {/* <Col className='row-flex reverse'>
+                <Button variant="primary"  onClick={() => navigate(-1)}><i class="bi bi-caret-left-fill"></i>Back</Button>
+            </Col> */}
+            </Row>
+         {/*    */}
+
 
             <Row className='row justify-content-between'>
             <Col  md="3" >
@@ -95,7 +104,7 @@ const SMCompanyVisitDetails = (props) => {
                     <ModalConfirmation ButtonText="Cancel Event" ButtonColour="outline-danger" Title="Confirm Delete" Body="This action cancel this event and notify the cancelled status to Company and UCSC - PDC Staff Members. Do you wish to continue?" SecondaryButton="Back" PrimaryButton="Cancel Event" PrimaryButtonColour="danger"/>
                     </div>
                     <div className="">
-                    <Button onClick={confirmStatus} disabled= {status=="Visited"? true:false} variant="primary" ><i class="bi bi-check-circle mr-2"></i>Completed</Button>
+                    <Button onClick={completeVisit} disabled= {status=="Visited"? true:false} variant="primary" ><i class="bi bi-check-circle mr-2"></i>Completed</Button>
                     </div>
                 </Stack>
                 </div>
