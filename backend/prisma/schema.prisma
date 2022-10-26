@@ -283,11 +283,10 @@ model interview_status_types {
 }
 
 model job_roles {
-  id                         Int                          @id @default(autoincrement())
-  job_role                   String                       @db.VarChar(100)
-  advertisement              advertisement[]
-  internships                internships[]
-  student_preferred_job_role student_preferred_job_role[]
+  id            Int             @id @default(autoincrement())
+  job_role      String          @db.VarChar(100)
+  advertisement advertisement[]
+  internships   internships[]
 }
 
 model notification {
@@ -395,7 +394,7 @@ model student {
   student_applied_internships     student_applied_internships[]
   student_availability            student_availability?
   student_notification            student_notification[]
-  student_preferred_job_role      student_preferred_job_role[]
+  student_preferred_job_role      student_preferred_job_role?
   student_work_experience         student_work_experience[]
 
   @@index([degree], map: "degree")
@@ -452,13 +451,13 @@ model student_notification {
 }
 
 model student_preferred_job_role {
-  index_number Int
-  job_role     Int
-  student      student   @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_preferred_job_role_ibfk_1")
-  job_roles    job_roles @relation(fields: [job_role], references: [id], onDelete: Cascade, map: "student_preferred_job_role_ibfk_2")
-
-  @@id([index_number, job_role])
-  @@index([job_role], map: "job_role")
+  index_number Int     @id
+  prefer_no1   Int
+  prefer_no2   Int
+  prefer_no3   Int
+  prefer_no4   Int
+  prefer_no5   Int
+  student      student @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_preferred_job_role_ibfk_1")
 }
 
 model student_reports {

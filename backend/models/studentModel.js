@@ -18,6 +18,11 @@ export const studenteditProfileSchema = joi.object({
     github : joi.string().uri(),
     facebook : joi.string().uri(),
     linkedin : joi.string().uri(),
+    category1 : joi.number(),
+    category2 : joi.number(),
+    category3 : joi.number(),
+    category4 : joi.number(),
+    category5 : joi.number(),
 })
 
 
