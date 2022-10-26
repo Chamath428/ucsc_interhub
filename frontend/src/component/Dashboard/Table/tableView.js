@@ -18,16 +18,12 @@ class TableView extends Component {
     const link = "http://localhost:3001/Coordinator/System-user";
     const yesColLinkNo = 0;
 
-
-
     return (
-
 
       <Table style={{ maxHeight: '60vh' }}>
 
 
-        <thead className="thead-light">
-
+        <thead className='bg-primary text-white thead-primary'>
           <tr className="table-primary">
 
             {headers.map((ColName, index) => (
