@@ -42,21 +42,49 @@ const StudentHome = () => {
 
 
 return (
-
-        <div className='contain mt-5 ms-5' style={{width :'90%'}}>
-        <div className='container'>
-
-    <h3>Student Home</h3>
-
-    <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
-
-      <InfoCard count='1/3' title='Pitching Stage' cardWidth='4' icon='pie-chart-fill'/>
-      <InfoCard count='20' title='Vacancies' cardWidth='4' icon='person-plus-fill'/>
-      <InfoCard count='3' title='Interviews' cardWidth='4' icon='megaphone-fill'/>
+  <div className="contain mt-5 ms-5" style={{ width: "90%" }}>
+  <div className="container">
+    <h2 className="mb-4">Student Home</h2>
     
-    </Stack>
+            <Stack
+          direction="horizontal"
+          gap={4}
+          className="d-flex justify-content-between mt-4"
+        >
+          <InfoCard
+            count="1/3"
+            title="First Round"
+            cardWidth="4"
+            icon="pie-chart-fill"
+          />
+          <InfoCard
+            count="76"
+            title="Vacancies"
+            cardWidth="4"
+            icon="person-plus-fill"
+          />
+          <InfoCard
+            count="2"
+            title="Interviews"
+            cardWidth="4"
+            icon="megaphone-fill"
+          />
+        </Stack>
+      
 
-  </div><Container className='mt-5'>
+        <div className="mt-5">
+          <h3>Announcements</h3>
+
+          <AnnouncementCard
+            Header="Posted at: 3.00 pm | 01.08.2022"
+            Title="All Students are required to submit the evaluations reports by 9th of August"
+            Text="lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester."
+            location="/Student/AnnouncementPage"
+          ></AnnouncementCard>
+
+        </div>
+        
+        <Container className='mt-5'>
 
       <h3>Applied Vacancies</h3>
 
@@ -103,11 +131,17 @@ return (
 
         <AnnouncementCard Header='Posted at: 3.00 pm | 01.08.2022' Title='All Students are required to submit the evaluations reports by 9th of August' Text='lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester.' location='/Student/AnnouncementPage'></AnnouncementCard>
 
+          <AnnouncementCard
+            Header="Posted at: 3.00 pm | 01.08.2022"
+            Title="All Students are required to submit the evaluations reports by 9th of August"
+            Text="lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester."
+            location="/Student/AnnouncementPage"
+          ></AnnouncementCard>
         </div>
-    </Container>
-    </div>
-        
+      </Container>
+  </div>
+  </div>
   );
-}
+};
 
 export default StudentHome;

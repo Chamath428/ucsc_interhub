@@ -8,17 +8,15 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Card from 'react-bootstrap/Card';
 import React, { useState } from 'react';
-
+import SubmitModalReport from '../../component/Modal/modalSubmitReport';
 
 const StudentInternship = () => {  
 
   const [value, onChange] = useState(new Date());
 
 return (
-  <Container >
-
-        {/* main cards */}
-        <div className='container pt-5'>
+  <div className="contain mt-5 ms-5" style={{ width: "90%" }}>
+  <div className="container">
 
           <h3>My Internship</h3>
 
@@ -30,7 +28,6 @@ return (
 
           </Stack>
 
-        </div>
 
         {/* applied cards */}
         <Container className='mt-5'>
@@ -49,7 +46,7 @@ return (
           </div>
           {/* <div className="bg-light border ms-auto">Second item</div> */}
           <div className="bg-light border ms-auto">
-            <Button>Add weekly report</Button>
+            <SubmitModalReport />
           </div>
         </Stack>
 
@@ -82,8 +79,8 @@ return (
       </Container>
 
 
-  </Container>
-
+  </div>
+  </div>
   );
 }
 

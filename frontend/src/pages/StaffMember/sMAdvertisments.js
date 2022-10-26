@@ -81,7 +81,7 @@ class StaffMemberAdvertisements extends Component {
           <Row as={Col} sm>
             <AdvertisementCard
               jobrole="Software Engineer"
-              company="LSEG"
+              title="LSEG"
               logo={
                 "https://media-exp1.licdn.com/dms/image/C4D0BAQGdXLeDAzp0wQ/company-logo_200_200/0/1663662838677?e=1674086400&v=beta&t=JjYvke6yO54by4vRIwHvhRcP3t5forhBEkwaJT_h0-Y"
               }
@@ -89,7 +89,7 @@ class StaffMemberAdvertisements extends Component {
             ></AdvertisementCard>
             <AdvertisementCard
               jobrole="Business Analyst"
-              company="WS02"
+              title="WS02"
               logo={
                 "https://media-exp1.licdn.com/dms/image/C4D0BAQFchI_Xw-FFhQ/company-logo_200_200/0/1597299923263?e=1674086400&v=beta&t=oMQPkPhslR6mS12UDEXJPOT4stztPeVd0ZcfUqWh0f4"
               }
@@ -97,7 +97,7 @@ class StaffMemberAdvertisements extends Component {
             ></AdvertisementCard>
             <AdvertisementCard
               jobrole="Quality Assurance"
-              company="Rootcode Labs"
+              title="Rootcode Labs"
               logo={
                 "https://media-exp1.licdn.com/dms/image/C560BAQGHuvWnG93BTA/company-logo_200_200/0/1602658902214?e=1674086400&v=beta&t=9J-q16QC9x56gfmYNTzNsxffpUoshhUnNp-_rbid0i0"
               }
@@ -105,7 +105,7 @@ class StaffMemberAdvertisements extends Component {
             ></AdvertisementCard>
             <AdvertisementCard
               jobrole="Software Engineer"
-              company=" 99X"
+              title=" 99X"
               logo={
                 "https://media-exp1.licdn.com/dms/image/C560BAQEVg8fDYKXBCw/company-logo_200_200/0/1601228756308?e=1674086400&v=beta&t=HmQvFNB1BWTxS1_NXhFGEroQidebf-pBAaSazQSqKPY"
               }
