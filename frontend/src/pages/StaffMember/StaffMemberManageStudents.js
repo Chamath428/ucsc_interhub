@@ -343,6 +343,8 @@ const StaffMemberManageStudents = () => {
             </div>
           </div>
         </Tab>
+
+        {/* Selected Students */}
         <Tab
           className="StudentTab mt-5"
           eventKey="Selected"
@@ -350,31 +352,7 @@ const StaffMemberManageStudents = () => {
         >
           <div className="announcementcontain mx-0 px-0">
             <Row>
-              <Col lg="4">
-                <Form.Group
-                  className="mb-1"
-                  controlId="formBasicSearchOrganization"
-                >
-                  <div className="d-flex flex-row align-item-center justify-content-center text-center">
-                    <InputGroup className="mb-3">
-                      <InputGroup.Text
-                        id="basic-addon1"
-                        className="bg-primary text-white"
-                      >
-                        <i class="bi bi-search"></i>
-                      </InputGroup.Text>
-                      <Form.Control
-                        className="searchbox"
-                        type="searchbox text"
-                        placeholder="Search Student"
-                        onChange={(event) => {
-                          setSearchSelectedStudent(event.target.value);
-                        }}
-                      />
-                    </InputGroup>
-                  </div>
-                </Form.Group>
-              </Col>
+              
             </Row>
             <Container className="mt-2 mx-0 px-0">
               <Form className="container mx-0 px-0">
@@ -417,6 +395,34 @@ const StaffMemberManageStudents = () => {
                   </Form.Group>
 
                   <Form.Group as={Col} sm controlId="formGridState">
+                  <Form.Label className="fw-bold" column sm={5}>
+                      Course
+                    </Form.Label>
+                <Form.Group
+                  className="mb-1"
+                  controlId="formBasicSearchOrganization"
+                >
+                  <div className="d-flex flex-row align-item-center justify-content-center text-center">
+                    <InputGroup className="mb-3">
+                      <InputGroup.Text
+                        id="basic-addon1"
+                        className="bg-primary text-white"
+                      >
+                        <i class="bi bi-search"></i>
+                      </InputGroup.Text>
+                      <Form.Control
+                        className="searchbox"
+                        type="searchbox text"
+                        placeholder="Search Student"
+                        onChange={(event) => {
+                          setSearchSelectedStudent(event.target.value);
+                        }}
+                      />
+                    </InputGroup>
+                  </div>
+                </Form.Group>
+                  </Form.Group>
+                  {/* <Form.Group as={Col} sm controlId="formGridState"> */}
                     {/* <Form.Label className="fw-bold" column sm={5}>
                       Job Category
                     </Form.Label> */}
@@ -444,7 +450,7 @@ const StaffMemberManageStudents = () => {
                       />
                     )}
                     </div> */}
-                  </Form.Group>
+                  {/* </Form.Group> */}
                 </Row>
               </Form>
             </Container>
@@ -464,6 +470,189 @@ const StaffMemberManageStudents = () => {
                     <th>Degree</th>
                     <th>Company</th>
                     <th>Job Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {selectedStudentsList
+                    .filter((selectedStudentsList) => {
+                      if (searchSelectedStudent == "") {
+                        return selectedStudentsList;
+                      } else if (
+                        selectedStudentsList.name
+                          .toLowerCase()
+                          .includes(searchSelectedStudent.toLowerCase())
+                      ) {
+                        return selectedStudentsList;
+                      }
+                    })
+                    .map(
+                      (selectedStudentsList) => (
+                        console.log(selectedStudentsList),
+                        (
+                          <tr>
+                            <Link
+                              to={{
+                                pathname: "/Staff/StudentDetails",
+                                state: selectedStudentsList,
+                              }}
+                            >
+                              <td>{selectedStudentsList.index_number}</td>
+                            </Link>
+                            <td>{selectedStudentsList.registration_number}</td>
+                            <td>{selectedStudentsList.name}</td>
+                            <td>
+                              {selectedStudentsList.student_degree?.degree}
+                            </td>
+                            {/* <td>{selectedStudentsList.internships.company_id}</td> */}
+                            {selectedStudentsList.internships?.map(
+                              (selectedCompany) => (
+                                <td>{selectedCompany.company.name}</td>
+                              )
+                            )}
+                            {selectedStudentsList.internships?.map(
+                              (selectedJobRole) => (
+                                <td>{selectedJobRole.job_roles.job_role}</td>
+                                // <td>{selectedJobRole.job_role}</td>
+                              )
+                            )}
+                            {/* <td>{selectedStudentsList.internships.job_role}</td> */}
+                          </tr>
+                        )
+                      )
+                    )}
+                </tbody>
+              </Table>
+            </div>
+          </div>
+        </Tab>
+
+        {/* Manage Reports -------------------------------------------------------------*/}
+        <Tab
+          className="StudentTab mt-5"
+          eventKey="Reports"
+          title="Intern Reports"
+        >
+          <div className="announcementcontain mx-0 px-0">
+            <Row>
+              
+            </Row>
+            <Container className="mt-2 mx-0 px-0">
+            <Form className="container mx-0 px-0">
+                <Row className="mb-1 mr-3 mb-5">
+                  <Form.Group as={Col} md controlId="formGridState">
+                    <Form.Label className="fw-bold" column sm={5}>
+                      Course
+                    </Form.Label>
+                    <Form.Select
+                      sm={10}
+                      defaultValue="Choose..."
+                      onChange={(event) => {
+                        searchSelectedStudentByCourse(event.target.value);
+                      }}
+                    >
+                      <option value="all">All CS and IS</option>
+                      <option value="1">CS - 3rd Year</option>
+                      <option value="2">IS - 3rd Year</option>
+                      <option value="3">CS - 4th Year</option>
+                      <option value="4">IS - 4th Year</option>
+                    </Form.Select>
+                  </Form.Group>
+
+                  
+
+                  <Form.Group as={Col} sm controlId="formGridState">
+                    <Form.Label className="fw-bold" column sm={5}>
+                      Sort By
+                    </Form.Label>
+                    <Form.Select
+                      sm={10}
+                      defaultValue="Choose..."
+                      onChange={(event) => {
+                        sortSelectedStudents(event.target.value);
+                      }}
+                    >
+                      <option value="1">Index Number</option>
+                      <option value="2">Name</option>
+                    </Form.Select>
+                  </Form.Group>
+
+                  <Form.Group as={Col} sm controlId="formGridState">
+                  <Form.Label className="fw-bold" column sm={5}>
+                      Course
+                    </Form.Label>
+                <Form.Group
+                  className="mb-1"
+                  controlId="formBasicSearchOrganization"
+                >
+                  <div className="d-flex flex-row align-item-center justify-content-center text-center">
+                    <InputGroup className="mb-3">
+                      <InputGroup.Text
+                        id="basic-addon1"
+                        className="bg-primary text-white"
+                      >
+                        <i class="bi bi-search"></i>
+                      </InputGroup.Text>
+                      <Form.Control
+                        className="searchbox"
+                        type="searchbox text"
+                        placeholder="Search Student"
+                        onChange={(event) => {
+                          setSearchSelectedStudent(event.target.value);
+                        }}
+                      />
+                    </InputGroup>
+                  </div>
+                </Form.Group>
+                  </Form.Group>
+                  {/* <Form.Group as={Col} sm controlId="formGridState"> */}
+                    {/* <Form.Label className="fw-bold" column sm={5}>
+                      Job Category
+                    </Form.Label> */}
+                    {/* <Form.Select aria-label="Default select example" required onChange={(event) => { setCategory(event.target.value) }}>
+                                                    <option value="all">Select Job Category</option>
+                                                    {jobRoles.map((jobRole)=>(
+                                                        <option value={jobRole.id}>{jobRole.job_role}</option>
+                                                    ))}
+                                                    
+
+                                                    </Form.Select>  */}
+                    {/* <div >{JSON.stringify(jobRoles)}</div> */}
+                    {/* {JSON.stringify(jobRoles.map(r=>({name:r.job_role,value:r.id})))} */}
+                    {/* <div className="bg-white text-dark">
+                    {jobRoles.length > 0 && (
+                      <SelectSearch
+                      
+                        placeholder="Select Job Category"
+                        options={jobRoles}
+                        search
+                        required
+                        onChange={(event) => {
+                          setCategory(event);
+                        }}
+                      />
+                    )}
+                    </div> */}
+                  {/* </Form.Group> */}
+                </Row>
+              </Form>
+            </Container>
+
+            <div className="table-wrapper-scroll-y my-custom-scrollbar ">
+              {/* <TableView                            
+                                    headers = {['Index No','Name','Compnay Selected For','GPA']}
+                                    list={[['190020432','Shanika Jayathunga','LSEG','3.3232'],['190020532','Jayani Kulasekara','Avonet Technologies','3.0231'],['190030423','Prathiksha Jayakodi','WSO2','3.8503'],['190020455','Sameera Kumara','Dialog Axiata','2.3456'],['190027632','Ayodya Ranasinghe','99X','2.9998'],['190020444','Binura Jathilake','LSEG','3.5674']]}>
+                                        
+                                    </TableView> */}
+              <Table style={{ maxHeight: "60vh" }}>
+              <thead className='bg-primary text-white thead-primary'>
+                  <tr>
+                    <th>Index Number</th>
+                    <th>Registration Number</th>
+                    <th>Name</th>
+                    <th>Degree</th>
+                    <th>Job Role</th>
+                    <th>Download Report</th>
+
                   </tr>
                 </thead>
                 <tbody>
