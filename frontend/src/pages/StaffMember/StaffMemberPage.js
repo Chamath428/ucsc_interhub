@@ -38,7 +38,7 @@ function StaffPage(){
 return(
     <div className="App">
 
-    <TopNavTest actor='Staff'/>
+    <TopNavTest actor='Staff' Name='S. Nisansala'/>
 
         <div className="flex">
 

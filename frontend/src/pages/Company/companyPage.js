@@ -29,7 +29,7 @@ function CompanyBase(){
 return(
     <div className="App">
 
-    <TopNavTest actor='Company'/>
+    <TopNavTest actor='Company' Name='NPM Technologies'/>
 
         <div className="flex">
 
