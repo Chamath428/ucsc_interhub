@@ -1,22 +1,21 @@
-import React, { Component, useEffect, useState } from 'react';
-import CoordinatorCard from '../../component/Dashboard/CoordinatorCard/coordinatorCard';
-import '../../styles/CoordinatorHome.css'
-import { Row, Card, Col } from 'react-bootstrap';
-import Container from 'react-bootstrap/esm/Container';
-import PieChart from '../../component/Charts/pieChart';
+import React, { Component, useEffect, useState } from "react";
+import CoordinatorCard from "../../component/Dashboard/CoordinatorCard/coordinatorCard";
+import "../../styles/CoordinatorHome.css";
+import { Row, Card, Col } from "react-bootstrap";
+import Container from "react-bootstrap/esm/Container";
+import PieChart from "../../component/Charts/pieChart";
 import ApexCharts from "../../component/Charts/aphexChart";
 import { callServer } from "../authServer";
 import Table from "react-bootstrap/Table";
 
-import { Chart } from 'react-charts'
+import { Chart } from "react-charts";
 
 const CoordinatorHome = () => {
-
-    const [show, setShow] = useState(false);
-    const [alertPara, setAlertPara] = useState("User added Successfully!");
-    const [variant, setVariant] = useState("success");
-    const [CardDetails, setCardDetails] = useState([]);
-    const [chartDetails, setChartDetails] = useState([]);
+  const [show, setShow] = useState(false);
+  const [alertPara, setAlertPara] = useState("User added Successfully!");
+  const [variant, setVariant] = useState("success");
+  const [CardDetails, setCardDetails] = useState([]);
+  const [chartDetails, setChartDetails] = useState([]);
     const [companyWiseDetails, setCompanyWiseDetails] = useState([]);
     // console.log(CardDetails[0])
     // var totalStudent = 0;
@@ -26,18 +25,27 @@ const CoordinatorHome = () => {
     // var totalIs = 0;
     // var selectIs = 0;
 
+  // console.log(CardDetails[0])
+  // var totalStudent = 0;
+  // var totalCompany = 0;
+  // var totalCs = 0;
+  // var selectCs = 0;
+  // var totalIs = 0;
+  // var selectIs = 0;
+
+  // if (CardDetails.length > 0) {
+  //     totalStudent = CardDetails[0].countStudent;
+  //     totalCompany = CardDetails[0].countActiveCompany;
 
 
-    // if (CardDetails.length > 0) {
-    //     totalStudent = CardDetails[0].countStudent;
-    //     totalCompany = CardDetails[0].countActiveCompany;
+  // }
+  // if (chartDetails.length > 0) {
+  //     totalCs = chartDetails.csTotal;
+  //     selectCs = chartDetails.selectTotalCs;
+  //     totalIs = chartDetails.isTotal;
+  //     selectIs = chartDetails.selectTotalIs;
 
-    // }
-    // if (chartDetails.length > 0) {
-    //     totalCs = chartDetails.csTotal;
-    //     selectCs = chartDetails.selectTotalCs;
-    //     totalIs = chartDetails.isTotal;
-    //     selectIs = chartDetails.selectTotalIs;
+  // }
 
     // }
 
@@ -262,7 +270,5 @@ const CoordinatorHome = () => {
 
     );
 
-
-
-};
+}
 export default CoordinatorHome;

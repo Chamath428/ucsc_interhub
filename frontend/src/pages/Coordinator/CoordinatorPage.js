@@ -43,7 +43,7 @@ function CoordinatorPage()
 return(
     <div className="App">
 
-        <TopNavTest />
+    <TopNavTest actor='Coordinator' Name='V. Rathnayake'/>
 
         <div className="flex">
 

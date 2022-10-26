@@ -414,6 +414,7 @@ model student_academic_qualifications {
 model student_applied_internships {
   index_number     Int
   advertisement_id Int
+  cv               String        @db.VarChar(200)
   is_wish_list     Int           @default(0)
   company_id       Int
   student          student       @relation(fields: [index_number], references: [index_number], onDelete: Cascade, map: "student_applied_internships_ibfk_1")

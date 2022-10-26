@@ -29,7 +29,7 @@ function CompanyBase(){
 return(
     <div className="App">
 
-        <TopNavTest />
+    <TopNavTest actor='Company' Name='NPM Technologies'/>
 
         <div className="flex">
 
@@ -40,7 +40,7 @@ return(
                     dashTitle3='Applicants' dashLink3='Company/ApplicantsCompany'
                     dashTitle4='Interview' dashLink4='Company/Interview'
                     dashTitle5='Supervisors' dashLink5='Company/Supervisors'
-                    dashTitle6='Profile' dashLink6='Company/Company-Profile'
+                    dashTitle6='Profile' dashLink6='Company/Profile'
                 />
             </aside>
 
@@ -59,7 +59,7 @@ return(
 
                     <Route exact path="/Company/Create-ad" component={CreateAdvertisement} />
 
-                    <Route exact path="/Company/Company-Profile" component={CoordinatorRegisteredCompanyProfile} />
+                    <Route exact path="/Company/Profile" component={CoordinatorRegisteredCompanyProfile} />
  
                     {/* Components */}
                     <Route exact path="/Company/AnnouncementPage" component={AnnouncementFullCard} />

@@ -35,7 +35,7 @@ function HomeNavBar() {
       {['xl'].map((expand) => (
         <Navbar fixed="top"  key={expand} bg={bg}  expand={expand} className={mt}>
           <Container fluid>
-            <Navbar.Brand href="#" style={{fontWeight:'bold'}}>UCSC InternHub</Navbar.Brand>
+            <Navbar.Brand href="/" style={{fontWeight:'bold'}}>UCSC InternHub</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
