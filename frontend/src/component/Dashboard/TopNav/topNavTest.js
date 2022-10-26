@@ -261,7 +261,7 @@ const TopNavTest = (props) => {
         <Dropdown className="nav-item pt-3" align="end">
           <Dropdown.Toggle variant="light" id="dropdown-basic">
             <i className="bi bi-person-circle ms-2 me-2"></i>
-            Chamath Chinthana
+            {props.Name}
             <i className="mr-2"></i>
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu dropdown-menu-end">
