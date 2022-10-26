@@ -142,9 +142,11 @@ callServer(authCSVRequest).then((response) => { showAlert(response) }).catch(fun
                 </Form.Group>
               </Row>
               <div className='d-flex flex-row-reverse mb-3'>
-                <Button type='button'>+ Create Student</Button>
+                <Button type='submit'>+ Create Student</Button>
               </div>
-
+ </Form>
+           
+            <Form >
 
 
               <Form.Group className="mb-4 col col-sm-12">
@@ -162,9 +164,7 @@ callServer(authCSVRequest).then((response) => { showAlert(response) }).catch(fun
                 <p>You can upload a CSV file that has the above details and create multiple students at once.</p>
                 <p>CSV file of students data should be like: <a href={SampleFile} download={SampleFile}>Download sample csv file</a></p></Form.Group>
               
-            </Form>
            
-            <Form >
             <Form.Group as={Col} md="8" controlId="profilePicture" className="mb-3">
                   <Form.Label>Choose CSV File</Form.Label>
                   <Form.Control type="file" accept="/*" onChange={(event)=> {

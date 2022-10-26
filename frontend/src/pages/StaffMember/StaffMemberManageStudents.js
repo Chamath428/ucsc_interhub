@@ -9,9 +9,11 @@ import Table from "react-bootstrap/Table";
 import DashboardButton from "../../component/Dashboard/DashboardButton/dashboardButton";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
-import { callServer } from "../authServer";
-import { InputGroup } from "react-bootstrap";
-import "../../styles/sMStudent.css";
+import { callServer } from '../authServer';
+import SelectSearch from 'react-select-search';
+import 'react-select-search/style.css'
+import '../../styles/sMStudent.css';    
+
 
 const StaffMemberManageStudents = () => {
   const [show, setShow] = useState(false);
@@ -63,23 +65,7 @@ const StaffMemberManageStudents = () => {
                 setShow(true);
             }
         })
-        const data={};
-    const authJobRoleRequest = {
-      "method": "post",
-      "url": "staffMember/getJobRoles",
-      "data": data
-    }
-
-    callServer(authJobRoleRequest).then((response)=>{
-      console.log(response.data);
-      setJobRoles(response.data);
-    }).catch((error)=>{
-      if (error.response) {
-        setAlertPara("Something went wrong when getting the job roles!");
-        setVariant("danger");
-        setShow(true);
-      }
-    })
+       
     }, []);
 
     const searchAllStudentsByCourse = (courseNumber)=>{
@@ -158,27 +144,71 @@ const StaffMemberManageStudents = () => {
           setVariant("danger");
           setShow(true);
         }
-      });
-  };
-  const sortSelectedStudents = (sortData) => {
-    setSortedSelectedStudents(sortData);
-    const authRequestSortSelectedStudentsFilter = {
-      method: "post",
-      url: "staffMember/SortSelectedStudents",
-      data: {
-        sort_data: parseInt(sortData),
-      },
-    };
 
-    callServer(authRequestSortSelectedStudentsFilter)
-      .then((response) => {
-        setSelectedStudentsList(response.data);
-      })
-      .catch(function (error) {
-        if (error.response) {
-          setAlertPara("Something went wrong!");
-          setVariant("danger");
-          setShow(true);
+        callServer(authRequestSortSelectedStudentsFilter).then((response) => {
+            setSelectedStudentsList(response.data);
+        }).catch(function (error) {
+            if (error.response) {
+                setAlertPara("Something went wrong!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+    }
+
+    useEffect(()=>{
+        const data={};
+        const authJobRoleRequest = {
+          "method": "post",
+          "url": "staffMember/getJobRoles",
+          "data": data
+        }
+    
+        callServer(authJobRoleRequest).then((response)=>{
+          console.log(response.data);
+          setJobRoles(response.data.map(r=>({name:r.job_role,value:r.id})) );
+        }).catch((error)=>{
+          if (error.response) {
+            setAlertPara("Something went wrong when getting the job roles!");
+            setVariant("danger");
+            setShow(true);
+          }
+        })
+    },[])
+
+    useEffect(()=>{
+
+        console.log(category)
+        const authRequestSelectedStudentsFilterByCourse = {
+            "method": "post",
+            "url": "staffMember/SelectedStudentsSearchByJobRole",
+            "data": {
+                jobRole:parseInt(category)
+            }
+        }
+
+        callServer(authRequestSelectedStudentsFilterByCourse).then((response) => {
+            console.log('students FETCHED')
+            setSelectedStudentsList(response.data);
+        }).catch(function (error) {
+            if (error.response) {
+                setAlertPara("Something went wrong!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+    },[category])
+    
+
+    const searchSelectedStudentByCourse = (courseNumber)=>{
+        setselectedCourseSelectedStudents(courseNumber)
+        const authRequestSelectedStudentsFilterByCourse = {
+            "method": "post",
+            "url": "staffMember/SelectedStudentsSearchByCourse",
+            "data": {
+                degree:parseInt(courseNumber)
+            }
+   
         }
       });
   };
@@ -394,16 +424,21 @@ const StaffMemberManageStudents = () => {
                                             </Form.Group>
                                             
                                             <Form.Group as={Col} sm controlId="formGridState">
-                                                <Form.Label className="fw-bold" column sm={5}>Company</Form.Label>
-                                                <Form.Select aria-label="Default select example" required onChange={(event) => { setCategory(event.target.value) }}>
+                                                <Form.Label className="fw-bold" column sm={5} >Job Category</Form.Label>
+                                                {/* <Form.Select aria-label="Default select example" required onChange={(event) => { setCategory(event.target.value) }}>
                                                     <option value="all">Select Job Category</option>
                                                     {jobRoles.map((jobRole)=>(
                                                         <option value={jobRole.id}>{jobRole.job_role}</option>
                                                     ))}
-                                                    </Form.Select> 
-                                                {/* <SelectSearch placeholder='Select Job Category' required onChange={(event) => { setCategory(event.target.value) }}/> */}
+                                                    
+
+                                                    </Form.Select>  */}
+                                                    {/* <div >{JSON.stringify(jobRoles)}</div> */}
+                                               {/* {JSON.stringify(jobRoles.map(r=>({name:r.job_role,value:r.id})))} */}
+                                                   {jobRoles.length>0 && <SelectSearch placeholder='Select Job Category' options={jobRoles} search required onChange={(event) => { setCategory(event) }}/> }
                                                 
                                             </Form.Group>   
+
 
                                             <Form.Group as={Col} sm controlId="formGridState">
                                                 <Form.Label className="fw-bold" column sm={5}>Sort By</Form.Label>
@@ -451,12 +486,12 @@ const StaffMemberManageStudents = () => {
                                         <td>{selectedStudentsList.index_number}</td>
                                         <td>{selectedStudentsList.registration_number}</td>
                                         <td>{selectedStudentsList.name}</td>
-                                        <td>{selectedStudentsList.student_degree.degree}</td>
+                                        <td>{selectedStudentsList.student_degree?.degree}</td>
                                         {/* <td>{selectedStudentsList.internships.company_id}</td> */}
-                                        {selectedStudentsList.internships.map((selectedCompany)=>(
+                                        {selectedStudentsList.internships?.map((selectedCompany)=>(
                                                 <td>{selectedCompany.company.name}</td>
                                         ))}
-                                        {selectedStudentsList.internships.map((selectedJobRole)=>(
+                                        {selectedStudentsList.internships?.map((selectedJobRole)=>(
                                                 <td>{selectedJobRole.job_roles.job_role}</td>
                                                 // <td>{selectedJobRole.job_role}</td>
                                         ))}
