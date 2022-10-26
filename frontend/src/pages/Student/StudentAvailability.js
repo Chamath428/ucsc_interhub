@@ -33,7 +33,7 @@ function StudentAvailability() {
     <div>
         <div>
 
-        <h3>Set Your Availability</h3><br />
+        <h4>Set Your Availability</h4><br />
 
           <Row>
             <Col sm={7}>

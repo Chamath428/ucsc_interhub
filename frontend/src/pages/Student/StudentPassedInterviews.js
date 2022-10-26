@@ -21,7 +21,7 @@ function StudentPassedInterviews() {
     <div>
         <div>
 
-        <h2>Interview History</h2><br />
+        <h4>Interview History</h4><br />
 
           <Row>
             <Col sm={7}>
