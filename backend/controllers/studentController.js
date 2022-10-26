@@ -244,7 +244,8 @@ export const declineInterview = async(req,res)=>{
                     facebook : true,
                     linkedin : true,
                     profile_picture : true,
-                    intro_video : true
+                    intro_video : true,
+                    student_status:true
                 }
             })
 
@@ -252,6 +253,7 @@ export const declineInterview = async(req,res)=>{
     
             // console.dir(registeredCompany, { depth: null })
         } catch (error) {
+            console.log(error)
             res.status(400).send(error);
         }
     

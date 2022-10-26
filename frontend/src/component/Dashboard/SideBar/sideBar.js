@@ -11,15 +11,39 @@ import Container from "react-bootstrap/esm/Container";
 
 import { Button } from 'react-bootstrap';
 import { NavItem } from 'react-bootstrap';
-
+import { useEffect } from 'react';
+import { useState } from 'react';
+ 
+import axios from 'axios';
+import jwt_decode from "jwt-decode";
+import { useHistory } from 'react-router-dom';
 // import { Link, useLocation } from "react-router-dom";
 
 
 import { useLocation } from "react-router-dom";
+import { callServer } from '../../../pages/authServer';
 
 // class SideBar extends Component {
 const SideBar = (props) =>{
+    const [student_status,setStudentStatus] = useState();
+    useEffect(() => {
+        const authAciveRequest = {
+          "method": "post",
+          "url": "student/editProfileView/"+ parseInt(jwt_decode(sessionStorage.getItem("accessToken")).id),
+          "data": {}
+        }
+    
 
+        callServer(authAciveRequest).then((response) => {
+            setStudentStatus(response.data.student_status)
+        console.log(JSON.stringify(response.data))
+    
+        }).catch(function (error) {
+          if (error.response) {
+       
+          }
+        })
+      }, []);
 
   return (
       
@@ -75,7 +99,7 @@ const SideBar = (props) =>{
 
     </li>}
 
-    {props.dashTitle4 && <li className="nav-item ">
+    {student_status == 4 && props.dashTitle4 && <li className="nav-item ">
     <hr className="sidebar-divider"/>
 
     <Nav.Link as={Link} eventKey={'/'+props.dashLink4} to={'/'+props.dashLink4} >{props.dashTitle4}</Nav.Link>
