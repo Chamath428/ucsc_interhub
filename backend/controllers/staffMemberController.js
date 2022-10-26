@@ -468,8 +468,17 @@ export const AllStudents = async (req, res) => {
                 index_number: true,
                 registration_number: true,
                 name: true,
-                degree: true,
-                student_status: true
+                student_degree:{
+                    select: {
+                        degree:true,
+                  },
+                },                    
+                student_status_type:{
+                    select:{
+                        status:true,
+                    },
+                    
+                }, 
             }
         })
         res.status(200).send(AllStudents);
@@ -489,7 +498,11 @@ export const SelectedStudents = async (req, res) => {
                 index_number: true,
                 registration_number: true,
                 name: true,
-                degree: true,
+                student_degree:{
+                    select: {
+                        degree:true,
+                  },
+                },   
                 internships: {
                     select: {
                         company: {
@@ -522,14 +535,23 @@ export const SearchAllStudentsByCourse = async (req, res) => {
         try {
             const SearchAllStudentsByCourse = await prisma.student.findMany({
                where: {
-                   degree: req.body.degree
+                    degree:req.body.degree
                },
                select: {
                    index_number: true,
                    registration_number: true,
                    name: true,
-                   degree: true,
-                   student_status: true
+                   student_degree:{
+                    select: {
+                        degree:true,
+                  },
+                },                    
+                student_status_type:{
+                    select:{
+                        status:true,
+                    },
+                    
+                }, 
                },
            })
            res.status(200).send(SearchAllStudentsByCourse);
@@ -547,8 +569,17 @@ export const SearchAllStudentsByCourse = async (req, res) => {
                    index_number: true,
                    registration_number: true,
                    name: true,
-                   degree: true,
-                   student_status: true
+                   student_degree:{
+                    select: {
+                        degree:true,
+                  },
+                },                    
+                student_status_type:{
+                    select:{
+                        status:true,
+                    },
+                    
+                }, 
                },
            })
            res.status(200).send(SearchAllStudentsByCourse);
@@ -566,15 +597,24 @@ export const SearchAllStudentsByEntrolled = async (req, res) => {
     if(req.body.student_status == 1){
         try {
             const SearchAllStudentsByEntrolled = await prisma.student.findMany({
-               where: {
-                   student_status: 4
+               where: {              
+                    student_status:4,
                },
                select: {
                    index_number: true,
                    registration_number: true,
                    name: true,
-                   degree: true,
-                   student_status: true
+                   student_degree:{
+                    select: {
+                        degree:true,
+                  },
+                },                    
+                student_status_type:{
+                    select:{
+                        status:true,
+                    },
+                    
+                }, 
                },
            })
            res.status(200).send(SearchAllStudentsByEntrolled);
@@ -590,8 +630,8 @@ export const SearchAllStudentsByEntrolled = async (req, res) => {
                 where: 
                 {
                     NOT: [
-                        {
-                         student_status: 4
+                        {                          
+                            student_status:4,
                         },
                       ],
                 },
@@ -599,8 +639,17 @@ export const SearchAllStudentsByEntrolled = async (req, res) => {
                    index_number: true,
                    registration_number: true,
                    name: true,
-                   degree: true,
-                   student_status: true
+                   student_degree:{
+                    select: {
+                        degree:true,
+                  },
+                },                    
+                student_status_type:{
+                    select:{
+                        status:true,
+                    },
+                    
+                }, 
                },
            })
            res.status(200).send(SearchAllStudentsByEntrolled);
@@ -618,8 +667,17 @@ export const SearchAllStudentsByEntrolled = async (req, res) => {
                    index_number: true,
                    registration_number: true,
                    name: true,
-                   degree: true,
-                   student_status: true
+                   student_degree:{
+                    select: {
+                        degree:true,
+                  },
+                },                    
+                student_status_type:{
+                    select:{
+                        status:true,
+                    },
+                    
+                }, 
                },
            })
            res.status(200).send(SearchAllStudentsByEntrolled);
@@ -644,8 +702,17 @@ export const SortAllStudents = async (req, res) => {
                    index_number: true,
                    registration_number: true,
                    name: true,
-                   degree: true,
-                   student_status: true
+                   student_degree:{
+                    select: {
+                        degree:true,
+                  },
+                },                    
+                student_status_type:{
+                    select:{
+                        status:true,
+                    },
+                    
+                }, 
                },
            })
            res.status(200).send(SortAllStudents);
@@ -665,8 +732,17 @@ export const SortAllStudents = async (req, res) => {
                    index_number: true,
                    registration_number: true,
                    name: true,
-                   degree: true,
-                   student_status: true
+                   student_degree:{
+                    select: {
+                        degree:true,
+                  },
+                },                    
+                student_status_type:{
+                    select:{
+                        status:true,
+                    },
+                    
+                }, 
                },
            })
            res.status(200).send(SortAllStudents);
@@ -687,13 +763,17 @@ export const SelectedStudentsSearchByCourse = async (req, res) => {
                     student_status: 4,
                 },
                 {
-                    degree:req.body.degree
+                    degree:req.body.degree,
                 },],},
                 select: {
                     index_number: true,
                     registration_number: true,
                     name: true,
-                    degree: true,
+                    student_degree:{
+                        select: {
+                            degree:true,
+                      },
+                    },   
                     internships: {
                         select: {
                             company: {
@@ -732,7 +812,11 @@ export const SelectedStudentsSearchByCourse = async (req, res) => {
                     index_number: true,
                     registration_number: true,
                     name: true,
-                    degree: true,
+                    student_degree:{
+                        select: {
+                            degree:true,
+                      },
+                    },   
                     internships: {
                         select: {
                             company: {
@@ -779,7 +863,11 @@ export const SortSelectedStudents = async (req, res) => {
                     index_number: true,
                     registration_number: true,
                     name: true,
-                    degree: true,
+                    student_degree:{
+                        select: {
+                            degree:true,
+                      },
+                    },   
                     internships: {
                         select: {
                             company: {
@@ -820,7 +908,11 @@ export const SortSelectedStudents = async (req, res) => {
                     index_number: true,
                     registration_number: true,
                     name: true,
-                    degree: true,
+                    student_degree:{
+                        select: {
+                            degree:true,
+                      },
+                    },   
                     internships: {
                         select: {
                             company: {
@@ -862,6 +954,103 @@ export const getJobRoles = async (req,res)=>{
         console.log(error)
         res.status(400).send(error)
     }
+}
+export const SelectedStudentsSearchByJobRole = async (req, res) => {
+    console.log(req.body.jobRole)
+    if(req.body.jobRole){
+        try {
+            const SearchSelectedStudentsByJobRole = await prisma.student.findMany({
+                where: {AND:[{
+                    student_status: 4,
+                },
+                {
+                    internships:{
+                        jobRoles:{
+                            job_role: req.body.jobRole
+                        },
+                    },
+                },],},
+                select: {
+                    index_number: true,
+                    registration_number: true,
+                    name: true,
+                    student_degree:{
+                        select: {
+                            degree:true,
+                      },
+                    },   
+                    internships: {
+                        select: {
+                            company: {
+                                select:{
+                                    name : true,
+                                    },
+                                },
+                            // job_role : true
+                            job_roles: {
+                                select:{
+                                    job_role :true,
+                                },
+                            },
+                        
+                        },
+                        
+                    },
+                    
+                },
+           })
+           res.status(200).send(SearchSelectedStudentsByJobRole);
+       }
+       catch (error) {
+        console.log(error)
+        res.status(400).send(error);
+    }
+    }
+    else{
+        try {
+            const SearchSelectedStudentsByJobRole = await prisma.student.findMany({
+               
+                where: {
+                    student_status: 4,
+                },
+                select: {
+                    index_number: true,
+                    registration_number: true,
+                    name: true,
+                    student_degree:{
+                        select: {
+                            degree:true,
+                      },
+                    },   
+                    internships: {
+                        select: {
+                            company: {
+                                select:{
+                                    name : true,
+                                    },
+                                },
+                            // job_role : true
+                            job_roles: {
+                                select:{
+                                    job_role :true,
+                                },
+                            },
+                        
+                        },
+                        
+                    },
+                    
+                },
+           })
+           res.status(200).send(SearchSelectedStudentsByJobRole);
+       }
+       catch (error) {
+        console.log(error)
+        res.status(400).send(error);
+    }
+    }
+  
+
 }
 export const confirmStatus = async (req,res)=>{
     try{

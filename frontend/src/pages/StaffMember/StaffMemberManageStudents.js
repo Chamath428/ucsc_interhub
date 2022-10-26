@@ -10,6 +10,7 @@ import DashboardButton from '../../component/Dashboard/DashboardButton/dashboard
 import Nav from 'react-bootstrap/Nav';
 import { Link } from "react-router-dom";
 import { callServer } from '../authServer';
+import SelectSearch from 'react-select-search';
 
 import '../../styles/sMStudent.css';    
 
@@ -64,13 +65,13 @@ const StaffMemberManageStudents = () => {
             }
         })
         const data={};
-    const authRequest = {
+    const authJobRoleRequest = {
       "method": "post",
       "url": "staffMember/getJobRoles",
       "data": data
     }
 
-    callServer(authRequest).then((response)=>{
+    callServer(authJobRoleRequest).then((response)=>{
       console.log(response.data);
       setJobRoles(response.data);
     }).catch((error)=>{
@@ -182,6 +183,7 @@ const StaffMemberManageStudents = () => {
             }
         })
     }
+
     
         return (
             <div className='containstudent mt-5 ms-5'style={{width:'90%'}}>
@@ -260,8 +262,8 @@ const StaffMemberManageStudents = () => {
                                         <td>{allStudentsList.index_number}</td>
                                         <td>{allStudentsList.registration_number}</td>
                                         <td>{allStudentsList.name}</td>
-                                        <td>{allStudentsList.degree}</td>
-                                        <td>{allStudentsList.student_status}</td>
+                                        <td>{allStudentsList.student_degree.degree}</td>
+                                        <td>{allStudentsList.student_status_type.status}</td>
                                     
                                     </tr>
                                     
@@ -315,6 +317,7 @@ const StaffMemberManageStudents = () => {
                                                         <option value={jobRole.id}>{jobRole.job_role}</option>
                                                     ))}
                                                     </Form.Select> 
+                                                {/* <SelectSearch placeholder='Select Job Category' required onChange={(event) => { setCategory(event.target.value) }}/> */}
                                                 
                                             </Form.Group>   
 
@@ -363,7 +366,7 @@ const StaffMemberManageStudents = () => {
                                         <td>{selectedStudentsList.index_number}</td>
                                         <td>{selectedStudentsList.registration_number}</td>
                                         <td>{selectedStudentsList.name}</td>
-                                        <td>{selectedStudentsList.degree}</td>
+                                        <td>{selectedStudentsList.student_degree.degree}</td>
                                         {/* <td>{selectedStudentsList.internships.company_id}</td> */}
                                         {selectedStudentsList.internships.map((selectedCompany)=>(
                                                 <td>{selectedCompany.company.name}</td>
