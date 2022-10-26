@@ -11,8 +11,36 @@ import InfoCard from '../../component/Dashboard/InfoCard/infoCard';
 import Placeholder from 'react-bootstrap/Placeholder';
 import Card from 'react-bootstrap/Card';
 import AnnouncementCard from '../../component/Cards/announcementCard';
+import { useState,useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
+import { callServer } from '../authServer';
+
 
 const StudentHome = () => {  
+
+  const [adds,setAdds] = useState([]);
+
+  useEffect(()=>{
+      const data={
+          index_number:jwtDecode(sessionStorage.getItem("accessToken")).id
+      }
+      const authRequest = {
+          "method":"post",
+          "url": "student/getAllAdvertiesmentApplied",
+          "data": data
+      }
+
+      callServer(authRequest).then((response)=>{
+          console.log(response);
+          setAdds(response.data);
+      }).catch((error)=>{
+          console.log(error);
+      })
+
+  },[])
+
+
+
 return (
 
         <div className='contain mt-5 ms-5' style={{width :'90%'}}>
@@ -33,11 +61,36 @@ return (
       <h3>Applied Vacancies</h3>
 
       <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
+{/* 
+      {adds.length==0?(
+                <p>You have no Advertisements to show.</p>
+                ):(
+                  adds.map((add)=>(
+                    <AdvertisementCard
+                     title={add.title}
+                     jobrole={add.job_role}
+                     company={add.name}
+                    //  status={add.type}
+                     logo={LsegLogo}
+                     
+                     actor="Student"
+                     data={add.advertisement_id}>
 
-        <LinkCard Title='Synopsys' subTitle='Software Engineer' Link='Visit Page' />
-        <LinkCard Title='Enactor' subTitle='Software Engineer' Link='Visit Page' />
-        <LinkCard Title='99x' subTitle='Software Engineer' Link='Visit Page' />
-        <LinkCard Title='LSEG' subTitle='Software Engineer' Link='Visit Page' />
+                     </AdvertisementCard>
+                    ))
+                )
+              } */}
+
+                {adds.length==0?(
+                <p>You have no Advertisements to show.</p>
+                ):(
+                  adds.map((add)=>(
+
+        <LinkCard Title={add.name} subTitle={add.job_role}  data={add.advertisement_id} />
+
+        ))
+        )
+      }
 
       </Stack>
 
