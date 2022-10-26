@@ -320,8 +320,8 @@ const CoordinatorAnnouncements = () => {
                       }}
                     >
                       <option value="1">All</option>
-                      <option value="2">Company</option>
-                      <option value="3">Student</option>
+                      <option value="2">Student</option>
+                      <option value="3">Company</option>
                     </Form.Select>
                   </Form.Group>
                 </Row>

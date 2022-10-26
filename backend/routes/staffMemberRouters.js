@@ -3,7 +3,9 @@ import { createStaffMember,scheduleCompanyVisit,ActiveRegisteredCompany,
     InactiveRegisteredCompany,PendingCompany,CompanyVisit,ActiveCompany, FilterCompanyVisitByType,FilterCompanyVisitByStatus,SortCompanyVisit,
     AllStudents,SelectedStudents,SearchAllStudentsByCourse,SearchAllStudentsByEntrolled,SortAllStudents,SelectedStudentsSearchByCourse,
 
-    SortSelectedStudents,getJobRoles, completeVisit,SelectedStudentsSearchByJobRole,AcceptCompanyRequest,
+
+    SortSelectedStudents,getJobRoles, completeVisit,SelectedStudentsSearchByJobRole,getProfileData,AcceptCompanyRequest,
+
 
    
 } from '../controllers/staffMemberController.js';
@@ -31,6 +33,7 @@ staffMemberRouters.post('/SelectedStudentsSearchByJobRole',SelectedStudentsSearc
 staffMemberRouters.post('/CompanyVisitByType',FilterCompanyVisitByType);
 staffMemberRouters.post('/CompanyVisitByStatus',FilterCompanyVisitByStatus);
 staffMemberRouters.post('/SortCompanyVisit',SortCompanyVisit);
+staffMemberRouters.post('/getProfileData',getProfileData);
 
 staffMemberRouters.post('/completeVisit',completeVisit);
 
