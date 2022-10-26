@@ -7,12 +7,37 @@ import InfoCard from '../../component/Dashboard/InfoCard/infoCard';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Card from 'react-bootstrap/Card';
-import React, { useState } from 'react';
+import { useState,useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
+import { callServer } from '../authServer';
 import SubmitModalReport from '../../component/Modal/modalSubmitReport';
 import Row from 'react-bootstrap/Row';
 const StudentInternship = () => {  
 
   const [value, onChange] = useState(new Date());
+  const [announce,setAnnounce] = useState([]);
+
+  useEffect(()=>{
+
+      const announcedata={
+        // index_number:jwtDecode(sessionStorage.getItem("accessToken")).id
+    }
+    const authAnnounceRequest = {
+        "method":"post",
+        "url": "student/getAllAnnouncements",
+        "data": {}
+    }
+
+    callServer(authAnnounceRequest).then((response)=>{
+        console.log(response);
+        setAnnounce(response.data);
+    }).catch((error)=>{
+        console.log(error);
+    })
+
+
+
+  },[])
 
 return (
   <div className="contain mt-5 ms-5" style={{ width: "90%" }}>
@@ -56,14 +81,16 @@ return (
         </Card>
 
         <h3>Announcements</h3>
+        {announce.length==0?(
+                <p>You have no Advertisements to show.</p>
+                ):(
+                  announce.map((ann)=>(
 
-        {/* Announcement cards */}
-        <AnnouncementCard Header='Posted at: 3.00 pm | 01.08.2022' Title='Progress Report Submission are due on 30th of August' Text='lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester.' location='AnnouncementPage'></AnnouncementCard>
+        <AnnouncementCard Time= {ann.time} Date= {ann.date} Title= {ann.title} Text={ann.body}></AnnouncementCard>
 
-        <AnnouncementCard Header='Posted at: 8.00 pm | 30.07.2022' Title='DevOps Session at Creative Software' Text='lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester.' location='AnnouncementPage'></AnnouncementCard>
-
-        <AnnouncementCard Header='Posted at: 3.00 pm | 01.08.2022' Title='All Students are required to submit the evaluations reports by 9th of August' Text='lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester.' location='AnnouncementPage'></AnnouncementCard>
-
+        ))
+        )
+      }
       </div>
 
       <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mt-5 pt-3">
