@@ -23,9 +23,9 @@ export const studenteditProfileSchema = joi.object({
 
 export const studentappliedInternshipsSchema = joi.object({
     // index_number : joi.number().integer().required(),
-    // advertisement_id : joi.number().integer().required(),
+    // addId : joi.number().integer().required(),
     // cv : joi.string().required(),
     // is_wish_list : joi.number().integer().required(),
-    // company_id : joi.number().integer().required()
+    // comId : joi.number().integer().required()
 
 })

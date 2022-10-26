@@ -21,6 +21,6 @@ studentRouters.post('/uploadCSV', upload.single('csv'), uploadCSV)
 studentRouters.post('/editProfileView/*',studentEditProfileView)
 studentRouters.post('/getAllAdvertiesmentS',getAllAdvertiesments);
 studentRouters.post('/getAdvertisementPreview',getAdvertisementPreview)
-studentRouters.post('/uploadCV', upload.single('cv'), uploadCV)
+studentRouters.post('/uploadCV/*', upload.single('cv'), uploadCV)
 
 export default studentRouters;

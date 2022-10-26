@@ -16,11 +16,18 @@ import { useHistory,Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 
-function ApplyforRoleButton() {
+function ApplyforRoleButton({adData}) {
   const [show, setShow] = useState(false);
   // const navigate = useNavigate();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // const params = new URLSearchParams({
+  //   contact: this.ContactPerson,
+  //   phoneNumber: this.PhoneNumber,
+  //   email: this.Email
+  // }).toString();
+
 
   const [alertPara, setAlertPara] = useState("Student Added Successfully!");
   const [variant, setVariant] = useState("success");
@@ -31,14 +38,16 @@ function ApplyforRoleButton() {
 
     const cvData = new FormData();    
         cvData.append('cv',uploadCVFile)
+        cvData.append('addId',parseInt(adData.advertisement_id))
+        cvData.append('comId',parseInt(adData.company_id))
     
     const authCVRequest = {
       "method": "post",
-      "url": "student/uploadCV",
+      "url": "student/uploadCV/"+parseInt(jwt_decode(sessionStorage.getItem("accessToken")).id),
       "data": cvData,
       headers:{ 'Content-Type': 'multipart/form-data'}
     }
-    callServer(authCVRequest).then((response) => {<Redirect to="frontend\src\pages\Company\companyAdvertisementPreview.js"></Redirect>}).catch(function (error) {
+    callServer(authCVRequest).then((response) => {}).catch(function (error) {
       if (error.response) {
         setAlertPara("Something went wrong when uploading CSV File");
         setVariant("danger");
@@ -64,7 +73,7 @@ function ApplyforRoleButton() {
           <Modal.Title>Upload your CV to apply</Modal.Title>
         </Modal.Header>
         <Modal.Body className='pl-4'>
-
+        <p>{adData.advertisement_id}{adData.company_id}</p>
         <Form >
           <div>
             <Form.Group className="mb-3" controlId="programStartDate">

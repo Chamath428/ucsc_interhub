@@ -91,7 +91,7 @@ return (
           <Row className='my-2'>
             <Col lg='4'>
                 {/* Use composition and render a Route for Edit Profile button */}
-                <ApplyforRoleButton />
+                <ApplyforRoleButton adData={adds}/>
                 <ToggleButton  
                   className='my-1 ml-3'
                   id="jobBookmark-check"
