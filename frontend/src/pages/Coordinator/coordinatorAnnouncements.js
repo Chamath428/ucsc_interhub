@@ -354,7 +354,7 @@ const CoordinatorAnnouncements = () => {
                                     </Form.Group> */}
                   <Col className="justify-content-center">
                     <Form.Group className="mx-auto" controlId="PostBtnArea">
-                      <Button variant="primary" className="px-4 mt-3">
+                      <Button variant="primary" className="px-4 mt-3" type="submit">
                         Post
                       </Button>
                     </Form.Group>
