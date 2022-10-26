@@ -57,8 +57,8 @@ function ProgramCreateModal() {
         className="float-right mr-4"
         onClick={handleShow}
       >
-      <i class="bi bi-plus-circle mr-2"></i>
-      Create New Placement Program
+        <i class="bi bi-plus-circle mr-2"></i>
+        Create New Placement Program
       </Button>{' '}
       <Modal
         show={show}
@@ -111,7 +111,7 @@ function ProgramCreateModal() {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>{' '}
-                <Button variant="primary" type="submit"  onClick={() => window.location.reload(false)} >
+                <Button variant="primary" type="submit" onClick={() => window.location.reload(false)} >
                   Create New Program
                 </Button>
               </Col>
