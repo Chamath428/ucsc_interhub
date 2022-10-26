@@ -47,7 +47,9 @@ function ApplyforRoleButton({adData}) {
       "data": cvData,
       headers:{ 'Content-Type': 'multipart/form-data'}
     }
-    callServer(authCVRequest).then((response) => {}).catch(function (error) {
+    callServer(authCVRequest).then((response) => {
+      setShow(false);
+    }).catch(function (error) {
       if (error.response) {
         setAlertPara("Something went wrong when uploading CSV File");
         setVariant("danger");
@@ -93,7 +95,7 @@ function ApplyforRoleButton({adData}) {
                 </Button>{' '}
                 {/* <Link to={{pathname:'/'+props.actor+'/View-advertisement', state:props.data}}> */}
                   
-                <Button variant="primary" type="submit" onClick={uploadCV}>
+                <Button variant="primary" type="button" onClick={uploadCV}>
                   Apply for the role
                 </Button>
                 {/* </Link> */}
