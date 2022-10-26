@@ -338,4 +338,30 @@ export const declineInterview = async(req,res)=>{
     //    } 
             // res.status(500).send(error);
     }
+
+
+    export const getAllAdvertiesmentApplied = async (req,res)=>{
+        try{
+            const advertiesments = await prisma.$queryRaw `SELECT student_applied_internships.advertisement_id,
+                                                            advertisement.title,
+                                                            company.name,
+                                                            job_roles.job_role
+                                                            FROM student_applied_internships
+                                                            LEFT JOIN
+                                                            company
+                                                            ON student_applied_internships.company_id=company.company_id 
+                                                            LEFT JOIN
+                                                            advertisement
+                                                            ON student_applied_internships.advertisement_id=advertisement.advertisement_id
+                                                            LEFT JOIN
+                                                            job_roles
+                                                            ON advertisement.job_role=job_roles.id
+                                                            WHERE advertisement.status = 2 AND student_applied_internships.index_number = ${req.body.index_number}
+                                                    ORDER BY advertisement.advertisement_id DESC`;
+            res.status(200).send(advertiesments)
+        }catch(error){
+            res.status(400).json({message:"Something went wrong when fetchingn the data!"})
+        }
+    }
+
   
