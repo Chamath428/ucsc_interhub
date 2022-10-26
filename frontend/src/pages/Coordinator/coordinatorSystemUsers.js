@@ -180,7 +180,7 @@ const CoordinatorSystemUsers = () => {
                             <Link
                               to={{
                                 pathname: "/Coordinator/StaffProfile",
-                                state: userList,
+                                state: userList.email,
                               }}
                             >
                               <td>{userList.name}</td>
@@ -272,7 +272,7 @@ const CoordinatorSystemUsers = () => {
                 </Form.Group>
 
                 <div className="d-flex flex-row-reverse mb-3">
-                  <Button variant='primary'><i class="bi bi-plus-circle mr-2"></i>Create Account</Button>
+                  <Button variant='primary' type="submit"><i class="bi bi-plus-circle mr-2"></i>Create Account</Button>
                 </div>
               </Form>
             </Col>
