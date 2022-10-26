@@ -142,7 +142,7 @@ callServer(authCSVRequest).then((response) => { showAlert(response) }).catch(fun
                 </Form.Group>
               </Row>
               <div className='d-flex flex-row-reverse mb-3'>
-                <Button type='button'>+ Create Student</Button>
+                <Button type='submit'>+ Create Student</Button>
               </div>
 
 
