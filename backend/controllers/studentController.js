@@ -316,11 +316,13 @@ export const declineInterview = async(req,res)=>{
                     //   },
                     data:{
 
-                        index_number: indexno,
-                        advertisement_id: req.body.addId,
-                        cv : req.file.filename,
-                        is_wish_list : 0,
-                        company_id : req.body.comId
+                        index_number:indexno,
+                        // advertisement_id: 16,
+                        advertisement_id: parseInt(req.body.addId),
+                        cv:req.file.filename,
+                        is_wish_list:0,
+                        // company_id : 39
+                        company_id:parseInt(req.body.comId)
 
                     }
                 })
