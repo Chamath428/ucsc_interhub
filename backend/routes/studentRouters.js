@@ -1,7 +1,7 @@
 import express from "express";
 // import StudentEditProfile from '../../frontend/src/pages/Student/StudentSettings.js';
-import {createStudent,getSelectedInterview,getAllInterviews,acceptInterview, declineInterview, studentEditProfileView, getAllAdvertiesments, getAdvertisementPreview, uploadCSV, uploadCV} from '../controllers/studentController.js';
-
+import {createStudent,getSelectedInterview,getAllInterviews,acceptInterview, declineInterview, studentEditProfileView, getAllAdvertiesments, getAdvertisementPreview, uploadCSV, uploadCV, getAllAdvertiesmentApplied} from '../controllers/studentController.js';
+// import { getAllAdvertiesmentApplied } from "../controllers/studentController.js";
 import { studentEditProfile } from "../controllers/studentController.js";
 import { upload } from "../lib/file-upload.js";
 
@@ -22,5 +22,6 @@ studentRouters.post('/editProfileView/*',studentEditProfileView)
 studentRouters.post('/getAllAdvertiesmentS',getAllAdvertiesments);
 studentRouters.post('/getAdvertisementPreview',getAdvertisementPreview)
 studentRouters.post('/uploadCV/*', upload.single('cv'), uploadCV)
+studentRouters.post('/getAllAdvertiesmentApplied',getAllAdvertiesmentApplied);
 
 export default studentRouters;

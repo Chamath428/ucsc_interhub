@@ -30,7 +30,7 @@ function StudentBase(){
 return(
     <div className="App">
 
-        <TopNavTest actor='Student'/>
+        <TopNavTest actor='Student' Name = 'Chamath Madhusanka'/>
 
         <div className="flex">
 
