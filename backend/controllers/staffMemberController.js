@@ -78,15 +78,21 @@ export const InactiveRegisteredCompany = async (req, res) => {
 
                 company_status: 3,
             },
-            select: {
+            company_id:true,
                 name: true,
-                company_contacts: {
-                    select: {
-                        telephone_no: true,
+                date_of_establishment:true,
+                description:true,
+                website:true,
+                address:true,
+                fax_no:true,
+                company_status_types:{
+                    select:{
+                        type:true,
                     },
                 },
-                registration_number: true,
-            }
+                no_of_employees:true,
+                no_of_tech_leads:true,
+                no_of_project_managers:true,
         })
         res.status(200).send(InactiveRegisteredCompany);
 
@@ -105,6 +111,21 @@ export const PendingCompany = async (req, res) => {
             },
             select: {
                 name: true,
+                company_id:true,
+                name: true,
+                date_of_establishment:true,
+                description:true,
+                website:true,
+                address:true,
+                fax_no:true,
+                company_status_types:{
+                    select:{
+                        type:true,
+                    },
+                },
+                no_of_employees:true,
+                no_of_tech_leads:true,
+                no_of_project_managers:true,
                 company_contacts: {
                     select: {
                         telephone_no: true,
@@ -122,6 +143,17 @@ export const PendingCompany = async (req, res) => {
         res.status(400).send(error);
     }
 
+}
+export const AcceptCompanyRequest = async (req,res)=>{
+    
+    try{
+        const accept = await prisma.$queryRaw`UPDATE company SET company_status=2 WHERE company_id=${req.body.id}`
+
+        res.status(200).send(confirmStatus);
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
 }
 export const ActiveCompany = async (req, res) => {
 
@@ -1120,3 +1152,4 @@ export const getProfileData = async (req, res) => {
         res.status(400).send(error);
     }
 }
+ 
