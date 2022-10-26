@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom/cjs/react-router-dom';
 function AnnouncementCard(props) {
   return (
     <Card className='mt-3 mb-5'>
-      <Card.Header>{props.Header}</Card.Header>
+      <Card.Header>{props.Time} | {props.Date}
+      </Card.Header>
       <Card.Body>
         <Card.Title>{props.Title}</Card.Title>
         <Card.Text>

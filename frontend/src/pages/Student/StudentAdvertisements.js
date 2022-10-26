@@ -39,7 +39,7 @@ const StudentAdvertisements = () => {
   return (
     <div className="contain mt-5 ms-5" style={{ width: "90%" }}>
       <div className="container">
-        <h2 className="mb-5">Announcements</h2>
+        <h2 className="mb-5">Advertisements</h2>
         <div className="announcementcontain">
           <Row>
             <Col lg="4">
