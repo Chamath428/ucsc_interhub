@@ -203,20 +203,19 @@ const CompanyManageScheduleInterviews = () => {
       }
 
         return (
-            <div className='containinterview mt-5 ms-5'style={{width:'90%'}}>
-                      
+            <div className='containinterview mt-0 ms-5'style={{width:'90%'}}>
+                            <h2 className="mb-4">Manage Interviews</h2>
+
             <Tabs 
                 defaultActiveKey="ScheduledInterviews"
                 className="ManageInterviewTab"
-                fill
+                
             >
                 <Tab className="InterviewTab" eventKey="ScheduledInterviews" title="Scheduled Interviews">
                 <div className='contain-interview'>
-                        <div className='d-flex flex-row justify-content-sm-between mt-5 mb-5'>
-                            <h3>Scheduled Interviews</h3>                       
-                        </div>
+                
                         
-        <Container className='mt-3'>
+        <Container className='mt-5'>
           <Row>
             <Col sm={7}>
 
@@ -298,14 +297,13 @@ const CompanyManageScheduleInterviews = () => {
                 </Tab>
                 <Tab className="InterviewTab" eventKey="ScheduleInterviews" title="Schedule Interviews">
                     <div className='contain-interview'>
-                        <div className='d-flex flex-row justify-content-sm-between mt-5 mb-5'>
+                        <div className='d-flex flex-row justify-content-sm-between mt-4 mb-2'>
 
-                        <h3>Schedule an interview</h3>
                         </div> 
                         <Alert variant={variant} show={show} onClose={() => setShow(false)} dismissible>
                         <Alert.Heading>{alertPara}</Alert.Heading>
                       </Alert>
-                        <div className='row mt-3'>
+                        <div className='row'>
             
             <div className="card col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mt-3">
                 <Form>
@@ -383,14 +381,13 @@ const CompanyManageScheduleInterviews = () => {
                             />
                           </div>
                         ))}
-                    <div className='row gutters'>
+                    <div className='row gutters '>
                        <div className="card-body h-100 col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12 mt-3">
                    
                       <Stack direction="horizontal" gap={2}>
 
-                          <div className="bg-light" style={{width:'100%',display:'flex',flexDirection:'row-reverse'}}>
-                              <button type="button" id="submit" onClick={createInterview} name="submit" className="btn btn-primary ml-3">Schedule Interview</button>
-                          </div>
+                         
+                              <button type="button" id="submit" onClick={createInterview} name="submit" className="btn btn-primary">Schedule Interview</button>
                       </Stack>
                             
                         </div>
@@ -421,7 +418,7 @@ const CompanyManageScheduleInterviews = () => {
                   </Card>
                 
                 <Card className='mt-2 p-2'>
-                <h5>Other interviews of the student</h5>
+                <h5 className='mx-3 my-2'>Other interviews of the student</h5>
 
                 {studentInterviews.length==0?
                 <p>No interviews to show</p>

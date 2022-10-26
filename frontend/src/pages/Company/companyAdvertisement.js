@@ -37,14 +37,11 @@ const CompanyAdvertisements =()=>{
 
         return (
            
-            <div className='contain'>
-                <div className='d-flex flex-row justify-content-sm-between'>
-
-                <h3>Advertisements</h3>
-                </div> 
+            <div className="containcompany mt-0 ms-5" style={{ width: "90%" }}>
+      <h2 className="mb-4">Your Advertisements</h2>
                 <div className='d-flex mb-3 mt-1'>
 
-                    <Nav.Link as={Link} to="/Company/Create-ad"> <DashboardButton inside={'+ Create an advertisement'}></DashboardButton></Nav.Link>
+                    <Nav.Link as={Link} to="/Company/Create-ad"><Button variant='primary'><i class="bi bi-plus-circle mr-2"></i>Create a new advertisement</Button> </Nav.Link>
 
                 </div>
                 <div className='d-flex flex-row justify-content-sm-between mt-5 '>

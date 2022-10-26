@@ -10,7 +10,7 @@ import DashboardButton from '../../component/Dashboard/DashboardButton/dashboard
 import { URL } from '../URL';
 import { useState } from 'react';
 import axios from 'axios';
-
+import Button from 'react-bootstrap/Button';
 import '../../styles/companyManageSuppervisors.css';
 
 
@@ -43,11 +43,12 @@ const CompanyManageSupervisors = () => {
            }
 
         return (
-            <div className='containsupervisor mt-5 ms-5' style={{width:'90%'}}>
+            <div className="containcompany mt-0 ms-5" style={{ width: "90%" }}>
+                      <h2 className="mb-4">Manage Supervisors</h2>
+
             <Tabs 
                 defaultActiveKey="CreateSupervsor"
                 className="ManageSupervisorTab"
-                fill
             >
                 <Tab className="SupervisorTab mt-5" eventKey="CreateSupervsor" title="Create a New Supervisor Account">
                 <div className='contain-supervisor1'>
@@ -55,7 +56,7 @@ const CompanyManageSupervisors = () => {
                             <Alert.Heading>{alertPara}</Alert.Heading>
                         </Alert>
                         <div className='d-flex flex-row justify-content-sm-between '>
-                            <h3>Create Supervisor</h3> 
+                            <h4>Create Supervisor Account</h4> 
                         </div>
                         
                         <Container className="mt-5">
@@ -84,12 +85,12 @@ const CompanyManageSupervisors = () => {
                     </div>
 
                 </Tab>
-                <Tab className="SupervisorTab mt-5" eventKey="ManageSupervisors" title="Manage Supervisors">
+                <Tab className="SupervisorTab mt-5" eventKey="ManageSupervisors" title="Assign Supervisors">
             
                     <div className='contain-supervisor2'>
                         <div className='d-flex flex-row mb-5'>
 
-                        <h3>Manage Supervisors</h3>
+                        <h4>Assign Supervisors to Interns</h4>
                         </div> 
                         <div className='ms-3 me-3'>
                             <Row className='AssignSupervisorSearch g-4'>
@@ -110,7 +111,7 @@ const CompanyManageSupervisors = () => {
                                 </Form.Group>
                             </Row>
                             <div className='suppervisorcreate d-flex flex-row-reverse mt-4 mb-4'>      
-                            <DashboardButton inside={'Assign'}></DashboardButton>
+                            <Button variant='primary'>Assign Supervisor</Button>
                             </div>
                        
                             <h4>Assigned Supervisors</h4>

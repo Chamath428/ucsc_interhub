@@ -95,9 +95,9 @@ return (
 
     <Form>
         {/* main cards */}
-        <div className='container pt-5'>
+        <div className="containcompany mt-0 ms-5" style={{ width: "90%" }}>
 
-          <h3>Create Advertisment</h3>
+        <h2 className="mb-4">Create an advertisement</h2>
 
           <div className='row gutters'>
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mt-3">
@@ -148,10 +148,10 @@ return (
 
           <div className='row gutters'>
 
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-3">
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3 mb-3">
               {/* <Form> */}
                 <Form.Label>Technologies Seeking</Form.Label>
-                <Form.Control as="textarea" placeholder='Enter technologies lokking for' rows={3} onChange={(event) => { setTechnologies(event.target.value) }} />
+                <Form.Control as="textarea" placeholder='Technology-1, Technology-2' rows={1} onChange={(event) => { setTechnologies(event.target.value) }} />
                 {/* <Form.Select aria-label="technologiesRequired">
                   <option>Select Technologies Needed</option>
                   <option value="1">One</option>
@@ -169,84 +169,30 @@ return (
             
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-3">
               
-              <Card body>
-
-                <h5>Video</h5>
-
-                <div className='row gutters'>
-                  
-                  {/* <Form> */}
-                    <div className='row align-items-center'>
-                      <div className="col-9">
-
-                        <Form.Group className="mb-2" controlId="formBasicEmail">
-                          <Form.Label>Insert YoutTube Embed ID</Form.Label>
-                          <Form.Control type="text" placeholder="Enter the embed ID Only" onSubmit={(event) => { setVideoUrl(event.target.value) }}/>
-                          
-                        </Form.Group> 
-                      </div>
-
-                      <div className="col-3 pt-4">
-
-                        <Button variant="primary" type="button">
-                          Insert Video
-                        </Button>
-                        
-                      </div>
-
-                      </div>
 
 
-                  {/* </Form> */}
+                <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Choose promotional video</Form.Label>
+                  <Form.Control type="file" />
+                </Form.Group>
 
-                  <div className="col-12 mt-3">
-
-                    <Card body className='m-3'>
-                    <Figure>
-                      <Figure.Image
-                        
-                        alt="171x180"
-                        src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
-                      />
-                    </Figure>
-                    </Card>
-                  </div>
-                </div>
-
-              </Card>
             
             </div>
 
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-3">
-              <Card body>
 
-              <h5>Image</h5>
-              <Form.Label>Insert your image</Form.Label>
 
-              <div className='row gutters m-1'>
-
-                <Button variant='primary'>Add Image</Button>
-
-              </div>
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Choose promotional image</Form.Label>
+                <Form.Control type="file" />
+              </Form.Group>
 
                 <div className='row gutters'>
 
-                  <div className="col-12 mt-3 ">
-                    <Card body className='m-3'>
-                    <Figure>
-                      <Figure.Image
-                        
-                        alt="171x180"
-                        src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
-                      />
-                    </Figure>
-                    </Card>
-                  </div>
-
+                  
 
                 </div>
 
-              </Card>
 
             </div>
           </div>
@@ -259,13 +205,13 @@ return (
 
                       <Stack direction="horizontal" gap={2}>
 
-                          <div className="bg-light border ms-auto">
+                          <div className="ms-auto">
                               <button type="button" id="submit" name="submit" className="btn btn-secondary mr-3">Cancel</button>
                           </div>
 
                           <div className="vr" />
 
-                          <div className="bg-light border">
+                          <div >
                               <button type="submit" id="submit" onClick={postAdvertiesment} name="submit" className="btn btn-primary ml-3">Post Advertisement</button>
 
                           </div>
