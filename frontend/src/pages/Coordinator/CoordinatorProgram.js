@@ -122,11 +122,11 @@ const CoordinatorProgram = () => {
 
     return (
         <div className="contain ms-5 mt-0" style={{ width: "90%" }}>
-            <h3>Program Settings</h3>
+            <h2 className='mb-4'>Program Settings</h2>
 
             {/* <div className='container'> */}
 
-            <Tabs defaultActiveKey="CurrentProgram" className="AnnouncementsTab" fill>
+            <Tabs defaultActiveKey="CurrentProgram" className="AnnouncementsTab">
                 <Tab
                     className="ProgramTab"
                     eventKey="CurrentProgram"
@@ -136,11 +136,8 @@ const CoordinatorProgram = () => {
                         <br />
                         <br />
                         <Row>
-                            <Col>
-                                <h4>Current Placement Program</h4>
-                                {""}
-                            </Col>
-                            <Col>
+ 
+                            <Col lg="6">
                                 <ProgramCreateModal />{" "}
                                 <NextPhaseModal />{" "}
                             </Col>
@@ -207,10 +204,14 @@ const CoordinatorProgram = () => {
                     </Container>
                 </Tab>
 
-                <Tab className="ProgramTab" eventKey="AllPrograms" title="All Programs">
-                    <h4 className="mt-5 mb-4">Current Placement Program</h4>
-
-                    <div class="table-wrapper-scroll-y table-scrollba ">
+                <Tab className="ProgramTab" eventKey="AllPrograms" title="All Placement Programs">
+                <Container>
+                    <Row>
+                        <Col>
+                        {/* <h4 className="mt-5 mb-4">All Placement Programs</h4> */}
+                        </Col>
+                    </Row>
+                    <div class="mt-5 table-wrapper-scroll-y table-scrollba ">
                         {/* <TableView>
 
                         </TableView> */}
@@ -220,7 +221,7 @@ const CoordinatorProgram = () => {
                         </TableView> */}
 
                         <Table style={{ maxHeight: "60vh" }}>
-                            <thead>
+                            <thead  className='bg-primary text-white thead-primary'>
                                 <tr>
                                     <th>Program_Id</th>
                                     <th>Start Date</th>
@@ -242,6 +243,7 @@ const CoordinatorProgram = () => {
                             </tbody>
                         </Table>
                     </div>
+                </Container>
                 </Tab>
             </Tabs>
 
