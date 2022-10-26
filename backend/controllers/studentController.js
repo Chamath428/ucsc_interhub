@@ -437,3 +437,17 @@ export const declineInterview = async(req,res)=>{
             res.status(400).send(error);
         }
     }
+
+
+    export const getAllAnnouncements = async (req,res)=>{
+        try{
+            const announcements = await prisma.$queryRaw `SELECT 
+                                                            announcement_id, title, time, date, body 
+                                                            FROM announcement 
+                                                            WHERE type = 2 OR type = 1
+                                                            ORDER BY announcement_id DESC`;
+            res.status(200).send(announcements)
+        }catch(error){
+            res.status(400).json({message:"Something went wrong when fetchingn the data!"})
+        }
+    }

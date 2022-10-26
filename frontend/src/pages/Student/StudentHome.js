@@ -19,6 +19,7 @@ import { callServer } from '../authServer';
 const StudentHome = () => {  
 
   const [adds,setAdds] = useState([]);
+  const [announce,setAnnounce] = useState([]);
 
   useEffect(()=>{
       const data={
@@ -37,6 +38,25 @@ const StudentHome = () => {
           console.log(error);
       })
 
+
+      const announcedata={
+        // index_number:jwtDecode(sessionStorage.getItem("accessToken")).id
+    }
+    const authAnnounceRequest = {
+        "method":"post",
+        "url": "student/getAllAnnouncements",
+        "data": {}
+    }
+
+    callServer(authAnnounceRequest).then((response)=>{
+        console.log(response);
+        setAnnounce(response.data);
+    }).catch((error)=>{
+        console.log(error);
+    })
+
+
+
   },[])
 
 
@@ -52,19 +72,19 @@ return (
           className="d-flex justify-content-between mt-4"
         >
           <InfoCard
-            count="1/3"
-            title="First Round"
+            count="2/3"
+            title="Second Round"
             cardWidth="4"
             icon="pie-chart-fill"
           />
           <InfoCard
-            count="76"
+            count="6"
             title="Vacancies"
             cardWidth="4"
             icon="person-plus-fill"
           />
           <InfoCard
-            count="2"
+            count="4"
             title="Interviews"
             cardWidth="4"
             icon="megaphone-fill"
@@ -72,42 +92,11 @@ return (
         </Stack>
       
 
-        <div className="mt-5">
-          <h3>Announcements</h3>
-
-          <AnnouncementCard
-            Header="Posted at: 3.00 pm | 01.08.2022"
-            Title="All Students are required to submit the evaluations reports by 9th of August"
-            Text="lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester."
-            location="/Student/AnnouncementPage"
-          ></AnnouncementCard>
-
-        </div>
-        
         <Container className='mt-5'>
 
       <h3>Applied Vacancies</h3>
 
       <Stack direction="horizontal" gap={4} className='d-flex justify-content-between mt-4'>
-{/* 
-      {adds.length==0?(
-                <p>You have no Advertisements to show.</p>
-                ):(
-                  adds.map((add)=>(
-                    <AdvertisementCard
-                     title={add.title}
-                     jobrole={add.job_role}
-                     company={add.name}
-                    //  status={add.type}
-                     logo={LsegLogo}
-                     
-                     actor="Student"
-                     data={add.advertisement_id}>
-
-                     </AdvertisementCard>
-                    ))
-                )
-              } */}
 
                 {adds.length==0?(
                 <p>You have no Advertisements to show.</p>
@@ -125,18 +114,17 @@ return (
       <div className='mt-5'>
       <h3>Announcements</h3>
 
-        <AnnouncementCard Header='Posted at: 3.00 pm | 01.08.2022' Title='All Students are required to submit the evaluations reports by 9th of August' Text='lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester.' location='/Student/AnnouncementPage'></AnnouncementCard>
+      {announce.length==0?(
+                <p>You have no Advertisements to show.</p>
+                ):(
+                  announce.map((ann)=>(
 
-        <AnnouncementCard Header='Posted at: 8.00 pm | 30.07.2022' Title='DevOps Session at Creative Software' Text='lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester.' location='/Student/AnnouncementPage'></AnnouncementCard>
+        <AnnouncementCard Time= {ann.time} Date= {ann.date} Title= {ann.title} Text={ann.body}></AnnouncementCard>
 
-        <AnnouncementCard Header='Posted at: 3.00 pm | 01.08.2022' Title='All Students are required to submit the evaluations reports by 9th of August' Text='lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester.' location='/Student/AnnouncementPage'></AnnouncementCard>
+        ))
+        )
+      }
 
-          <AnnouncementCard
-            Header="Posted at: 3.00 pm | 01.08.2022"
-            Title="All Students are required to submit the evaluations reports by 9th of August"
-            Text="lease note that there will be lectures and other academic activities on August 8 (Monday) and August 9 (Tuesday), despite that week has been declared as the mid semester break in the academic calendar. This is to compensate for the two Mondays that we missed at the beginning of the semester."
-            location="/Student/AnnouncementPage"
-          ></AnnouncementCard>
         </div>
       </Container>
   </div>
