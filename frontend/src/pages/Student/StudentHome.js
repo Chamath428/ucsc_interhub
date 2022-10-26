@@ -91,7 +91,6 @@ return (
           />
         </Stack>
       
-
         <Container className='mt-5'>
 
       <h3>Applied Vacancies</h3>

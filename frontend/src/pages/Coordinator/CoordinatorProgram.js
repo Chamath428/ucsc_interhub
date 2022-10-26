@@ -132,12 +132,12 @@ const CoordinatorProgram = () => {
                     eventKey="CurrentProgram"
                     title="Current Program"
                 >
-                    <Container>
+    <Container>
                         <br />
                         <br />
-                        <Row>
+                        <Row className="mr-5">
  
-                            <Col lg="6">
+                            <Col lg="6" >
                                 <ProgramCreateModal />{" "}
                                 <NextPhaseModal />{" "}
                             </Col>
