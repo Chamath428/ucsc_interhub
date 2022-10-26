@@ -2,7 +2,9 @@ import express from 'express';
 import { createStaffMember,scheduleCompanyVisit,ActiveRegisteredCompany,
     InactiveRegisteredCompany,PendingCompany,CompanyVisit,ActiveCompany, FilterCompanyVisitByType,FilterCompanyVisitByStatus,SortCompanyVisit,
     AllStudents,SelectedStudents,SearchAllStudentsByCourse,SearchAllStudentsByEntrolled,SortAllStudents,SelectedStudentsSearchByCourse,
+
     SortSelectedStudents,getJobRoles, completeVisit,SelectedStudentsSearchByJobRole,
+
    
 } from '../controllers/staffMemberController.js';
 
@@ -28,7 +30,10 @@ staffMemberRouters.post('/SelectedStudentsSearchByJobRole',SelectedStudentsSearc
 staffMemberRouters.post('/CompanyVisitByType',FilterCompanyVisitByType);
 staffMemberRouters.post('/CompanyVisitByStatus',FilterCompanyVisitByStatus);
 staffMemberRouters.post('/SortCompanyVisit',SortCompanyVisit);
+
 staffMemberRouters.post('/completeVisit',completeVisit);
+
+
 
 
 
