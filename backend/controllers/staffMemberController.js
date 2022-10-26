@@ -6,8 +6,11 @@ const prisma = new PrismaClient();
 export const createStaffMember = async (req, res) => {
     console.log('create staff member');
     const { error, value } = staffMemberSchema.validate(req.body);
+   
 
     if (!error) {
+
+       
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash("password", salt);
         try {
@@ -17,11 +20,13 @@ export const createStaffMember = async (req, res) => {
                     first_name: req.body.first_name,
                     last_name: req.body.last_name,
                     password: hashPassword,
-                    role: req.body.role
+                    role: req.body.role,
+                  
                 }
             })
 
             res.status(200).send(staffMember);
+            
         } catch (error) {
             res.status(500).send(error);
         }
@@ -1095,28 +1100,24 @@ export const completeVisit = async (req,res)=>{
 }
 
 export const getProfileData = async (req, res) => {
-    console.log(req.body.userId.email)
+    console.log(req.body.userId)
     try {
         const profileData = await prisma.pdc.findFirst({
             where: {
-                email_address: req.body.userId.email,
+                email_address: req.body.userId,
             },
             select: {
                 first_name: true,
                 last_name: true,
                 email_address: true,
-                pdc_role: {
-                    select: {
-                        role: true,
-                    },
-                }
+                role : true
             }
         }
         );
-        // console.log(profileData)
+        console.log(profileData)
         res.status(200).send(profileData);
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(400).send(error);
     }
 }

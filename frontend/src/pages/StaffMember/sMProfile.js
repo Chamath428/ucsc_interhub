@@ -23,10 +23,14 @@ const StaffProfile = (props) => {
     const [alertPara, setAlertPara] = useState("User added Successfully!");
     const [variant, setVariant] = useState("success");
     const [profileData,setProfileData] = useState([]);
+    // const [Urole,setRole] = useState([]);
+
 
     const staffId = props.location.state;
-    console.log(staffId)
+ 
+    
     useEffect(()=>{
+        
         const data ={
             userId:(staffId?staffId:jwtDecode(sessionStorage.getItem("accessToken")).id)
         };
@@ -38,6 +42,8 @@ const StaffProfile = (props) => {
 
           callServer(authRequest).then((response) => {
             setProfileData(response.data);
+            // setRole(profileData.pdc_role);
+            // console.log(Urole.role)
             },).catch((error)=>{
                 console.log(error);
             })
@@ -104,8 +110,8 @@ const StaffProfile = (props) => {
                     <Card body>
                         <Row>
                             <Col lg='7'>
-                                <h1>{profileData.first_name}</h1>
-                                <h5>{profileData.first_name}</h5>
+                                <h1>{profileData.first_name+" "+profileData.last_name}</h1>
+                                <h5>{profileData.role==1?"Coordinator":"Staff Member"}</h5>
                             </Col>
                             <Col lg='5' >
                                 {/* Use composition and render a Route for Edit Profile button */}
