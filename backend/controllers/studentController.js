@@ -124,6 +124,7 @@ export const declineInterview = async(req,res)=>{
     export const studentEditProfile = async(req,res)=>{
         console.log("Comming")
         const {error,value} = studenteditProfileSchema.validate(req.body);
+        console.log(error)
         console.log(req.files['profilePic'])
         console.log(req.files['profileVideo'])
         if(!error){
@@ -146,8 +147,31 @@ export const declineInterview = async(req,res)=>{
                         intro_video : req.files.profileVideo[0].filename
                     }
                 })
+
+            
+                const studentPrefered =
+                  await prisma.student_preferred_job_role.upsert({
+                    where: { index_number: parseInt(req.body.index_number) },
+                    update: {
+                      prefer_no1: parseInt(req.body.category1),
+                      prefer_no2: parseInt(req.body.category2),
+                      prefer_no3: parseInt(req.body.category3),
+                      prefer_no4: parseInt(req.body.category4),
+                      prefer_no5: parseInt(req.body.category5),
+                    },
+                    create: {
+                      index_number: parseInt(req.body.index_number),
+                      prefer_no1: parseInt(req.body.category1),
+                      prefer_no2: parseInt(req.body.category2),
+                      prefer_no3: parseInt(req.body.category3),
+                      prefer_no4: parseInt(req.body.category4),
+                      prefer_no5: parseInt(req.body.category5),
+                    },
+                  });
+
                 const message = {"Message":"Student Created Successfull"}
                 res.status(200).send(student);
+              //  res.status(200).send(studentPrefered)
             }catch(error){
                 console.log(error);
                 res.status(400).send(error);
@@ -223,6 +247,7 @@ export const declineInterview = async(req,res)=>{
                     intro_video : true
                 }
             })
+
             res.status(200).send(student);
     
             // console.dir(registeredCompany, { depth: null })
