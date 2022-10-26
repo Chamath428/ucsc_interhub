@@ -18,7 +18,6 @@
 
   margin: auto;
   margin-top: 10vh;
-  /* margin-left: 5%; */
   display: flex;
   flex-direction: row;
   /* flex-wrap: wrap; */
@@ -27,6 +26,7 @@
 
 
 }
+
 
 
 @media screen and (max-width: 1080px){

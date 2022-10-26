@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/esm/Container';
 import PieChart from '../../component/Charts/pieChart';
 import ApexCharts from "../../component/Charts/aphexChart";
 import { callServer } from "../authServer";
+import Table from "react-bootstrap/Table";
 
 import { Chart } from 'react-charts'
 
@@ -16,7 +17,7 @@ const CoordinatorHome = () => {
     const [variant, setVariant] = useState("success");
     const [CardDetails, setCardDetails] = useState([]);
     const [chartDetails, setChartDetails] = useState([]);
-
+    const [companyWiseDetails, setCompanyWiseDetails] = useState([]);
     // console.log(CardDetails[0])
     // var totalStudent = 0;
     // var totalCompany = 0;
@@ -107,6 +108,35 @@ const CoordinatorHome = () => {
                     setShow(true);
                 }
             });
+
+        const CompanyWiseStudent = {
+            method: "post",
+            url: "coordinator/companyWiseNoStudent",
+            data: {},
+        };
+
+        callServer(CompanyWiseStudent)
+            .then((response) => {
+                console.log(response.data)
+                response.data.map((item) => {
+                    setCompanyWiseDetails((prevState) => [
+                        ...prevState,
+                        {
+                            companyNames: item.name,
+                            CountOfCompany: item.count,
+
+                        },
+                    ]);
+
+                });
+            })
+            .catch(function (error) {
+                if (error.response) {
+                    setAlertPara("Something went wrong!");
+                    setVariant("danger");
+                    setShow(true);
+                }
+            });
     }, []);
 
     return (
@@ -134,10 +164,14 @@ const CoordinatorHome = () => {
                 {chartDetails.map((chartDetails) => (
                     <>
 
-                        <Col> <PieChart header={"Selected Cs Students"} valSelected={parseInt(chartDetails.selectTotalCs)} valAll={parseInt(chartDetails.csTotal)} /></Col>
-                        <Col> <PieChart header={"Selected Is Students"} valSelected={parseInt(chartDetails.selectTotalIs)} valAll={parseInt(chartDetails.isTotal)} /></Col>
-                        <Col>  <ApexCharts header={"View Overall"} Numbers={[parseInt(chartDetails.totalStudent),parseInt(chartDetails.totalSelectStudent)]} companyName={['Total student', 'Selected student', ]} /></Col>
+                        <Row>
 
+                            <Col> <PieChart header={"Selected Cs Students"} valSelected={parseInt(chartDetails.selectTotalCs)} valAll={parseInt(chartDetails.csTotal)} /></Col>
+                            <Col> <PieChart header={"Selected Is Students"} valSelected={parseInt(chartDetails.selectTotalIs)} valAll={parseInt(chartDetails.isTotal)} /></Col>
+                            <Col>  <ApexCharts header={"View Overall"} Numbers={[parseInt(chartDetails.totalStudent), parseInt(chartDetails.totalSelectStudent)]} companyName={['Total student', 'Selected student',]} /></Col>
+
+
+                        </Row>
 
                     </>
                 ))}
@@ -145,6 +179,83 @@ const CoordinatorHome = () => {
 
 
             </Row>
+            <Row>
+                <Col md="auto">
+
+                    <h4>Number of selected student <br />company wise</h4>
+
+                    <Table style={{ maxHeight: "60vh", width: "300px", marginTop: "30px" }}>
+                        <thead>
+                            <tr>
+                                <th>Company/Organization</th>
+                                <th>Count</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {companyWiseDetails.map((companyWiseDetails) => (
+                                <tr>
+                                    <td>{companyWiseDetails.companyNames}</td>
+                                    <td>{companyWiseDetails.CountOfCompany}</td>
+
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                </Col>
+                <Col>
+                    <Table style={{ maxHeight: "60vh", marginTop: "90px" }}>
+                        <thead>
+                            <tr>
+                                <th>Placement Status</th>
+                                <th>Placement Completed Count</th>
+                                <th>Placement Pending Count</th>
+                                <th>Placement Completed %</th>
+                                <th>Placement Pending %</th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {chartDetails.map((chartDetails) => (
+                                <>
+
+                                    <tr>
+                                        <td>Cs</td>
+                                        <td>{chartDetails.selectTotalCs}</td>
+                                        <td>{chartDetails.csTotal - chartDetails.selectTotalCs}</td>
+                                        <td>{parseFloat((chartDetails.selectTotalCs / chartDetails.csTotal) * 100).toFixed(2)}%</td>
+                                        {/* let directly = parseFloat(number.toFixed(2)) */}
+                                        <td>{parseFloat(((chartDetails.csTotal - chartDetails.selectTotalCs) / chartDetails.csTotal) * 100).toFixed(2)}%</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Is</td>
+                                        <td>{chartDetails.selectTotalIs}</td>
+                                        <td>{chartDetails.isTotal - chartDetails.selectTotalIs}</td>
+                                        <td>{parseFloat((chartDetails.selectTotalIs / chartDetails.isTotal) * 100).toFixed(2)}%</td>
+                                        <td>{parseFloat(((chartDetails.isTotal - chartDetails.selectTotalIs) / chartDetails.isTotal) * 100).toFixed(2)}%</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Overall</td>
+                                        <td>{chartDetails.totalSelectStudent}</td>
+                                        <td>{chartDetails.totalStudent - chartDetails.totalSelectStudent}</td>
+                                        <td>{parseFloat((chartDetails.totalSelectStudent / chartDetails.totalStudent) * 100).toFixed(2)}%</td>
+                                        <td>{parseFloat(((chartDetails.totalStudent - chartDetails.totalSelectStudent) / chartDetails.totalStudent) * 100).toFixed(2)}%</td>
+
+                                    </tr>
+                                </>
+                            ))}
+                        </tbody>
+                    </Table>
+
+                </Col>
+
+
+            </Row>
+
         </Container>
 
 

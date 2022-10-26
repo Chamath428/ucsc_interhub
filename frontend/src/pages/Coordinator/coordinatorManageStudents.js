@@ -20,12 +20,12 @@ const CoordinatorManageStudents = () => {
     const [studentList, setStudentList] = useState([]);
     const [selectedStudentList, setSelectedStudentList] = useState([]);
     const [searchSelectStudent, setSearchSelectStudent] = useState("");
+    const [selectedCourse, setselectedCourse] = useState("0");
 
     // const [sort, setSort] = useState(1);
 
     // const [studentSortList, studentSortList1] = useState([]);
 
-    
     studentList.map((item, index) => {
         if (item.cv) {
             item.cv = "True";
@@ -33,7 +33,7 @@ const CoordinatorManageStudents = () => {
             item.cv = "False";
         }
     });
-    
+
 
     useEffect(() => {
         const authRequest = {
@@ -94,6 +94,28 @@ const CoordinatorManageStudents = () => {
             });
     }, []);
 
+    const searchAllStudentsByCourse = (courseNumber) => {
+        setselectedCourse(courseNumber)
+        const authRequestAllStudentsFilterByCourse = {
+            "method": "post",
+            "url": "coordinator/AllStudentsSearchByCourse",
+            "data": {
+                degree: parseInt(courseNumber)
+            }
+        }
+
+        callServer(authRequestAllStudentsFilterByCourse).then((response) => {
+            setStudentList(response.data);
+        }).catch(function (error) {
+            if (error.response) {
+                setAlertPara("Something went wrong!");
+                setVariant("danger");
+                setShow(true);
+            }
+        })
+    }
+    console.log(selectedCourse)
+
     // const Fun = (event) => {
     //     if (studentList) {
     //         const sort = event.target.value;
@@ -149,10 +171,12 @@ const CoordinatorManageStudents = () => {
                                         <Form.Label className="fw-bold" column sm={5}>
                                             Course
                                         </Form.Label>
-                                        <Form.Select sm={10} defaultValue="Choose...">
-                                            <option>CS and IS</option>
-                                            <option>CS</option>
-                                            <option>IS</option>
+                                        <Form.Select sm={10} defaultValue="Choose..." onChange={(event) => { searchAllStudentsByCourse(event.target.value) }}>
+                                            <option value="0">All CS and IS</option>
+                                            <option value="1">CS - 3rd Year</option>
+                                            <option value="2">IS - 3rd Year</option>
+                                            <option value="3">CS - 4th Year</option>
+                                            <option value="4">IS - 4th Year</option>
                                         </Form.Select>
                                     </Form.Group>
 
@@ -174,7 +198,7 @@ const CoordinatorManageStudents = () => {
                                         <Form.Select
                                             sm={10}
                                             defaultValue="Choose..."
-                                            // onChange={Fun}
+                                        // onChange={Fun}
                                         >
                                             <option value="1">Index Number</option>
                                             <option value="2">Name</option>
@@ -279,41 +303,41 @@ const CoordinatorManageStudents = () => {
                         </Container>
 
                         <div className="table-wrapper-scroll-y my-custom-scrollbar ">
-                        <Table style={{ maxHeight: '60vh' }}>
+                            <Table style={{ maxHeight: '60vh' }}>
                                 <thead>
                                     <tr>
                                         <th>Index No</th>
                                         <th>Name</th>
                                         <th>Compnay Selected For</th>
                                         <th>GPA</th>
-                                       
+
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {selectedStudentList.filter((selectedStudentList) => {
+                                    {selectedStudentList.filter((selectedStudentList) => {
                                         if (searchSelectStudent == "") {
                                             return selectedStudentList
                                         }
                                         else if (selectedStudentList.name.toLowerCase().includes(searchSelectStudent.toLowerCase())) {
                                             return selectedStudentList
                                         }
-                                    }).map((selectedStudentList)=>(
-                                    <tr >
-                                        
-                                        <td>{selectedStudentList.index_number}</td>
-                                        <td>{selectedStudentList.nameStudent}</td>
-                                        <td>{selectedStudentList.nameCompany}</td>
-                                        <td>{selectedStudentList.gpa}</td>
-                                    
-                                    </tr>
-                                    
+                                    }).map((selectedStudentList) => (
+                                        <tr >
 
-                                 ))}
-                                    
+                                            <td>{selectedStudentList.index_number}</td>
+                                            <td>{selectedStudentList.nameStudent}</td>
+                                            <td>{selectedStudentList.nameCompany}</td>
+                                            <td>{selectedStudentList.gpa}</td>
+
+                                        </tr>
+
+
+                                    ))}
+
                                 </tbody>
-                            
-                            
+
+
                             </Table>
                         </div>
                     </div>
