@@ -32,20 +32,20 @@ class StudentProfile extends Component {
                                 <ProfilePic url="https://i.pinimg.com/736x/0a/53/c3/0a53c3bbe2f56a1ddac34ea04a26be98.jpg"/>
                                 
                                 <div className="d-grid gap-2">
-                                    <PrimaryBtn text='View my CV'></PrimaryBtn>
+                                    <Button variant='primary'>View my CV</Button>
                                 </div><br />
 
                                 <div className="d-grid gap-2">
-                                    <InfoBtn text='Add me to wishlist'></InfoBtn>
+                                    <Button variant='secondary'><i class="bi bi-bookmark-plus mr-2"></i>Wishlist Me</Button>
                                 </div>
                                 
                                 <div>
                                     <br />
                                     <div className="d-flex justify-content-between">
                                         
-                                            <Button variant="outline-primary" style={{marginRight: '5px'}}><i className="bi bi-facebook ms-1"></i></Button>
-                                            <Button variant="outline-primary" style={{marginRight: '5px'}}><i className="bi bi-linkedin ms-1"></i></Button>
-                                            <Button variant="outline-primary" style={{marginRight: '5px'}}><i className="bi bi-github ms-1"></i></Button>
+                                            <Button variant="outline-primary" className=''><i className="bi bi-facebook mx-3"></i></Button>
+                                            <Button variant="outline-primary" className=''><i className="bi bi-linkedin mx-3"></i></Button>
+                                            <Button variant="outline-primary" className=''><i className="bi bi-github mx-3"></i></Button>
                                     </div>
                                 </div>
 
