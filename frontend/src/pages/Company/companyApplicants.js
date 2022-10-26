@@ -1,17 +1,65 @@
 import React, { Component } from 'react';
+import { useState,useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
-import { Row,Col } from 'react-bootstrap';
+import { Row,Col, Button } from 'react-bootstrap';
 import TableView from '../../component/Dashboard/Table/tableView';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import Table from 'react-bootstrap/Table';
 import DashboardButton from '../../component/Dashboard/DashboardButton/dashboardButton';
+import jwtDecode from 'jwt-decode';
+import { callServer } from '../authServer';
 
 import '../../styles/companyApplicant.css';    
 
-class CompanyApplicants extends Component {
+const CompanyApplicants =()=> {
 
-    render() {
+    const [applicantList,setApplicantList]=useState([]);
+    const [show, setShow] = useState(false);
+    const [alertPara, setAlertPara] = useState("Applicants fetched Successfully!");
+    const [variant, setVariant] = useState("success");
+    const [indexNumber,setIndexNumber]=useState(0);
+    const [wishlistApplicants,setWishListApplicants] = useState([]);
+
+    useEffect(()=>{
+        const data ={
+            companyId:jwtDecode(sessionStorage.getItem("accessToken")).id
+          }
+          const authRequest = {
+            "method":"post",
+            "url":"organization/getAllApplicants",
+            "data":data
+          }
+
+        callServer(authRequest).then((response)=>{
+            setApplicantList(response.data[0])
+            setWishListApplicants(response.data[1]);
+        }).catch((error)=>{
+            setAlertPara("Something went wrong while getting students!");
+            setVariant("danger");
+            setShow(true);
+        })
+    },[]);
+
+    const handleWishList = (index_number,advertisement_id,is_wish_list)=>{
+        const data={
+            index_number:index_number,
+            advertisement_id:advertisement_id,
+            is_wish_list:is_wish_list
+        }
+        const authRequest = {
+            "method":"post",
+            "url":"organization/handleWishlist",
+            "data":data
+          }
+          callServer(authRequest).then((response)=>{
+            window.location.reload(false);
+          }).catch((error)=>{
+            console.log(error)
+          })
+    }
+
         return (
             <Tabs 
                 defaultActiveKey="AllApplicants"
@@ -57,10 +105,31 @@ class CompanyApplicants extends Component {
                         </Container>
 
                         <div className="table-wrapper-scroll-y my-custom-scrollbar">
-                                    <TableView headers = {['Name','Job Role','Respond','Interviews', 'Wishlist']}
-                                    list={[['Shanika Jayathunga','Software Engineering','Accepted','Called',<i class="bi bi-bookmark-fill"></i>],['Jayani Kulasekara','UI/UX Designer','Rejected','Called',<i class="bi bi-bookmark-fill"></i>],['Prathiksha Jayakodi','Network Engineer','False','None',<i class="bi bi-bookmark"></i>],['Sameera Kumara','Project Manager','True','None',<i class="bi bi-bookmark-fill"></i>],['Ayodya Ranasinghe','Software Engineering','True','None',<i class="bi bi-bookmark"></i>],['Binura Jathilake','Business Analyst','True','Called',<i class="bi bi-bookmark-fill"></i>]]}>
+                        <Table style={{ maxHeight: '60vh' }}>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Applied Advertiesment</th>
+                                        <th>Wishlist</th>      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 {applicantList.map((applicant)=>(
+                                    <tr >
                                         
-                                    </TableView>                       
+                                        <td>{applicant.name}</td>
+                                        <td>{applicant.title}</td>
+                                        <td>{applicant.is_wish_list==0?<Button type='button' onClick={() => {handleWishList(applicant.index_number,applicant.advertisement_id,1) }} variant="primary">Add to WishList</Button>:<Button onClick={() => { handleWishList(applicant.index_number,applicant.advertisement_id,0) }} variant="danger">Remove from WishList</Button>}</td>
+                                    
+                                    </tr>
+                                    
+
+                                 ))}
+                                    
+                                </tbody>
+                            
+                            
+                            </Table>                      
                         </div>
                     </div>
 
@@ -105,10 +174,30 @@ class CompanyApplicants extends Component {
                         </Container>
 
                         <div className="table-wrapper-scroll-y my-custom-scrollbar">
-                            <TableView headers = {['Name','Job Role','Respond','Interviews']}
-                                    list={[['Shanika Jayathunga','Software Engineering','Accepted','Called'],['Jayani Kulasekara','UI/UX Designer','Rejected','Called'],['Sameera Kumara','Project Manager','True','None'],['Binura Jathilake','Business Analyst','True','Called']]}>
+                        <Table style={{ maxHeight: '60vh' }}>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Applied Advertiesment</th>
+                                        <th>Wishlist</th>      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 {wishlistApplicants.map((wisApplicant)=>(
+                                    <tr >
                                         
-                            </TableView>  
+                                        <td>{wisApplicant.name}</td>
+                                        <td>{wisApplicant.title}</td>                    
+                                        <td><Button type='button' onClick={() => {handleWishList(wisApplicant.index_number,wisApplicant.advertisement_id,0) }} variant="danger">Remove from WishList</Button></td>
+                                    </tr>
+                                    
+
+                                 ))}
+                                    
+                                </tbody>
+                            
+                            
+                            </Table> 
                         
                         </div>
 
@@ -167,6 +256,5 @@ class CompanyApplicants extends Component {
         );
     }
 // 
-}
 
 export default CompanyApplicants;
