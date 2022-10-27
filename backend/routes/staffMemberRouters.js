@@ -4,7 +4,7 @@ import { createStaffMember,scheduleCompanyVisit,ActiveRegisteredCompany,
     AllStudents,SelectedStudents,SearchAllStudentsByCourse,SearchAllStudentsByEntrolled,SortAllStudents,SelectedStudentsSearchByCourse,
 
 
-    SortSelectedStudents,getJobRoles, completeVisit,SelectedStudentsSearchByJobRole,getProfileData,AcceptCompanyRequest,
+    SortSelectedStudents,getJobRoles, completeVisit,SelectedStudentsSearchByJobRole,getProfileData,AcceptCompanyRequest, getAllAdvertiesments
 
 
    
@@ -36,6 +36,8 @@ staffMemberRouters.post('/SortCompanyVisit',SortCompanyVisit);
 staffMemberRouters.post('/getProfileData',getProfileData);
 
 staffMemberRouters.post('/completeVisit',completeVisit);
+
+staffMemberRouters.post('/getAllAdvertiesmentS',getAllAdvertiesments);
 
 
 

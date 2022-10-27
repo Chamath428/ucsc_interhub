@@ -16,7 +16,41 @@ import "../../styles/sMAdvertisments.css";
 const StudentAdvertisements = () => {
   const [adds, setAdds] = useState([]);
 
+  // const [jobRoles,setJobRoles]=useState([]);
+
+  // const [category,setCategory] = useState(0);
+
+
+  // const[selectedCourse,setselectedCourse] = useState("0");
+  // const[selectedStatus,setselectedStatus] = useState("0");
+  // const [allStudentsList, setAllStudentsList] = useState([]);
+  // const [searchSelectedStudent,setSearchSelectedStudent] = useState("");
+
+  // const [show, setShow] = useState(false);
+  // const [alertPara, setAlertPara] = useState("Student Added Successfully!");
+  // const [variant, setVariant] = useState("success");
+
   useEffect(() => {
+
+    // const dataJobRoles={};
+    // const authRequestJobRoles = {
+    //   "method": "post",
+    //   "url": "organization/getJobRoles",
+    //   "data": dataJobRoles
+    // }
+
+    // callServer(authRequestJobRoles).then((response)=>{
+    //   console.log(response.data);
+    //   setJobRoles(response.data);
+    // }).catch((error)=>{
+    //   if (error.response) {
+    //     setAlertPara("Something went wrong when getting the job roles!");
+    //     setVariant("danger");
+    //     setShow(true);
+    //   }
+    // })
+
+
     const data = {
       // companyId:jwtDecode(sessionStorage.getItem("accessToken")).id
     };
@@ -55,11 +89,7 @@ const StudentAdvertisements = () => {
                     >
                       <i class="bi bi-search"></i>
                     </InputGroup.Text>
-                    <Form.Control
-                      className="searchbox"
-                      type="searchbox text"
-                      placeholder="Search Advertisements"
-                    />
+                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search by Technologies"/>
                   </InputGroup>
                 </div>
               </Form.Group>
@@ -83,12 +113,14 @@ const StudentAdvertisements = () => {
                 <Form.Label className="fw-bold" column sm={5}>
                   Job Role
                 </Form.Label>
-                <Form.Select sm={10} defaultValue="Choose...">
-                  <option value="1">All</option>
-                  <option value="2">...</option>
-                </Form.Select>
+                <Form.Select aria-label="Default select example" >
+                  {/* <option>Select Job Category</option>
+                  {jobRoles.map((jobRole)=>(
+                    <option value={jobRole.id}>{jobRole.job_role}</option>
+                  ))} */}
+                </Form.Select>         
               </Form.Group>
-              <Form.Group as={Col} sm controlId="formGridState">
+              {/* <Form.Group as={Col} sm controlId="formGridState">
                 <Form.Label className="fw-bold" column sm={5}>
                   Technologies
                 </Form.Label>
@@ -96,7 +128,7 @@ const StudentAdvertisements = () => {
                   <option value="1">All</option>
                   <option value="2">...</option>
                 </Form.Select>
-              </Form.Group>
+              </Form.Group> */}
             </Row>
           </Form>
         </Container>

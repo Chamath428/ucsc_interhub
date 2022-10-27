@@ -264,7 +264,8 @@ export const declineInterview = async(req,res)=>{
                                                                   advertisement.title,
                                                                   company.name,
                                                                   job_roles.job_role,
-                                                                  advertisement_status.type
+                                                                  advertisement_status.type,
+                                                                  advertisement_technologies.technologies
                                                                   FROM advertisement
                                                                   LEFT JOIN
                                                                   company
@@ -275,6 +276,9 @@ export const declineInterview = async(req,res)=>{
                                                                   LEFT JOIN
                                                                   advertisement_status
                                                                   ON advertisement.status=advertisement_status.id
+                                                                  LEFT JOIN 
+                                                                  advertisement_technologies
+                                                                  ON advertisement_technologies.advertisement_id = advertisement.advertisement_id
                                                                   WHERE advertisement.status = 2
                                                             ORDER BY advertisement.advertisement_id DESC`;
             res.status(200).send(advertiesments)
