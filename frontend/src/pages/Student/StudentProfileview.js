@@ -37,9 +37,9 @@ const StudentProfile =(props)=>{
                                     <Button variant='primary'>View my CV</Button>
                                 </div><br />
 
-                                <div className="d-grid gap-2">
+                                {/* <div className="d-grid gap-2">
                                     <Button variant='secondary'><i class="bi bi-bookmark-plus mr-2"></i>Wishlist Me</Button>
-                                </div>
+                                </div> */}
                                 
                                 <div>
                                     <br />
