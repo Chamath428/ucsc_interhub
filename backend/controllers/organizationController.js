@@ -309,3 +309,25 @@ export const addToWishList = async (req,res)=>{
         res.status(400).send(error);
     }
 }
+
+export const getApplicantDetails = async(req,res)=>{
+    console.log(req.body.advertisement_id);
+    try{
+        const applicant = await prisma.$queryRaw `SELECT student_applied_internships.cv,student.name,student.about_me,student_degree.degree
+                                                    FROM student
+                                                    LEFT JOIN
+                                                    student_applied_internships
+                                                    ON student.index_number=student_applied_internships.index_number
+                                                    LEFT JOIN
+                                                    student_degree
+                                                    ON student_degree.id=student.degree
+                                                    WHERE
+                                                    student_applied_internships.index_number=${req.body.studentId}
+                                                    AND 
+                                                    student_applied_internships.advertisement_id=${req.body.advertisement_id}`;
+        res.status(200).send(applicant);
+        console.log(applicant)
+    }catch(error){
+        res.status(400).send(error);
+    }
+}

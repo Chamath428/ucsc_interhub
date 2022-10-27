@@ -9,17 +9,13 @@ import Tabs from "react-bootstrap/Tabs";
 import Table from "react-bootstrap/Table";
 import DashboardButton from "../../component/Dashboard/DashboardButton/dashboardButton";
 import jwtDecode from "jwt-decode";
+import { Link } from "react-router-dom";
 import { callServer } from "../authServer";
 import { InputGroup } from "react-bootstrap";
 import "../../styles/companyApplicant.css";
 
 const CompanyApplicants = () => {
   const [applicantList, setApplicantList] = useState([]);
-  const [show, setShow] = useState(false);
-  const [alertPara, setAlertPara] = useState(
-    "Applicants fetched Successfully!"
-  );
-  const [variant, setVariant] = useState("success");
   const [indexNumber, setIndexNumber] = useState(0);
   const [wishlistApplicants, setWishListApplicants] = useState([]);
 
@@ -39,9 +35,7 @@ const CompanyApplicants = () => {
         setWishListApplicants(response.data[1]);
       })
       .catch((error) => {
-        setAlertPara("Something went wrong while getting students!");
-        setVariant("danger");
-        setShow(true);
+        console.log(error)
       });
   }, []);
 
@@ -124,7 +118,21 @@ const CompanyApplicants = () => {
                 <tbody>
                   {applicantList.map((applicant) => (
                     <tr>
-                      <td>{applicant.name}</td>
+                    
+                        
+                        
+                        
+
+                        <Link
+                        to={{
+                          pathname: "/Company/ViewApplicant",
+                          state: applicant,
+                        }}
+                      >
+                        <td>{applicant.name}</td>
+                      </Link>
+
+                      
                       <td>{applicant.title}</td>
                       <td>
                         {applicant.is_wish_list == 0 ? (
@@ -213,7 +221,18 @@ const CompanyApplicants = () => {
                 <tbody>
                   {wishlistApplicants.map((wisApplicant) => (
                     <tr>
-                      <td>{wisApplicant.name}</td>
+                      <td>
+
+                      <Link
+                        to={{
+                          pathname: "/Company/ViewApplicant",
+                          state: wisApplicant.index_number,
+                        }}
+                      >
+                        <td>{wisApplicant.name}</td>
+                      </Link>
+
+                      </td>
                       <td>{wisApplicant.title}</td>
                       <td>
                         <Button

@@ -8,7 +8,8 @@ import {createAdvertiesment,
         getSelectedInterviews,
         createInterview,
         getApplicantList,
-        addToWishList} from '../controllers/organizationController.js';
+        addToWishList,
+        getApplicantDetails} from '../controllers/organizationController.js';
 
 const organizationRouters = expree.Router();
 
@@ -22,6 +23,7 @@ organizationRouters.post('/getSelectedInterviews',getSelectedInterviews);
 organizationRouters.post('/createInterview',createInterview);
 organizationRouters.post('/getAllApplicants',getApplicantList)
 organizationRouters.post("/handleWishlist",addToWishList)
+organizationRouters.post("/getApplicantProfile",getApplicantDetails);
 
 // organizationRouters.post('/register',registerOrganization); this function moved to the user routes
 
