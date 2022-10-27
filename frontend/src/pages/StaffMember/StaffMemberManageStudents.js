@@ -14,6 +14,7 @@ import SelectSearch from "react-select-search";
 import "react-select-search/style.css";
 import "../../styles/sMStudent.css";
 import { InputGroup } from "react-bootstrap";
+import report from "../../../src/assets/samplefile/report.pdf"
 
 const StaffMemberManageStudents = () => {
   const [show, setShow] = useState(false);
@@ -687,18 +688,14 @@ const StaffMemberManageStudents = () => {
                               {selectedStudentsList.student_degree?.degree}
                             </td>
                             {/* <td>{selectedStudentsList.internships.company_id}</td> */}
-                            {selectedStudentsList.internships?.map(
-                              (selectedCompany) => (
-                                <td>{selectedCompany.company.name}</td>
-                              )
-                            )}
+                           
                             {selectedStudentsList.internships?.map(
                               (selectedJobRole) => (
                                 <td>{selectedJobRole.job_roles.job_role}</td>
                                 // <td>{selectedJobRole.job_role}</td>
                               )
                             )}
-                            {/* <td>{selectedStudentsList.internships.job_role}</td> */}
+                            <td><a href={report} download={report}>Report</a></td>
                           </tr>
                         )
                       )
