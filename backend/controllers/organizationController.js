@@ -74,6 +74,8 @@ export const registerOrganization = async (req,res) =>{
 
 export const createAdvertiesment = async(req,res)=>{
     const {error,value} = createAdvertiesmentSchema.validate(req.body);
+    console.log(req.files['profilePic'])
+    console.log(req.files['profileVideo'])
     if(!error){
         try{
 
@@ -86,13 +88,13 @@ export const createAdvertiesment = async(req,res)=>{
             const addvertiesment = await prisma.advertisement.create({
                 data:{
                     title:req.body.title,
-                    job_role:req.body.jobCategory,
+                    job_role:parseInt(req.body.jobCategory),
                     job_description:req.body.description,
-                    requested_interns:req.body.vacancies,
-                    advertisement_video:req.body.videoUrl,
-                    advertisement_video:req.body.videoUrl,
-                    company_id:req.body.companyId,
-                    program_id:program_id.program_id
+                    requested_interns: parseInt(req.body.vacancies),
+                    advertisement_picture : req.files.profilePic[0].filename,
+                    advertisement_video : req.files.profileVideo[0].filename,
+                    company_id:parseInt(req.body.companyId),
+                    program_id:parseInt(program_id.program_id)
                 }
             })
 

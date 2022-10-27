@@ -260,7 +260,16 @@ export const declineInterview = async(req,res)=>{
 
     export const getAllAdvertiesments = async (req,res)=>{
         try{
-            const advertiesments = await prisma.$queryRaw `SELECT advertisement.advertisement_id,
+            console.log(req.body);
+            const c = req.body.company;
+            const r = req.body.role;
+            const t = req.body.tech
+            const where =`  ${(r&&r!=='-') ? (' AND advertisement.job_role=' + r):''}  
+                            ${(c&&c!=='-') ? (' AND advertisement.company_id=' + c):''} 
+                            ${(t&&t!=='') ? (' AND technologies like \'%' + t+"%' "):''} `
+            console.log(where)
+
+            const advertiesments = await prisma.$queryRawUnsafe(` SELECT advertisement.advertisement_id,
                                                                   advertisement.title,
                                                                   company.name,
                                                                   job_roles.job_role,
@@ -279,10 +288,13 @@ export const declineInterview = async(req,res)=>{
                                                                   LEFT JOIN 
                                                                   advertisement_technologies
                                                                   ON advertisement_technologies.advertisement_id = advertisement.advertisement_id
-                                                                  WHERE advertisement.status = 2
-                                                            ORDER BY advertisement.advertisement_id DESC`;
+                                                                  WHERE advertisement.status = 2  ${where}
+                                                            ORDER BY advertisement.advertisement_id DESC`);
+
+                                                            console.log(advertiesments)
             res.status(200).send(advertiesments)
         }catch(error){
+            console.log(error)
             res.status(400).json({message:"Something went wrong when fetchingn the data!"})
         }
     }

@@ -16,43 +16,52 @@ import "../../styles/sMAdvertisments.css";
 const StudentAdvertisements = () => {
   const [adds, setAdds] = useState([]);
 
-  // const [jobRoles,setJobRoles]=useState([]);
+  const [jobRoles,setJobRoles] = useState([]);
+  const [companyList,setCompanyList]=useState([]);
+  const [filter,setFilter] = useState({company:undefined,role:undefined,tech:''})
 
-  // const [category,setCategory] = useState(0);
+  useEffect(() => {
+    const authAciveRequest = {
+      method: "post",
+      url: "staffMember/ActiveCompany",
+      data: {},
+    };
 
-
-  // const[selectedCourse,setselectedCourse] = useState("0");
-  // const[selectedStatus,setselectedStatus] = useState("0");
-  // const [allStudentsList, setAllStudentsList] = useState([]);
-  // const [searchSelectedStudent,setSearchSelectedStudent] = useState("");
-
-  // const [show, setShow] = useState(false);
-  // const [alertPara, setAlertPara] = useState("Student Added Successfully!");
-  // const [variant, setVariant] = useState("success");
+    callServer(authAciveRequest)
+      .then((response) => {
+        setCompanyList(response.data);
+      })
+      .catch(function (error) {
+        if (error.response) {
+        
+        }
+      });
+  }, []);
 
   useEffect(() => {
 
-    // const dataJobRoles={};
-    // const authRequestJobRoles = {
-    //   "method": "post",
-    //   "url": "organization/getJobRoles",
-    //   "data": dataJobRoles
-    // }
+    const dataJobRoles={};
+    const authRequestJobRoles = {
+      "method": "post",
+      "url": "organization/getJobRoles",
+      "data": dataJobRoles
+    }
 
-    // callServer(authRequestJobRoles).then((response)=>{
-    //   console.log(response.data);
-    //   setJobRoles(response.data);
-    // }).catch((error)=>{
-    //   if (error.response) {
-    //     setAlertPara("Something went wrong when getting the job roles!");
-    //     setVariant("danger");
-    //     setShow(true);
-    //   }
-    // })
+    callServer(authRequestJobRoles).then((response)=>{
+      console.log(response.data);
+      setJobRoles(response.data);
+    }).catch((error)=>{
+      if (error.response) {
+        
+      }
+    })
 
+  }, []);
 
+  useEffect(() => {
     const data = {
       // companyId:jwtDecode(sessionStorage.getItem("accessToken")).id
+      ...filter
     };
     const authRequest = {
       method: "post",
@@ -68,7 +77,7 @@ const StudentAdvertisements = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [filter]);
 
   return (
     <div className="contain mt-5 ms-5" style={{ width: "90%" }}>
@@ -89,7 +98,7 @@ const StudentAdvertisements = () => {
                     >
                       <i class="bi bi-search"></i>
                     </InputGroup.Text>
-                    <Form.Control className="searchbox" type="searchbox text" placeholder="Search by Technologies"/>
+                    <Form.Control className="searchbox" type="search" onChange={(e)=>setFilter(f=>({...f,tech:e.target.value}))} placeholder="Search by Technologies"/>
                   </InputGroup>
                 </div>
               </Form.Group>
@@ -103,9 +112,11 @@ const StudentAdvertisements = () => {
                 <Form.Label className="fw-bold" column sm={5}>
                   Company
                 </Form.Label>
-                <Form.Select sm={10} defaultValue="Choose...">
-                  <option>All</option>
-                  <option>...</option>
+                <Form.Select sm={10} defaultValue="Choose..." onChange={(e)=>setFilter(f=>({...f,company:e.target.value}))}>
+                  <option value={'-'}>All</option> 
+                  {companyList.map((company)=>(
+                    <option value={company.company_id}>{company.name}</option>
+                  ))}
                 </Form.Select>
               </Form.Group>
 
@@ -113,11 +124,11 @@ const StudentAdvertisements = () => {
                 <Form.Label className="fw-bold" column sm={5}>
                   Job Role
                 </Form.Label>
-                <Form.Select aria-label="Default select example" >
-                  {/* <option>Select Job Category</option>
+                <Form.Select aria-label="Default select example"  onChange={(e)=>setFilter(f=>({...f,role:e.target.value}))} >
+                  <option value={'-'}>Select Job Category</option>
                   {jobRoles.map((jobRole)=>(
                     <option value={jobRole.id}>{jobRole.job_role}</option>
-                  ))} */}
+                  ))}
                 </Form.Select>         
               </Form.Group>
               {/* <Form.Group as={Col} sm controlId="formGridState">
