@@ -10,9 +10,13 @@ import {createAdvertiesment,
         getApplicantList,
         addToWishList} from '../controllers/organizationController.js';
 
+        import { upload } from "../lib/file-upload.js";
+
+
 const organizationRouters = expree.Router();
 
-organizationRouters.post('/createAdvertiesment',createAdvertiesment);
+organizationRouters.post("/createAdvertiesment",
+upload.fields([{ name: 'profilePic', maxCount: 1 },{ name: 'profileVideo', maxCount: 1 }]),createAdvertiesment);
 organizationRouters.post('/getAllAdvertiesmentS',getAllAdvertiesments);
 organizationRouters.post('/getJobRoles',getJobRoles);
 organizationRouters.post('/getAllInterviews',getAllInterviews);

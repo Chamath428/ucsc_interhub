@@ -184,7 +184,7 @@ const StudentEditProfile = () =>{
                                             <FilesUploadComponent type="file" accept=".pdf"/>
                                         </Form.Group> */}
 
-                                        <Form.Group controlId="studentCV" className="mb-3">
+                                        <Form.Group controlId="profileVideo" className="mb-3">
                                             <Form.Label>Upload your intro video</Form.Label>
                                             <Form.Control type="file" accept="video/*" onChange={(event)=> {
                                                 console.log(event.target.files)

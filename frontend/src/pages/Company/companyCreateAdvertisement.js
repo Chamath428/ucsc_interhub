@@ -28,6 +28,10 @@ const CreateAdvertisement = () => {
   const [jobRoles,setJobRoles]=useState([]);
   const history = useHistory();
 
+  
+  const [profilePic,setProfilePic] = useState();
+  const [profileVideo,setProfileVideo] = useState();
+
   useEffect(()=>{
     const data={};
     const authRequest = {
@@ -56,14 +60,16 @@ const CreateAdvertisement = () => {
       vacancies:parseInt(vacancies),
       description:description,
       technologies:technologies,
-      videoUrl:videoUrl,
+      profilePic:profilePic,
+      profileVideo:profileVideo,
       companyId:jwt_decode(sessionStorage.getItem("accessToken")).id
     }
 
     const authRequest = {
       "method": "post",
       "url": "organization/createAdvertiesment",
-      "data": data
+      "data": data,
+      headers:{ 'Content-Type': 'multipart/form-data'}
     }
 
     callServer(authRequest).then((response)=>{
@@ -171,9 +177,12 @@ return (
               
 
 
-                <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Choose promotional video</Form.Label>
-                  <Form.Control type="file" />
+                <Form.Group controlId="profileVideo" className="mb-3">
+                <Form.Label>Choose Promotional Video</Form.Label>
+                                            <Form.Control type="file" accept="video/*" onChange={(event)=> {
+                                                console.log(event.target.files)
+                                                setProfileVideo(event.target.files[0])
+                                                }} />
                 </Form.Group>
 
             
@@ -182,9 +191,12 @@ return (
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-3">
 
 
-              <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Choose promotional image</Form.Label>
-                <Form.Control type="file" />
+              <Form.Group controlId="profilePicture" className="mb-3">
+              <Form.Label>Choose Promotional Image</Form.Label>
+                                            <Form.Control type="file" accept="image/*" onChange={(event)=> {
+                                                console.log(event.target.files) 
+                                                setProfilePic(event.target.files[0])
+                                                }} />
               </Form.Group>
 
                 <div className='row gutters'>
