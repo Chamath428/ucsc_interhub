@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
+import { useState,useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -12,10 +13,39 @@ import BodyCard from '../../component/Cards/bodyCard';
 import PrimaryBtn from '../../component/Buttons/primaryBtn';
 import InfoBtn from '../../component/Buttons/outlineBtn';
 import YoutubeEmbed from '../../component/YoutubeEmbed/youtubeEmbed';
+import { callServer } from '../authServer';
 
-class CompanyStudentProfile extends Component {
+const CompanyStudentProfile =(props)=> {
 
-    render() {
+
+    const [show, setShow] = useState(false);
+    const [alertPara, setAlertPara] = useState(
+      "Applicants data fetched Successfully!"
+    );
+    const [variant, setVariant] = useState("success");
+        const [profileData,setProfileData] = useState([]);
+
+        useEffect(() => {
+            const data = {
+              studentId: props.location.state.index_number,
+              advertisement_id:props.location.state.advertisement_id
+            };
+            const authRequest = {
+              method: "post",
+              url: "organization/getApplicantProfile",
+              data: data,
+            };
+        
+            callServer(authRequest)
+              .then((response) => {
+                setProfileData(response.data[0]);
+              })
+              .catch((error) => {
+                setAlertPara("Something went wrong while getting applicant data!");
+                setVariant("danger");
+                setShow(true);
+              });
+          }, []);
 
         return(
             <div className='container mt-5 ms-5' style={{width:'90%'}} >
@@ -32,7 +62,8 @@ class CompanyStudentProfile extends Component {
                                 <ProfilePic url="https://i.pinimg.com/736x/0a/53/c3/0a53c3bbe2f56a1ddac34ea04a26be98.jpg"/>
                                 
                                 <div className="d-grid gap-2">
-                                    <Button variant='primary'>View my CV</Button>
+                                    <a href={profileData.cv} download={profileData.cv}><Button className='w-100 ' variant='primary'>View my CV</Button></a>
+                                    {/* <Button variant='primary'>View my CV</Button> */}
                                 </div><br />
 
                                 <div className="d-grid gap-2">
@@ -43,9 +74,9 @@ class CompanyStudentProfile extends Component {
                                     <br />
                                     <div className="d-flex justify-content-between">
                                         
-                                            <Button variant="outline-primary" className=''><i className="bi bi-facebook mx-3"></i></Button>
-                                            <Button variant="outline-primary" className=''><i className="bi bi-linkedin mx-3"></i></Button>
-                                            <Button variant="outline-primary" className=''><i className="bi bi-github mx-3"></i></Button>
+                                            <Button variant="outline-primary" className=''><i className="bi bi-facebook mx-2"></i></Button>
+                                            <Button variant="outline-primary" className=''><i className="bi bi-linkedin mx-2"></i></Button>
+                                            <Button variant="outline-primary" className=''><i className="bi bi-github mx-2"></i></Button>
                                     </div>
                                 </div>
 
@@ -59,19 +90,12 @@ class CompanyStudentProfile extends Component {
                                 <Card body>
                                     <Row>
                                         <Col lg='7'>
-                                            <h1>Chamath Madushanka</h1>
-                                            <h5>BSc. Computer Science</h5>
+                                            <h1>{profileData.name}</h1>
+                                            <h5>{profileData.degree}</h5>
                                         </Col>
-                                        {/* <Col lg='5' > */}
-                                            {/* Use composition and render a Route for Edit Profile button */}
-                                            {/* <Route render={({ history}) => (
-                                            <Button variant="primary" className='float-right mr-2'  onClick={() => { history.push('/Student/Edit-Profile') }}>Edit Profile</Button>
-                                            )}/> */}
-                                            {/* <Button variant="outline-danger" className='float-right mr-2'   onClick={() => window.location = 'https://ucsc.cmb.ac.lk/'}>Deactivate</Button> */}
-                                        {/* </Col> */}
                                     </Row>
                                     <Row className='m-2'>
-                                        <BodyCard bodyText='A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now. When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary,'></BodyCard>
+                                        <BodyCard bodyText={profileData.about_me}></BodyCard>
                                     </Row>
                                     
                                     <Row className='m-2'>
@@ -108,7 +132,6 @@ class CompanyStudentProfile extends Component {
                 
             </div>
         );
-    }
     }
 
 export default CompanyStudentProfile;

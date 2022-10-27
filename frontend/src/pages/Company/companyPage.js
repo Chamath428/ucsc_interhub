@@ -21,6 +21,7 @@ import CreateAdvertisement from "./companyCreateAdvertisement";
 import CoordinatorRegisteredCompanyProfile from "../Coordinator/CoordinatorRegisteredCompanyProfile";
 import AnnouncementFullCard from "../../component/Cards/AnnouncementFullCard";
 import ViewAdvertisement from "./companyAdvertisementPreview";
+import CompanyStudentProfile from "./companyStudentProfile";
 
 
 function CompanyBase(){
@@ -60,6 +61,7 @@ return(
                     <Route exact path="/Company/Create-ad" component={CreateAdvertisement} />
 
                     <Route exact path="/Company/Profile" component={CoordinatorRegisteredCompanyProfile} />
+                    <Route exact path="/Company/ViewApplicant" component={CompanyStudentProfile} />
  
                     {/* Components */}
                     <Route exact path="/Company/AnnouncementPage" component={AnnouncementFullCard} />
