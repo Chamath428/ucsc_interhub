@@ -296,6 +296,7 @@ export const declineInterview = async(req,res)=>{
                                                                   company.company_id,
                                                                   company.name,
                                                                   job_roles.job_role,
+                                                                  advertisement.title,
                                                                   advertisement_status.type,
                                                                   advertisement_technologies.technologies,
                                                                   advertisement.requested_interns,

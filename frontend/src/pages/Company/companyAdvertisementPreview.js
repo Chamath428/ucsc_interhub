@@ -65,7 +65,7 @@ return (
           <Row>
             <Col lg='12'>
                 <Row>
-                <h1>Job Title</h1>
+                <h1>{adds.title}</h1>
                 </Row>
                 <Row>
                 {/* advertisement_id: 9
