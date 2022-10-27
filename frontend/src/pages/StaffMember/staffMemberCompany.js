@@ -541,7 +541,7 @@ const StaffMemberManageCompany = () => {
                       <td>{companyList.start_time}</td>
                       <td>{companyList.company_visit_types.type}</td>
                       <td>{companyList.company_visit_status_types.status}</td>
-                      <td>{companyList.company_visit_id}</td>
+                
                     </tr>
                   ))}
                 </tbody>
